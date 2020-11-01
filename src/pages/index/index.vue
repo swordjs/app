@@ -11,7 +11,7 @@
     export default {
         setup() {
             return {
-                title: 'hello'
+                title: ''
             }
         }
     }
