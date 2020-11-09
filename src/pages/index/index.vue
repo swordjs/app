@@ -15,12 +15,12 @@
 			// 通过前端client查询数据
 			getTestList();
 			function handelTestSubmit(){
-				console.log("test");
 				// 执行云函数
 				uniCloud.callFunction({
 					name: "testPrint",
 					data: {
-						"test": "interface"
+						$method: "addTest",
+						test: "interface"
 					}
 				});
 			}
