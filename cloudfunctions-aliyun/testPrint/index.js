@@ -5,6 +5,7 @@ const collection = db.collection('testInit');
 const functionSet = {
 	addTest
 }
+
 exports.main = async (event, context) => {
 	const method = event.$method;
 	if(!functionSet.hasOwnProperty(method)){

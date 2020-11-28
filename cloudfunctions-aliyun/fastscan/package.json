@@ -1,0 +1,22 @@
+{
+  "name": "sensitive-word-filter",
+  "version": "1.0.2",
+  "description": "Censor politically-sensitive words in China. 国内敏感词过滤器。",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "word-sensitive",
+    "sensitive word",
+    "sensitive",
+    "GWF",
+    "china",
+    "敏感词"
+  ],
+  "author": "gaohui",
+  "license": "MIT",
+  "__npminstall_done": "Mon Sep 07 2020 17:57:32 GMT+0800 (GMT+08:00)",
+  "_from": "sensitive-word-filter@1.0.2",
+  "_resolved": "https://registry.npm.taobao.org/sensitive-word-filter/download/sensitive-word-filter-1.0.2.tgz"
+}
