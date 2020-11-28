@@ -1,0 +1,11 @@
+// 如果拷贝此内容切记去除注释
+{
+	"passwordSecret": "PyFZVwsT9QVXoeeh",
+	"tokenSecret": "LCMsnrTFpsYmHyC4",
+	"tokenExpiresIn": 7200,
+	"bindTokenToDevice": false,
+	"passwordErrorLimit": 6,
+	"tokenExpiresThreshold": 600,
+	"passwordErrorRetryTime": 3600
+}
+ 
