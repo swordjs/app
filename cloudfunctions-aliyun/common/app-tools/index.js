@@ -18,11 +18,14 @@ function appErrorMessage(value) {
  * @param {Object} event 传入对象
  */
 function handleMustRequireParam(requireParamData, event) {
-	for (let i in requireParamData) {
-		if (!event.hasOwnProperty(requireParamData[i].key)) {
-			return appErrorMessage(`${requireParamData[i].value}为必填`)
+	return new Promise((resolve, reject) => {
+		for (let i in requireParamData) {
+			if (!event.hasOwnProperty(requireParamData[i].key)) {
+				reject(appErrorMessage(`${requireParamData[i].value}为必填`));
+			}
 		}
-	}
+		resolve()
+	})
 }
 
 
