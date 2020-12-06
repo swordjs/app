@@ -1,5 +1,5 @@
 {
-  "name": "user",
+  "name": "application",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "app-tools": "file:../common/app-tools",
+    "explain": "file:../common/explain",
     "uni-id": "file:../common/uni-id"
   }
 }

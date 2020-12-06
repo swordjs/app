@@ -9,18 +9,21 @@
 </template>
 
 <script lang="ts">
-	import { getTestList } from "../../api/test"
+	import {
+		getTestList
+	} from "../../api/test"
 	export default {
 		setup() {
 			// 通过前端client查询数据
 			getTestList();
-			function handelTestSubmit(){
+
+			function handelTestSubmit() {
 				// 执行云函数
 				uniCloud.callFunction({
-					name: "testPrint",
+					name: "application",
 					data: {
-						$method: "addTest",
-						test: "interface"
+						"route": "api/user",
+						"method": "PUT"
 					}
 				});
 			}
