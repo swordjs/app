@@ -1,5 +1,6 @@
-// 本文件中的json内容将在云函数【运行】时作为参数传给云函数。
-// 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 {
-	"$method": "checkToken",	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMzNmEwM2ZjM2Y0NzAwMDFkMTQ5ZmUiLCJpYXQiOjE2MDY2NDIxODUsImV4cCI6MTYwNjY0OTM4NX0.geCHx5BXrk1JEE4F-vMoZ2pUDSI0tZQoxmXB2oJ90Q4"
+	"$method": "updateUserInfo",
+	"uid": "5fc36a03fc3f470001d149fe",
+	"nickname": "沈浩",
+	"gender": 1
 }
