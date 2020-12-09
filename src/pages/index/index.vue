@@ -4,6 +4,7 @@
 		<view>
 			<text class="title">{{title}}</text>
 			<button @click="handelTestSubmit">Test</button>
+			<button @click="handleUpload">上传</button>
 		</view>
 	</view>
 </template>
@@ -27,8 +28,28 @@
 					}
 				});
 			}
+
+			function handleUpload() {
+				uni.chooseImage({
+					count: 1,
+					success(res) {
+						console.log(res);
+						if (res.tempFilePaths.length > 0) {
+							let filePath = res.tempFilePaths[0]
+							uniCloud.uploadFile({
+								filePath: filePath,
+								cloudPath: 'a.jpg',
+								success(r){
+									console.log(r)
+								}
+							});
+						}
+					}
+				});
+			}
 			return {
-				handelTestSubmit
+				handelTestSubmit,
+				handleUpload
 			}
 		}
 	}
