@@ -3,7 +3,7 @@ const explain = require("explain");
 const uniID = require("uni-id");
 // 工具函数
 const { appErrorMessage, handleMustRequireParam } = require("app-tools");
-
+const name: string = "1";
 module.exports = class User extends explain.service {
   // 注册用户根据手机号
   addUserByPhone() {
