@@ -59,6 +59,8 @@
     "core-js": "^3.7.0",
     "flyio": "^0.6.2",
     "regenerator-runtime": "^0.12.1",
+    "sass": "^1.30.0",
+    "sass-loader": "^10.1.0",
     "vue": "^2.6.11",
     "vuex": "^4.0.0-beta.4"
   },
