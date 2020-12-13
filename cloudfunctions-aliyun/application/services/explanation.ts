@@ -5,7 +5,9 @@ namespace Explanation{
     // 工具函数
     const { appErrorMessage, handleMustRequireParam } = require("app-tools");
     module.exports = class Explanation extends explain.service {
-        // 获取题解
-        
+        // 获取推荐题解
+        async getRecommendQuestionList(){
+            
+        }
     };
 }

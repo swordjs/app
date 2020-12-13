@@ -2,7 +2,7 @@
 node_modules/
 unpackage/
 dist/
-cloudfunctions-aliyun/common/uni-id/common/uni-id/config.json
+cloudfunctions-aliyun/common/uni-id/common/uni-id/config.json/
 # local env files
 .env.local
 .env.*.local
