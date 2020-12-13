@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
           {
             // 过滤器忽略所指定的service和它的action
             service: "user",
-            actions: ["addUserByPhone", "postLoginByPhone"], // 不写actions则表示忽略该service中的所有action
+            actions: ["addUserByPhone", "postLoginByPhone", "checkToken"], // 不写actions则表示忽略该service中的所有action
           },
         ],
       },

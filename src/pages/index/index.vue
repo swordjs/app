@@ -33,8 +33,8 @@
 				</view>
 				<!-- 头像组 -->
 				<view class="headPictureList">
-					<image :style="{zIndex: index, left: index * 15 + 'px'}" :key="index" v-for="(i, index) in 3" class="headPicture" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-					 mode="scaleToFill"></image>
+					<image :style="{zIndex: index, left: index * 15 + 'px'}" :key="index" v-for="(i, index) in 3" class="headPicture"
+					 src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg" mode="scaleToFill"></image>
 				</view>
 			</view>
 		</view>
@@ -55,10 +55,10 @@
 					<view class="bottom">
 						<image class="headPicture" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
 						 mode="scaleToFill"></image>
-						 <view class="right">
-							 <view class="nickname">亚当兰伯特</view>
-							 <view class="date">2020-02-10</view>
-						 </view>
+						<view class="right">
+							<view class="nickname">亚当兰伯特</view>
+							<view class="date">2020-02-10</view>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -69,7 +69,17 @@
 <script lang="ts">
 	export default {
 		setup() {
-
+			uniCloud.callFunction({
+				name: "application",
+				data: {
+					route: "api/user",
+					method: "PUT",
+					params: {
+						username: '18291563764',
+						password: "123456"
+					}
+				}
+			})
 			return {
 
 			}
@@ -197,7 +207,8 @@
 				.content {
 					max-width: 282rpx;
 				}
-				.headPictureList{
+
+				.headPictureList {
 					position: relative;
 					display: flex;
 					justify-content: flex-start;
@@ -205,7 +216,8 @@
 					margin-left: 46rpx;
 					margin-top: 12rpx;
 					height: 44rpx;
-					.headPicture{
+
+					.headPicture {
 						position: absolute;
 						width: 44rpx;
 						height: 44rpx;
@@ -238,46 +250,56 @@
 				color: #999999;
 			}
 		}
+
 		.article {
 			width: 690rpx;
 			margin: 40rpx auto 28rpx auto;
+
 			.title {
 				font-size: 32rpx;
 				font-weight: bold;
 				color: #404040;
 			}
+
 			.articleList {
 				width: 100%;
+
 				.articleListItem {
 					width: 606rpx;
 					height: 190rpx;
 					padding: 30rpx 42rpx 36rpx 42rpx;
 					background: #FFFFFF;
-					box-shadow: 0px 4px 11px 0px rgba(38,46,99,0.15);
+					box-shadow: 0px 4px 11px 0px rgba(38, 46, 99, 0.15);
 					border-radius: 10px;
 					margin-top: 24rpx;
-					.articleListItemTitle{
+
+					.articleListItemTitle {
 						font-size: 28rpx;
 						word-break: break-all;
 					}
-					.bottom{
+
+					.bottom {
 						display: flex;
 						justify-content: flex-start;
 						align-items: center;
 						margin-top: 30rpx;
-						.headPicture{
+
+						.headPicture {
 							width: 80rpx;
 							height: 80rpx;
 							border-radius: 50%;
-							
+
 						}
-						.right{
+
+						.right {
 							margin-left: 16rpx;
-							.nickname{
+
+							.nickname {
 								font-size: 24rpx;
 								color: #666666;
 							}
-							.date{
+
+							.date {
 								font-size: 20rpx;
 								color: #999999;
 							}
