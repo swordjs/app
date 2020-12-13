@@ -6,8 +6,6 @@ module.exports = class tokenFilter extends explain.filter {
 		let {
 			context
 		} = this;
-		console.log(context);
-		
+		// 判断context中是否
 	}
-
 }
