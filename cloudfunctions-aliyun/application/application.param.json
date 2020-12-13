@@ -1,0 +1,12 @@
+// 本文件中的json内容将在云函数【运行】时作为参数传给云函数。
+
+// 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
+
+{
+	"route": "api/user/checkToken/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMzNmEwM2ZjM2Y0NzAwMDFkMTQ5ZmUiLCJpYXQiOjE2MDcxNTg0NTYsImV4cCI6MWUrMTU5fQ.BYG7Sf73HLEiFNDXvNnMCOsQV3dUWyDtD0DN9DpJR64",
+	"method": "GET",
+	"params": {
+		"username": "18291563764",
+		"password": "123456"
+	}
+}
