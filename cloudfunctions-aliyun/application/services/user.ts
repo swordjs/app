@@ -6,9 +6,15 @@ namespace User {
   const { appErrorMessage, handleMustRequireParam } = require("app-tools");
   module.exports = class User extends explain.service {
     // 微信登录
-    async loginByWechat() {
+    async loginByWechat({ code }) {
+      // 把用户信息也添加到库中
       const res = await uniID.loginByWeixin({
-        code: this.event.code,
+        code,
+      });
+      // 更新用户信息（昵称，头像，性别等）
+      await uniID.updateUser({
+        uid: res.uid,
+        ...this.event.params,
       });
       return res;
     }

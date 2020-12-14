@@ -66,7 +66,7 @@
 	</view>
 </template>
 
-<script lang="ts">
+<script>
 	export default {
 		setup() {
 			uniCloud.callFunction({
@@ -81,7 +81,7 @@
 				}
 			})
 			return {
-
+				
 			}
 		}
 	}

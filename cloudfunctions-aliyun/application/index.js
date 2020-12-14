@@ -5,8 +5,8 @@ const explain = require("explain");
 exports.main = async (event, context) => {
   return explain.run(event, context, (config) => {
     config.init({
-	    baseDir: __dirname,
-	    serviceDir: "/dist/"
+      baseDir: __dirname,
+      serviceDir: "/dist/",
     });
 
     config.filter.add([
@@ -16,7 +16,7 @@ exports.main = async (event, context) => {
           {
             // 过滤器忽略所指定的service和它的action
             service: "user",
-            actions: ["addUserByPhone", "postLoginByPhone", "checkToken"], // 不写actions则表示忽略该service中的所有action
+            actions: ["addUserByPhone", "postLoginByPhone", "checkToken", "loginByWechat"], // 不写actions则表示忽略该service中的所有action
           },
         ],
       },
@@ -28,6 +28,11 @@ exports.main = async (event, context) => {
         routes: [
           {
             action: "addUserByPhone",
+          },
+          {
+            route: "loginByWechat/{code}",
+            httpMethod: "POST",
+            action: "loginByWechat",
           },
           {
             route: "postLoginByPhone",
