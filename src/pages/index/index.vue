@@ -3,11 +3,18 @@
 		<!-- 顶部背景 -->
 		<view class="topBox">
 			<!-- 头像 -->
-			<image class="headPicture" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+			<image @click="handleClickUser" v-if="isLogin" class="headPicture" :src="user.avatarUrl"
 			 mode="scaleToFill"></image>
+			<image @click="handleClickUser" v-else class="headPicture" src="../../static/index/user.png"></image>
 			<!-- 欢迎语和昵称 -->
-			<view class="hello">Hello,</view>
-			<view class="nickname">沈昊！</view>
+			<view class="hello" :style="{
+				opacity: isLogin ? 1 : 0
+			}">Hello,</view>
+			<!-- 如果未登录显示未登录 -->
+			<button hover-class='none' v-if="!isLogin" open-type="getUserInfo" class="getUserButton" @getuserinfo="handleClickUser">
+				<view class="nickname">未登录</view>
+			</button>
+			<view v-else class="nickname">{{user.nickName}}!</view>
 			<!-- 搜索框 -->
 			<view class="search">
 				<input maxlength="15" placeholder="热点: vite好在哪里" placeholder-style="color: #C3C5D4;" type="text" />
@@ -67,8 +74,68 @@
 </template>
 
 <script>
+	import {
+		reactive,
+		ref
+	} from "vue";
+	// api
+	import { loginByWechat } from "../../api/login.js"
 	export default {
 		setup() {
+			// 首页展示的信息，头像/昵称等
+			const user = ref({
+				nickName: "",
+				avatarUrl: ""
+			});
+			// 是否登录
+			const isLogin = ref(uni.getStorageSync("uni-id-token") !== "");
+			if(isLogin.value){
+				user.value = uni.getStorageSync("userInfo")
+			}
+			// 点击user和头像
+			const handleClickUser = () => {
+				// 判断是否登录
+				if(isLogin.value){
+					
+				}else{
+					// 微信登录
+					uni.getUserInfo({
+						success: ({userInfo}) => {
+							uni.login({
+								provider: 'weixin',
+								async success(res) {
+									// 传入用户信息和code
+									uni.showLoading({
+										title: "登录中..."
+									})
+									const loginData = await loginByWechat(userInfo, res);
+									uni.hideLoading();
+									// 存储返回的token以及用户信息，id等
+									if(loginData.success && loginData.result.code === 0){
+										uni.setStorageSync("uni-id-token", loginData.result.token);
+										uni.setStorageSync("uni-id", loginData.result.uid);
+										uni.setStorageSync("userInfo", userInfo);
+										console.log(userInfo)
+										// 显示微信个人信息
+										user.value = userInfo
+										// 已登录状态变更
+										isLogin.value = true;
+									}
+								},
+								fail(err) {
+									uni.showToast({
+										title: "微信登录失败",
+										icon: "none"
+									})
+								}
+							})
+						},
+						fail: () => {
+							console.log("未授权用户基本信息");
+						}
+					})
+				}
+			}
 			uniCloud.callFunction({
 				name: "application",
 				data: {
@@ -81,7 +148,9 @@
 				}
 			})
 			return {
-				
+				isLogin,
+				user,
+				handleClickUser
 			}
 		}
 	}
@@ -101,6 +170,34 @@
 				border-radius: 50%;
 				margin-top: calc(var(--status-bar-height) + 30rpx);
 				margin-left: 48rpx;
+			}
+			button::after{
+				border: none;
+				background-color: none;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				position: static;
+			}
+			.getUserButton{
+				width: 240rpx;
+				height: 112rpx;
+				background-color: transparent;
+				border: none;
+				margin-left: 0;
+				margin-right: 0;
+				padding-left: 0;
+				padding-right: 0;
+				margin-top: 4rpx;
+				font-size: 80rpx;
+				margin-left: 48rpx;
+				line-height: 0;
+				text-align: start;
+				color: #fff;
+				.nickname {
+					line-height: 112rpx;
+					margin-left: 0;
+				}
 			}
 
 			.hello {
