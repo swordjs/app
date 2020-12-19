@@ -6,8 +6,18 @@
 
 			}
 		}, {
-			"path": "pages/login/index",
-			"style": {}
+			"path": "pages/question/index",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "题解专区"
+			}
+
+		}, {
+			"path": "pages/question/questionList",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": ""
+			}
 		}
 	],
 	"globalStyle": {
