@@ -3,10 +3,12 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/user/checkToken/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmMzNmEwM2ZjM2Y0NzAwMDFkMTQ5ZmUiLCJpYXQiOjE2MDcxNTg0NTYsImV4cCI6MWUrMTU5fQ.BYG7Sf73HLEiFNDXvNnMCOsQV3dUWyDtD0DN9DpJR64",
-	"method": "GET",
+	"route": "api/questionArea",
+	"method": "DELETE",
+	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MDgzNjMxODMsImV4cCI6MWUrMTU4fQ.ybyRXV0OodjDfRDFLDxM5EI5J45uphGcw0tlo6nYmE4",
 	"params": {
-		"username": "18291563764",
-		"password": "123456"
+		"_id": "5fdf56a3e2c1ee0001a52e49",
+		"name": "前端1",
+		"iconPath": "www.baidu.com"
 	}
 }

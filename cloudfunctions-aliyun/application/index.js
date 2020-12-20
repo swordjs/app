@@ -15,11 +15,17 @@ exports.main = async (event, context) => {
         ignore: [
           {
             service: "user",
-            actions: ["addUserByPhone", "postLoginByPhone", "checkToken", "loginByWechat"],
-          },{
-            service: "explanation",
-            actions: ["getRecommendQuestionList"]
-          }
+            actions: [
+              "addUserByPhone",
+              "postLoginByPhone",
+              "checkToken",
+              "loginByWechat",
+            ],
+          },
+          {
+            service: "questionExplanation",
+            actions: ["getRecommendQuestionList"],
+          },
         ],
       },
     ]);
@@ -53,6 +59,21 @@ exports.main = async (event, context) => {
           },
           {
             action: "updateUserInfo",
+          },
+        ],
+      },
+      {
+        route: "api/questionArea",
+        service: "questionArea",
+        routes: [
+          {
+            action: "addQuestionArea",
+          },
+          {
+            action: "updateQuestionArea",
+          },
+          {
+            action: "deleteQuestionArea",
           },
         ],
       },

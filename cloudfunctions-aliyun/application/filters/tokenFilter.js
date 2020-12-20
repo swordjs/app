@@ -7,6 +7,7 @@ module.exports = class tokenFilter extends explain.filter {
 			context
 		} = this;
 		// 判断context中是否存在token
+		console.log("event: ", event)
 		if(!event.hasOwnProperty("uniIdToken")){
 			context.response = {
                 code: 401,
