@@ -1,0 +1,100 @@
+@startuml
+class 用户 {
+    {static} +UUID _id
+    +String username
+    +Array token
+    +String avatar
+    +String sign
+    {static} +String code
+    {static} +Integer gender
+    +Array userLikedQuestionExplanation
+    +Array followers
+    +UUID AuthID
+    --登录注册登出,校验token相关--
+    +void loginByWechat()
+    +void addUserByPhone()
+    +void postLoginByPhone()
+    +void updateUserInfo()
+    +void userLogout()
+    +void checkToken()
+    --关注/取消关注--
+    +void addFollowers()
+    +void deleteFollowers()
+
+}
+class 用户认证{
+    +UUID _id
+    +UUID userID
+    +String state
+    +JSON content
+    --申请和修改认证--
+    +void addAuthByUser()
+    +void updateAuthByUser()
+}
+class 题目专区 {
+    +UUID _id
+    +String name
+    +String iconPath
+    +void addArea()
+    +void updateArea()
+    +void deleteArea()
+}
+class 题目分类标签{
+    +UUID _id
+    +UUID areaID
+    +String name
+    +void addTag()
+    +void deleteTag()
+    +void updateTag()
+}
+class 题目 {
+    +UUID _id
+    +String title
+    +UUID publishUserID
+    +UUID areaID
+    +String content
+    +Array questionExplanation
+    +Array tagID
+    +void addQuestion()
+    +void deleteQuestion()
+    +void updateQuestion()
+    --推荐机制获取题目信息--
+    +Array getQuestions()
+}
+class 题解{
+    +UUID _id
+    +String content
+    +UUID questionID
+    +UUID userID
+    +Array userAgreed
+    +Array userDisagreed
+    +void addQuestionExplanation()
+    +void deleteQuestionExplanation()
+    +void updateQuestionExplanation()
+     --收藏题解--
+    +void addQuestionExplanation()
+}
+
+
+class 文章(待整理){
+    +UUID _id
+    +String title
+    +String content
+}
+
+题目专区 --> "many" 题目分类标签::areaID
+用户 --> "many" 题目
+用户 --> "many" 用户认证::userID
+题目 --> "many" 题目分类标签
+题目 <-- 题目专区
+题目 --> "many" 题解::questionID
+note left of 用户::_id
+由Uni-id生成的唯一主键
+end note
+note left of 用户::code
+微信登录返回的code作为记录
+end note
+note left of 用户::gender
+和微信的性别机制一样，0未知， 1男，2女
+end note
+@enduml
