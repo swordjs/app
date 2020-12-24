@@ -3,12 +3,12 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/questionArea",
-	"method": "DELETE",
+	"route": "api/questionTag",
+	"method": "POST",
 	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MDgzNjMxODMsImV4cCI6MWUrMTU4fQ.ybyRXV0OodjDfRDFLDxM5EI5J45uphGcw0tlo6nYmE4",
 	"params": {
-		"_id": "5fdf56a3e2c1ee0001a52e49",
-		"name": "前端1",
-		"iconPath": "www.baidu.com"
+		"_id": "5fdfe2567574ed0001d111b4",
+		"name": "小程序",
+		"areaID": "5fdf56a3e2c1ee0001a52e49"
 	}
 }

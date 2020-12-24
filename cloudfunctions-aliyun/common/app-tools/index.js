@@ -20,8 +20,8 @@ function appErrorMessage(value) {
 function handleMustRequireParam(requireParamData, event) {
 	return new Promise((resolve, reject) => {
 		for (let i in requireParamData) {
-			if (!event.hasOwnProperty(requireParamData[i].key)) {
-				reject(appErrorMessage(`${requireParamData[i].value}为必填`));
+			if (!event.hasOwnProperty(requireParamData[i].key) || event[requireParamData[i].key] === "") {
+				reject(appErrorMessage(`${requireParamData[i].value}为必填,不可不填或为空`));
 			}
 		}
 		resolve()

@@ -77,6 +77,21 @@ exports.main = async (event, context) => {
           },
         ],
       },
+      {
+        route: "api/questionTag",
+        service: "questionTag",
+        routes: [
+          {
+            action: "addQuestionTag",
+          },
+          {
+            action: "updateQuestionTag",
+          },
+          {
+            action: "deleteQuestionTag",
+          },
+        ],
+      },
     ]);
   });
 };

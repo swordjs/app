@@ -26,7 +26,7 @@ namespace questionArea {
           } else if (this.event.params.iconPath === "") {
             return appErrorMessage("图片地址为空");
           } else {
-            const now = new Date().toISOString();
+            const now: string  = new Date().toISOString();
             return collection.add({
               name,
               iconPath,
@@ -63,7 +63,7 @@ namespace questionArea {
           } else if (this.event.params.iconPath === "") {
             return appErrorMessage("图片地址为空");
           } else {
-            const now = new Date().toISOString();
+            const now: string  = new Date().toISOString();
             return collection.doc(this.event.params._id).update({
               name,
               iconPath,
@@ -84,7 +84,7 @@ namespace questionArea {
         this.event.params
       )
         .then(() => {
-          const now = new Date().toISOString();
+          const now: string  = new Date().toISOString();
           return collection.doc(this.event.params._id).update({
             updateDate: now,
             deleteDate: now

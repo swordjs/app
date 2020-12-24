@@ -19,7 +19,10 @@
 				"navigationBarTitleText": ""
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/user/index"
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
