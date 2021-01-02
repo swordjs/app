@@ -6,6 +6,7 @@ cloudfunctions-aliyun/common/uni-id/config.json
 # local env files
 .env.local
 .env.*.local
+.hbuilderx
 
 # Log files
 npm-debug.log*
