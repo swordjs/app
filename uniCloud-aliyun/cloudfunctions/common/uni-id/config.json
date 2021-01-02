@@ -1,0 +1,17 @@
+{
+  "passwordSecret": "PyFZVwsT9QVXoeeh",
+  "tokenSecret": "LCMsnrTFpsYmHyC4",
+  "tokenExpiresIn": 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
+  "bindTokenToDevice": false,
+  "passwordErrorLimit": 6,
+  "tokenExpiresThreshold": 600,
+  "passwordErrorRetryTime": 3600,
+  "mp-weixin": {
+    "oauth": {
+      "weixin": {
+        "appid": "wxc8f2e6cc08653873",
+        "appsecret": "75097045d6502aefad4fdcfa76afbb33"
+      }
+    }
+  }
+}

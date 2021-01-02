@@ -136,17 +136,6 @@
 					})
 				}
 			}
-			uniCloud.callFunction({
-				name: "application",
-				data: {
-					route: "api/user",
-					method: "PUT",
-					params: {
-						username: '18291563764',
-						password: "123456"
-					}
-				}
-			})
 			return {
 				isLogin,
 				user,
