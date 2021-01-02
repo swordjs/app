@@ -76,15 +76,23 @@ class 题解{
 }
 
 
-class 文章(待整理){
+class 文章{
     +UUID _id
+    +UUID userID
+    +UUID tagID
     +String title
     +String content
+    +Number like
+    +void addArticle()
+    +void deleteArticle()
+    +void likeArticle()
 }
 
 题目专区 --> "many" 题目分类标签::areaID
 用户 --> "many" 题目
 用户 --> "many" 用户认证::userID
+用户 --> "many" 文章::userID
+文章::tagID --> "many" 题目分类标签
 题目 --> "many" 题目分类标签
 题目 <-- 题目专区
 题目 --> "many" 题解::questionID

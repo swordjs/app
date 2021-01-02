@@ -3,7 +3,7 @@
 		<view class="top">
 			<!-- 顶部的bar -->
 			<view class="navigationBar">
-				<image class="back" src="../../static/common/back.png" />
+				<image class="back" @click="handleBack" src="../../static/common/back.png" />
 				<view class="title">我的</view>
 			</view>
 			<!-- 头像和昵称 -->
@@ -40,7 +40,69 @@
 		<view class="questionSwiper">
 			<swiper :current="tabCurrent" @change="handleSwiperChange" :style="{height: swiperHeight + 'px'}">
 				<swiper-item>
-					1
+					<view class="itemCard">
+						<view class="itemCardTop">
+							<image class="headPicture" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+							 mode="scaleToFill"></image>
+							 <view class="nickname">前端每日3+1</view>
+						</view>
+						<view class="itemBody">
+							<!-- 可能有图片 -->
+							<view class="images">
+								<image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								 mode="scaleToFill"></image>
+								 <image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								  mode="scaleToFill"></image>
+								  <image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								   mode="scaleToFill"></image>
+							</view>
+							<view class="main">
+								这是一道大题目，把考点拆成了4个小项；需要侯选人用递归算法实现（限制15行代码以内实现；限制时间10分钟内完成）归算法实现…
+							</view>
+						</view>
+					</view>
+					<view class="itemCard">
+						<view class="itemCardTop">
+							<image class="headPicture" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+							 mode="scaleToFill"></image>
+							 <view class="nickname">前端每日3+1</view>
+						</view>
+						<view class="itemBody">
+							<!-- 可能有图片 -->
+							<view class="images">
+								<image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								 mode="scaleToFill"></image>
+								 <image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								  mode="scaleToFill"></image>
+								  <image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								   mode="scaleToFill"></image>
+							</view>
+							<view class="main">
+								这是一道大题目，把考点拆成了4个小项；需要侯选人用递归算法实现（限制15行代码以内实现；限制时间10分钟内完成）归算法实现…
+							</view>
+						</view>
+					</view>
+					<view class="itemCard">
+						<view class="itemCardTop">
+							<image class="headPicture" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+							 mode="scaleToFill"></image>
+							 <view class="nickname">前端每日3+1</view>
+						</view>
+						<view class="itemBody">
+							<!-- 可能有图片 -->
+							<view class="images">
+								<image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								 mode="scaleToFill"></image>
+								 <image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								  mode="scaleToFill"></image>
+								  <image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+								   mode="scaleToFill"></image>
+							</view>
+							<view class="main">
+								这是一道大题目，把考点拆成了4个小项；需要侯选人用递归算法实现（限制15行代码以内实现；限制时间10分钟内完成）归算法实现…
+							</view>
+						</view>
+					</view>
 				</swiper-item>
 				<swiper-item>
 					2
@@ -63,18 +125,25 @@
 	import Tabs from "../../components/v-tabs/v-tabs.vue"
 	export default {
 		setup() {
+			
 			// 计算屏幕高度 - tab的高度 - 导航栏的高度 = swiper高度
 			const swiperHeight = uni.getSystemInfoSync().screenHeight - 38;
 			const tabCurrent = ref(0);
 			const tabs = ref(['已发布', '已解答', '我的收藏', '我的浏览']);
-			const handleSwiperChange = (e) => {
+			function handleSwiperChange(e){
 				tabCurrent.value = e.detail.current;
+			}
+			function handleBack(){
+				uni.navigateBack({
+					delta: 1
+				})
 			}
 			return {
 				tabCurrent,
 				tabs,
 				swiperHeight,
-				handleSwiperChange
+				handleSwiperChange,
+				handleBack
 			}
 		},
 		components: {
@@ -217,6 +286,52 @@
 
 		.tab {
 			margin-top: 112rpx;
+		}
+		.questionSwiper{
+			.itemCard{
+				padding: 30rpx;
+				&:not(:first-child){
+					border-top: 2rpx solid #F1F3FC;
+				}
+				.itemCardTop{
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					.headPicture {
+						width: 64rpx;
+						height: 64rpx;
+						border-radius: 50%;
+						border: 2px solid #fff;
+					}
+					.nickname{
+						font-size: 28rpx;
+						margin-left: 16rpx;
+					}
+				}
+				.itemBody{
+				
+					.images{
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+						margin-top: 20rpx;
+						image{
+							width: 216rpx;
+							height: 162rpx;
+							border-radius: 15rpx;
+							&:not(:first-child){
+								margin-left: 22rpx;
+							}
+						}
+					}
+					.main{
+						width: 690rpx;
+						color: #666666;
+						font-size: 28rpx;
+							margin-top: 20rpx;
+					}
+				}
+			}
 		}
 	}
 </style>
