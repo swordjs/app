@@ -2,6 +2,9 @@ namespace User {
   const explain = require("explain");
   // 公告模块
   const uniID = require("uni-id");
+  const db = uniCloud.database();
+  const collection = db.collection("uni-id-users");
+  const dbCmd = db.command;
   // 工具函数
   const { appErrorMessage, handleMustRequireParam } = require("app-tools");
   module.exports = class User extends explain.service {
@@ -116,6 +119,47 @@ namespace User {
       return await uniID.updateUser({
         ...this.event.params,
       });
+    }
+    // 添加关注
+    async addFollowers({ id }) {
+      // 根据token返回userID
+      const user = await collection
+        .where({
+          token: this.event.uniIdToken,
+        })
+        .limit(1)
+        .field({ id: true })
+        .get();
+      if(user.data && user.data.length !== 0){
+        const selfID: string = user.data[0]["_id"];
+        // 判断关注的是不是自己
+        if(selfID === id){
+          return appErrorMessage(`不能自己关注自己`);
+        }
+      	let result = await collection.doc(selfID).update({
+      		followers: dbCmd.push([id])
+      	});
+      	return result
+      }
+    }
+    // 取消关注
+    async deleteFollowers({ id }) {
+      const user = await collection
+        .where({
+          token: this.event.uniIdToken,
+        })
+        .limit(1)
+        .field({ id: true })
+        .get();
+        if(user.data && user.data.length !== 0){
+          const selfID: string = user.data[0]["_id"];
+          return await collection.where({
+            _id: selfID,
+            followers: id
+          }).update({
+            "followers.$": ""
+          })
+        }
     }
   };
 }

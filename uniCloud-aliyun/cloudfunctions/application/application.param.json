@@ -3,7 +3,7 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/questionTag",
+	"route": "api/user/deleteFollowers/2",
 	"method": "POST",
 	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MDgzNjMxODMsImV4cCI6MWUrMTU4fQ.ybyRXV0OodjDfRDFLDxM5EI5J45uphGcw0tlo6nYmE4",
 	"params": {

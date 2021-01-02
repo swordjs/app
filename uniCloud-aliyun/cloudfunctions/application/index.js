@@ -58,6 +58,16 @@ exports.main = async (event, context) => {
             action: "checkToken",
           },
           {
+            route: "addFollowers/{id}",
+            httpMethod: "POST",
+            action: "addFollowers",
+          },
+          {
+            route: "deleteFollowers/{id}",
+            httpMethod: "POST",
+            action: "deleteFollowers",
+          },
+          {
             action: "updateUserInfo",
           },
         ],
