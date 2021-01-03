@@ -18,9 +18,7 @@ class 用户 {
     +void userLogout()
     +void checkToken()
     --关注/取消关注--
-    +void addFollowers()
-    +void deleteFollowers()
-
+    +void checkFollowers()
 }
 class 用户认证{
     +UUID _id

@@ -117,5 +117,51 @@ namespace User {
         ...this.event.params,
       });
     }
+	
+	/**
+	 * 检查用户关注状态，若已关注，则取消关注，若没关注，则直接关注
+	 * @author mrc
+	 */
+	async checkFollowers() {
+		return handleMustRequireParam(
+		  [
+		    {
+		      key: "uid",
+		      value: "用户ID",
+		    },
+		    {
+		      key: "follower",
+		      value: "关注ID",
+		    },
+		  ],
+		  this.event.params
+		).then(async () => {
+			
+			let {uid,follower} = this.event.params;
+			
+			// 获取当前用户关注用户信息
+			const followers = await uniID.getUserInfo({
+			    uid: uid,
+			    field: ['followers']
+			})
+			
+			// 查询下标
+			const index = followers.indexOf(follower);
+				
+			if (index === -1) {
+				followers.push(follower);
+			} else {
+				followers.splice(index,1)
+			}
+			
+			// 更新数据库
+			return await uniID.updateUser({
+			  uid: uid,
+			  followers: followers
+			});
+		}).catch((err) => {
+          return err;
+        })
+	}
   };
 }
