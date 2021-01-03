@@ -60,6 +60,11 @@ exports.main = async (event, context) => {
           {
             action: "updateUserInfo",
           },
+		  {
+			route: "checkFollowers",
+			action: "checkFollowers",
+			httpMethod: "PUT",
+		  }
         ],
       },
       {
