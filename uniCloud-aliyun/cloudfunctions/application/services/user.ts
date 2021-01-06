@@ -120,46 +120,49 @@ namespace User {
         ...this.event.params,
       });
     }
-    // 添加关注
-    async addFollowers({ id }) {
-      // 根据token返回userID
-      const user = await collection
-        .where({
-          token: this.event.uniIdToken,
+
+    /**
+     * 检查用户关注状态，若已关注，则取消关注，若没关注，则直接关注
+     * @author mrc
+     */
+    async checkFollowers() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "uid",
+            value: "用户ID",
+          },
+          {
+            key: "follower",
+            value: "关注ID",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => {
+          let { uid, follower } = this.event.params;
+          // 获取当前用户关注用户信息
+          const followers = await uniID.getUserInfo({
+            uid: uid,
+            field: ["followers"],
+          });
+          // 查询下标
+          const index = followers.indexOf(follower);
+          if (index === -1) {
+            followers.push(follower);
+          } else {
+            followers.splice(index, 1);
+          }
+
+          // 更新数据库
+          return await uniID.updateUser({
+            uid: uid,
+            followers: followers,
+          });
         })
-        .limit(1)
-        .field({ id: true })
-        .get();
-      if(user.data && user.data.length !== 0){
-        const selfID: string = user.data[0]["_id"];
-        // 判断关注的是不是自己
-        if(selfID === id){
-          return appErrorMessage(`不能自己关注自己`);
-        }
-      	let result = await collection.doc(selfID).update({
-      		followers: dbCmd.push([id])
-      	});
-      	return result
-      }
-    }
-    // 取消关注
-    async deleteFollowers({ id }) {
-      const user = await collection
-        .where({
-          token: this.event.uniIdToken,
-        })
-        .limit(1)
-        .field({ id: true })
-        .get();
-        if(user.data && user.data.length !== 0){
-          const selfID: string = user.data[0]["_id"];
-          return await collection.where({
-            _id: selfID,
-            followers: id
-          }).update({
-            "followers.$": ""
-          })
-        }
+        .catch((err) => {
+          return err;
+        });
     }
   };
 }
