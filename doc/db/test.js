@@ -10,6 +10,7 @@ const type = {
   js: "5ff5bc70c23632000132f512",
   css: "5ff5bc78fce5d000011cd530",
 };
+const nowDate = new Date().toISOString();
 for (let key in questions.result) {
   for (let typeKey in questions.result[key]) {
     if (typeKey !== "skill") {
@@ -21,6 +22,9 @@ for (let key in questions.result) {
         content: item.body,
         questionExplanation: [],
         tagID: type[typeKey],
+        createDate: nowDate,
+        updateDate: nowDate,
+        deleteDate: ""
       };
       arr.push(temp);
     }
