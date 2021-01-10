@@ -22,6 +22,34 @@
 	    ,{
             "path" : "pages/user/index"
         }
+        ,{
+            "path" : "pages/question/questionDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/question/writeQuestion",
+            "style" :                                                                                    
+            {
+				"navigationStyle": "default",
+                "navigationBarTitleText": "写题解",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/question/questionExplanationDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

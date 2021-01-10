@@ -172,7 +172,7 @@
 				.back {
 					position: absolute;
 					left: 0;
-					right: 50%;
+					top: 50%;
 					transform: translateY(-50%);
 					width: 14rpx;
 					height: 26rpx;

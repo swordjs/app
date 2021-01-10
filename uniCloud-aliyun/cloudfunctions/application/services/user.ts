@@ -153,7 +153,6 @@ namespace User {
           } else {
             followers.splice(index, 1);
           }
-
           // 更新数据库
           return await uniID.updateUser({
             uid: uid,

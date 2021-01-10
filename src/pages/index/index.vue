@@ -34,7 +34,7 @@
 			</view>
 			<!-- 动态 -->
 			<view class="menumain dynamic">
-				<view class="title">题库专区</view>
+				<view class="title">动态</view>
 				<view class="content">
 					有3位用户点赞了你的题解
 				</view>
