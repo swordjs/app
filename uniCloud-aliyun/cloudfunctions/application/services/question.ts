@@ -37,5 +37,46 @@ namespace Question {
         })
         .catch((err) => err);
     }
+    async updateQuestion() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "_id",
+            value: "题目ID",
+          },
+        ],
+        this.event.params
+      )
+        .then(() => {
+          const nowDate: string = new Date().toISOString();
+          // 只能更改title，areaID，content，tagID
+          return collection.doc(this.event.params._id).update({
+            title: this.event.params.title,
+            areaID: this.event.params.areaID,
+            content: this.event.params.content && "",
+            tagID: this.event.params.tagID && "",
+            updateDate: nowDate,
+          });
+        })
+        .catch((err) => err);
+    }
+    async deleteQuestion() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "_id",
+            value: "题目ID",
+          },
+        ],
+        this.event.params
+      )
+        .then(() => {
+          const nowDate: string = new Date().toISOString();
+          return collection.doc(this.event.params._id).update({
+            deleteDate: nowDate,
+          });
+        })
+        .catch((err) => err);
+    }
   };
 }
