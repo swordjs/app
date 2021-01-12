@@ -16,11 +16,14 @@ module.exports = class tokenFilter extends explain.filter {
 		}else {
 			// 检查token合法性和过期时间
 			const checkData = await uniID.checkToken(event.uniIdToken);
+			console.log(checkData)
 			// token校验不合法
 			if(checkData.code !== 0){
 				context.response = {
 					...checkData
 				}
+			}else{
+				this.event.userID = checkData.uid;
 			}
 		}
 	}

@@ -2,9 +2,6 @@ namespace User {
   const explain = require("explain");
   // 公告模块
   const uniID = require("uni-id");
-  const db = uniCloud.database();
-  const collection = db.collection("uni-id-users");
-  const dbCmd = db.command;
   // 工具函数
   const { appErrorMessage, handleMustRequireParam } = require("app-tools");
   module.exports = class User extends explain.service {

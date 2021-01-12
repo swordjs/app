@@ -107,6 +107,15 @@ exports.main = async (event, context) => {
           },
         ],
       },
+	  {
+	    route: "api/question",
+	    service: "question",
+	    routes: [
+	      {
+	        action: "addQuestion",
+	      },
+	    ],
+	  },
     ]);
   });
 };
