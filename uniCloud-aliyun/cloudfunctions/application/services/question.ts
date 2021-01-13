@@ -17,7 +17,7 @@ namespace Question {
           {
             key: "areaID",
             value: "专区ID",
-          },
+          }
         ],
         this.event.params
       )
@@ -26,9 +26,9 @@ namespace Question {
           return collection.add({
             title: this.event.params.title,
             areaID: this.event.params.areaID,
-            content: this.event.params.content && "",
+            content: this.event.params.content || "",
             publishUserID: this.event.userID,
-            tagID: this.event.params.tagID && "",
+            tagID: this.event.params.tagID || "",
             questionExplanation: [],
             createDate: nowDate,
             updateDate: nowDate,
@@ -53,8 +53,8 @@ namespace Question {
           return collection.doc(this.event.params._id).update({
             title: this.event.params.title,
             areaID: this.event.params.areaID,
-            content: this.event.params.content && "",
-            tagID: this.event.params.tagID && "",
+            content: this.event.params.content || "",
+            tagID: this.event.params.tagID || "",
             updateDate: nowDate,
           });
         })

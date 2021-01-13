@@ -114,6 +114,12 @@ exports.main = async (event, context) => {
 	      {
 	        action: "addQuestion",
 	      },
+		  {
+		    action: "updateQuestion",
+		  },
+		  {
+		    action: "deleteQuestion",
+		  },
 	    ],
 	  },
     ]);
