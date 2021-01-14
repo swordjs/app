@@ -30,6 +30,7 @@ namespace Question {
             publishUserID: this.event.userID,
             tagID: this.event.params.tagID || "",
             questionExplanation: [],
+            state: "onlist",
             createDate: nowDate,
             updateDate: nowDate,
             deleteDate: "",
@@ -74,6 +75,35 @@ namespace Question {
           const nowDate: string = new Date().toISOString();
           return collection.doc(this.event.params._id).update({
             deleteDate: nowDate,
+          });
+        })
+        .catch((err) => err);
+    }
+    // 审核题目
+    async examineQuestion(){
+      return handleMustRequireParam(
+        [
+          {
+            key: "_id",
+            value: "题目ID",
+          },
+          {
+            key: "state",
+            value: "审核状态"
+          }
+        ],
+        this.event.params
+      )
+        .then(() => {
+          const nowDate: string = new Date().toISOString();
+          // 判断传递进来的状态是否是reject
+          if(this.event.params.state === "reject" && !this.event.params.hasOwnProperty("examineInfo")){
+            return appErrorMessage("拒绝审核需要传递examineInfo对象，注明拒绝原因")
+          }
+          return collection.doc(this.event.params._id).update({
+            state: this.event.params.state,
+            examineInfo: this.event.params.examineInfo || "",
+            updateDate: nowDate,
           });
         })
         .catch((err) => err);

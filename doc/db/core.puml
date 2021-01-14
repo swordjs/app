@@ -53,6 +53,8 @@ class 题目 {
     +String content
     +Array questionExplanation
     +Array tagID
+    +String state
+    +JSON examineInfo
     +void addQuestion()
     +void deleteQuestion()
     +void updateQuestion()
@@ -86,10 +88,20 @@ class 文章{
     +void likeArticle()
 }
 
+class 角色{
+    +UUID _id
+
+}
+class 权限{
+    +UUID _id
+}
+
 题目专区 --> "many" 题目分类标签::areaID
 用户 --> "many" 题目
 用户 --> "many" 用户认证::userID
 用户 --> "many" 文章::userID
+用户 --> "many" 角色
+用户 --> "many" 权限
 文章::tagID --> "many" 题目分类标签
 题目 --> "many" 题目分类标签
 题目 <-- 题目专区
@@ -102,5 +114,11 @@ note left of 用户::code
 end note
 note left of 用户::gender
 和微信的性别机制一样，0未知， 1男，2女
+end note
+note right of 题目::state
+onlist | pass | reject
+end note
+note right of 题目::examineInfo
+审核信息(比如拒绝原因)
 end note
 @enduml
