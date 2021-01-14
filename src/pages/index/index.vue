@@ -107,7 +107,8 @@
 									// 传入用户信息和code
 									uni.showLoading({
 										title: "登录中..."
-									})
+									});
+									// 这里判断是登录/还是注册，如果是注册，默认调接口绑定一个角色Normal
 									const loginData = await loginByWechat(userInfo, res);
 									uni.hideLoading();
 									// 存储返回的token以及用户信息，id等

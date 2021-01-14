@@ -90,10 +90,16 @@ class 文章{
 
 class 角色{
     +UUID _id
-
+    +String role_id
+    +String role_name
+    +Array permission
+    +String comment
 }
 class 权限{
     +UUID _id
+    +String permission_id
+    +String permission_name
+    +String comment
 }
 
 题目专区 --> "many" 题目分类标签::areaID
@@ -120,5 +126,8 @@ onlist | pass | reject
 end note
 note right of 题目::examineInfo
 审核信息(比如拒绝原因)
+end note
+note right of 权限::permission_id
+三种权限 ANY | Push Questions | Normal
 end note
 @enduml

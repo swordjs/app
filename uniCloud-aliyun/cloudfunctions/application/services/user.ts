@@ -10,6 +10,7 @@ namespace User {
       // 把用户信息也添加到库中
       const res = await uniID.loginByWeixin({
         code,
+        needPermission: true // 返回权限
       });
       // 更新用户信息（昵称，头像，性别等）
       await uniID.updateUser({

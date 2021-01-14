@@ -3,9 +3,9 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/question",
-	"method": "DELETE",
-	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MDgzNjMxODMsImV4cCI6MWUrMTU4fQ.ybyRXV0OodjDfRDFLDxM5EI5J45uphGcw0tlo6nYmE4",
+	"route": "api/user/checkToken/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJuZWVkUGVybWlzc2lvbiI6dHJ1ZSwiaWF0IjoxNjEwNjM0NDQ0LCJleHAiOjFlKzE1OH0.ML_ipa7YpWVmbYN0BZXjQNCjaWXIoA5t9cG3YYgG45Q",
+	"method": "GET",
+	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MDk1MDcwNDEsImV4cCI6MWUrMTU4fQ.-32pHdxVgYfJrQaa1uRrfClqY0BJOu7cV0DGowamvgQ",
 	"params": {
 		"_id": "5ffeff3edcaf1e00011dff09",
 		"title": "测试啊测试",

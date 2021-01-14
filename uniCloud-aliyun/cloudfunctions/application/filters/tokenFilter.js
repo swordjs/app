@@ -7,7 +7,6 @@ module.exports = class tokenFilter extends explain.filter {
 			context
 		} = this;
 		// 判断context中是否存在token
-		console.log("event: ", event)
 		if(!event.hasOwnProperty("uniIdToken")){
 			context.response = {
                 code: 401,
@@ -16,7 +15,6 @@ module.exports = class tokenFilter extends explain.filter {
 		}else {
 			// 检查token合法性和过期时间
 			const checkData = await uniID.checkToken(event.uniIdToken);
-			console.log(checkData)
 			// token校验不合法
 			if(checkData.code !== 0){
 				context.response = {
