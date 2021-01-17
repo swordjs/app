@@ -240,11 +240,3 @@ uniCloud.callFunction({
 # 许可
 
 MIT © 剑指题解
-
-
-<style>
-.imgIcon{
-    width: 10%;
-    height: 10%;
-}
-</style>
