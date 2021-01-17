@@ -12,7 +12,9 @@
 
  - - - 
 
-项目的起源是一个 github 仓库，名为[前端知识每日 3+1](https://github.com/haizlin/fe-interview)，正是这个优秀的题库项目才有了我们团队开发聚合题库的想法。在我们国内程序员圈子，大多数小伙伴为了更好的技术发展和 offer，都通过训练题来提高自己的眼界，其中不乏包括算法/业务/软技能的题目，但是由于我们所从事的环境和侧重点不一样，所以我们接触的项目和题目都不一样，而市面上很少有一个项目能做到，涵盖不同圈子的聚合题库。 ##目录
+项目的起源是一个 github 仓库，名为[前端知识每日 3+1](https://github.com/haizlin/fe-interview)，正是这个优秀的题库项目才有了我们团队开发聚合题库的想法。在我们国内程序员圈子，大多数小伙伴为了更好的技术发展和 offer，都通过训练题来提高自己的眼界，其中不乏包括算法/业务/软技能的题目，但是由于我们所从事的环境和侧重点不一样，所以我们接触的项目和题目都不一样，而市面上很少有一个项目能做到，涵盖不同圈子的聚合题库。 
+
+## 目录
 
 - [剑指题解](#剑指题解)
 - [特点](#特点)
@@ -84,6 +86,7 @@
 <img src="http://static.yinzhuoei.com/typecho/2021/01/17/72195918714747.png" width="30%"></img> 
 </div>
 
+设计源文件请移步：[点击查看-为了您的体验，请务必下载最新版本的设计图](https://www.yuque.com/u509950/lmm8g4/oy2ztb)
 # API
 
 《剑指题解》团队在 API 层面，开源的内容非常有限制，因为涉及到多位合作伙伴的题库授权，所以如果您要使用聚合题库 API 请联系我们商议，如果您是学习者，那么在语雀中的 API 文档会帮助到您，在这里我们将简单介绍。
@@ -227,8 +230,8 @@ uniCloud.callFunction({
 
 # 相关开源物料
 
-[语雀](https://www.yuque.com/books/share/7825dfb4-e7d2-403a-b462-21eaf9d3017e?#)  
-[摹客产品设计](https://app.mockplus.cn/s/ceKIIx7cyes)
+- [语雀](https://www.yuque.com/books/share/7825dfb4-e7d2-403a-b462-21eaf9d3017e?#)  
+- [摹客产品设计-联系@seho获取原型图](https://app.mockplus.cn/s/ceKIIx7cyes)
 
 # 题库合作伙伴
 
@@ -237,6 +240,7 @@ uniCloud.callFunction({
 # 许可
 
 MIT © 剑指题解
+
 
 <style>
 .imgIcon{
