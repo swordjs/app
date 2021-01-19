@@ -79,7 +79,7 @@
 		ref
 	} from "vue";
 	// api
-	import { loginByWechat } from "../../api/login.js"
+	import { loginByWechat } from "../../api/login"
 	export default {
 		setup() {
 			// 首页展示的信息，头像/昵称等
