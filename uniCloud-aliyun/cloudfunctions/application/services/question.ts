@@ -17,7 +17,7 @@ namespace Question {
           {
             key: "areaID",
             value: "专区ID",
-          }
+          },
         ],
         this.event.params
       )
@@ -80,7 +80,7 @@ namespace Question {
         .catch((err) => err);
     }
     // 审核题目
-    async examineQuestion(){
+    async examineQuestion() {
       return handleMustRequireParam(
         [
           {
@@ -89,16 +89,21 @@ namespace Question {
           },
           {
             key: "state",
-            value: "审核状态"
-          }
+            value: "审核状态",
+          },
         ],
         this.event.params
       )
         .then(() => {
           const nowDate: string = new Date().toISOString();
           // 判断传递进来的状态是否是reject
-          if(this.event.params.state === "reject" && !this.event.params.hasOwnProperty("examineInfo")){
-            return appErrorMessage("拒绝审核需要传递examineInfo对象，注明拒绝原因")
+          if (
+            this.event.params.state === "reject" &&
+            !this.event.params.hasOwnProperty("examineInfo")
+          ) {
+            return appErrorMessage(
+              "拒绝审核需要传递examineInfo对象，注明拒绝原因"
+            );
           }
           return collection.doc(this.event.params._id).update({
             state: this.event.params.state,

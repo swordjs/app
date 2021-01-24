@@ -53,8 +53,9 @@ exports.main = function() {
 										publishUserID, // 对应用户
 										content: questions[key].body,
 										questionExplanation: [],
-										tagID: webDevelope.tag[questions[key].label],
+										tagID: [webDevelope.tag[questions[key].label]],
 										createDate: nowDate,
+										state: "pass",
 										updateDate: nowDate,
 										deleteDate: ""
 									});

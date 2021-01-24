@@ -21,7 +21,8 @@ for (let key in questions.result) {
         publishUserID: "5ff5bdd5770c7900015b1f80", // 对应用户
         content: item.body,
         questionExplanation: [],
-        tagID: type[typeKey],
+        tagID: [type[typeKey]],
+        state: "pass",
         createDate: nowDate,
         updateDate: nowDate,
         deleteDate: ""

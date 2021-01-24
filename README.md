@@ -236,7 +236,9 @@ uniCloud.callFunction({
 # 题库合作伙伴
 
 - [前端面试 3+1 开源题库](https://github.com/haizlin/fe-interview)
+- [Guide哥的JAVA题库](https://github.com/Snailclimb/JavaGuide)
 
 # 许可
 
-MIT © 剑指题解
+Apache License © 剑指题解
+如果您在其他有关我们的文档见到了与之不符合的协议内容，请联系我们，这可能是我们的历史遗留的代码问题。
