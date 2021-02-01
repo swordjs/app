@@ -10,7 +10,7 @@ namespace User {
       // 把用户信息也添加到库中
       const res = await uniID.loginByWeixin({
         code,
-        needPermission: true // 返回权限
+        needPermission: true, // 返回权限
       });
       // 更新用户信息（昵称，头像，性别等）
       await uniID.updateUser({
@@ -69,6 +69,7 @@ namespace User {
         this.event.params
       )
         .then(async () => {
+          console.log("woqu hahh1");
           const { username, password } = this.event.params;
           if (!/^1[3456789]\d{9}$/.test(username)) {
             return appErrorMessage("用户名格式不正确");
@@ -118,7 +119,6 @@ namespace User {
         ...this.event.params,
       });
     }
-
     /**
      * 检查用户关注状态，若已关注，则取消关注，若没关注，则直接关注
      * @author mrc

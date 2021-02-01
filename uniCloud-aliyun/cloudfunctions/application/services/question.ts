@@ -4,7 +4,7 @@ namespace Question {
   const db = uniCloud.database();
   const collection = db.collection("question");
   // 工具函数
-  const { appErrorMessage, handleMustRequireParam } = require("app-tools");
+  const { appErrorMessage, handleMustRequireParam, handleDataTemplate} = require("app-tools");
   module.exports = class Question extends explain.service {
     // 添加一道题
     async addQuestion() {
@@ -110,6 +110,33 @@ namespace Question {
             examineInfo: this.event.params.examineInfo || "",
             updateDate: nowDate,
           });
+        })
+        .catch((err) => err);
+    }
+    // 分页获取题目列表, 筛选了题目的状态
+    async getQuestionList() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "state",
+            value: "题目状态",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => {
+          // 构建查询条件
+          const whereParams = {
+            state: this.event.params.state
+          }
+          const data = await collection.where(whereParams).limit(10).get();
+          // 获取数量
+          const countResult = await collection.where(whereParams).count();
+          console.log(handleDataTemplate)
+          return handleDataTemplate({
+            list: data.data,
+            count: countResult.total
+          })
         })
         .catch((err) => err);
     }

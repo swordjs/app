@@ -6,6 +6,14 @@ module.exports = class tokenFilter extends explain.filter {
 			event,
 			context
 		} = this;
+		// 判断context判断请求入口是http还是云函数调用
+		if(context.args.hasOwnProperty("headers") && context.args.headers.hasOwnProperty("http-request-serverless")){
+			if(context.args.headers["sword-token"] !== ""){
+				event.uniIdToken = context.args.headers["sword-token"];
+				const requestParams = context.args.params;
+				event.params = JSON.parse(requestParams.params);
+			}
+		}
 		// 判断context中是否存在token
 		if(!event.hasOwnProperty("uniIdToken")){
 			context.response = {

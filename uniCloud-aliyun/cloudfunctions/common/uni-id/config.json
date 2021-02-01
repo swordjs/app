@@ -3,7 +3,7 @@
   "tokenSecret": "LCMsnrTFpsYmHyC4",
   "tokenExpiresIn": 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
   "bindTokenToDevice": false,
-  "passwordErrorLimit": 6,
+  "passwordErrorLimit": 5,
   "tokenExpiresThreshold": 600,
   "passwordErrorRetryTime": 3600,
   "mp-weixin": {
