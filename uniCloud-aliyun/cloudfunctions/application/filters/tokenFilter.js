@@ -10,8 +10,15 @@ module.exports = class tokenFilter extends explain.filter {
 		if(context.args.hasOwnProperty("headers") && context.args.headers.hasOwnProperty("http-request-serverless")){
 			if(context.args.headers["sword-token"] !== ""){
 				event.uniIdToken = context.args.headers["sword-token"];
-				const requestParams = context.args.params;
-				event.params = JSON.parse(requestParams.params);
+				let params = {};
+				// 判断请求的方法，如果是GET请求那么请求体中会有params嵌套的结构体，需要单独处理
+				if(context.httpMethod === "GET"){
+					const requestParams = context.args.params;
+					params = JSON.parse(requestParams.params);
+				}else{
+					params = context.args.params;
+				}
+				event.params = params;
 			}
 		}
 		// 判断context中是否存在token

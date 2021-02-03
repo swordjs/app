@@ -117,8 +117,8 @@ exports.main = async (event, context) => {
             action: "deleteQuestion",
           },
           {
-            route: "updateQuestionTag",
-            action: "updateQuestionTag",
+            route: "examineQuestion",
+            action: "examineQuestion",
             httpMethod: "PUT",
           },
           {

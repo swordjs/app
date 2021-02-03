@@ -99,6 +99,7 @@ namespace Question {
         this.event.params
       )
         .then(() => {
+		
           const nowDate: string = new Date().toISOString();
           // 判断传递进来的状态是否是reject
           if (
@@ -152,7 +153,7 @@ namespace Question {
             .end()
           // 获取数量
           const countResult = await collection.where(whereParams).count();
-          console.log(handleDataTemplate);
+          console.log(JSON.stringify(data.data))
           return {
             list: data.data,
             count: countResult.total,

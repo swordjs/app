@@ -3,11 +3,11 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/question",
-	"method": "GET",
-	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MTIxNjE0OTIsImV4cCI6MWUrMTU4fQ.z_-GnfPfsfnCaKM6DlGN_hvWh016Oj9X8RpToLm3y0I",
+	"route": "api/question/examineQuestion",
+	"method": "PUT",
+	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MTIzMzE1NTUsImV4cCI6MWUrMTU4fQ.mZA8VlX2-yB77H7J1tngplvzJOC7-KNdPM1Lv7yFND0",
 	"params": {
-		"state": "onlist",
+		"_id": "onlist",
 		"page": 1
 	}
 }
