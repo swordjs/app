@@ -2,6 +2,7 @@ namespace Question {
   const explain = require("explain");
   const uniID = require("uni-id");
   const db = uniCloud.database();
+  const dbCmd = db.command;
   const collection = db.collection("question");
   // 工具函数
   const {
@@ -99,7 +100,6 @@ namespace Question {
         this.event.params
       )
         .then(() => {
-		
           const nowDate: string = new Date().toISOString();
           // 判断传递进来的状态是否是reject
           if (
@@ -110,7 +110,10 @@ namespace Question {
               "拒绝审核需要传递examineInfo对象，注明拒绝原因"
             );
           }
-          return collection.doc(this.event.params._id).update({
+          // 支持批量更改, _id是一个数组
+          return collection.where({
+            _id: dbCmd.in(this.event.params._id)
+          }).update({
             state: this.event.params.state,
             examineInfo: this.event.params.examineInfo || "",
             updateDate: nowDate,
