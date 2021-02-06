@@ -8,10 +8,11 @@ namespace Question {
   const {
     appErrorMessage,
     handleMustRequireParam,
-    handleDataTemplate,
   } = require("app-tools");
   module.exports = class Question extends explain.service {
-    // 添加一道题
+    // 获取推荐的题目(version 1)
+    
+    // 添加题目
     async addQuestion() {
       return handleMustRequireParam(
         [
@@ -142,8 +143,8 @@ namespace Question {
           const data = await collection
             .aggregate()
             .match(whereParams)
-            .limit(limit)
             .skip(limit * (page - 1))
+            .limit(limit)
             .sort({
               createDate: -1
             })
@@ -153,10 +154,21 @@ namespace Question {
               foreignField: "_id",
               as: "areaInfo"
             })
+            .lookup({
+              from: "questionTag",
+              localField: "tagID",
+              foreignField: "_id",
+              as: "tagInfo"
+            })
+            .lookup({
+              from: "uni-id-users",
+              localField: "publishUserID",
+              foreignField: "_id",
+              as: "publishUser"
+            })
             .end()
           // 获取数量
           const countResult = await collection.where(whereParams).count();
-          console.log(JSON.stringify(data.data))
           return {
             list: data.data,
             count: countResult.total,
