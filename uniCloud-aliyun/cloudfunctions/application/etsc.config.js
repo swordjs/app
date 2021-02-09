@@ -5,7 +5,7 @@ module.exports = {
     target: "es2015",
   },
   assets: {
-    baseDir: "services",
+    baseDir: "controller",
     filePatterns: ["**/*.json"],
   },
 };

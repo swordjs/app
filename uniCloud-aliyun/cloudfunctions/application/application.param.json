@@ -4,10 +4,10 @@
 
 {
 	"route": "api/question",
-	"method": "GET",
+	"method": "POST",
 	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MTIzMzE1NTUsImV4cCI6MWUrMTU4fQ.mZA8VlX2-yB77H7J1tngplvzJOC7-KNdPM1Lv7yFND0",
 	"params": {
-		"state": "pass",
-		"page": 2
+		"title": "pass",
+		"areaID": "2"
 	}
 }

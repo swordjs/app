@@ -19,7 +19,6 @@ function appErrorMessage(value) {
  */
 function handleMustRequireParam(requireParamData, event) {
   return new Promise((resolve, reject) => {
-	  uniCloud.logger.warn(requireParamData)
     for (let i in requireParamData) {
       const isHasOwnProperty = event.hasOwnProperty(requireParamData[i].key); // 是否传递
       const isEmpty = event[requireParamData[i].key] === ""; // 是否为空
