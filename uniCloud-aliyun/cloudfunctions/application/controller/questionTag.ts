@@ -1,9 +1,14 @@
 namespace questionTag {
   const explain = require("explain");
-  const db = uniCloud.database();
-  const collection = db.collection("questionTag");
+  const questionTagService = require("../service/questionTag");
   const { appErrorMessage, handleMustRequireParam } = require("app-tools");
   module.exports = class QuestionTag extends explain.service {
+    async handler(methodName: string) {
+      const service = new questionTagService({
+        userID: this.context.userID,
+      });
+      return await service[methodName](this.event.params);
+    }
     // 添加Tag
     addQuestionTag() {
       return handleMustRequireParam(
@@ -19,19 +24,11 @@ namespace questionTag {
         ],
         this.event.params
       )
-        .then(() => {
-          const { areaID, name } = this.event.params;
-          const now: string = new Date().toISOString();
+        .then(async () => {
           if (this.event.params.name === "") {
             return appErrorMessage("名称不能为空");
           } else {
-            return collection.add({
-              areaID,
-              name,
-              createDate: now,
-              updateDate: now,
-              deleteDate: "",
-            });
+            return await this.handler("addQuestionTag");
           }
         })
         .catch((err) => err);
@@ -55,20 +52,13 @@ namespace questionTag {
         ],
         this.event.params
       )
-        .then(() => {
-          const { _id, areaID, name } = this.event.params;
-          const now: string = new Date().toISOString();
+        .then(async () => {
           if (this.event.params.name === "") {
             return appErrorMessage("名称不能为空");
           } else if (this.event.params._id === "") {
             return appErrorMessage("id不能为空");
           } else {
-            return collection.doc(_id).update({
-              areaID,
-              name,
-              updateDate: now,
-              deleteDate: "",
-            });
+            return await this.handler("updateQuestionTag");
           }
         })
         .catch((err) => err);
@@ -84,16 +74,11 @@ namespace questionTag {
         ],
         this.event.params
       )
-        .then(() => {
-          const { _id } = this.event.params;
-          const now: string = new Date().toISOString();
+        .then(async () => {
           if (this.event.params._id === "") {
             return appErrorMessage("id不能为空");
           } else {
-            return collection.doc(_id).update({
-              updateDate: now,
-              deleteDate: now,
-            });
+            return await this.handler("deleteQuestionTag");
           }
         })
         .catch((err) => err);

@@ -89,8 +89,8 @@ namespace QuestionService {
       const whereParams = {
         state: params.state,
       };
-      const limit = params.limit || 10;
-      const page = params.page || 1;
+      const limit: number = params.limit || 10;
+      const page: number = params.page || 1;
       const data = await collection
         .aggregate()
         .match(whereParams)

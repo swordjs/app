@@ -1,23 +1,16 @@
 namespace User {
   const explain = require("explain");
-  // 公告模块
-  const uniID = require("uni-id");
+  const userService = require("../service/user");
   // 工具函数
   const { appErrorMessage, handleMustRequireParam } = require("app-tools");
   module.exports = class User extends explain.service {
+    async hanlder(methodName: string, urlParams?: any) {
+      const service = new userService();
+      return await service[methodName](this.event.params, urlParams);
+    }
     // 微信登录
-    async loginByWechat({ code }) {
-      // 把用户信息也添加到库中
-      const res = await uniID.loginByWeixin({
-        code,
-        needPermission: true, // 返回权限
-      });
-      // 更新用户信息（昵称，头像，性别等）
-      await uniID.updateUser({
-        uid: res.uid,
-        ...this.event.params,
-      });
-      return res;
+    async loginByWechat(urlParams) {
+      return await this.hanlder("loginByWechat", urlParams);
     }
     // 注册用户根据手机号
     addUserByPhone() {
@@ -41,11 +34,7 @@ namespace User {
           } else if (password === "" || password.length < 6) {
             return appErrorMessage("密码格式不正确");
           } else {
-            // 校验手机号
-            return await uniID.register({
-              username,
-              password,
-            });
+            return await this.hanlder("addUserByPhone");
           }
         })
         .catch((err) => {
@@ -69,18 +58,13 @@ namespace User {
         this.event.params
       )
         .then(async () => {
-          console.log("woqu hahh1");
           const { username, password } = this.event.params;
           if (!/^1[3456789]\d{9}$/.test(username)) {
             return appErrorMessage("用户名格式不正确");
           } else if (password === "" || password.length < 6) {
             return appErrorMessage("密码格式不正确");
           } else {
-            // 校验手机号
-            return await uniID.login({
-              username,
-              password,
-            });
+            return await this.hanlder("postLoginByPhone");
           }
         })
         .catch((err) => {
@@ -89,35 +73,42 @@ namespace User {
     }
 
     // 用户登出, 登出需要客户端删除持久性缓存
-    async userLogout({ token }) {
-      return await uniID.logout(token);
+    async userLogout(urlParams) {
+      return await this.hanlder("userLogout", urlParams);
     }
 
     // 校验Token是否有效
-    async checkToken({ token }) {
-      return await uniID.checkToken(token);
+    async checkToken(urlParams) {
+      return await this.hanlder("checkToken", urlParams);
     }
 
     // 更新用户信息
     async updateUserInfo() {
-      // 更改昵称，性别，头像等信息
-      if (!this.event.params.hasOwnProperty("uid")) {
-        return appErrorMessage("用户ID为必填");
-      }
-      // 确定字段是否存在于限定字段之内
-      const specifiedParam = ["nickname", "gender", "avatar"];
-      // 查看event传入的参数，除了uid，有没有传入其他的参数
-      for (let key in this.event.params) {
-        if (key !== "uid") {
-          let resultIndex = specifiedParam.indexOf(key);
-          if (resultIndex < 0) {
-            return appErrorMessage(`${key}参数不合法`);
-          }
-        }
-      }
-      return await uniID.updateUser({
-        ...this.event.params,
-      });
+      return handleMustRequireParam(
+        [
+          {
+            key: "uid",
+            value: "用户ID",
+          },
+          {
+            key: "nickname",
+            value: "昵称",
+          },
+          {
+            key: "gender",
+            value: "性别",
+          },
+          {
+            key: "avatar",
+            value: "头像",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => {
+          return await this.hanlder("updateUserInfo");
+        })
+        .catch((error) => error);
     }
     /**
      * 检查用户关注状态，若已关注，则取消关注，若没关注，则直接关注
@@ -138,28 +129,9 @@ namespace User {
         this.event.params
       )
         .then(async () => {
-          let { uid, follower } = this.event.params;
-          // 获取当前用户关注用户信息
-          const followers = await uniID.getUserInfo({
-            uid: uid,
-            field: ["followers"],
-          });
-          // 查询下标
-          const index = followers.indexOf(follower);
-          if (index === -1) {
-            followers.push(follower);
-          } else {
-            followers.splice(index, 1);
-          }
-          // 更新数据库
-          return await uniID.updateUser({
-            uid: uid,
-            followers: followers,
-          });
+          return await this.hanlder("checkFollowers");
         })
-        .catch((err) => {
-          return err;
-        });
+        .catch((err) => err);
     }
   };
 }

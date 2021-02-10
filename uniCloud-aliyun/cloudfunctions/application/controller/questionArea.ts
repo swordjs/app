@@ -1,9 +1,14 @@
 namespace questionArea {
   const explain = require("explain");
-  const db = uniCloud.database();
-  const collection = db.collection("questionArea");
+  const questionAreaService = require("../service/questionArea")
   const { appErrorMessage, handleMustRequireParam } = require("app-tools");
   module.exports = class User extends explain.service {
+    async hanlder(methodName: string){
+      const service = new questionAreaService({
+        userID: this.context.userID
+      })
+      return await service[methodName](this.event.params);
+    }
     // 添加题目专区
     addQuestionArea() {
       return handleMustRequireParam(
@@ -19,21 +24,13 @@ namespace questionArea {
         ],
         this.event.params
       )
-        .then(() => {
-          const { name, iconPath } = this.event.params;
+        .then(async () => {
           if (this.event.params.name === "") {
             return appErrorMessage("名称为空");
           } else if (this.event.params.iconPath === "") {
             return appErrorMessage("图片地址为空");
           } else {
-            const now: string  = new Date().toISOString();
-            return collection.add({
-              name,
-              iconPath,
-              createDate: now,
-              updateDate: now,
-              deleteDate: "",
-            });
+            return await this.hanlder("addQuestionArea")
           }
         })
         .catch((err) => err);
@@ -56,19 +53,13 @@ namespace questionArea {
         ],
         this.event.params
       )
-        .then(() => {
-          const { name, iconPath } = this.event.params;
+        .then(async () => {
           if (this.event.params.name === "") {
             return appErrorMessage("名称为空");
           } else if (this.event.params.iconPath === "") {
             return appErrorMessage("图片地址为空");
           } else {
-            const now: string  = new Date().toISOString();
-            return collection.doc(this.event.params._id).update({
-              name,
-              iconPath,
-              updateDate: now,
-            });
+            return await this.hanlder("updateQuestionArea")
           }
         })
         .catch((err) => err);
@@ -83,12 +74,8 @@ namespace questionArea {
         ],
         this.event.params
       )
-        .then(() => {
-          const now: string  = new Date().toISOString();
-          return collection.doc(this.event.params._id).update({
-            updateDate: now,
-            deleteDate: now
-          });
+        .then(async () => {
+          return await this.hanlder("deleteQuestionArea")
         })
         .catch((err) => err);
     }
