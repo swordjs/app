@@ -36,7 +36,7 @@ namespace QuestionTagService {
         .aggregate()
         .match(whereParams)
         .sort({
-          updateDate: -1
+          createDate: -1
         })
         .skip(limit * (page - 1))
         .limit(limit)
