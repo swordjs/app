@@ -13,7 +13,8 @@
   "dependencies": {
     "app-tools": "file:../common/app-tools",
     "explain": "file:../common/explain",
-    "uni-id": "file:../common/uni-id"
+    "uni-id": "file:../common/uni-id",
+    "form-data-utils": "file:../common/form-data-utils"
   },
   "devDependencies": {}
 }

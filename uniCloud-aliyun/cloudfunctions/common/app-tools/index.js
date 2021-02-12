@@ -31,7 +31,6 @@ function handleMustRequireParam(requireParamData, event) {
     resolve();
   });
 }
-
 /**
  * @param {Object} data 需要返回给client的data数据
  */

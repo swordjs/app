@@ -4,6 +4,10 @@ namespace QuestionAreaService {
   interface QuestionAreaData {
     userID: string;
   }
+  interface IGetAreaList {
+    limit?: number;
+    page?: number;
+  }
   interface IAddQuestionArea {
     name: string;
     iconPath: string;
@@ -22,6 +26,24 @@ namespace QuestionAreaService {
     constructor(data: QuestionAreaData) {
       this.userID = data.userID;
       this.nowDate = new Date().toISOString();
+    }
+    async getAreaList(params: IGetAreaList) {
+      const { limit, page } = params;
+      const whereParams = {
+        deleteDate: "",
+      }
+      const data = await collection
+        .aggregate()
+        .match(whereParams)
+        .skip(limit * (page - 1))
+        .limit(limit)
+        .end();
+      // 获取数量
+      const countResult = await collection.where(whereParams).count();
+      return {
+        list: data.data,
+        count: countResult.total,
+      }
     }
     async addQuestionArea(params: IAddQuestionArea) {
       const { name, iconPath } = params;

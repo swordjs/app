@@ -9,6 +9,10 @@ namespace questionTag {
       });
       return await service[methodName](this.event.params);
     }
+    // 获取专区列表（HTTP调用）
+    async getTagList(){
+      return await this.handler("getTagList")
+    }
     // 添加Tag
     addQuestionTag() {
       return handleMustRequireParam(

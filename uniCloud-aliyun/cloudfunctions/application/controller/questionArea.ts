@@ -3,11 +3,15 @@ namespace questionArea {
   const questionAreaService = require("../service/questionArea")
   const { appErrorMessage, handleMustRequireParam } = require("app-tools");
   module.exports = class User extends explain.service {
-    async hanlder(methodName: string){
+    async handler(methodName: string){
       const service = new questionAreaService({
         userID: this.context.userID
       })
       return await service[methodName](this.event.params);
+    }
+    // 获取专区列表（HTTP调用）
+    async getAreaList(){
+      return await this.handler("getAreaList")
     }
     // 添加题目专区
     addQuestionArea() {
@@ -30,7 +34,7 @@ namespace questionArea {
           } else if (this.event.params.iconPath === "") {
             return appErrorMessage("图片地址为空");
           } else {
-            return await this.hanlder("addQuestionArea")
+            return await this.handler("addQuestionArea")
           }
         })
         .catch((err) => err);
@@ -59,7 +63,7 @@ namespace questionArea {
           } else if (this.event.params.iconPath === "") {
             return appErrorMessage("图片地址为空");
           } else {
-            return await this.hanlder("updateQuestionArea")
+            return await this.handler("updateQuestionArea")
           }
         })
         .catch((err) => err);
@@ -75,7 +79,7 @@ namespace questionArea {
         this.event.params
       )
         .then(async () => {
-          return await this.hanlder("deleteQuestionArea")
+          return await this.handler("deleteQuestionArea")
         })
         .catch((err) => err);
     }

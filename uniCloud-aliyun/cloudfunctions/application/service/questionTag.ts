@@ -4,6 +4,10 @@ namespace QuestionTagService {
   interface QuestionTagData {
     userID: string;
   }
+  interface IGetTagList {
+    limit: number;
+    page: number;
+  }
   interface IAddQuestionTag {
     areaID: string;
     name: string;
@@ -22,6 +26,33 @@ namespace QuestionTagService {
     constructor(data: QuestionTagData) {
       this.userID = data.userID;
       this.nowDate = new Date().toISOString();
+    }
+    public async getTagList(params: IGetTagList) {
+      const { limit, page } = params;
+      const whereParams = {
+        deleteDate: "",
+      };
+      const data = await collection
+        .aggregate()
+        .match(whereParams)
+        .sort({
+          updateDate: -1
+        })
+        .skip(limit * (page - 1))
+        .limit(limit)
+        .lookup({
+          from: "questionArea",
+          localField: "areaID",
+          foreignField: "_id",
+          as: "areaInfo",
+        })
+        .end();
+      // 获取数量
+      const countResult = await collection.where(whereParams).count();
+      return {
+        list: data.data,
+        count: countResult.total,
+      };
     }
     public async addQuestionTag(params: IAddQuestionTag) {
       const { areaID, name } = params;

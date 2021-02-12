@@ -51,6 +51,9 @@ module.exports = [
     service: "questionArea",
     routes: [
       {
+        action: "getAreaList"
+      },
+      {
         action: "addQuestionArea",
       },
       {
@@ -65,6 +68,9 @@ module.exports = [
     route: "api/questionTag",
     service: "questionTag",
     routes: [
+      {
+        action: "getTagList"
+      },
       {
         action: "addQuestionTag",
       },
@@ -98,5 +104,5 @@ module.exports = [
         action: "getQuestionList",
       },
     ],
-  },
+  }
 ];

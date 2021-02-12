@@ -1,0 +1,10 @@
+{
+  "name": "form-data-utils",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0"
+}
