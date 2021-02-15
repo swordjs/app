@@ -9,6 +9,7 @@ class 用户 {
     {static} +Integer gender
     +Array userLikedQuestionExplanation
     +Array followers
+    +Array settingInfo
     +UUID AuthID
     --登录注册登出,校验token相关--
     +void loginByWechat()
@@ -71,7 +72,7 @@ class 题解{
     +void addQuestionExplanation()
     +void deleteQuestionExplanation()
     +void updateQuestionExplanation()
-     --收藏题解--
+    --收藏题解--
     +void addQuestionExplanation()
 }
 
@@ -101,7 +102,16 @@ class 权限{
     +String permission_name
     +String comment
 }
-
+class 题目统计{
+    +UUID _id
+    +UUID questionID
+    +Array statisticsInfo
+}
+class 服务号推送日志{
+    +UUID _id
+    +String type
+    +String content
+}
 题目专区 --> "many" 题目分类标签::areaID
 用户 --> "many" 题目
 用户 --> "many" 用户认证::userID
@@ -112,6 +122,7 @@ class 权限{
 题目 --> "many" 题目分类标签
 题目 <-- 题目专区
 题目 --> "many" 题解::questionID
+题目 --> "many" 题目统计::questionID
 note left of 用户::_id
 由Uni-id生成的唯一主键
 end note
