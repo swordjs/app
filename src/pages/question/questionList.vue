@@ -127,20 +127,7 @@ page {
 </style>
 
 <style lang="scss" scoped>
-@mixin text-ellipsis($line) {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: $line;
-  -webkit-box-orient: vertical;
-}
-
-@mixin text-ellipsis-one() {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+@import "../../util/common.scss";
 .questionListBox {
   .item {
     position: relative;
