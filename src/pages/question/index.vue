@@ -1,25 +1,24 @@
 <template>
   <view class="questionBox">
-    <view class="item" v-for="item in areaList" :key="item._id">
+    <view @click="handleArea(item)" class="item" v-for="item in areaList" :key="item._id">
       <image :src="item.iconPath" mode="aspectFit"></image>
       <view class="name">{{ item.name }}</view>
     </view>
   </view>
 </template>
 
-<script>
+<script lang="ts">
 // api
-import { getQuestionAreaList } from "../../api/question";
-import { reactive, ref } from "vue";
-export default {
+import { getQuestionAreaList } from "../../api/questionArea";
+import { defineComponent, reactive, ref } from "vue";
+export default defineComponent({
   setup() {
     // 分类列表
     const areaList = ref([]);
     // 获取题目专区
     const getListData = async () => {
       uni.showLoading({
-        title: "加载中",
-        icon: "none",
+        title: "加载中"
       });
       const result = await getQuestionAreaList();
       uni.hideLoading();
@@ -28,11 +27,17 @@ export default {
       }
     };
     getListData();
+    const handleArea = (item: {_id: string, name: string}) => {
+      uni.navigateTo({
+        url: `/pages/question/questionList?areaID=${item._id}&areaName=${item.name}`
+      })
+    }
     return {
       areaList,
+      handleArea
     };
   },
-};
+});
 </script>
 
 <style>
