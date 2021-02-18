@@ -101,6 +101,11 @@ module.exports = [
         httpMethod: "PUT",
       },
       {
+        route: "addPageView",
+        action: "addPageView",
+        httpMethod: "POST",
+      },
+      {
         action: "getQuestionList",
       },
     ],

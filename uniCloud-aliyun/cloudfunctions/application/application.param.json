@@ -3,11 +3,10 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/question",
+	"route": "api/question/addPageView",
 	"method": "POST",
 	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MTIzMzE1NTUsImV4cCI6MWUrMTU4fQ.mZA8VlX2-yB77H7J1tngplvzJOC7-KNdPM1Lv7yFND0",
 	"params": {
-		"title": "pass",
-		"areaID": "2"
+		"_id": "600c4e48a228c7dcd8efcc03"
 	}
 }

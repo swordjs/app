@@ -36,13 +36,18 @@ namespace QuestionService {
 
   interface QuestionData {
     userID: string;
+    context: {
+      CLIENTIP: string;
+    };
   }
 
   module.exports = class Question {
     public userID: string;
     public nowDate: string;
+    public clientIp: string;
     constructor(data: QuestionData) {
       this.userID = data.userID;
+      this.clientIp = data.context.CLIENTIP; // context注入的IP段
       this.nowDate = new Date().toISOString();
     }
     public async addQuestion(params: IAddQuestion) {
@@ -124,6 +129,31 @@ namespace QuestionService {
         list: data.data,
         count: countResult.total,
       };
+    }
+    public async addPageView(params: { _id: string }) {
+      // 当前题目中的浏览量信息
+      const result = await collection
+        .doc(params._id)
+        .get();
+      // 判断结果集中是否有pageView，如果没有则默认为0
+      const pageView: number = result.data[0].pageView || 0;
+      const pageViewIP: string[] = result.data[0].pageViewIP || [];
+      // 判断IP是否存在
+      if (pageViewIP.includes(this.clientIp)) {
+        // 存在
+        return {
+          msg: `增加页面浏览量失败，因为${this.clientIp}已存在`,
+        };
+      } else {
+        // 做set操作时不能操作主键_id，所以要把返回的对象中的_id置为undefined，但是这个不是标准的
+        // 可以使用delete操作符，但是这个关键字太慢，也可以使用JSON中的一些方法，最优雅就是lodash中的方法
+        delete result.data[0]._id;
+        return await collection.doc(params._id).set({
+          ...result.data[0],
+          pageViewIP: pageViewIP.concat([this.clientIp]),
+          pageView: pageView + 1,
+        });
+      }
     }
   };
 }

@@ -8,7 +8,8 @@ namespace Question {
     // 核心处理服务方法
     async handler(methodName: string){
       const service = new QuestionService({
-        userID: this.context.userID
+        userID: this.context.userID,
+        context: this.context
       });
       return await service[methodName](this.event.params)
     }
@@ -104,6 +105,22 @@ namespace Question {
       )
         .then(async () => {
           return await this.handler("getQuestionList")
+        })
+        .catch((err) => err);
+    }
+    // 浏览题目详情（如果没有pageView就默认设置为1）
+    async addPageView(){
+      return handleMustRequireParam(
+        [
+          {
+            key: "_id",
+            value: "题目",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => {
+          return await this.handler("addPageView")
         })
         .catch((err) => err);
     }

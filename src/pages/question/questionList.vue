@@ -11,7 +11,7 @@
           <!-- 背景卡片 -->
           <view class="topCard write">
             <!-- 标题 -->
-            <view class="title">
+            <view class="title" @click="handleQuestionDetail(question._id)">
               {{ question.title }}
             </view>
             <!-- 个人信息 -->
@@ -106,6 +106,13 @@ export default defineComponent({
         console.log(dataList.value);
       }
     };
+    // 进入题解详情
+    const handleQuestionDetail = (_id: string) => {
+      console.log(_id);
+      uni.navigateTo({
+        url: `/pages/question/questionDetail?id=${_id}`
+      });
+    }
     function handleQuestionChange(e) {
       console.log(e);
     }
@@ -114,6 +121,7 @@ export default defineComponent({
       dataList,
       scrollHeight,
       handleGetData,
+      handleQuestionDetail,
       handleQuestionChange,
     };
   },
