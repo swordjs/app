@@ -2,7 +2,7 @@
 const explain = require("explain");
 const path = require("path");
 // 引入路由
-const route = require("./router/router")
+const route = require("./router/router");
 exports.main = async (event, context) => {
   return explain.run(event, context, (config) => {
     config.init({
@@ -21,6 +21,10 @@ exports.main = async (event, context) => {
               "checkToken",
               "loginByWechat",
             ],
+          },
+          {
+            service: "question",
+            actions: ["addPageView"],
           },
         ],
       },

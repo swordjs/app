@@ -21,7 +21,7 @@
         </view>
         <view class="browse">
           <image src="../../static/question/eyes.png"></image>
-          <view class="content">{{detailData.pageView || '-'}}人已浏览</view>
+          <view class="content">{{detailData.pageView || '0'}}人已浏览</view>
         </view>
       </view>
     </view>
