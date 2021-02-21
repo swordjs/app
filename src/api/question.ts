@@ -16,10 +16,10 @@ export async function getQuestionListData(params: {
     db.collection("question,uni-id-users")
       .where(`areaID == '${areaID}' && deleteDate == '' && state == 'pass'`)
       .field(`publishUserID{avatar,nickname},title,content`)
+      .skip(limit * (page - 1))
+      .limit(limit)
       // 按照规则进行排序
       .orderBy("createDate desc")
-      .limit(limit)
-      .skip(limit * (page - 1))
       .get()
       .then((res) => {
         const { success, result } = res;
@@ -65,17 +65,14 @@ export async function getQuestionDetailByID(params: {
   });
 }
 
-
-export async function postAddPageView(params: {
-  _id: string
-}) {
+export async function postAddPageView(params: { _id: string }) {
   const { success, result } = await uniCloud.callFunction({
     name: "application",
     data: {
       route: `api/question/addPageView`,
       method: "POST",
       params: {
-        _id: params._id
+        _id: params._id,
       },
     },
   });

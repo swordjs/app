@@ -87,13 +87,14 @@ export default defineComponent({
       limit: 10,
     };
     // 定义一个列表
-    const dataList = ref<IDataList | []>([]);
+    const dataList = ref<IDataList[] | []>([]);
     const areaID = ref<string>("");
     const scrollHeight: number = uni.getSystemInfoSync().screenHeight;
     // 根据规则获取题目列表
     const handleGetData = async () => {
       uni.showLoading({
         title: "获取题目中...",
+        mask: true
       });
       const result = await getQuestionListData({
         limit: pageConfig.limit,
@@ -102,19 +103,24 @@ export default defineComponent({
       });
       uni.hideLoading();
       if (result.success) {
-        dataList.value = result.data;
+        dataList.value = dataList.value.concat(result.data);
         console.log(dataList.value);
       }
     };
     // 进入题解详情
     const handleQuestionDetail = (_id: string) => {
-      console.log(_id);
       uni.navigateTo({
         url: `/pages/question/questionDetail?id=${_id}`
       });
     }
     function handleQuestionChange(e) {
-      console.log(e);
+      const current: number = e.detail.current;
+      // 判断是当前数组的最后一个
+      if(current === dataList.value.length - 1){
+        // 页数++
+        pageConfig.page ++;
+        handleGetData();
+      }
     }
     return {
       areaID,
