@@ -16,9 +16,14 @@ namespace UserService {
     uid: string;
     follower: string;
   }
+  interface IUserData{
+    userID: string
+  }
   module.exports = class User {
     public nowDate: string;
-    constructor() {
+    public userID: string;
+    constructor(data: IUserData) {
+      this.userID = data.userID;
       this.nowDate = new Date().toISOString();
     }
     public async loginByWechat(params: ILoginByWechat, urlParams: {code: string}) {
@@ -63,10 +68,10 @@ namespace UserService {
       });
     }
     public async checkFollowers(params: ICheckFollowers) {
-      let { uid, follower } = params;
+      let { follower } = params;
       // 获取当前用户关注用户信息
       const followers = await uniID.getUserInfo({
-        uid: uid,
+        uid: this.userID,
         field: ["followers"],
       });
       // 查询下标

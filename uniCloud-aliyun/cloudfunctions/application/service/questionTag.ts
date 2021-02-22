@@ -1,7 +1,7 @@
 namespace QuestionTagService {
   const db = uniCloud.database();
   const collection = db.collection("questionTag");
-  interface QuestionTagData {
+  interface IQuestionTagData {
     userID: string;
   }
   interface IGetTagList {
@@ -23,7 +23,7 @@ namespace QuestionTagService {
   module.exports = class QuestionTag {
     public userID: string;
     public nowDate: string;
-    constructor(data: QuestionTagData) {
+    constructor(data: IQuestionTagData) {
       this.userID = data.userID;
       this.nowDate = new Date().toISOString();
     }

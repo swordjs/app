@@ -5,7 +5,9 @@ namespace User {
   const { appErrorMessage, handleMustRequireParam } = require("app-tools");
   module.exports = class User extends explain.service {
     async hanlder(methodName: string, urlParams?: any) {
-      const service = new userService();
+      const service = new userService({
+        context: this.context
+      });
       return await service[methodName](this.event.params, urlParams);
     }
     // 微信登录
@@ -117,10 +119,6 @@ namespace User {
     async checkFollowers() {
       return handleMustRequireParam(
         [
-          {
-            key: "uid",
-            value: "用户ID",
-          },
           {
             key: "follower",
             value: "关注ID",

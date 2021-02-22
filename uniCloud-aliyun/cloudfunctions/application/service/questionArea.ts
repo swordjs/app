@@ -1,7 +1,7 @@
 namespace QuestionAreaService {
   const db = uniCloud.database();
   const collection = db.collection("questionArea");
-  interface QuestionAreaData {
+  interface IQuestionAreaData {
     userID: string;
   }
   interface IGetAreaList {
@@ -23,7 +23,7 @@ namespace QuestionAreaService {
   module.exports = class QuestionArea {
     public userID: string;
     public nowDate: string;
-    constructor(data: QuestionAreaData) {
+    constructor(data: IQuestionAreaData) {
       this.userID = data.userID;
       this.nowDate = new Date().toISOString();
     }

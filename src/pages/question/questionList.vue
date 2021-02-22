@@ -27,7 +27,13 @@
                 }}</view>
                 <view class="authentication">官方认证出题人</view>
               </view>
-              <view class="follow">关注</view>
+              <!-- 如果是自己就看不到关注按钮，已关注就显示已关注，未关注就显示未关注 -->
+              <view
+                v-if="userID !== question.publishUserID[0]._id"
+                class="follow"
+                @click.stop="handleFollow(question.publishUserID[0]._id)"
+                >关注</view
+              >
             </view>
           </view>
           <!-- 详情 -->
@@ -57,6 +63,7 @@
 import { defineComponent, ref } from "vue";
 // api
 import { getQuestionListData } from "../../api/question";
+import { postFollow } from "../../api/user";
 interface IPageParams {
   areaID: string;
   areaName: string;
@@ -90,11 +97,12 @@ export default defineComponent({
     const dataList = ref<IDataList[] | []>([]);
     const areaID = ref<string>("");
     const scrollHeight: number = uni.getSystemInfoSync().screenHeight;
+    const userID: string = uni.getStorageSync("uni-id");
     // 根据规则获取题目列表
     const handleGetData = async () => {
       uni.showLoading({
         title: "获取题目中...",
-        mask: true
+        mask: true,
       });
       const result = await getQuestionListData({
         limit: pageConfig.limit,
@@ -110,25 +118,53 @@ export default defineComponent({
     // 进入题解详情
     const handleQuestionDetail = (_id: string) => {
       uni.navigateTo({
-        url: `/pages/question/questionDetail?id=${_id}`
+        url: `/pages/question/questionDetail?id=${_id}`,
       });
-    }
-    function handleQuestionChange(e) {
+    };
+    const handleFollow = async (targetID: string) => {
+      const token: string = uni.getStorageSync("uni-id-token");
+      // 判断是否未登录
+      if (token === "") {
+        uni.showToast({
+          title: "您暂未登录，请前去首页登录",
+          icon: "none",
+        });
+      } else {
+        uni.showLoading({
+          title: "关注中...",
+          mask: true,
+        });
+        // 调用关注的接口
+        const followResult = await postFollow({
+          targetID: targetID,
+        });
+        uni.hideLoading();
+        if (followResult.success) {
+          uni.showToast({
+            title: "操作成功",
+            icon: "none",
+          });
+        }
+      }
+    };
+    const handleQuestionChange = (e) => {
       const current: number = e.detail.current;
       // 判断是当前数组的最后一个
-      if(current === dataList.value.length - 1){
+      if (current === dataList.value.length - 1) {
         // 页数++
-        pageConfig.page ++;
+        pageConfig.page++;
         handleGetData();
       }
-    }
+    };
     return {
+      userID,
       areaID,
       dataList,
       scrollHeight,
       handleGetData,
       handleQuestionDetail,
       handleQuestionChange,
+      handleFollow,
     };
   },
 });

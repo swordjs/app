@@ -34,7 +34,7 @@ namespace QuestionService {
     page: number;
   }
 
-  interface QuestionData {
+  interface IQuestionData {
     userID: string;
     context: {
       CLIENTIP: string;
@@ -45,7 +45,7 @@ namespace QuestionService {
     public userID: string;
     public nowDate: string;
     public clientIp: string;
-    constructor(data: QuestionData) {
+    constructor(data: IQuestionData) {
       this.userID = data.userID;
       this.clientIp = data.context.CLIENTIP; // context注入的IP段
       this.nowDate = new Date().toISOString();
