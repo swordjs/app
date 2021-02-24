@@ -63,7 +63,7 @@
 import { defineComponent, ref } from "vue";
 // api
 import { getQuestionListData } from "../../api/question";
-import { postFollow } from "../../api/user";
+import { postFollow, getUserContentByID } from "../../api/user";
 interface IPageParams {
   areaID: string;
   areaName: string;
@@ -83,6 +83,8 @@ export default defineComponent({
     });
     // 获取列表
     this.handleGetData();
+    // 获取关注用户的信息
+    this.handleGetUserContent();
   },
   setup() {
     // 分页相关配置
@@ -98,6 +100,16 @@ export default defineComponent({
     const areaID = ref<string>("");
     const scrollHeight: number = uni.getSystemInfoSync().screenHeight;
     const userID: string = uni.getStorageSync("uni-id");
+    // 获取其关注的用户列表
+    const followers = ref<string[]>([]);
+    // 获取用户信息
+    const handleGetUserContent = async () => {
+      const userResult = await getUserContentByID();
+      if(userResult.success){
+        followers.value = userResult.data.followers;
+        console.log(followers.value);
+      }
+    }
     // 根据规则获取题目列表
     const handleGetData = async () => {
       uni.showLoading({
@@ -108,6 +120,7 @@ export default defineComponent({
         limit: pageConfig.limit,
         page: pageConfig.page,
         areaID: areaID.value,
+        userID
       });
       uni.hideLoading();
       if (result.success) {
@@ -165,6 +178,7 @@ export default defineComponent({
       handleQuestionDetail,
       handleQuestionChange,
       handleFollow,
+      handleGetUserContent
     };
   },
 });

@@ -18,13 +18,16 @@ namespace UserService {
   }
   interface IUserData{
     userID: string
+    token: string
   }
   module.exports = class User {
     public nowDate: string;
     public userID: string;
+    public token: string;
     constructor(data: IUserData) {
       this.userID = data.userID;
       this.nowDate = new Date().toISOString();
+      this.token = data.token;
     }
     public async loginByWechat(params: ILoginByWechat, urlParams: {code: string}) {
       const { code } = urlParams;
@@ -67,6 +70,9 @@ namespace UserService {
         ...params,
       });
     }
+    public async getUserContentByToken(){
+      return await uniID.getUserInfoByToken(this.token)
+    }
     public async checkFollowers(params: ICheckFollowers) {
       let { follower } = params;
       // 获取当前用户关注用户信息
@@ -83,7 +89,7 @@ namespace UserService {
       }
       // 更新数据库
       return await uniID.updateUser({
-        uid: uid,
+        uid: this.userID,
         followers: followers,
       });
     }

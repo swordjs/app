@@ -6,7 +6,8 @@ namespace User {
   module.exports = class User extends explain.service {
     async hanlder(methodName: string, urlParams?: any) {
       const service = new userService({
-        context: this.context
+        context: this.context,
+        token: this.event.uniIdToken
       });
       return await service[methodName](this.event.params, urlParams);
     }
@@ -111,6 +112,12 @@ namespace User {
           return await this.hanlder("updateUserInfo");
         })
         .catch((error) => error);
+    }
+    /**根据token获取用户信息
+     * @doc https://uniapp.dcloud.io/uniCloud/uni-id?id=%e6%a0%b9%e6%8d%aetoken%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e4%bf%a1%e6%81%af
+     */
+    async getUserContentByToken(){
+      return await this.hanlder("getUserContentByToken");
     }
     /**
      * 检查用户关注状态，若已关注，则取消关注，若没关注，则直接关注

@@ -37,6 +37,11 @@ module.exports = [
         action: "deleteFollowers",
       },
       {
+        route: "getUserContentByToken",
+        httpMethod: "GET",
+        action: "getUserContentByToken",
+      },
+      {
         action: "updateUserInfo",
       },
       {

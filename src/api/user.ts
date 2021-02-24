@@ -1,7 +1,8 @@
+const db = uniCloud.database();
+
 export async function postFollow(params: {
   targetID: string;
 }): Promise<ActionResult> {
-  // 获取题目专区列表
   const { success, result } = await uniCloud.callFunction({
     name: "application",
     data: {
@@ -10,6 +11,24 @@ export async function postFollow(params: {
       params: {
         follower: params.targetID,
       },
+    },
+  });
+  return {
+    success,
+    data: result,
+  };
+}
+
+
+/**
+ * 获取用户信息根据Token
+ */
+export async function getUserContentByID(): Promise<ActionResult> {
+  const { success, result } = await uniCloud.callFunction({
+    name: "application",
+    data: {
+      route: `api/user/getUserContentByToken`,
+      method: "GET"
     },
   });
   return {

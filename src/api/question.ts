@@ -10,9 +10,10 @@ export async function getQuestionListData(params: {
   limit: number;
   page: number;
   areaID: string;
+  userID: string
 }): Promise<ActionResult> {
   return new Promise((resolve) => {
-    const { limit, page, areaID } = params;
+    const { limit, page, areaID, userID } = params;
     db.collection("question,uni-id-users")
       .where(`areaID == '${areaID}' && deleteDate == '' && state == 'pass'`)
       .field(`publishUserID{avatar,nickname},title,content`)
