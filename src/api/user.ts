@@ -27,7 +27,7 @@ export async function getUserContentByID(): Promise<ActionResult> {
   const { success, result } = await uniCloud.callFunction({
     name: "application",
     data: {
-      route: `api/user/getUserContentByToken`,
+      route: `api/user/getUserContentByID`,
       method: "GET"
     },
   });

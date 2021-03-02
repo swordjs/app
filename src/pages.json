@@ -51,6 +51,12 @@
             
         }
     ],
+    "easycom": {
+		"autoscan": true,
+		"custom": {
+			"^i-(.*)": "@/components/i-uniapp/i-$1/i-$1.vue"
+		}
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

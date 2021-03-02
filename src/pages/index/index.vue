@@ -88,7 +88,7 @@
 				avatarUrl: ""
 			});
 			// 是否登录
-			const isLogin = ref(uni.getStorageSync("uni-id-token") !== "");
+			const isLogin = ref(uni.getStorageSync("uni_id_token") !== "");
 			if(isLogin.value){
 				user.value = uni.getStorageSync("userInfo")
 			}
@@ -113,8 +113,8 @@
 									uni.hideLoading();
 									// 存储返回的token以及用户信息，id等
 									if(loginData.success && loginData.result.code === 0){
-										uni.setStorageSync("uni-id-token", loginData.result.token);
-										uni.setStorageSync("uni-id", loginData.result.uid);
+										uni.setStorageSync("uni_id_token", loginData.result.token);
+										uni.setStorageSync("uni_id", loginData.result.uid);
 										uni.setStorageSync("userInfo", userInfo);
 										console.log(userInfo)
 										// 显示微信个人信息

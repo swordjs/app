@@ -1,6 +1,8 @@
 namespace UserService {
   // 公告模块
   const uniID = require("uni-id");
+  const db = uniCloud.database();
+  const collection = db.collection("uni-id-users");
   interface ILoginByWechat {
     code: string;
   }
@@ -72,6 +74,13 @@ namespace UserService {
     }
     public async getUserContentByToken(){
       return await uniID.getUserInfoByToken(this.token)
+    }
+    public async getUserContentByID(){
+      // return await collection.doc(this.userID).get();
+      return await uniID.getUserInfo({
+        uid: this.userID,
+        field: ["followers"],
+      })
     }
     public async checkFollowers(params: ICheckFollowers) {
       let { follower } = params;

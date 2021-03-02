@@ -52,7 +52,9 @@
             <view class="link">看看其他小伙伴怎么做的吧 ></view>
           </view>
           <!-- 开始 -->
-          <view class="start">Start</view>
+          <view class="start" @click="handleStart(question._id, question.title)"
+            >Start</view
+          >
         </view>
       </swiper-item>
     </swiper>
@@ -99,17 +101,17 @@ export default defineComponent({
     const dataList = ref<IDataList[] | []>([]);
     const areaID = ref<string>("");
     const scrollHeight: number = uni.getSystemInfoSync().screenHeight;
-    const userID: string = uni.getStorageSync("uni-id");
+    const userID: string = uni.getStorageSync("uni_id");
     // 获取其关注的用户列表
     const followers = ref<string[]>([]);
     // 获取用户信息
     const handleGetUserContent = async () => {
       const userResult = await getUserContentByID();
-      if(userResult.success){
+      if (userResult.success) {
         followers.value = userResult.data.followers;
         console.log(followers.value);
       }
-    }
+    };
     // 根据规则获取题目列表
     const handleGetData = async () => {
       uni.showLoading({
@@ -120,7 +122,7 @@ export default defineComponent({
         limit: pageConfig.limit,
         page: pageConfig.page,
         areaID: areaID.value,
-        userID
+        userID,
       });
       uni.hideLoading();
       if (result.success) {
@@ -134,8 +136,14 @@ export default defineComponent({
         url: `/pages/question/questionDetail?id=${_id}`,
       });
     };
+    // 进入新增题解页面
+    const handleStart = (_id: string, title: string) => {
+      uni.navigateTo({
+        url: `/pages/question/writeQuestion?id=${_id}&title=${title}`,
+      });
+    };
     const handleFollow = async (targetID: string) => {
-      const token: string = uni.getStorageSync("uni-id-token");
+      const token: string = uni.getStorageSync("uni_id_token");
       // 判断是否未登录
       if (token === "") {
         uni.showToast({
@@ -149,7 +157,7 @@ export default defineComponent({
         });
         // 调用关注的接口
         const followResult = await postFollow({
-          targetID: targetID,
+          targetID,
         });
         uni.hideLoading();
         if (followResult.success) {
@@ -178,7 +186,8 @@ export default defineComponent({
       handleQuestionDetail,
       handleQuestionChange,
       handleFollow,
-      handleGetUserContent
+      handleGetUserContent,
+      handleStart,
     };
   },
 });

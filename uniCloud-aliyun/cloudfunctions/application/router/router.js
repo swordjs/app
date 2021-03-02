@@ -42,6 +42,11 @@ module.exports = [
         action: "getUserContentByToken",
       },
       {
+        route: "getUserContentByID",
+        httpMethod: "GET",
+        action: "getUserContentByID"
+      },
+      {
         action: "updateUserInfo",
       },
       {
