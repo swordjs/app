@@ -28,7 +28,7 @@ module.exports = class tokenFilter extends explain.filter {
       // 检查token合法性和过期时间
       const checkData = await uniID.getUserInfoByToken(event.uniIdToken);
       // token校验不合法
-      if (checkData.code !== 0) {
+      if (!checkData.uid) {
         context.response = {
           ...checkData,
         };

@@ -82,3 +82,20 @@ export async function postAddPageView(params: { _id: string }) {
     result,
   };
 }
+
+
+// 新增题解
+export async function addQuestionExplanation(params: { _id: string, content: string }) {
+  const { success, result } = await uniCloud.callFunction({
+    name: "application",
+    data: {
+      route: `api/questionExplanation`,
+      method: "POST",
+      params,
+    },
+  });
+  return {
+    success,
+    result,
+  };
+}

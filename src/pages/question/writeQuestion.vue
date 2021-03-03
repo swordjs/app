@@ -22,30 +22,53 @@
 
 <script lang="ts">
 import { ref } from "vue";
+// api
+import { addQuestionExplanation } from "../../api/question"
 interface IPageParams {
   id: string;
+  questionID: string;
   title: string;
 }
 export default {
   onLoad(params: IPageParams) {
-    this.questionInfo.id = params.id;
+    this.questionInfo.questionID = params.questionID;
     this.questionInfo.title = params.title;
   },
   setup() {
     // 题目信息
     const questionInfo = ref<{
-      id: string;
+      id?: string;
       title: string;
       content: string;
+      questionID: string;
     }>({
       id: "",
       title: "",
       content: "",
+      questionID: "",
     });
     // 保存富文本
-    const handleSaveEditor = async (e: {html: string}) => {
-		console.log(e.html)
-	};
+    const handleSaveEditor = async (e: { html: string }) => {
+      if (e.html === "") {
+        uni.showToast({
+          title: "请填写题解内容oh~",
+          icon: "none",
+        });
+      }else{
+        uni.showLoading({
+          mask: true
+        })
+        const addResult = await addQuestionExplanation({
+          _id: questionInfo.value.questionID,
+          content: e.html
+        })
+        uni.hideLoading();
+        if(addResult.success){
+          const explanationID = addResult.result._id;
+          // 题解详情页面
+        }
+      }
+    };
     // 取消富文本（返回上一层）
     const handleCancel = () => {
       uni.navigateBack({
@@ -54,8 +77,8 @@ export default {
     };
     return {
       questionInfo,
-	  handleSaveEditor,
-	  handleCancel,
+      handleSaveEditor,
+      handleCancel,
     };
   },
 };

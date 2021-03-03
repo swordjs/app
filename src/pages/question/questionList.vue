@@ -139,7 +139,7 @@ export default defineComponent({
     // 进入新增题解页面
     const handleStart = (_id: string, title: string) => {
       uni.navigateTo({
-        url: `/pages/question/writeQuestion?id=${_id}&title=${title}`,
+        url: `/pages/question/writeQuestion?questionID=${_id}&title=${title}`,
       });
     };
     const handleFollow = async (targetID: string) => {

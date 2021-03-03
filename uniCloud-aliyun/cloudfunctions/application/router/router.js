@@ -119,5 +119,14 @@ module.exports = [
         action: "getQuestionList",
       },
     ],
+  },
+  {
+    route: "api/questionExplanation",
+    service: "questionExplanation",
+    routes: [
+      {
+        action: "addQuestionExplanation"
+      }
+    ],
   }
 ];
