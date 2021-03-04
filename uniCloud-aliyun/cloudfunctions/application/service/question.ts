@@ -47,7 +47,8 @@ namespace QuestionService {
     public clientIp: string;
     constructor(data: IQuestionData) {
       this.userID = data.userID;
-      this.clientIp = data.context.CLIENTIP; // context注入的IP段
+      // 由于context如果是远程调用的此服务，那么context将会不传，所以这里进行了兼容
+      this.clientIp = data.context?.CLIENTIP || ""; // context注入的IP段
       this.nowDate = new Date().toISOString();
     }
     public async addQuestion(params: IAddQuestion) {
@@ -154,6 +155,12 @@ namespace QuestionService {
           pageView: pageView + 1,
         });
       }
+    }
+    // 新增题解关联ID，题解模块调用
+    public async addQuestionExplanationByID(params: {_id: string, questionExplanationID: string}){
+      return await collection.doc(params._id).update({
+        questionExplanation: dbCmd.push([params.questionExplanationID])
+      });
     }
   };
 }

@@ -1,6 +1,7 @@
 namespace QuestionExplanationService {
   const db = uniCloud.database();
   const collection = db.collection("questionExplanation");
+  const questionService = require("../service/question");
   interface IQuestionExplanation {
     userID: string;
     nowDate: string;
@@ -18,7 +19,7 @@ namespace QuestionExplanationService {
     }
     public async addQuestionExplanation(params: IAddQuestionExplanation) {
       const { _id, content } = params;
-      return await collection.add({
+      const explanationResult = await collection.add({
         questionID: _id,
         userID: this.userID,
         content,
@@ -28,6 +29,16 @@ namespace QuestionExplanationService {
         updateDate: this.nowDate,
         deleteDate: "",
       });
+      if(explanationResult.id){
+        // 如果题解添加成功需要在具体的question表中的questionExplanation添加一个ID作为关联
+        const questionCore = new questionService({
+          userID: this.userID
+        });
+        return await questionCore.addQuestionExplanationByID({
+          _id, 
+          questionExplanationID: explanationResult.id
+        })
+      }
     }
   };
 }
