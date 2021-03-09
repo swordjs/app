@@ -21,7 +21,7 @@
         </view>
         <view class="browse">
           <image src="../../static/question/eyes.png"></image>
-          <view class="content">{{detailData.pageView || '0'}}人已浏览</view>
+          <view class="content">{{ detailData.pageView || "0" }}人已浏览</view>
         </view>
       </view>
     </view>
@@ -44,33 +44,30 @@
         :style="{ height: swiperHeight + 'px' }"
       >
         <swiper-item @touchmove.stop>
-          <view class="itemCard">
+          <view
+            @click="handleExplanationCard(explanation)"
+            class="itemCard"
+            v-for="explanation in explanations"
+            :key="explanation._id"
+          >
             <view class="itemCardTop">
               <image
                 class="headPicture"
-                src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+                :src="explanation.userID[0].avatar"
                 mode="scaleToFill"
               ></image>
-              <view class="nickname">前端每日3+1</view>
+              <view class="nickname">{{ explanation.userID[0].nickname }}</view>
             </view>
             <view class="itemBody">
               <!-- 可能有图片 -->
-              <view class="images">
+              <!-- <view class="images">
                 <image
                   src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
                   mode="scaleToFill"
                 ></image>
-                <image
-                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                  mode="scaleToFill"
-                ></image>
-                <image
-                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                  mode="scaleToFill"
-                ></image>
-              </view>
+              </view> -->
               <view class="itemMain">
-                这是一道大题目，把考点拆成了4个小项；需要侯选人用递归算法实现（限制15行代码以内实现；限制时间10分钟内完成）归算法实现…
+                {{ explanation.content }}
               </view>
             </view>
           </view>
@@ -84,25 +81,39 @@
 import Tabs from "../../components/v-tabs/v-tabs.vue";
 import { ref } from "vue";
 // api
-import { getQuestionDetailByID, postAddPageView } from "../../api/question";
+import {
+  getQuestionDetailByID,
+  postAddPageView,
+  getExplanationsByQuestionID,
+} from "../../api/question";
 interface IPageParams {
   id: string;
 }
 export default {
   onLoad(params: IPageParams) {
     this.id = params.id;
+    console.log(this.id);
     this.handleGetDetailData();
+    this.handleGetQuestionExplanation();
     // 调用增加浏览量的方法
     this.handleAddPageView();
   },
   setup() {
-    const detailData = ref<object>({});
+    // 分页相关配置
+    let pageConfig: {
+      page: number;
+      limit: number;
+    } = {
+      page: 1,
+      limit: 10,
+    };
+    const detailData = ref({});
+    const explanations = ref([]);
     const id = ref<string>("");
     // 计算屏幕高度 - tab的高度 - 导航栏的高度 = swiper高度
     const swiperHeight = uni.getSystemInfoSync().screenHeight - 251;
     const tabCurrent = ref(0);
     const tabs = ref(["解答"]);
-
     function handleSwiperChange(e) {
       tabCurrent.value = e.detail.current;
     }
@@ -116,6 +127,27 @@ export default {
       }
       uni.hideLoading();
     };
+    // 获取题解列表
+    const handleGetQuestionExplanation = async () => {
+      uni.showLoading({ title: "获取题解列表...", mask: true });
+      const explanationData = await getExplanationsByQuestionID({
+        questionID: id.value,
+        limit: pageConfig.limit,
+        page: pageConfig.page,
+      });
+      uni.hideLoading();
+      if (explanationData.success) {
+        explanations.value = explanations.value.concat(explanationData.data);
+        console.log(explanations.value);
+      }
+    };
+    // 跳转到题解详情页面
+    const handleExplanationCard = (target: {_id: string}) => {
+      console.log(target)
+      uni.navigateTo({
+        url: `/pages/question/questionExplanationDetail?id=${target._id}`
+      })
+    }
     const handleAddPageView = () => {
       postAddPageView({
         _id: id.value,
@@ -129,11 +161,14 @@ export default {
     return {
       id,
       detailData,
+      explanations,
       swiperHeight,
       tabCurrent,
       tabs,
       handleSwiperChange,
       handleGetDetailData,
+      handleGetQuestionExplanation,
+      handleExplanationCard,
       handleAddPageView,
       handleBack,
     };
@@ -246,8 +281,12 @@ export default {
       transform: translateX(-24rpx);
     }
     .itemCard {
+      width: 630rpx;
       padding: 30rpx;
-
+      box-shadow: 0px 3px 10px 0px rgba(97, 108, 150, 0.2);
+      border-radius: 8px;
+      margin: 0 auto;
+      margin-top: 20rpx;
       &:not(:first-child) {
         border-top: 2rpx solid #f1f3fc;
       }
@@ -289,7 +328,6 @@ export default {
         }
 
         .itemMain {
-          width: 690rpx;
           color: #666666;
           font-size: 28rpx;
           margin-top: 20rpx;
