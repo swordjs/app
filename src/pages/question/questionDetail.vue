@@ -67,7 +67,7 @@
                 ></image>
               </view> -->
               <view class="itemMain">
-                {{ explanation.content }}
+                {{ removeHtmlTag(explanation.content) }}
               </view>
             </view>
           </view>
@@ -92,7 +92,6 @@ interface IPageParams {
 export default {
   onLoad(params: IPageParams) {
     this.id = params.id;
-    console.log(this.id);
     this.handleGetDetailData();
     this.handleGetQuestionExplanation();
     // 调用增加浏览量的方法
@@ -138,12 +137,14 @@ export default {
       uni.hideLoading();
       if (explanationData.success) {
         explanations.value = explanations.value.concat(explanationData.data);
-        console.log(explanations.value);
       }
     };
+    // 去除标签
+    const removeHtmlTag = (htmlStr: string) => {
+      return htmlStr.replace(/<[^>]+>/ig, "");
+    }
     // 跳转到题解详情页面
     const handleExplanationCard = (target: {_id: string}) => {
-      console.log(target)
       uni.navigateTo({
         url: `/pages/question/questionExplanationDetail?id=${target._id}`
       })
@@ -165,6 +166,7 @@ export default {
       swiperHeight,
       tabCurrent,
       tabs,
+      removeHtmlTag,
       handleSwiperChange,
       handleGetDetailData,
       handleGetQuestionExplanation,

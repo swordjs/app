@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { ref } from "vue";
+import { getExplanationsByID } from "../../api/question";
 type IPageParams = {
   id: string;
 };
@@ -26,17 +27,34 @@ export default {
   onLoad(target: IPageParams) {
     if (target.id) {
       this.id = target.id;
+      this.getExplanationData();
     }
   },
   setup() {
     const id = ref("");
+    const data = ref({});
     const handleBack = () => {
       uni.navigateBack({
         delta: 1,
       });
     };
+    const getExplanationData = async () => {
+      uni.showLoading({
+        title: "获取中...",
+        mask: true
+      });
+      const result = await getExplanationsByID({
+        id: id.value,
+      });
+      uni.hideLoading();
+      if (result.success) {
+        data.value = result.data;
+      }
+    };
     return {
       id,
+      data,
+      getExplanationData,
       handleBack,
     };
   },
