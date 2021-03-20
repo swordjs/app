@@ -126,6 +126,11 @@ module.exports = [
     routes: [
       {
         action: "addQuestionExplanation"
+      },
+      {
+        route: "adoptionQuestionExplanation",
+        action: "adoptionQuestionExplanation",
+        httpMethod: "POST"
       }
     ],
   }
