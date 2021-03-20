@@ -218,21 +218,6 @@ page {
             color: #ffac61;
           }
         }
-
-        .follow {
-          width: 88rpx;
-          line-height: 40rpx;
-          text-align: center;
-          background: linear-gradient(180deg, #6e8cf6 0%, #412bff 100%);
-          border-radius: 22rpx;
-          font-size: 24rpx;
-          color: #fff;
-          margin-left: 24rpx;
-
-          &:active {
-            opacity: 0.8;
-          }
-        }
       }
     }
 

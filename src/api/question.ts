@@ -101,11 +101,14 @@ export async function getExplanationsByQuestionID(params: {
 }
 
 export async function getExplanationsByID(params: {
-  id: string
+  id: string;
 }): Promise<ActionResult> {
   return new Promise((resolve) => {
-    db.collection("questionExplanation")
+    db.collection("questionExplanation,question,uni-id-users")
       .doc(params.id)
+      .field(
+        `questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname}`
+      )
       .get()
       .then((res) => {
         const { success, result } = res;
@@ -149,6 +152,22 @@ export async function addQuestionExplanation(params: {
     name: "application",
     data: {
       route: `api/questionExplanation`,
+      method: "POST",
+      params,
+    },
+  });
+  return {
+    success,
+    result,
+  };
+}
+
+// 赞同题解/取消赞同题解
+export async function adoptionQuestionExplanation(params: { _id: string }) {
+  const { success, result } = await uniCloud.callFunction({
+    name: "application",
+    data: {
+      route: `api/questionExplanation/adoptionQuestionExplanation`,
       method: "POST",
       params,
     },

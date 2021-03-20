@@ -8,18 +8,52 @@
           src="../../static/common/back.png"
         />
       </view>
-      <view class="title"
-        >用递归算法实现，数组长度为5且元素的随机数在2-32间不重复的值间不重复的值</view
-      >
+      <view class="title">{{ data.questionID[0].title }}</view>
     </view>
-    <view class="card"> </view>
-    <view class="bottom"> </view>
+    <view class="card">
+      <!-- 用户信息 -->
+      <view class="user">
+        <image :src="data.userID[0].avatar" class="headPicture" mode=""></image>
+        <view class="uerContent">
+          <view class="nickName">{{ data.userID[0].nickname }}</view>
+          <view class="authentication">官方认证出题人</view>
+        </view>
+      </view>
+      <view class="content">
+        <robin-editor
+          v-model="data.content"
+          :header="false"
+          previewMode
+        ></robin-editor>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="like" @click="handleLike">
+        <i-icon
+          :color="isAdoption && '#EA4D4D'"
+          :name="isAdoption ? 'heart-2-fill' : 'heart-2-line'"
+          @click="handleLike"
+        ></i-icon>
+        <text>{{ isAdoption ? "已采纳" : "采纳" }}</text>
+      </view>
+      <view class="contentRight">
+        <view class="star">
+          <!-- 收藏 -->
+          <i-icon name="star-line"></i-icon>
+        </view>
+        <!-- 评论 -->
+        <i-icon name="message-2-line"></i-icon>
+      </view>
+    </view>
   </view>
 </template>
 
 <script lang="ts">
 import { ref } from "vue";
-import { getExplanationsByID } from "../../api/question";
+import {
+  getExplanationsByID,
+  adoptionQuestionExplanation,
+} from "../../api/question";
 type IPageParams = {
   id: string;
 };
@@ -32,7 +66,13 @@ export default {
   },
   setup() {
     const id = ref("");
-    const data = ref({});
+    const data = ref<{
+      userAgreed?: string[];
+    }>({
+      userAgreed: [],
+    });
+    // 是否已采纳
+    const isAdoption = ref<boolean>(false);
     const handleBack = () => {
       uni.navigateBack({
         delta: 1,
@@ -40,22 +80,45 @@ export default {
     };
     const getExplanationData = async () => {
       uni.showLoading({
-        title: "获取中...",
-        mask: true
+        title: "获取题解中...",
+        mask: true,
       });
       const result = await getExplanationsByID({
         id: id.value,
       });
       uni.hideLoading();
       if (result.success) {
-        data.value = result.data;
+        data.value = result.data[0];
+        isAdoption.value = data.value.userAgreed.some(
+          (u) => u === uni.getStorageSync("uni_id")
+        );
+      }
+    };
+
+    const handleLike = async () => {
+      uni.showLoading({
+        title: `${isAdoption.value ? "取消采纳中..." : "采纳中..."}`,
+        mask: true,
+      });
+      const result = await adoptionQuestionExplanation({
+        _id: id.value,
+      });
+      uni.hideLoading();
+      if (result.success) {
+        uni.showToast({
+          title: "操作成功",
+          icon: "none",
+        });
+        isAdoption.value = !isAdoption.value;
       }
     };
     return {
       id,
       data,
+      isAdoption,
       getExplanationData,
       handleBack,
+      handleLike,
     };
   },
 };
@@ -66,7 +129,9 @@ page {
   background-color: #f6f7f9;
 }
 </style>
-<style lang="scss">
+<style lang="scss" scoped>
+@import "../../util/common.scss";
+
 .explanationBox {
   .top {
     display: inline-block;
@@ -95,6 +160,7 @@ page {
 
     .title {
       width: 666rpx;
+      height: 88rpx;
       margin: 0 auto;
       color: #fff;
       font-size: 32rpx;
@@ -107,15 +173,72 @@ page {
     height: 978rpx;
     margin: 0 auto;
     background-color: #fff;
-    transform: translateY(-150rpx);
+    transform: translateY(-180rpx);
     border-radius: 8px;
+    overflow: hidden;
+    .user {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 32rpx;
+      margin-top: 30rpx;
+
+      .headPicture {
+        width: 80rpx;
+        height: 80rpx;
+        border-radius: 50%;
+      }
+
+      .uerContent {
+        margin-left: 24rpx;
+
+        .nickName {
+          max-width: 400rpx;
+          @include text-ellipsis-one;
+          font-size: 28rpx;
+          color: #5454a1;
+        }
+
+        .authentication {
+          font-size: 20rpx;
+          color: #ffac61;
+        }
+      }
+    }
+    .content {
+      width: 614rpx;
+      margin: 0 auto;
+      margin-top: 40rpx;
+    }
   }
   .bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     height: 98rpx;
     position: fixed;
     bottom: 0;
     background-color: #fff;
+    .like {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 28rpx;
+      margin-left: 30rpx;
+      text {
+        margin-left: 10rpx;
+      }
+    }
+    .contentRight {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right: 30rpx;
+      .star {
+        margin-right: 50rpx;
+      }
+    }
   }
 }
 </style>

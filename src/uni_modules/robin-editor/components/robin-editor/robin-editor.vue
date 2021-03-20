@@ -633,7 +633,6 @@ export default {
 
 .preview {
   width: 100%;
-  margin-top: 90rpx;
 
   .previewNodes {
     width: 100%;
