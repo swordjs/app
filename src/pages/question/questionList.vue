@@ -27,13 +27,6 @@
                 }}</view>
                 <view class="authentication">官方认证出题人</view>
               </view>
-              <!-- 如果是自己就看不到关注按钮，已关注就显示已关注，未关注就显示未关注 -->
-              <view
-                v-if="userID !== question.publishUserID[0]._id"
-                class="follow"
-                @click.stop="handleFollow(question.publishUserID[0]._id)"
-                >关注</view
-              >
             </view>
           </view>
           <!-- 详情 -->
@@ -85,8 +78,6 @@ export default defineComponent({
     });
     // 获取列表
     this.handleGetData();
-    // 获取关注用户的信息
-    this.handleGetUserContent();
   },
   setup() {
     // 分页相关配置
@@ -101,17 +92,7 @@ export default defineComponent({
     const dataList = ref<IDataList[] | []>([]);
     const areaID = ref<string>("");
     const scrollHeight: number = uni.getSystemInfoSync().screenHeight;
-    const userID: string = uni.getStorageSync("uni_id");
-    // 获取其关注的用户列表
-    const followers = ref<string[]>([]);
-    // 获取用户信息
-    const handleGetUserContent = async () => {
-      const userResult = await getUserContentByID();
-      if (userResult.success) {
-        followers.value = userResult.data.followers;
-        console.log(followers.value);
-      }
-    };
+    const userID: string = uni.getStorageSync("uni_id");    
     // 根据规则获取题目列表
     const handleGetData = async () => {
       uni.showLoading({
@@ -142,32 +123,6 @@ export default defineComponent({
         url: `/pages/question/writeQuestion?questionID=${_id}&title=${title}`,
       });
     };
-    const handleFollow = async (targetID: string) => {
-      const token: string = uni.getStorageSync("uni_id_token");
-      // 判断是否未登录
-      if (token === "") {
-        uni.showToast({
-          title: "您暂未登录，请前去首页登录",
-          icon: "none",
-        });
-      } else {
-        uni.showLoading({
-          title: "关注中...",
-          mask: true,
-        });
-        // 调用关注的接口
-        const followResult = await postFollow({
-          targetID,
-        });
-        uni.hideLoading();
-        if (followResult.success) {
-          uni.showToast({
-            title: "操作成功",
-            icon: "none",
-          });
-        }
-      }
-    };
     const handleQuestionChange = (e) => {
       const current: number = e.detail.current;
       // 判断是当前数组的最后一个
@@ -185,8 +140,6 @@ export default defineComponent({
       handleGetData,
       handleQuestionDetail,
       handleQuestionChange,
-      handleFollow,
-      handleGetUserContent,
       handleStart,
     };
   },
