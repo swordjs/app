@@ -29,5 +29,21 @@ namespace questionExplanation {
         })
         .catch((err) => err);
     }
+    // 采纳/取消题解
+    async adoptionQuestionExplanation() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "_id",
+            value: "题解ID",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => {
+          return await this.handler("adoptionQuestionExplanation");
+        })
+        .catch((err) => err);
+    }
   };
 }
