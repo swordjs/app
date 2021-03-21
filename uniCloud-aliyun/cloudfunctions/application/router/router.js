@@ -131,6 +131,11 @@ module.exports = [
         route: "adoptionQuestionExplanation",
         action: "adoptionQuestionExplanation",
         httpMethod: "POST"
+      },
+      {
+        route: "collectQuestionExplanation",
+        action: "collectQuestionExplanation",
+        httpMethod: "POST"
       }
     ],
   }
