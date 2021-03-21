@@ -83,9 +83,9 @@ import { ref } from "vue";
 // api
 import {
   getQuestionDetailByID,
-  postAddPageView,
-  getExplanationsByQuestionID,
-} from "../../api/questionExplanation";
+  postAddPageView
+} from "../../api/question";
+import { getExplanationsByQuestionID } from "../../api/questionExplanation"
 interface IPageParams {
   id: string;
 }

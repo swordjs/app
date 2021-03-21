@@ -1,7 +1,7 @@
 <template>
   <view class="explanationBox">
     <view class="top">
-      <i-navigation-bar/>
+      <i-navigation-bar />
       <view class="title">{{ data.questionID[0].title }}</view>
     </view>
     <view class="card">
@@ -33,7 +33,11 @@
       <view class="contentRight">
         <view class="star">
           <!-- 收藏 -->
-          <i-icon name="star-smile-line"></i-icon>
+          <i-icon
+            @click="handleCollect"
+            :color="isCollect && '#EA4D4D'"
+            :name="isCollect ? 'star-smile-fill' : 'star-smile-line'"
+          ></i-icon>
         </view>
         <!-- 评论 -->
         <i-icon name="message-2-line"></i-icon>
@@ -47,6 +51,7 @@ import { ref } from "vue";
 import {
   getExplanationsByID,
   adoptionQuestionExplanation,
+  collectQuestionExplanation,
 } from "../../api/questionExplanation";
 type IPageParams = {
   id: string;
@@ -62,11 +67,17 @@ export default {
     const id = ref("");
     const data = ref<{
       userAgreed?: string[];
+      userID?: {
+        collect: string[];
+      }[];
+      _id?: string;
     }>({
       userAgreed: [],
     });
     // 是否已采纳
     const isAdoption = ref<boolean>(false);
+    // 是否已收藏
+    const isCollect = ref<boolean>(false);
     const handleBack = () => {
       uni.navigateBack({
         delta: 1,
@@ -86,9 +97,16 @@ export default {
         isAdoption.value = data.value.userAgreed.some(
           (u) => u === uni.getStorageSync("uni_id")
         );
+        if (data.value.userID[0].collect.length > 0) {
+          isCollect.value = data.value.userID[0].collect.some(
+            (c: any) => c === data.value._id
+          );
+          console.log(isCollect.value);
+        }
       }
     };
 
+    // 采纳/赞同题解
     const handleLike = async () => {
       uni.showLoading({
         title: `${isAdoption.value ? "取消采纳中..." : "采纳中..."}`,
@@ -106,13 +124,35 @@ export default {
         isAdoption.value = !isAdoption.value;
       }
     };
+
+    // 收藏题解
+    const handleCollect = async () => {
+      uni.showLoading({
+        title: `${isCollect.value ? "取消采纳中..." : "采纳中..."}`,
+        mask: true,
+      });
+      const result = await collectQuestionExplanation({
+        _id: id.value,
+      });
+      uni.hideLoading();
+      if (result.success) {
+        uni.showToast({
+          title: "操作成功",
+          icon: "none",
+        });
+        isCollect.value = !isCollect.value;
+      }
+    };
+
     return {
       id,
       data,
       isAdoption,
+      isCollect,
       getExplanationData,
       handleBack,
       handleLike,
+      handleCollect,
     };
   },
 };

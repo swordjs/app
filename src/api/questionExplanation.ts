@@ -35,6 +35,22 @@ export async function adoptionQuestionExplanation(params: { _id: string }) {
   };
 }
 
+// 收藏/取消收藏题解
+export async function collectQuestionExplanation(params: { _id: string }) {
+  const { success, result } = await uniCloud.callFunction({
+    name: "application",
+    data: {
+      route: `api/questionExplanation/collectQuestionExplanation`,
+      method: "POST",
+      params,
+    },
+  });
+  return {
+    success,
+    result,
+  };
+}
+
 /**
  * @name 获取题解列表根据题目ID
  * @param params
@@ -76,7 +92,7 @@ export async function getExplanationsByID(params: {
     db.collection("questionExplanation,question,uni-id-users")
       .doc(params.id)
       .field(
-        `questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname}`
+        `questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname,collect}`
       )
       .get()
       .then((res) => {
