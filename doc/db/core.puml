@@ -7,8 +7,9 @@ class 用户 {
     +String sign
     {static} +String code
     {static} +Integer gender
-    +Array userLikedQuestionExplanation
+    +Array socialInfo
     +Array followers
+    +Array collect
     +Array settingInfo
     +UUID AuthID
     --登录注册登出,校验token相关--
@@ -20,6 +21,11 @@ class 用户 {
     +void checkToken()
     --关注/取消关注--
     +void checkFollowers()
+}
+class 收藏夹 {
+    +UUID _id
+    +String name
+    +Array collectData
 }
 class 用户认证{
     +UUID _id
@@ -117,6 +123,7 @@ class 服务号推送日志{
 用户 --> "many" 用户认证::userID
 用户 --> "many" 文章::userID
 用户 --> "many" 角色
+用户::collect --> "many" 收藏夹::_id
 用户 --> "many" 权限
 文章::tagID --> "many" 题目分类标签
 题目 --> "many" 题目分类标签
@@ -125,6 +132,11 @@ class 服务号推送日志{
 题目 --> "many" 题目统计::questionID
 note left of 用户::_id
 由Uni-id生成的唯一主键
+end note
+note right of 用户::socialInfo
+用户和题解/文章等进行社交的信息，是一个对象数组，通常会记录了社交的类别：文章/题解
+社交的操作：点赞等
+社交的其他信息对象Info，比如题解的_id 文章的_id
 end note
 note left of 用户::code
 微信登录返回的code作为记录
