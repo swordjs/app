@@ -71,16 +71,56 @@ namespace QuestionExplanationService {
       }
     }
     public async collectQuestionExplanation(params: { _id: string }) {
-      // 判断此用户中的收藏夹中是否存在此题解，如果存在，则取消，反之收藏
-      const res: {
-        userInfo: {
-          userLikedQuestionExplanation: string[];
-        };
-      } = await uniID.getUserInfo({
+      // 如果没有收藏，则默认建立一个收藏夹, 名为默认收藏夹
+      const collectResult = await uniID.getUserInfo({
         uid: this.userID,
-        field: ["userLikedQuestionExplanation"],
+        field: ["collect"],
       });
-      if (res.userInfo.userLikedQuestionExplanation) {
+      const collectData = {
+        type: "explanation",
+        id: params._id,
+      };
+      if (
+        !collectResult.userInfo.collect ||
+        collectResult.userInfo.collect.length === 0
+      ) {
+        const result = await db.collection("userCollect").add({
+          name: "默认收藏夹",
+          userID: this.userID,
+          collectData: [collectData],
+        });
+        return await uniID.updateUser({
+          uid: this.userID,
+          collect: [result.id],
+        });
+      } else {
+        // 如果存在收藏夹，目前就往第0个，也就是默认收藏夹去添加数据
+        // 判断题解ID是否存在于该收藏夹中
+        const result = await db
+          .collection("userCollect")
+          .doc(collectResult.userInfo.collect[0])
+          .get();
+        let collectData = result.data[0].collectData;
+        const collectIndex = collectData.findIndex((c: any) => {
+          return c.type === "explanation" && c.id === params._id;
+        });
+        const collectAction = db
+          .collection("userCollect")
+          .doc(collectResult.userInfo.collect[0]);
+        if (collectIndex >= 0) {
+          collectData.splice(collectIndex, 1);
+          // 更新collectData
+          return await collectAction.update({
+            collectData,
+          });
+        }else{
+          return await collectAction.update({
+            collectData: dbCmd.push({
+              type: "explanation",
+              id: params._id
+            }),
+          });
+        }
       }
     }
     // 处理题解点赞操作，对应的用户中的socialInfo字段变更的逻辑
@@ -112,7 +152,6 @@ namespace QuestionExplanationService {
               s.info._id === params.explanationID
             );
           });
-          console.log("嘿嘿", resultIndex);
           if (resultIndex >= 0) {
             sociaInfo.splice(resultIndex, 1);
             return await uniID.updateUser({
