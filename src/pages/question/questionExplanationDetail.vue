@@ -47,7 +47,7 @@ import { ref } from "vue";
 import {
   getExplanationsByID,
   adoptionQuestionExplanation,
-} from "../../api/question";
+} from "../../api/questionExplanation";
 type IPageParams = {
   id: string;
 };

@@ -85,7 +85,7 @@ import {
   getQuestionDetailByID,
   postAddPageView,
   getExplanationsByQuestionID,
-} from "../../api/question";
+} from "../../api/questionExplanation";
 interface IPageParams {
   id: string;
 }

@@ -23,7 +23,7 @@
 <script lang="ts">
 import { ref } from "vue";
 // api
-import { addQuestionExplanation } from "../../api/question"
+import { addQuestionExplanation } from "../../api/questionExplanation"
 interface IPageParams {
   id: string;
   questionID: string;
