@@ -576,7 +576,6 @@ export default {
 @import "./editor-icon.css";
 
 .wrapper {
-  padding: 5px;
   width: 100%;
   position: relative;
   .header {

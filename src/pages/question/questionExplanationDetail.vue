@@ -1,13 +1,7 @@
 <template>
   <view class="explanationBox">
     <view class="top">
-      <view class="navigationBar">
-        <image
-          class="back"
-          @click="handleBack"
-          src="../../static/common/back.png"
-        />
-      </view>
+      <i-navigation-bar/>
       <view class="title">{{ data.questionID[0].title }}</view>
     </view>
     <view class="card">
@@ -39,7 +33,7 @@
       <view class="contentRight">
         <view class="star">
           <!-- 收藏 -->
-          <i-icon name="star-line"></i-icon>
+          <i-icon name="star-smile-line"></i-icon>
         </view>
         <!-- 评论 -->
         <i-icon name="message-2-line"></i-icon>
@@ -164,16 +158,19 @@ page {
       margin: 0 auto;
       color: #fff;
       font-size: 32rpx;
-      margin-top: 60rpx;
+      margin-top: 50rpx;
+      @include text-ellipsis(2);
     }
   }
 
   .card {
+    position: relative;
+    top: -120rpx;
     width: 666rpx;
     height: 978rpx;
     margin: 0 auto;
     background-color: #fff;
-    transform: translateY(-180rpx);
+    // transform: translateY(-180rpx);
     border-radius: 8px;
     overflow: hidden;
     .user {
