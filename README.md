@@ -1,4 +1,7 @@
 <h2 align="center">剑指题解</h2>
+<div align="center">
+<img width="200" height="70" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/5623bee6-39a4-4f4b-9fab-e31d245f214e.png"></img>
+</div>
 <p align="center">互联网人题解神器，神器在手，offer我有
 <br>
 随手刷题 | 无广告绿色免费 | 个性推荐 | 每日自动推送 | 多维度丰富领域知识
