@@ -9,13 +9,22 @@
     <view class="editor">
       <!-- 撰写答案 -->
       <robin-editor
+        ref="editor"
         class="editor"
-        @cancel="handleCancel"
-        @save="handleSaveEditor"
+        width="690"
         v-model="questionInfo.content"
         :imageUploader="uploadImg"
         :muiltImage="true"
+        :header="false"
       ></robin-editor>
+    </view>
+    <view class="submit" @click="handleSaveEditor">
+      <i-icon
+        @click="handleSaveEditor"
+        name="check-line"
+        color="#fff"
+        size="45rpx"
+      ></i-icon>
     </view>
   </view>
 </template>
@@ -23,7 +32,7 @@
 <script lang="ts">
 import { ref } from "vue";
 // api
-import { addQuestionExplanation } from "../../api/questionExplanation"
+import { addQuestionExplanation } from "../../api/questionExplanation";
 interface IPageParams {
   id: string;
   questionID: string;
@@ -39,47 +48,47 @@ export default {
     const questionInfo = ref<{
       id?: string;
       title: string;
-      content: string;
       questionID: string;
     }>({
       id: "",
       title: "",
-      content: "",
       questionID: "",
     });
-    // 保存富文本
-    const handleSaveEditor = async (e: { html: string }) => {
-      if (e.html === "") {
-        uni.showToast({
-          title: "请填写题解内容oh~",
-          icon: "none",
-        });
-      }else{
-        uni.showLoading({
-          mask: true
-        })
-        const addResult = await addQuestionExplanation({
-          _id: questionInfo.value.questionID,
-          content: e.html
-        })
-        uni.hideLoading();
-        if(addResult.success){
-          const explanationID = addResult.result._id;
-          // 题解详情页面
-        }
-      }
-    };
-    // 取消富文本（返回上一层）
-    const handleCancel = () => {
-      uni.navigateBack({
-        delta: 1,
-      });
-    };
     return {
       questionInfo,
-      handleSaveEditor,
-      handleCancel,
     };
+  },
+  methods: {
+    async handleSaveEditor() {
+      // 获取编辑器引用
+      const editor = this.$refs.editor;
+      editor.editorCtx.getContents({
+        success: async ({ html }: { html: string }) => {
+          if (html === "") {
+            uni.showToast({
+              title: "请填写题解内容oh~",
+              icon: "none",
+            });
+          } else {
+            uni.showLoading({
+              mask: true,
+            });
+            const addResult = await addQuestionExplanation({
+              _id: this.questionInfo.questionID,
+              content: html,
+            });
+            uni.hideLoading();
+            if (addResult.success) {
+              const explanationID = addResult.result._id;
+              // 题解详情页面
+              uni.redirectTo({
+                url: `/pages/question/questionExplanationDetail?id=${explanationID}`,
+              });
+            }
+          }
+        },
+      });
+    },
   },
 };
 </script>
@@ -89,12 +98,13 @@ page {
   background-color: #f6f7f9;
 }
 </style>
-<style lang="scss">
+<style lang="scss" scoped>
 view {
   box-sizing: border-box;
 }
 .card {
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -103,7 +113,6 @@ view {
   padding: 20rpx;
   background-color: #fff;
   font-size: 30rpx;
-  margin-top: 108rpx;
   border-radius: 8px;
   .vertical {
     position: absolute;
@@ -122,6 +131,26 @@ view {
   }
 }
 .editor {
-  width: 100%;
+  width: 690rpx;
+  margin: 0 auto;
+  border-radius: 8px;
+  margin-top: 10rpx;
+}
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100rpx;
+  height: 100rpx;
+  background: #0069fa;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 30rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  &:active {
+    opacity: 0.7;
+  }
 }
 </style>

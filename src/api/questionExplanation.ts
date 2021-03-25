@@ -110,3 +110,34 @@ export async function getExplanationsByID(params: {
       });
   });
 }
+
+/**
+ * @name 检查用户是否已经答过这道题
+ * @param params
+ * @returns explanationID
+ */
+export async function checkExplanationByUser(params: {
+  _id: string;
+}): Promise<ActionResult> {
+  return new Promise((resolve) => {
+    db.collection("questionExplanation")
+      .where({
+        questionID: params._id,
+        userID: uni.getStorageSync("uni_id"),
+      })
+      .get()
+      .then((res) => {
+        const { success, result } = res;
+        resolve({
+          success,
+          data: result.data.length > 0 ? result.data[0]._id : null,
+        });
+      })
+      .catch((err: { message: string }) => {
+        uni.showToast({
+          title: err.message,
+          icon: "none",
+        });
+      });
+  });
+}

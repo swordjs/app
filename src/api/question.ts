@@ -66,7 +66,6 @@ export async function getQuestionDetailByID(params: {
   });
 }
 
-
 export async function postAddPageView(params: { _id: string }) {
   const { success, result } = await uniCloud.callFunction({
     name: "application",
@@ -83,4 +82,3 @@ export async function postAddPageView(params: { _id: string }) {
     result,
   };
 }
-

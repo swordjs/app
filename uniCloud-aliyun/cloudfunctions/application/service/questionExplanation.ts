@@ -36,10 +36,13 @@ namespace QuestionExplanationService {
         const questionCore = new questionService({
           userID: this.userID,
         });
-        return await questionCore.addQuestionExplanationByID({
+        await questionCore.addQuestionExplanationByID({
           _id,
           questionExplanationID: explanationResult.id,
         });
+        return {
+          _id: explanationResult.id,
+        };
       }
     }
     public async adoptionQuestionExplanation(params: { _id: string }) {
@@ -113,11 +116,11 @@ namespace QuestionExplanationService {
           return await collectAction.update({
             collectData,
           });
-        }else{
+        } else {
           return await collectAction.update({
             collectData: dbCmd.push({
               type: "explanation",
-              id: params._id
+              id: params._id,
             }),
           });
         }

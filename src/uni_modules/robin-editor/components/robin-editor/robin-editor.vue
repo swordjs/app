@@ -1,5 +1,11 @@
 <template>
-  <view class="wrapper" :style="{ 'padding-top': keyboardHeight }">
+  <view
+    class="wrapper"
+    :style="{
+      'padding-top': keyboardHeight,
+      width: width ? width + 'rpx' : '100%',
+    }"
+  >
     <view v-if="header">
       <robin-editor-header
         class="header"
@@ -10,31 +16,14 @@
       ></robin-editor-header>
     </view>
     <view
-      :style="'height:' + editorHeight + 'px;'"
-      class="container"
-      v-if="!previewMode"
-      v-show="!showPreview"
-    >
-      <editor
-        v-if="!previewMode"
-        v-show="!showPreview"
-        id="editor"
-        class="ql-container"
-        placeholder="开始输入..."
-        showImgSize
-        showImgToolbar
-        showImgResize
-        @statuschange="onStatusChange"
-        :read-only="readOnly"
-        @ready="onEditorReady"
-      ></editor>
-    </view>
-    <view
       class="toolbar"
       @tap="format"
       v-if="!showPreview"
       v-show="keyboardHeight || !autoHideToolbar"
-      :style="'bottom:' + (isIOS ? keyboardHeight : 0) + 'px'"
+      :style="{
+        bottom: isIOS ? keyboardHeight : 0 + 'px',
+        width: width ? width + 'rpx' : '100%',
+      }"
     >
       <block v-for="(t, i) in tools" :key="i">
         <view
@@ -256,6 +245,27 @@
         ></view>
       </block>
     </view>
+    <view
+      :style="'height:' + editorHeight + 'px;'"
+      class="container"
+      v-if="!previewMode"
+      v-show="!showPreview"
+    >
+      <editor
+        v-if="!previewMode"
+        v-show="!showPreview"
+        id="editor"
+        class="ql-container"
+        placeholder="开始输入..."
+        showImgSize
+        showImgToolbar
+        showImgResize
+        @statuschange="onStatusChange"
+        :read-only="readOnly"
+        @ready="onEditorReady"
+      ></editor>
+    </view>
+
     <uni-popup type="bottom" ref="color"
       ><robin-color-picker
         :color="color"
@@ -271,6 +281,9 @@
 <script>
 export default {
   props: {
+    width: {
+      type: String,
+    },
     value: {
       type: String,
     },
@@ -340,7 +353,6 @@ export default {
   },
   watch: {
     value: function (newvar) {
-      console.log("这是最新值", newvar);
       this.html = newvar;
     },
     html: function (newvar) {
@@ -578,6 +590,8 @@ export default {
 .wrapper {
   width: 100%;
   position: relative;
+  border-radius: 8px;
+  overflow: hidden;
   .header {
     width: 100%;
     position: fixed;
@@ -594,25 +608,24 @@ export default {
 
   .container {
     width: 100%;
-    margin-top: 75rpx;
     background: #fff;
-
+    overflow: hidden;
     .ql-container {
       box-sizing: border-box;
       width: 100%;
       height: 100%;
       font-size: 16px;
       line-height: 1.5;
-      overflow: auto;
       padding: 20rpx;
     }
   }
 
   .toolbar {
-    position: fixed;
-    width: 100%;
-    left: 0;
-    bottom: 0;
+    // position: fixed;
+    // width: 100%;
+    // left: 50%;
+    // transform: translateX(-50%);
+    // top: 100rpx;
     box-sizing: border-box;
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     background-color: #fff;

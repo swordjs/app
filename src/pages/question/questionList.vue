@@ -58,7 +58,7 @@
 import { defineComponent, ref } from "vue";
 // api
 import { getQuestionListData } from "../../api/question";
-import { postFollow, getUserContentByID } from "../../api/user";
+import { checkExplanationByUser } from "../../api/questionExplanation";
 interface IPageParams {
   areaID: string;
   areaName: string;
@@ -92,7 +92,8 @@ export default defineComponent({
     const dataList = ref<IDataList[] | []>([]);
     const areaID = ref<string>("");
     const scrollHeight: number = uni.getSystemInfoSync().screenHeight;
-    const userID: string = uni.getStorageSync("uni_id");    
+    const userID: string = uni.getStorageSync("uni_id");
+
     // 根据规则获取题目列表
     const handleGetData = async () => {
       uni.showLoading({
@@ -111,6 +112,7 @@ export default defineComponent({
         console.log(dataList.value);
       }
     };
+
     // 进入题解详情
     const handleQuestionDetail = (_id: string) => {
       uni.navigateTo({
@@ -118,10 +120,36 @@ export default defineComponent({
       });
     };
     // 进入新增题解页面
-    const handleStart = (_id: string, title: string) => {
-      uni.navigateTo({
-        url: `/pages/question/writeQuestion?questionID=${_id}&title=${title}`,
-      });
+    const handleStart = async (_id: string, title: string) => {
+      // 如果没有登录
+      if (userID !== "") {
+        uni.showLoading({
+          title: "请稍后...",
+          mask: true
+        })
+        // 判断此题是否答过，如果答过，则直接进入解答详情中
+        const result = await checkExplanationByUser({
+          _id,
+        });
+        uni.hideLoading();
+        if (result.success) {
+          if (result.data === null) {
+            uni.navigateTo({
+              url: `/pages/question/writeQuestion?questionID=${_id}&title=${title}`,
+            });
+          } else {
+            // 题解详情
+            uni.navigateTo({
+              url: `/pages/question/questionExplanationDetail?id=${result.data}`,
+            });
+          }
+        }
+      } else {
+        uni.showToast({
+          title: "请先登录喔~",
+          icon: "none",
+        });
+      }
     };
     const handleQuestionChange = (e) => {
       const current: number = e.detail.current;
