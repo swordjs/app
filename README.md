@@ -17,9 +17,7 @@
 
 项目的起源是一个 github 仓库，名为[前端知识每日 3+1](https://github.com/haizlin/fe-interview)，正是这个优秀的题库项目才有了我们团队开发聚合题库的想法。在我们国内程序员圈子，大多数小伙伴为了更好的技术发展和 offer，都通过训练题来提高自己的眼界，其中不乏包括算法/业务/软技能的题目，但是因为我们的环境和侧重点不一样，所以我们接触的项目和题目都不一样，而市面上很少有一个项目能做到，涵盖不同圈子的聚合题库。 《剑指题解》项目就是一个优秀的互联网行业聚合题库神器。
 
-<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/c1746d60-2e22-4161-b23d-38b910b73c91.jpg" width=20%>
-
-<img style="margin-left: 40px;" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/e4395033-d45f-4e3e-a930-78ff91c8db54.png" width=50%>
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/c1746d60-2e22-4161-b23d-38b910b73c91.jpg" width=20%><img style="margin-left: 40px;" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/e4395033-d45f-4e3e-a930-78ff91c8db54.png" width=50%>
 
 # 目录
 - [特点](#特点)
