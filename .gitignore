@@ -2,7 +2,6 @@
 node_modules/
 unpackage/
 dist/
-uniCloud-aliyun/cloudfunctions-aliyun/common/uni-id/config.json
 # local env files
 .env.local
 .env.*.local
@@ -22,3 +21,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+uniCloud-aliyun/cloudfunctions/common/uni-id/config.json
