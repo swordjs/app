@@ -1,4 +1,3 @@
-let uniCloud: any;
 export async function loginByWechat(userInfo, res) {
   const { success, result } = await uniCloud.callFunction({
     name: "application",

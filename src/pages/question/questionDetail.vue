@@ -2,14 +2,7 @@
   <view class="questionDetail">
     <view class="top">
       <!-- 顶部的bar -->
-      <view class="navigationBar">
-        <image
-          class="back"
-          @click="handleBack"
-          src="../../static/common/back.png"
-        />
-        <view class="navigationBarTitle">详情</view>
-      </view>
+      <i-navigation-bar />
       <view class="title">
         {{ detailData.title || "" }}
       </view>
@@ -192,35 +185,12 @@ export default {
     height: 396rpx;
     background: linear-gradient(360deg, #809bf5 0%, #506be6 100%);
 
-    .navigationBar {
-      width: calc(100% - 80rpx);
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: calc(50rpx + 30rpx) 40rpx auto 40rpx;
-
-      .back {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 14rpx;
-        height: 26rpx;
-      }
-
-      .navigationBarTitle {
-        font-size: 36rpx;
-        color: #fff;
-      }
-    }
-
     .title {
       width: 666rpx;
       margin: 0 auto;
       font-size: 32rpx;
       color: #fff;
-      margin-top: 54rpx;
+      margin-top: 42rpx;
     }
 
     .info {

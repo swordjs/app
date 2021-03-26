@@ -39,7 +39,7 @@
       <view class="search">
         <input
           maxlength="15"
-          placeholder="热点: vite好在哪里"
+          placeholder="热点功能，后续版本迭代..."
           placeholder-style="color: #C3C5D4;"
           type="text"
         />
@@ -47,18 +47,20 @@
       </view>
     </view>
     <!-- banner -->
-    <view class="banner">banner</view>
+    <view class="banner">
+      <image src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/d9120b07-0203-4b86-93ba-72fdcd2df843.png"/>
+    </view>
     <!-- 专区和动态 -->
     <view class="menu">
       <!-- 专区 -->
       <view class="menumain question" @click="handleUrl('/pages/question/index')">
         <view class="title">题库专区</view>
-        <view class="content"> 您最近做过的[前端基础练习题]有更新 </view>
+        <view class="content"> 最近的[前端练习题]有更新 </view>
       </view>
       <!-- 动态 -->
       <view class="menumain dynamic">
         <view class="title">动态</view>
-        <view class="content"> 有3位用户点赞了你的题解 </view>
+        <view class="content"> 后续版本迭代，尽情期待~ </view>
         <!-- 头像组 -->
         <view class="headPictureList">
           <image
@@ -75,7 +77,7 @@
     <!-- 社区 -->
     <view class="community">
       <view class="title">社区</view>
-      <view class="content">看看他们在讨论哪些新鲜技术吧～</view>
+      <view class="content">后续版本迭代，尽情期待~</view>
     </view>
     <!-- 推荐文章 -->
     <view class="article">
@@ -83,7 +85,7 @@
       <view class="articleList">
         <view class="articleListItem">
           <view class="articleListItemTitle">
-            uniapp从0到1开发指南，跨平台uniapp从0到1开发指南，跨平台uniapp从0到1开发指南…
+            文章社区后续版本迭代，尽情期待~
           </view>
           <!-- 头像 -->
           <view class="bottom">
@@ -93,8 +95,8 @@
               mode="scaleToFill"
             ></image>
             <view class="right">
-              <view class="nickname">亚当兰伯特</view>
-              <view class="date">2020-02-10</view>
+              <view class="nickname"></view>
+              <view class="date"></view>
             </view>
           </view>
         </view>
@@ -132,15 +134,18 @@ export default {
         // 微信登录
         uni.getUserInfo({
           success: ({ userInfo }) => {
+            console.log(userInfo);
             uni.login({
               provider: "weixin",
               async success(res) {
+                console.log(res);
                 // 传入用户信息和code
                 uni.showLoading({
                   title: "登录中...",
                 });
                 // 这里判断是登录/还是注册，如果是注册，默认调接口绑定一个角色Normal
                 const loginData = await loginByWechat(userInfo, res);
+                console.log(loginData);
                 uni.hideLoading();
                 // 存储返回的token以及用户信息，id等
                 if (loginData.success && loginData.result.code === 0) {
@@ -275,11 +280,15 @@ export default {
     align-items: center;
     width: 686rpx;
     height: 240rpx;
-    background: linear-gradient(117deg, #efd667 0%, #f0a13f 100%);
     border-radius: 15px;
     opacity: 0.72;
     color: #fff;
     margin: 80rpx auto 16rpx auto;
+    box-shadow: 0px 4px 10px 0px rgba(76,83,119,0.25);
+    image{
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .menu {

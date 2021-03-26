@@ -10,7 +10,7 @@
         <image :src="data.userID[0].avatar" class="headPicture" mode=""></image>
         <view class="uerContent">
           <view class="nickName">{{ data.userID[0].nickname }}</view>
-          <view class="authentication">官方认证出题人</view>
+          <view class="authentication">Dcloud2021插件大赛，冲鸭！</view>
         </view>
       </view>
       <view class="content">
@@ -40,7 +40,7 @@
           ></i-icon>
         </view>
         <!-- 评论 -->
-        <i-icon name="message-2-line"></i-icon>
+        <i-icon @click="handleComment" name="message-2-line"></i-icon>
       </view>
     </view>
   </view>
@@ -53,6 +53,7 @@ import {
   adoptionQuestionExplanation,
   collectQuestionExplanation,
 } from "../../api/questionExplanation";
+import { checkIDInCollect } from "../../api/collect";
 type IPageParams = {
   id: string;
 };
@@ -94,14 +95,17 @@ export default {
       uni.hideLoading();
       if (result.success) {
         data.value = result.data[0];
+        // 查询题解赞同列表中是否有自己
         isAdoption.value = data.value.userAgreed.some(
           (u) => u === uni.getStorageSync("uni_id")
         );
-        if (data.value.userID[0].collect.length > 0) {
-          isCollect.value = data.value.userID[0].collect.some(
-            (c: any) => c === data.value._id
-          );
-          console.log(isCollect.value);
+        console.log(data.value);
+        // 查看自己的用户信息收藏夹中是否存在此题解
+        const isCollectResult = await checkIDInCollect({
+          id: data.value._id
+        });
+        if (isCollectResult.success) {
+          isCollect.value = isCollectResult.data;
         }
       }
     };
@@ -144,6 +148,13 @@ export default {
       }
     };
 
+    // 评论
+    const handleComment = () => {
+      uni.showToast({
+        title: "正在开发中,尽情期待...",
+        icon: "none",
+      });
+    };
     return {
       id,
       data,
@@ -152,6 +163,7 @@ export default {
       getExplanationData,
       handleBack,
       handleLike,
+      handleComment,
       handleCollect,
     };
   },
