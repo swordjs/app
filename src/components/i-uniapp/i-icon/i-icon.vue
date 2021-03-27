@@ -49,10 +49,9 @@
 
 	/* #endif */
 	.i-icon {
-		display: inline-block;
 		font-family: remixicon !important;
 		text-decoration: none;
 		text-align: center;
-		font-style: normal;
+		vertical-align: middle;
 	}
 </style>

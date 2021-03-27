@@ -6,8 +6,8 @@ export async function postFollow(params: {
   const { success, result } = await uniCloud.callFunction({
     name: "application",
     data: {
-      route: `api/checkFollowers`,
-      method: "POST",
+      route: `api/user/checkFollowers`,
+      method: "PUT",
       params: {
         follower: params.targetID,
       },
@@ -19,20 +19,24 @@ export async function postFollow(params: {
   };
 }
 
-
 /**
- * 获取用户信息根据Token
+ * 获取用户信息UserID
  */
-export async function getUserContentByID(): Promise<ActionResult> {
+export async function getUserContentByID(params: {
+  userID: string
+}): Promise<ActionResult> {
   const { success, result } = await uniCloud.callFunction({
     name: "application",
     data: {
-      route: `api/user/getUserContentByID`,
-      method: "GET"
+      route: `api/user/getUserContentByID/${params.userID}`,
+      method: "GET",
     },
   });
   return {
     success,
-    data: result,
+    data: result.userInfo,
   };
 }
+
+
+// 获取用户

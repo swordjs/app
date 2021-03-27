@@ -3,10 +3,10 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/questionExplanation/collectQuestionExplanation",
-	"method": "POST",
-	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1ZmRiZWY4NTA2YWRkNTAwMDEwZDI3M2UiLCJpYXQiOjE2MTQxNzA2NDcsImV4cCI6MWUrMTU4fQ.pGGF_aglnQJf6cfpEIPSnbkBLvkSbIHYKk6Jf_9_eh8",
+	"route": "api/user/checkFollowers",
+	"method": "PUT",
+	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDVkZjg5NjhlNjhmMDAwMDFlNjNmMGIiLCJyb2xlIjpbXSwicGVybWlzc2lvbiI6W10sImlhdCI6MTYxNjc3MTIyMiwiZXhwIjoxZSsxNTh9.Kbp16ZKbRYd-iVbpfguFvdRPGHBxtlyH9OsUC2TocAU",
 	"params": {
-		"_id": "6041724fb510d00001e675a0"
+		"follower": "600a32356cb4fb0001fb2b5b"
 	}
 }

@@ -42,9 +42,9 @@ module.exports = [
         action: "getUserContentByToken",
       },
       {
-        route: "getUserContentByID",
+        route: "getUserContentByID/{userID}",
         httpMethod: "GET",
-        action: "getUserContentByID"
+        action: "getUserContentByID",
       },
       {
         action: "updateUserInfo",
@@ -61,7 +61,7 @@ module.exports = [
     service: "questionArea",
     routes: [
       {
-        action: "getAreaList"
+        action: "getAreaList",
       },
       {
         action: "addQuestionArea",
@@ -79,7 +79,7 @@ module.exports = [
     service: "questionTag",
     routes: [
       {
-        action: "getTagList"
+        action: "getTagList",
       },
       {
         action: "addQuestionTag",
@@ -125,18 +125,18 @@ module.exports = [
     service: "questionExplanation",
     routes: [
       {
-        action: "addQuestionExplanation"
+        action: "addQuestionExplanation",
       },
       {
         route: "adoptionQuestionExplanation",
         action: "adoptionQuestionExplanation",
-        httpMethod: "POST"
+        httpMethod: "POST",
       },
       {
         route: "collectQuestionExplanation",
         action: "collectQuestionExplanation",
-        httpMethod: "POST"
-      }
+        httpMethod: "POST",
+      },
     ],
-  }
+  },
 ];

@@ -18,9 +18,9 @@ namespace UserService {
     uid: string;
     follower: string;
   }
-  interface IUserData{
-    userID: string
-    token: string
+  interface IUserData {
+    userID: string;
+    token: string;
   }
   module.exports = class User {
     public nowDate: string;
@@ -31,9 +31,12 @@ namespace UserService {
       this.nowDate = new Date().toISOString();
       this.token = data.token;
     }
-    public async loginByWechat(params: ILoginByWechat, urlParams: {code: string}) {
+    public async loginByWechat(
+      params: ILoginByWechat,
+      urlParams: { code: string }
+    ) {
       const { code } = urlParams;
-        // 把用户信息也添加到库中
+      // 把用户信息也添加到库中
       const res = await uniID.loginByWeixin({
         code,
         needPermission: true, // 返回权限
@@ -72,35 +75,40 @@ namespace UserService {
         ...params,
       });
     }
-    public async getUserContentByToken(){
-      return await uniID.getUserInfoByToken(this.token)
+    public async getUserContentByToken() {
+      return await uniID.getUserInfoByToken(this.token);
     }
-    public async getUserContentByID(){
+    public async getUserContentByID({ userID }) {
       // return await collection.doc(this.userID).get();
       return await uniID.getUserInfo({
-        uid: this.userID,
-        field: ["followers"],
-      })
+        uid: userID,
+      });
     }
     public async checkFollowers(params: ICheckFollowers) {
-      let { follower } = params;
+      const { follower } = params;
       // 获取当前用户关注用户信息
-      const followers = await uniID.getUserInfo({
+      let result = await uniID.getUserInfo({
         uid: this.userID,
-        field: ["followers"],
       });
-      // 查询下标
-      const index = followers.indexOf(follower);
-      if (index === -1) {
-        followers.push(follower);
-      } else {
-        followers.splice(index, 1);
+      if (result.code === 0) {
+        let followers = [];
+        // 如果有此followers字段，则直接设置用户中的followers，否则使用默认空
+        if (result.userInfo.followers) {
+          followers = result.userInfo.followers;
+        }
+        // 查询下标
+        const index = followers.indexOf(follower);
+        if (index === -1) {
+          followers.push(follower);
+        } else {
+          followers.splice(index, 1);
+        }
+        // 更新数据库
+        return await uniID.updateUser({
+          uid: this.userID,
+          followers: followers,
+        });
       }
-      // 更新数据库
-      return await uniID.updateUser({
-        uid: this.userID,
-        followers: followers,
-      });
     }
   };
 }

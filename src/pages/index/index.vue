@@ -48,12 +48,17 @@
     </view>
     <!-- banner -->
     <view class="banner">
-      <image src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/d9120b07-0203-4b86-93ba-72fdcd2df843.png"/>
+      <image
+        src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/d9120b07-0203-4b86-93ba-72fdcd2df843.png"
+      />
     </view>
     <!-- 专区和动态 -->
     <view class="menu">
       <!-- 专区 -->
-      <view class="menumain question" @click="handleUrl('/pages/question/index')">
+      <view
+        class="menumain question"
+        @click="handleUrl('/pages/question/index')"
+      >
         <view class="title">题库专区</view>
         <view class="content"> 最近的[前端练习题]有更新 </view>
       </view>
@@ -130,6 +135,11 @@ export default {
     const handleClickUser = () => {
       // 判断是否登录
       if (isLogin.value) {
+        const userID = uni.getStorageSync("uni_id");
+        // 进入个人中心页面
+        uni.navigateTo({
+          url: `/pages/user/index?userID=${userID}`
+        })
       } else {
         // 微信登录
         uni.getUserInfo({
@@ -145,14 +155,12 @@ export default {
                 });
                 // 这里判断是登录/还是注册，如果是注册，默认调接口绑定一个角色Normal
                 const loginData = await loginByWechat(userInfo, res);
-                console.log(loginData);
                 uni.hideLoading();
                 // 存储返回的token以及用户信息，id等
                 if (loginData.success && loginData.result.code === 0) {
                   uni.setStorageSync("uni_id_token", loginData.result.token);
                   uni.setStorageSync("uni_id", loginData.result.uid);
                   uni.setStorageSync("userInfo", userInfo);
-                  console.log(userInfo);
                   // 显示微信个人信息
                   user.value = userInfo;
                   // 已登录状态变更
@@ -176,7 +184,7 @@ export default {
     return {
       isLogin,
       user,
-	  handleUrl,
+      handleUrl,
       handleClickUser,
     };
   },
@@ -284,8 +292,8 @@ export default {
     opacity: 0.72;
     color: #fff;
     margin: 80rpx auto 16rpx auto;
-    box-shadow: 0px 4px 10px 0px rgba(76,83,119,0.25);
-    image{
+    box-shadow: 0px 4px 10px 0px rgba(76, 83, 119, 0.25);
+    image {
       width: 100%;
       height: 100%;
     }
