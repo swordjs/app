@@ -85,7 +85,7 @@
 # 设计概览
 
 <div>
-<img src="http://static.yinzhuoei.com/typecho/2021/01/17/721751652452357.png" width="25%"></img> 
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/13aafb5f-705c-4efb-b5dd-4e02f3ea87f4.png" width="25%"></img> 
 <img src="http://static.yinzhuoei.com/typecho/2021/01/17/721852972570223.png" width="30%"></img> 
 <img src="http://static.yinzhuoei.com/typecho/2021/01/17/72195918714747.png" width="30%"></img> 
 </div>
