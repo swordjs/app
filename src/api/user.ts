@@ -39,4 +39,4 @@ export async function getUserContentByID(params: {
 }
 
 
-// 获取用户
+// 获取用户是否关注

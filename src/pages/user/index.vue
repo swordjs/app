@@ -24,8 +24,14 @@
         </view>
         <!-- 关注/编辑 -->
         <view v-if="!isSelf" class="followOrEdit" @click="handleCardButton">
-          <i-icon size="35rpx" color="#FFDB86" name="add-line"> </i-icon>
-          <text>关注</text>
+          <i-icon
+            v-if="!attentionUser"
+            size="35rpx"
+            color="#FFDB86"
+            name="add-line"
+          >
+          </i-icon>
+          <text>{{ attentionUser ? "取消关注" : "关注" }}</text>
         </view>
       </view>
       <!-- 卡片 -->
@@ -178,6 +184,8 @@ export default {
     this.getUserInfo();
   },
   setup() {
+    // 是否关注了用户
+    const attentionUser = ref<boolean>(false);
     const userInfo = ref<UserInfo>({
       nickname: "",
       avatar: "../../static/index/user.png",
@@ -203,7 +211,7 @@ export default {
     // 处理用户卡片上的按钮逻辑
     const handleCardButton = async () => {
       uni.showLoading({
-        title: "操作中...",
+        title: `${attentionUser.value ? "取消关注中..." : "关注中..."}`,
         mask: true,
       });
       // 点击关注
@@ -213,8 +221,10 @@ export default {
       uni.hideLoading();
       if (followResult.success) {
         uni.showToast({
-          title: "操作成功",
+          title: `${attentionUser.value ? "取消关注" : "关注"}成功`,
+          icon: "none",
         });
+        attentionUser.value = !attentionUser.value;
       }
     };
     const getUserInfo = async () => {
@@ -228,10 +238,24 @@ export default {
       uni.hideLoading();
       if (result.success) {
         userInfo.value = result.data;
-        console.log(userInfo.value);
+        // 判断此信息是否是本人，如果不是本人，则查询本人和此人的粉丝关联，如果是本人，则就不需要查询
+        if (!isSelf.value) {
+          const selfResult = await getUserContentByID({
+            userID: uni.getStorageSync("uni_id"),
+          });
+          if (selfResult.success) {
+            if (selfResult.data.followers) {
+              attentionUser.value = selfResult.data.followers.some(
+                (f: any) => f === userID.value
+              );
+              console.log(attentionUser.value);
+            }
+          }
+        }
       }
     };
     return {
+      attentionUser,
       isSelf,
       userInfo,
       userID,
@@ -304,14 +328,13 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 120rpx;
-        height: 48rpx;
         background: #4e5bf6;
         border-radius: 13px;
         font-size: 24rpx;
         color: #e4e5ff;
+        padding: 8rpx 24rpx;
         text {
-          margin-right: 6rpx;
+          //   margin-right: 6rpx;
         }
         &:active {
           opacity: 0.7;
