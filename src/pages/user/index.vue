@@ -2,7 +2,14 @@
   <view class="userBox">
     <view class="top">
       <!-- 顶部的bar -->
-      <i-navigation-bar />
+      <i-navigation-bar
+        @onReady="navigationBarReady"
+        :sticky="navigationBarSticky"
+      >
+        <template v-if="navigationBarSticky">
+          {{ userInfo.nickname }}
+        </template>
+      </i-navigation-bar>
       <!-- 头像和昵称 -->
       <view class="user">
         <image
@@ -20,11 +27,12 @@
               mode=""
             ></image>
           </view>
-          <view class="sign">个性签名：{{ userInfo.sign }}</view>
+          <view class="sign">{{ userInfo.sign }}</view>
         </view>
         <!-- 关注/编辑 -->
         <view v-if="!isSelf" class="followOrEdit" @click="handleCardButton">
           <i-icon
+            @click="handleCardButton"
             v-if="!attentionUser"
             size="35rpx"
             color="#FFDB86"
@@ -37,7 +45,7 @@
       <!-- 卡片 -->
       <view class="card">
         <!-- 粉丝数(k) -->
-        <view class="fans">{{userInfo.fansCount}}</view>
+        <view class="fans">{{ userInfo.fansCount }}</view>
         <view class="fansTip">粉丝数奇高，大佬跑不掉了～</view>
         <!-- 详细信息 -->
         <view class="bottom">
@@ -48,38 +56,55 @@
         <view class="adopt"> 被采纳过1.3k次 </view>
       </view>
     </view>
-    <view class="tab">
-      <Tabs
-        :lineScale="0.3"
-        lineColor="#526EE7"
-        lineRadius="4rpx"
-        activeColor="#526EE7"
-        :bold="false"
-        :scroll="false"
-        v-model="tabCurrent"
-        :tabs="tabs"
-      ></Tabs>
-    </view>
-    <!-- 以下是swiper -->
-    <view class="questionSwiper">
-      <swiper
-        :current="tabCurrent"
-        @change="handleSwiperChange"
-        :style="{ height: swiperHeight + 'px' }"
+    <!-- 将tab和列表作为一个view去展示，统一吸顶 -->
+    <view>
+      <!-- 这块top值减去14的原因是，tab本来有一个marginTop的值，需要减去 -->
+      <view
+        class="tab"
+        :style="{
+          position: 'sticky',
+          top: navigationBarHeight - 15 + 'px',
+        }"
       >
-        <swiper-item>
-          <view class="itemCard">
-            <view class="itemCardTop">
+        <Tabs
+          :lineScale="0.3"
+          lineColor="#526EE7"
+          lineRadius="4rpx"
+          activeColor="#526EE7"
+          :bold="false"
+          :scroll="false"
+          v-model="tabCurrent"
+          :tabs="tabs"
+        ></Tabs>
+      </view>
+      <!-- 以下是swiper -->
+      <view class="questionSwiper">
+        <swiper
+          :current="tabCurrent"
+          @change="handleSwiperChange"
+          :style="{ height: swiperHeight + 'px' }"
+        >
+          <swiper-item>
+            <scroll-view
+              :style="{ height: swiperHeight + 'px' }"
+              :scroll-y="scrollOpen"
+            >
+              <view
+                class="itemCard"
+                v-for="item in listInfo.publishList.data"
+                :key="item._id"
+              >
+                <!-- <view class="itemCardTop">
               <image
                 class="headPicture"
                 src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
                 mode="scaleToFill"
               ></image>
               <view class="nickname">前端每日3+1</view>
-            </view>
-            <view class="itemBody">
-              <!-- 可能有图片 -->
-              <view class="images">
+            </view> -->
+                <view class="itemBody">
+                  <!-- 可能有图片 -->
+                  <!-- <view class="images">
                 <image
                   src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
                   mode="scaleToFill"
@@ -92,102 +117,125 @@
                   src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
                   mode="scaleToFill"
                 ></image>
+              </view> -->
+                  <view class="main">
+                    <view class="mainTitle">{{ item.title }}</view>
+                    <view class="mainContent">{{ item.content }}</view>
+                    <!-- 时间 -->
+                    <view class="mainCreateTime">
+                      <i-icon
+                        size="30rpx"
+                        name="time-line"
+                        color="#666666"
+                      ></i-icon>
+                      <text>{{
+                        dayjs(item.createDate).format("YYYY-MM-DD HH:mm")
+                      }}</text>
+                    </view>
+                  </view>
+                </view>
               </view>
-              <view class="main">
-                这是一道大题目，把考点拆成了4个小项；需要侯选人用递归算法实现（限制15行代码以内实现；限制时间10分钟内完成）归算法实现…
+            </scroll-view>
+          </swiper-item>
+          <swiper-item>
+            <scroll-view
+              :style="{ height: swiperHeight + 'px' }"
+              :scroll-y="scrollOpen"
+            >
+              <view
+                class="itemCard"
+                v-for="item in listInfo.explanationList.data"
+                :key="item._id"
+              >
+                <view class="itemCardTop">
+                  <image
+                    class="headPicture"
+                    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+                    mode="scaleToFill"
+                  ></image>
+                  <view class="nickname">前端每日3+1</view>
+                </view>
+                <view class="itemBody">
+                  <!-- 可能有图片 -->
+                  <!-- <view class="images">
+                <image
+                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+                  mode="scaleToFill"
+                ></image>
+                <image
+                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+                  mode="scaleToFill"
+                ></image>
+                <image
+                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+                  mode="scaleToFill"
+                ></image>
+              </view> -->
+                  <view class="main">
+                    <view class="mainTitle">{{ item.title }}</view>
+                    <view class="mainContent">{{ item.content }}</view>
+                  </view>
+                </view>
               </view>
-            </view>
-          </view>
-          <view class="itemCard">
-            <view class="itemCardTop">
-              <image
-                class="headPicture"
-                src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                mode="scaleToFill"
-              ></image>
-              <view class="nickname">前端每日3+1</view>
-            </view>
-            <view class="itemBody">
-              <!-- 可能有图片 -->
-              <view class="images">
-                <image
-                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                  mode="scaleToFill"
-                ></image>
-                <image
-                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                  mode="scaleToFill"
-                ></image>
-                <image
-                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                  mode="scaleToFill"
-                ></image>
-              </view>
-              <view class="main">
-                这是一道大题目，把考点拆成了4个小项；需要侯选人用递归算法实现（限制15行代码以内实现；限制时间10分钟内完成）归算法实现…
-              </view>
-            </view>
-          </view>
-          <view class="itemCard">
-            <view class="itemCardTop">
-              <image
-                class="headPicture"
-                src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                mode="scaleToFill"
-              ></image>
-              <view class="nickname">前端每日3+1</view>
-            </view>
-            <view class="itemBody">
-              <!-- 可能有图片 -->
-              <view class="images">
-                <image
-                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                  mode="scaleToFill"
-                ></image>
-                <image
-                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                  mode="scaleToFill"
-                ></image>
-                <image
-                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
-                  mode="scaleToFill"
-                ></image>
-              </view>
-              <view class="main">
-                这是一道大题目，把考点拆成了4个小项；需要侯选人用递归算法实现（限制15行代码以内实现；限制时间10分钟内完成）归算法实现…
-              </view>
-            </view>
-          </view>
-        </swiper-item>
-        <swiper-item> 2 </swiper-item>
-        <swiper-item> 3 </swiper-item>
-        <swiper-item> 4 </swiper-item>
-      </swiper>
-    </view>
+            </scroll-view>
+          </swiper-item>
+        </swiper>
+      </view></view
+    >
   </view>
 </template>
 
 <script lang="ts">
+import * as dayjs from "dayjs";
 import { ref, computed } from "vue";
 import {
   getUserContentByID,
   getFansCountByUser,
   postFollow,
 } from "../../api/user";
-import iIcon from "../../components/i-uniapp/i-icon/i-icon.vue";
+import { getQuestionListByUser } from "../../api/question";
+import { getExplanationsByUserID } from "../../api/questionExplanation";
 type UserInfo = {
   nickname: string;
   avatar: string;
   sign: string;
   role: string[];
   fansCount: number | string;
+  publishCount: number;
+};
+type List = {
+  page: number;
+  limit: number;
+  data: any[];
+};
+type ListInfo = {
+  publishList: List;
+  explanationList: List;
 };
 export default {
-  components: { iIcon },
   onLoad(event: { userID: string }) {
     this.userID = event.userID;
     this.getUserInfo();
     this.getFans();
+    this.getQuestionList(0);
+	this.getQuestionList(1);
+  },
+  onPageScroll({ scrollTop }) {
+    if (this.navigationBarHeight < scrollTop) {
+      if (!this.navigationBarSticky) {
+        this.navigationBarSticky = true;
+      }
+    } else {
+      this.navigationBarSticky = false;
+    }
+    // 开启列表的滚动视图
+    if (this.navigationBarAndTabHeight <= scrollTop) {
+      if (!this.scrollOpen) {
+        this.scrollOpen = true;
+      }
+    } else {
+      this.scrollOpen = false;
+    }
   },
   setup() {
     // 是否关注了用户
@@ -197,13 +245,47 @@ export default {
       avatar: "../../static/index/user.png",
       sign: "",
       role: [],
-	  fansCount: "--"
+      fansCount: "--",
+      publishCount: 0,
+    });
+    const navigationBarHeight = ref<number>(0);
+    // 导航栏组件准备之后返回的信息
+    const navigationBarReady = ({ height }) => {
+      navigationBarHeight.value = height;
+    };
+    // 导航是否吸顶
+    const navigationBarSticky = ref<boolean>(false);
+    // 是否开启滚动视图的滑动
+    const scrollOpen = ref<boolean>(false);
+    // 导航栏+tab的总高度
+    const navigationBarAndTabHeight = computed(() => {
+      //tabHeight - tabHeightMarginTop
+      // 15是tabmargin高度
+      // 19是tab本身高度
+      return navigationBarHeight.value + 15 + 19;
+    });
+    // 列表
+    const listInfo = ref<ListInfo>({
+      publishList: {
+        page: 1,
+        limit: 20,
+        data: [],
+      },
+      explanationList: {
+        page: 1,
+        limit: 20,
+        data: [],
+      },
     });
     const userID = ref<string>("");
-    // 计算屏幕高度 - tab的高度 - 导航栏的高度 = swiper高度
-    const swiperHeight = uni.getSystemInfoSync().screenHeight - 38;
+    // 计算屏幕高度 - navigationBarHeight - navigationBarAndTabHeight
+    const swiperHeight = computed(() => {
+      return (
+        uni.getSystemInfoSync().screenHeight - navigationBarAndTabHeight.value
+      );
+    });
     const tabCurrent = ref(0);
-    const tabs = ref(["已发布", "已解答", "我的收藏", "我的浏览"]);
+    const tabs = ref(["已发布", "已解答"]);
     // 判断是否是认证状态
     const isCertification = computed(() => {
       return userInfo.value.role?.some((r: string) => r === "admin");
@@ -212,9 +294,7 @@ export default {
     const isSelf = computed(() => {
       return userID.value === uni.getStorageSync("uni_id");
     });
-    const handleSwiperChange = (e) => {
-      tabCurrent.value = e.detail.current;
-    };
+
     // 处理用户卡片上的按钮逻辑
     const handleCardButton = async () => {
       uni.showLoading({
@@ -240,8 +320,29 @@ export default {
         userID: userID.value,
       });
       if (result.success) {
-		userInfo.value.fansCount = result.data.length;
+        userInfo.value.fansCount = result.data.length;
       }
+    };
+    // 获取列表, index为非必填参数，如果传递了，tabCurrent将无效，将通过索引来直接查询方法不通过swiperCount查询
+    const getQuestionList = async (index?: number) => {
+      if (!index) {
+        index = tabCurrent.value;
+      }
+      const functionList = [getQuestionListByUser, getExplanationsByUserID];
+      const keyName: "publishList" | "explanationList" =
+        index === 0 ? "publishList" : "explanationList";
+      const result = await functionList[index]({
+        userID: userID.value,
+        limit: listInfo.value[keyName].limit,
+        page: listInfo.value[keyName].page,
+      });
+      if (result.success) {
+        listInfo.value[keyName].data = result.data;
+        console.log(listInfo.value[keyName].data);
+      }
+    };
+    const handleSwiperChange = (e) => {
+      tabCurrent.value = e.detail.current;
     };
     const getUserInfo = async () => {
       uni.showLoading({
@@ -270,9 +371,16 @@ export default {
       }
     };
     return {
+      dayjs,
+      scrollOpen,
+      navigationBarSticky,
+      navigationBarAndTabHeight,
+      navigationBarHeight,
       attentionUser,
+      navigationBarReady,
       isSelf,
       userInfo,
+      listInfo,
       userID,
       isCertification,
       tabCurrent,
@@ -280,6 +388,7 @@ export default {
       swiperHeight,
       getFans,
       getUserInfo,
+      getQuestionList,
       handleCardButton,
       handleSwiperChange,
     };
@@ -288,6 +397,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../util/common.scss";
+
 .userBox {
   .top {
     display: inline-block;
@@ -330,10 +441,12 @@ export default {
         }
 
         .sign {
+          width: 100%;
           font-size: 24rpx;
           margin-top: 8rpx;
           color: #e7ecfd;
           opacity: 0.7;
+          @include text-ellipsis(2);
         }
       }
       .followOrEdit {
@@ -420,7 +533,9 @@ export default {
   }
 
   .tab {
+    z-index: 2;
     margin-top: 28rpx;
+    background: #fff;
   }
   .questionSwiper {
     .itemCard {
@@ -460,9 +575,29 @@ export default {
         }
         .main {
           width: 690rpx;
-          color: #666666;
-          font-size: 28rpx;
           margin-top: 20rpx;
+          font-size: 28rpx;
+          .mainTitle {
+            @include text-ellipsis-one;
+          }
+          .mainContent {
+            color: #666666;
+            font-size: 26rpx;
+            margin-top: 20rpx;
+            word-wrap: break-word;
+            @include text-ellipsis(3);
+          }
+          .mainCreateTime {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: #666666;
+            margin-top: 20rpx;
+            font-size: 25rpx;
+            text {
+              margin-left: 10rpx;
+            }
+          }
         }
       }
     }

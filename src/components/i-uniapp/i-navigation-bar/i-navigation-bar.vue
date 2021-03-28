@@ -1,42 +1,85 @@
 <template>
-  <view class="INavigationBar">
-    <view class="icon" @click="handleBack">
-      <i-icon color="#fff" @click="handleBack" name="arrow-left-s-line" />
+  <view class="iNavBar">
+    <!-- 一个是普通未吸顶的view -->
+    <view :class="['main']">
+      <view :class="['icon']" @click="handleBack">
+        <i-icon
+          color="#fff"
+          @click="handleBack"
+          name="arrow-left-s-line"
+        />
+      </view>
+      <text>
+        <slot></slot>
+      </text>
     </view>
-    <text>
-      <slot></slot>
-    </text>
+    <!-- 一个是吸顶覆盖在普通上面的view -->
+    <view v-if="sticky" :class="['main', {sticky}]">
+      <view :class="['icon']" @click="handleBack">
+        <i-icon
+          color="#000"
+          @click="handleBack"
+          name="arrow-left-s-line"
+        />
+      </view>
+      <text>
+        <slot></slot>
+      </text>
+    </view>
   </view>
 </template>
 <script lang='ts'>
 import { defineComponent, ref } from "vue";
 export default defineComponent({
-  setup() {
+  props: {
+    sticky: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props, { emit }) {
     const handleBack = () => {
       uni.navigateBack({
-        delta: 1
-      })
-    }
+        delta: 1,
+      });
+    };
+    const statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+    emit("onReady", {
+      height: statusBarHeight + 30 + 17,
+    });
     return {
-      handleBack
+      handleBack,
     };
   },
 });
 </script>
+
+
 <style lang="scss" scoped>
-.INavigationBar {
+.content {
+  height: 60rpx;
+  padding-top: calc(34rpx + var(--status-bar-height));
+}
+.main {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 60rpx;
-  color: #fff;
-  margin-top: calc(34rpx + var(--status-bar-height));
+  color: red;
+  padding-top: calc(34rpx + var(--status-bar-height));
+  overflow: hidden;
+  &.sticky {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    background: #fff;
+  }
   .icon {
     position: absolute;
     left: 30rpx;
-    top: 50%;
+    top: 70%;
     transform: translateY(-50%);
 
     &::before {

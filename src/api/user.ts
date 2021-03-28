@@ -47,7 +47,6 @@ export async function getFansCountByUser(params: {
   userID: string;
 }): Promise<ActionResult> {
   return new Promise((resolve) => {
-    console.log(params.userID)
     db.collection("uni-id-users")
       .where({
         followers: params.userID
@@ -69,3 +68,4 @@ export async function getFansCountByUser(params: {
       });
   });
 }
+

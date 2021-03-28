@@ -141,3 +141,36 @@ export async function checkExplanationByUser(params: {
       });
   });
 }
+
+// 获取题解列表根据用户ID，查询该用户的题解列表以及题目信息
+export async function getExplanationsByUserID(params: {
+  userID: string;
+  limit: number;
+  page: number
+}): Promise<ActionResult> {
+  return new Promise((resolve) => {
+    const { limit, page } = params;
+    db.collection("questionExplanation,question")
+      .where({
+        userID: params.userID,
+      })
+      .field(`questionID{title,_id},content`)
+      .orderBy("createDate desc")
+      .skip(limit * (page - 1))
+      .limit(limit)
+      .get()
+      .then((res) => {
+        const { success, result } = res;
+        resolve({
+          success,
+          data: result.data,
+        });
+      })
+      .catch((err: { message: string }) => {
+        uni.showToast({
+          title: err.message,
+          icon: "none",
+        });
+      });
+  });
+}

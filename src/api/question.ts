@@ -17,10 +17,9 @@ export async function getQuestionListData(params: {
     db.collection("question,uni-id-users")
       .where(`areaID == '${areaID}' && deleteDate == '' && state == 'pass'`)
       .field(`publishUserID{avatar,nickname},title,content`)
+      .orderBy("createDate desc")
       .skip(limit * (page - 1))
       .limit(limit)
-      // 按照规则进行排序
-      .orderBy("createDate desc")
       .get()
       .then((res) => {
         const { success, result } = res;
@@ -81,4 +80,35 @@ export async function postAddPageView(params: { _id: string }) {
     success,
     result,
   };
+}
+
+export async function getQuestionListByUser(params: {
+  userID: string;
+  limit: number;
+  page: number;
+}): Promise<ActionResult> {
+  return new Promise((resolve) => {
+    const { limit, page } = params;
+    db.collection("question")
+      .where(
+        `publishUserID == '${params.userID}' && state == 'pass' && deleteDate == ''`
+      )
+      .orderBy("createDate desc")
+      .skip(limit * (page - 1))
+      .limit(limit)
+      .get()
+      .then((res) => {
+        const { success, result } = res;
+        resolve({
+          success,
+          data: result.data,
+        });
+      })
+      .catch((err: { message: string }) => {
+        uni.showToast({
+          title: err.message,
+          icon: "none",
+        });
+      });
+  });
 }
