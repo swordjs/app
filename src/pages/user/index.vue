@@ -37,7 +37,7 @@
       <!-- 卡片 -->
       <view class="card">
         <!-- 粉丝数(k) -->
-        <view class="fans">87K</view>
+        <view class="fans">{{userInfo.fansCount}}</view>
         <view class="fansTip">粉丝数奇高，大佬跑不掉了～</view>
         <!-- 详细信息 -->
         <view class="bottom">
@@ -169,19 +169,25 @@
 
 <script lang="ts">
 import { ref, computed } from "vue";
-import { getUserContentByID, postFollow } from "../../api/user";
+import {
+  getUserContentByID,
+  getFansCountByUser,
+  postFollow,
+} from "../../api/user";
 import iIcon from "../../components/i-uniapp/i-icon/i-icon.vue";
 type UserInfo = {
   nickname: string;
   avatar: string;
   sign: string;
   role: string[];
+  fansCount: number | string;
 };
 export default {
   components: { iIcon },
   onLoad(event: { userID: string }) {
     this.userID = event.userID;
     this.getUserInfo();
+    this.getFans();
   },
   setup() {
     // 是否关注了用户
@@ -191,6 +197,7 @@ export default {
       avatar: "../../static/index/user.png",
       sign: "",
       role: [],
+	  fansCount: "--"
     });
     const userID = ref<string>("");
     // 计算屏幕高度 - tab的高度 - 导航栏的高度 = swiper高度
@@ -227,6 +234,15 @@ export default {
         attentionUser.value = !attentionUser.value;
       }
     };
+    // 获取粉丝数
+    const getFans = async () => {
+      const result = await getFansCountByUser({
+        userID: userID.value,
+      });
+      if (result.success) {
+		userInfo.value.fansCount = result.data.length;
+      }
+    };
     const getUserInfo = async () => {
       uni.showLoading({
         title: "加载用户信息中",
@@ -248,7 +264,6 @@ export default {
               attentionUser.value = selfResult.data.followers.some(
                 (f: any) => f === userID.value
               );
-              console.log(attentionUser.value);
             }
           }
         }
@@ -263,6 +278,7 @@ export default {
       tabCurrent,
       tabs,
       swiperHeight,
+      getFans,
       getUserInfo,
       handleCardButton,
       handleSwiperChange,
