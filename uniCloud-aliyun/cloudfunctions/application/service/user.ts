@@ -1,8 +1,11 @@
 namespace UserService {
   // 公告模块
   const uniID = require("uni-id");
+  const questionService = require("./question");
+  const explanationService = require("./questionExplanation");
   const db = uniCloud.database();
   const collection = db.collection("uni-id-users");
+
   interface ILoginByWechat {
     code: string;
   }
@@ -80,9 +83,36 @@ namespace UserService {
     }
     public async getUserContentByID({ userID }) {
       // return await collection.doc(this.userID).get();
-      return await uniID.getUserInfo({
+      const baseUserInfo = await uniID.getUserInfo({
         uid: userID,
       });
+      if (baseUserInfo.code === 0) {
+        // 获取基础用户信息
+        const { total: fansCount } = await collection
+          .where({
+            followers: userID,
+          })
+          .field({ _id: true })
+          .count();
+        // 出题数, 调用question模块下的方法
+        const question = new questionService();
+        const { total: questionCount } = await question.questionCountByUserID(
+          userID
+        );
+        // 题解数, 调用题解模块下的方法
+        const questionExplanation = new explanationService();
+        const {
+          total: explanationCount,
+        } = await questionExplanation.getExplanationCountByUser(userID);
+        const {data: likeData} = await questionExplanation.getLikeCountByUser(userID);
+        return {
+          ...baseUserInfo,
+          fansCount,
+          questionCount,
+          explanationCount,
+          likeCount: likeData.length
+        };
+      }
     }
     public async checkFollowers(params: ICheckFollowers) {
       const { follower } = params;

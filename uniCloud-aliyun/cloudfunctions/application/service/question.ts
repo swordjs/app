@@ -46,9 +46,9 @@ namespace QuestionService {
     public nowDate: string;
     public clientIp: string;
     constructor(data: IQuestionData) {
-      this.userID = data.userID;
+      this.userID = data?.userID || "";
       // 由于context如果是远程调用的此服务，那么context将会不传，所以这里进行了兼容
-      this.clientIp = data.context?.CLIENTIP || ""; // context注入的IP段
+      this.clientIp = data?.context?.CLIENTIP || ""; // context注入的IP段
       this.nowDate = new Date().toISOString();
     }
     public async addQuestion(params: IAddQuestion) {
@@ -161,6 +161,14 @@ namespace QuestionService {
       return await collection.doc(params._id).update({
         questionExplanation: dbCmd.push([params.questionExplanationID])
       });
+    }
+    // 根据UserID获取发布了多少道题目
+    public async questionCountByUserID(userID){
+      return await collection.where({
+        publishUserID: userID,
+        state: "pass",
+        deleteDate: ""
+      }).count();
     }
   };
 }

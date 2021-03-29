@@ -16,7 +16,7 @@ namespace QuestionExplanationService {
     public userID: string;
     public nowDate: string;
     constructor(data: IQuestionExplanation) {
-      this.userID = data.userID;
+      this.userID = data?.userID;
       this.nowDate = new Date().toISOString();
     }
     public async addQuestionExplanation(params: IAddQuestionExplanation) {
@@ -175,6 +175,27 @@ namespace QuestionExplanationService {
             }),
           });
       }
+    }
+    // 获取题解数量
+    public async getExplanationCountByUser(userID) {
+      return await collection
+        .where({
+          userID,
+          deleteDate: "",
+        })
+        .count();
+    }
+    // 查询题解共被采纳过多少次
+    public async getLikeCountByUser(userID) {
+      // 获取所有的题解列表并且
+      return await collection
+        .aggregate()
+        .match({
+          userID,
+          deleteDate: "",
+        })
+        .unwind("$userAgreed")
+        .end();
     }
   };
 }
