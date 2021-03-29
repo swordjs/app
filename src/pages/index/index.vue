@@ -144,7 +144,6 @@ export default {
         // 微信登录
         uni.getUserInfo({
           success: ({ userInfo }) => {
-            console.log(userInfo);
             uni.login({
               provider: "weixin",
               async success(res) {
@@ -152,6 +151,7 @@ export default {
                 // 传入用户信息和code
                 uni.showLoading({
                   title: "登录中...",
+                  mask: true
                 });
                 // 这里判断是登录/还是注册，如果是注册，默认调接口绑定一个角色Normal
                 const loginData = await loginByWechat(userInfo, res);

@@ -35,7 +35,7 @@ export async function getUserContentByID(params: {
   });
   return {
     success,
-    data: result.userInfo,
+    data: result,
   };
 }
 

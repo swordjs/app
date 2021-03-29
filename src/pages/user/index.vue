@@ -49,11 +49,11 @@
         <view class="fansTip">粉丝数奇高，大佬跑不掉了～</view>
         <!-- 详细信息 -->
         <view class="bottom">
-          <view class="item left">出过<text>2.4k</text>道题目</view>
-          <view class="item right">解答<text>100</text>次题解</view>
+          <view class="item left">出过<text>{{userInfo.publishCount}}</text>道题目</view>
+          <view class="item right">解答<text>{{userInfo.explanationCount}}</text>次题解</view>
         </view>
         <!-- 被采纳 -->
-        <view class="adopt"> 被采纳过1.3k次 </view>
+        <view class="adopt"> 被采纳过{{userInfo.likeCount}}次 </view>
       </view>
     </view>
     <!-- 将tab和列表作为一个view去展示，统一吸顶 -->
@@ -190,7 +190,6 @@ import * as dayjs from "dayjs";
 import { ref, computed } from "vue";
 import {
   getUserContentByID,
-  getFansCountByUser,
   postFollow,
 } from "../../api/user";
 import { getQuestionListByUser } from "../../api/question";
@@ -202,6 +201,8 @@ type UserInfo = {
   role: string[];
   fansCount: number | string;
   publishCount: number;
+  explanationCount: number;
+  likeCount: number
 };
 type List = {
   page: number;
@@ -216,9 +217,8 @@ export default {
   onLoad(event: { userID: string }) {
     this.userID = event.userID;
     this.getUserInfo();
-    this.getFans();
     this.getQuestionList(0);
-	this.getQuestionList(1);
+	  this.getQuestionList(1);
   },
   onPageScroll({ scrollTop }) {
     if (this.navigationBarHeight < scrollTop) {
@@ -247,6 +247,8 @@ export default {
       role: [],
       fansCount: "--",
       publishCount: 0,
+      explanationCount: 0,
+      likeCount: 0
     });
     const navigationBarHeight = ref<number>(0);
     // 导航栏组件准备之后返回的信息
@@ -314,15 +316,6 @@ export default {
         attentionUser.value = !attentionUser.value;
       }
     };
-    // 获取粉丝数
-    const getFans = async () => {
-      const result = await getFansCountByUser({
-        userID: userID.value,
-      });
-      if (result.success) {
-        userInfo.value.fansCount = result.data.length;
-      }
-    };
     // 获取列表, index为非必填参数，如果传递了，tabCurrent将无效，将通过索引来直接查询方法不通过swiperCount查询
     const getQuestionList = async (index?: number) => {
       if (!index) {
@@ -338,7 +331,6 @@ export default {
       });
       if (result.success) {
         listInfo.value[keyName].data = result.data;
-        console.log(listInfo.value[keyName].data);
       }
     };
     const handleSwiperChange = (e) => {
@@ -354,7 +346,13 @@ export default {
       });
       uni.hideLoading();
       if (result.success) {
-        userInfo.value = result.data;
+        const { userInfo: user, explanationCount, fansCount, questionCount, likeCount} = result.data;
+        userInfo.value = user;
+        userInfo.value.fansCount = fansCount;
+        userInfo.value.publishCount = questionCount;
+        userInfo.value.explanationCount = explanationCount;
+        userInfo.value.likeCount = likeCount;
+        console.log(userInfo.value);
         // 判断此信息是否是本人，如果不是本人，则查询本人和此人的粉丝关联，如果是本人，则就不需要查询
         if (!isSelf.value) {
           const selfResult = await getUserContentByID({
@@ -386,7 +384,6 @@ export default {
       tabCurrent,
       tabs,
       swiperHeight,
-      getFans,
       getUserInfo,
       getQuestionList,
       handleCardButton,
