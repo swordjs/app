@@ -49,11 +49,17 @@
         <view class="fansTip">粉丝数奇高，大佬跑不掉了～</view>
         <!-- 详细信息 -->
         <view class="bottom">
-          <view class="item left">出过<text>{{userInfo.publishCount}}</text>道题目</view>
-          <view class="item right">解答<text>{{userInfo.explanationCount}}</text>次题解</view>
+          <view class="item left"
+            >出过<text>{{ userInfo.publishCount }}</text
+            >道题目</view
+          >
+          <view class="item right"
+            >解答<text>{{ userInfo.explanationCount }}</text
+            >次题解</view
+          >
         </view>
         <!-- 被采纳 -->
-        <view class="adopt"> 被采纳过{{userInfo.likeCount}}次 </view>
+        <view class="adopt"> 被采纳过{{ userInfo.likeCount }}次 </view>
       </view>
     </view>
     <!-- 将tab和列表作为一个view去展示，统一吸顶 -->
@@ -88,6 +94,7 @@
             <scroll-view
               :style="{ height: swiperHeight + 'px' }"
               :scroll-y="scrollOpen"
+              @scrolltolower="handleScrolltolower(listInfo.publishList)"
             >
               <view
                 class="itemCard"
@@ -188,10 +195,7 @@
 <script lang="ts">
 import * as dayjs from "dayjs";
 import { ref, computed } from "vue";
-import {
-  getUserContentByID,
-  postFollow,
-} from "../../api/user";
+import { getUserContentByID, postFollow } from "../../api/user";
 import { getQuestionListByUser } from "../../api/question";
 import { getExplanationsByUserID } from "../../api/questionExplanation";
 type UserInfo = {
@@ -202,7 +206,7 @@ type UserInfo = {
   fansCount: number | string;
   publishCount: number;
   explanationCount: number;
-  likeCount: number
+  likeCount: number;
 };
 type List = {
   page: number;
@@ -217,8 +221,12 @@ export default {
   onLoad(event: { userID: string }) {
     this.userID = event.userID;
     this.getUserInfo();
-    this.getQuestionList(0);
-	  this.getQuestionList(1);
+    this.getQuestionList({
+      index: 0,
+    });
+    this.getQuestionList({
+      index: 0,
+    });
   },
   onPageScroll({ scrollTop }) {
     if (this.navigationBarHeight < scrollTop) {
@@ -248,7 +256,7 @@ export default {
       fansCount: "--",
       publishCount: 0,
       explanationCount: 0,
-      likeCount: 0
+      likeCount: 0,
     });
     const navigationBarHeight = ref<number>(0);
     // 导航栏组件准备之后返回的信息
@@ -317,20 +325,36 @@ export default {
       }
     };
     // 获取列表, index为非必填参数，如果传递了，tabCurrent将无效，将通过索引来直接查询方法不通过swiperCount查询
-    const getQuestionList = async (index?: number) => {
-      if (!index) {
-        index = tabCurrent.value;
+    const getQuestionList = async (
+      params: {
+        index?: number;
+        pagination: boolean;
+      } = { pagination: false }
+    ) => {
+      if (!params.index) {
+        params.index = tabCurrent.value;
       }
       const functionList = [getQuestionListByUser, getExplanationsByUserID];
       const keyName: "publishList" | "explanationList" =
-        index === 0 ? "publishList" : "explanationList";
-      const result = await functionList[index]({
+        params.index === 0 ? "publishList" : "explanationList";
+      uni.showLoading({
+        title: "加载结果中...",
+        mask: true,
+      });
+      const result = await functionList[params.index]({
         userID: userID.value,
         limit: listInfo.value[keyName].limit,
         page: listInfo.value[keyName].page,
       });
+      uni.hideLoading();
       if (result.success) {
-        listInfo.value[keyName].data = result.data;
+        if (params.pagination) {
+          listInfo.value[keyName].data = listInfo.value[keyName].data.concat(
+            result.data
+          );
+        } else {
+          listInfo.value[keyName].data = result.data;
+        }
       }
     };
     const handleSwiperChange = (e) => {
@@ -346,12 +370,18 @@ export default {
       });
       uni.hideLoading();
       if (result.success) {
-        const { userInfo: user, explanationCount, fansCount, questionCount, likeCount} = result.data;
+        const {
+          userInfo: user,
+          explanationCount,
+          fansCount,
+          questionCount,
+          likeCount,
+        } = result.data;
         userInfo.value = user;
-        userInfo.value.fansCount = fansCount;
-        userInfo.value.publishCount = questionCount;
-        userInfo.value.explanationCount = explanationCount;
-        userInfo.value.likeCount = likeCount;
+        userInfo.value.fansCount = fansCount; // 粉丝
+        userInfo.value.publishCount = questionCount; // 发布题目数量
+        userInfo.value.explanationCount = explanationCount; // 截图数量
+        userInfo.value.likeCount = likeCount; // 被采纳的数量
         console.log(userInfo.value);
         // 判断此信息是否是本人，如果不是本人，则查询本人和此人的粉丝关联，如果是本人，则就不需要查询
         if (!isSelf.value) {
@@ -366,6 +396,22 @@ export default {
             }
           }
         }
+      }
+    };
+    // 列表到达底部的处理函数
+    const handleScrolltolower = (item: List) => {
+      // 判断其中data的长度是否已不够进行分页
+      if (item.page * item.limit > item.data.length) {
+        uni.showToast({
+          title: "再往下就没内容啦~",
+          icon: "none",
+        });
+      } else {
+        item.page++;
+        // 分页加载
+        getQuestionList({
+          pagination: true,
+        });
       }
     };
     return {
@@ -388,6 +434,7 @@ export default {
       getQuestionList,
       handleCardButton,
       handleSwiperChange,
+      handleScrolltolower,
     };
   },
 };
