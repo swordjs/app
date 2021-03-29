@@ -98,6 +98,7 @@
             >
               <view
                 class="itemCard"
+                @click="handleClickQuestion(item._id)"
                 v-for="item in listInfo.publishList.data"
                 :key="item._id"
               >
@@ -148,9 +149,11 @@
             <scroll-view
               :style="{ height: swiperHeight + 'px' }"
               :scroll-y="scrollOpen"
+              @scrolltolower="handleScrolltolower(listInfo.explanationList)"
             >
               <view
                 class="itemCard"
+                @click="handleExplanation(item._id)"
                 v-for="item in listInfo.explanationList.data"
                 :key="item._id"
               >
@@ -382,7 +385,6 @@ export default {
         userInfo.value.publishCount = questionCount; // 发布题目数量
         userInfo.value.explanationCount = explanationCount; // 截图数量
         userInfo.value.likeCount = likeCount; // 被采纳的数量
-        console.log(userInfo.value);
         // 判断此信息是否是本人，如果不是本人，则查询本人和此人的粉丝关联，如果是本人，则就不需要查询
         if (!isSelf.value) {
           const selfResult = await getUserContentByID({
@@ -398,6 +400,18 @@ export default {
         }
       }
     };
+    // 点击问题列表中的卡片，进入题目详情
+    const handleClickQuestion = (id: number) => {
+      uni.navigateTo({
+        url: `/pages/question/questionDetail?id=${id}`
+      })
+    }
+    // 点击题解列表中的卡片，进入题解详情
+    const handleExplanation = (id: number) => {
+      uni.navigateTo({
+        url: `/pages/question/questionExplanationDetail?id=${id}`
+      })
+    }
     // 列表到达底部的处理函数
     const handleScrolltolower = (item: List) => {
       // 判断其中data的长度是否已不够进行分页
@@ -435,6 +449,8 @@ export default {
       handleCardButton,
       handleSwiperChange,
       handleScrolltolower,
+      handleClickQuestion,
+      handleExplanation
     };
   },
 };

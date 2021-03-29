@@ -1,26 +1,18 @@
 <template>
   <view class="iNavBar">
     <!-- 一个是普通未吸顶的view -->
-    <view :class="['main']">
+    <view :class="['iNavBarMain']">
       <view :class="['icon']" @click="handleBack">
-        <i-icon
-          color="#fff"
-          @click="handleBack"
-          name="arrow-left-s-line"
-        />
+        <i-icon color="#fff" @click="handleBack" name="arrow-left-s-line" />
       </view>
       <text>
         <slot></slot>
       </text>
     </view>
     <!-- 一个是吸顶覆盖在普通上面的view -->
-    <view v-if="sticky" :class="['main', {sticky}]">
+    <view v-if="sticky" :class="['iNavBarMain', { sticky }]">
       <view :class="['icon']" @click="handleBack">
-        <i-icon
-          color="#000"
-          @click="handleBack"
-          name="arrow-left-s-line"
-        />
+        <i-icon color="#000" @click="handleBack" name="arrow-left-s-line" />
       </view>
       <text>
         <slot></slot>
@@ -56,25 +48,23 @@ export default defineComponent({
 
 
 <style lang="scss" scoped>
-.content {
-  height: 60rpx;
-  padding-top: calc(34rpx + var(--status-bar-height));
-}
-.main {
+.iNavBarMain {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 60rpx;
-  color: red;
-  padding-top: calc(34rpx + var(--status-bar-height));
+  color: #fff;
+  margin-top: calc(34rpx + var(--status-bar-height));
   overflow: hidden;
   &.sticky {
     z-index: 9999;
     position: fixed;
     top: 0;
     background: #fff;
+    margin-top: 0;
+    padding-top: calc(34rpx + var(--status-bar-height));
   }
   .icon {
     position: absolute;
