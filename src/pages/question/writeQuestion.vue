@@ -13,11 +13,11 @@
         class="editor"
         width="690"
         v-model="questionInfo.content"
-        :imageUploader="uploadImg"
         :muiltImage="true"
         :header="false"
       ></robin-editor>
     </view>
+
     <view class="submit" @click="handleSaveEditor">
       <i-icon
         @click="handleSaveEditor"
@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 // api
 import { addQuestionExplanation } from "../../api/questionExplanation";
 interface IPageParams {
@@ -38,10 +38,14 @@ interface IPageParams {
   questionID: string;
   title: string;
 }
-export default {
+export default defineComponent({
   onLoad(params: IPageParams) {
     this.questionInfo.questionID = params.questionID;
     this.questionInfo.title = params.title;
+  },
+  mounted() {
+    // 因为uniapp的vue3bug，我不能直接通过props传递函数，因为函数在template中是undefined，等待官方解决...
+    this.$refs.editor.setImageUploader(this.beforeUploadImage);
   },
   setup() {
     // 题目信息
@@ -54,8 +58,12 @@ export default {
       title: "",
       questionID: "",
     });
+    const beforeUploadImage = (img, callback) => {
+      console.log(img);
+    };
     return {
       questionInfo,
+      beforeUploadImage,
     };
   },
   methods: {
@@ -90,7 +98,7 @@ export default {
       });
     },
   },
-};
+});
 </script>
 
 <style>

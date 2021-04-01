@@ -18,6 +18,7 @@
         </view>
       </view>
     </view>
+
     <view class="main">
       <view class="tab">
         <Tabs
@@ -74,11 +75,8 @@
 import Tabs from "../../components/v-tabs/v-tabs.vue";
 import { ref } from "vue";
 // api
-import {
-  getQuestionDetailByID,
-  postAddPageView
-} from "../../api/question";
-import { getExplanationsByQuestionID } from "../../api/questionExplanation"
+import { getQuestionDetailByID, postAddPageView } from "../../api/question";
+import { getExplanationsByQuestionID } from "../../api/questionExplanation";
 interface IPageParams {
   id: string;
 }
@@ -106,9 +104,9 @@ export default {
     const swiperHeight = uni.getSystemInfoSync().screenHeight - 251;
     const tabCurrent = ref(0);
     const tabs = ref(["解答"]);
-    function handleSwiperChange(e) {
+    const handleSwiperChange = (e) => {
       tabCurrent.value = e.detail.current;
-    }
+    };
     const handleGetDetailData = async () => {
       uni.showLoading({ mask: true });
       const result = await getQuestionDetailByID({
@@ -134,14 +132,14 @@ export default {
     };
     // 去除标签
     const removeHtmlTag = (htmlStr: string) => {
-      return htmlStr.replace(/<[^>]+>/ig, "");
-    }
+      return htmlStr.replace(/<[^>]+>/gi, "");
+    };
     // 跳转到题解详情页面
-    const handleExplanationCard = (target: {_id: string}) => {
+    const handleExplanationCard = (target: { _id: string }) => {
       uni.navigateTo({
-        url: `/pages/question/questionExplanationDetail?id=${target._id}`
-      })
-    }
+        url: `/pages/question/questionExplanationDetail?id=${target._id}`,
+      });
+    };
     const handleAddPageView = () => {
       postAddPageView({
         _id: id.value,

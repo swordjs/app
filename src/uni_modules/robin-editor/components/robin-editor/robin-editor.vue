@@ -287,9 +287,6 @@ export default {
     value: {
       type: String,
     },
-    imageUploader: {
-      type: Function,
-    },
     muiltImage: {
       type: Boolean,
       default: false,
@@ -334,6 +331,7 @@ export default {
   },
   data() {
     return {
+      imageUploader: null,
       show: true,
       readOnly: false,
       formats: {},
@@ -402,6 +400,9 @@ export default {
     },
   },
   methods: {
+    setImageUploader(func){
+      this.imageUploader = func;
+    },
     updatePosition(keyboardHeight) {
       const { windowHeight, windowWidth, platform } = uni.getSystemInfoSync();
       const rpx = windowWidth / 750;
