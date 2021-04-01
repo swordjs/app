@@ -323,8 +323,7 @@ export default {
           "color",
           "backgroundColor",
           "image",
-          "clear",
-          "preview",
+          "clear"
         ];
       },
     },
