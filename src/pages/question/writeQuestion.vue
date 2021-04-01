@@ -32,6 +32,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 // api
+import { uploadFileToCloudStorage } from "../../api/common";
 import { addQuestionExplanation } from "../../api/questionExplanation";
 interface IPageParams {
   id: string;
@@ -58,8 +59,14 @@ export default defineComponent({
       title: "",
       questionID: "",
     });
-    const beforeUploadImage = (img, callback) => {
-      console.log(img);
+    const beforeUploadImage = async (img, callback) => {
+      const res = await uploadFileToCloudStorage({
+        filePath: img,
+        cloudPath: "img"
+      });
+      if(res.success){
+        callback(res.data.fileID);
+      }
     };
     return {
       questionInfo,
