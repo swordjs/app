@@ -65,6 +65,11 @@
               </view>
             </view>
           </view>
+          <template v-if="explanations.length === 0">
+            <view style="margin-top: 25%;">
+               <commonFill title="还没有人解答oh，快来成为第一个吧!"/>
+            </view>
+          </template>
         </swiper-item>
       </swiper>
     </view>

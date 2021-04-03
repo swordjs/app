@@ -153,7 +153,9 @@
           <swiper-item>
             <scroll-view
               :style="{ height: swiperHeight + 'px' }"
-              :scroll-y="scrollOpen && listInfo.explanationList.data.length !== 0"
+              :scroll-y="
+                scrollOpen && listInfo.explanationList.data.length !== 0
+              "
               @scrolltolower="handleScrolltolower(listInfo.explanationList)"
             >
               <view
@@ -168,7 +170,9 @@
                     :src="item.questionID[0].publishUserID[0].avatar"
                     mode="scaleToFill"
                   ></image>
-                  <view class="nickname">{{item.questionID[0].publishUserID[0].nickname}}</view>
+                  <view class="nickname">{{
+                    item.questionID[0].publishUserID[0].nickname
+                  }}</view>
                 </view>
                 <view class="itemBody">
                   <!-- 可能有图片 -->
@@ -188,7 +192,9 @@
               </view> -->
                   <view class="main">
                     <view class="mainTitle">{{ item.title }}</view>
-                    <view class="mainContent">{{ removeHtmlTag(item.content) }}</view>
+                    <view class="mainContent">{{
+                      removeHtmlTag(item.content)
+                    }}</view>
                   </view>
                 </view>
               </view>
@@ -207,7 +213,11 @@
 <script lang="ts">
 import * as dayjs from "dayjs";
 import { ref, computed } from "vue";
-import { getUserContentByID, postFollow } from "../../api/user";
+import {
+  getUserContentByID,
+  postFollow,
+  getUserBaseContentByUserID,
+} from "../../api/user";
 import { getQuestionListByUser } from "../../api/question";
 import { getExplanationsByUserID } from "../../api/questionExplanation";
 import { removeHtmlTag } from "../../util/common";
@@ -398,15 +408,14 @@ export default {
         userInfo.value.likeCount = likeCount; // 被采纳的数量
         // 判断此信息是否是本人，如果不是本人，则查询本人和此人的粉丝关联，如果是本人，则就不需要查询
         if (!isSelf.value) {
-          const selfResult = await getUserContentByID({
+          const selfResult = await getUserBaseContentByUserID({
             userID: uni.getStorageSync("uni_id"),
           });
-          if (selfResult.success) {
-            if (selfResult.data.followers) {
-              attentionUser.value = selfResult.data.followers.some(
-                (f: any) => f === userID.value
-              );
-            }
+          // 查询自己用户中的关注者是否关注了此用户
+          if (selfResult.success && selfResult.data[0].followers) {
+            attentionUser.value = selfResult.data[0].followers.some(
+              (f: string) => f === userID.value
+            );
           }
         }
       }

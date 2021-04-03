@@ -21,7 +21,7 @@ export async function postFollow(params: {
 }
 
 /**
- * 获取用户信息UserID
+ * 获取用户全部信息UserID（包括赞同数，粉丝数等）
  */
 export async function getUserContentByID(params: {
   userID: string;
@@ -40,18 +40,19 @@ export async function getUserContentByID(params: {
 }
 
 /**
- * 获取粉丝数根据用户ID
+ * 获取用户基本信息根据UserID
  * @param params
  */
-export async function getFansCountByUser(params: {
+export async function getUserBaseContentByUserID(params: {
   userID: string;
 }): Promise<ActionResult> {
   return new Promise((resolve) => {
+    console.log("啊哈", params.userID)
     db.collection("uni-id-users")
       .where({
-        followers: params.userID
+        _id: params.userID
       })
-      .field({"_id": true})
+      .field("nickname,avatar,followers")
       .get()
       .then((res) => {
         const { success, result } = res;
