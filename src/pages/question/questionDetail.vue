@@ -77,6 +77,7 @@ import { ref } from "vue";
 // api
 import { getQuestionDetailByID, postAddPageView } from "../../api/question";
 import { getExplanationsByQuestionID } from "../../api/questionExplanation";
+import { removeHtmlTag } from "../../util/common";
 interface IPageParams {
   id: string;
 }
@@ -129,10 +130,6 @@ export default {
       if (explanationData.success) {
         explanations.value = explanations.value.concat(explanationData.data);
       }
-    };
-    // 去除标签
-    const removeHtmlTag = (htmlStr: string) => {
-      return htmlStr.replace(/<[^>]+>/gi, "");
     };
     // 跳转到题解详情页面
     const handleExplanationCard = (target: { _id: string }) => {

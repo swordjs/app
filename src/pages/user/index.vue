@@ -165,10 +165,10 @@
                 <view class="itemCardTop">
                   <image
                     class="headPicture"
-                    src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+                    :src="item.questionID[0].publishUserID[0].avatar"
                     mode="scaleToFill"
                   ></image>
-                  <view class="nickname">前端每日3+1</view>
+                  <view class="nickname">{{item.questionID[0].publishUserID[0].nickname}}</view>
                 </view>
                 <view class="itemBody">
                   <!-- 可能有图片 -->
@@ -188,7 +188,7 @@
               </view> -->
                   <view class="main">
                     <view class="mainTitle">{{ item.title }}</view>
-                    <view class="mainContent">{{ item.content }}</view>
+                    <view class="mainContent">{{ removeHtmlTag(item.content) }}</view>
                   </view>
                 </view>
               </view>
@@ -210,6 +210,7 @@ import { ref, computed } from "vue";
 import { getUserContentByID, postFollow } from "../../api/user";
 import { getQuestionListByUser } from "../../api/question";
 import { getExplanationsByUserID } from "../../api/questionExplanation";
+import { removeHtmlTag } from "../../util/common";
 type UserInfo = {
   nickname: string;
   avatar: string;
@@ -237,7 +238,7 @@ export default {
       index: 0,
     });
     this.getQuestionList({
-      index: 0,
+      index: 1,
     });
   },
   onPageScroll({ scrollTop }) {
@@ -353,6 +354,7 @@ export default {
         title: "加载结果中...",
         mask: true,
       });
+      console.log(params.index);
       const result = await functionList[params.index]({
         userID: userID.value,
         limit: listInfo.value[keyName].limit,
@@ -439,6 +441,7 @@ export default {
     };
     return {
       dayjs,
+      removeHtmlTag,
       scrollOpen,
       navigationBarSticky,
       navigationBarAndTabHeight,
@@ -608,7 +611,12 @@ export default {
   }
   .questionSwiper {
     .itemCard {
+      width: 630rpx;
       padding: 30rpx;
+      box-shadow: 0px 3px 10px 0px rgba(97, 108, 150, 0.2);
+      border-radius: 8px;
+      margin: 0 auto;
+      margin-top: 20rpx;
       &:not(:first-child) {
         border-top: 2rpx solid #f1f3fc;
       }

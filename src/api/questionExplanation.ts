@@ -146,15 +146,15 @@ export async function checkExplanationByUser(params: {
 export async function getExplanationsByUserID(params: {
   userID: string;
   limit: number;
-  page: number
+  page: number;
 }): Promise<ActionResult> {
   return new Promise((resolve) => {
     const { limit, page } = params;
-    db.collection("questionExplanation,question")
+    db.collection("questionExplanation,question,uni-id-users")
       .where({
         userID: params.userID,
       })
-      .field(`questionID{title,_id},content`)
+      .field(`questionID{title,_id, publishUserID{nickname, avatar}},content`)
       .orderBy("createDate desc")
       .skip(limit * (page - 1))
       .limit(limit)
