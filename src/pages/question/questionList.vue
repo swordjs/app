@@ -15,7 +15,7 @@
               {{ question.title }}
             </view>
             <!-- 个人信息 -->
-            <view class="user">
+            <view class="user" @click.stop="handlePublishUser(question.publishUserID[0]._id)">
               <image
                 :src="question.publishUserID[0].avatar"
                 class="headPicture"
@@ -112,7 +112,13 @@ export default defineComponent({
         console.log(dataList.value);
       }
     };
-
+    
+    // 进入个人中心
+    const handlePublishUser = (_id: string) => {
+      uni.navigateTo({
+        url: `/pages/user/index?userID=${_id}`,
+      });
+    }
     // 进入题解详情
     const handleQuestionDetail = (_id: string) => {
       uni.navigateTo({
@@ -168,6 +174,7 @@ export default defineComponent({
       handleGetData,
       handleQuestionDetail,
       handleQuestionChange,
+      handlePublishUser,
       handleStart,
     };
   },

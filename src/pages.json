@@ -47,6 +47,7 @@
   "easycom": {
     "autoscan": true,
     "custom": {
+      "^common(.*)": "@/components/common/common$1.vue",
       "^i-(.*)": "@/components/i-uniapp/i-$1/i-$1.vue",
       "Tabs": "@/components/v-tabs/v-tabs.vue"
     }

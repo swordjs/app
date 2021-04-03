@@ -93,7 +93,7 @@
           <swiper-item>
             <scroll-view
               :style="{ height: swiperHeight + 'px' }"
-              :scroll-y="scrollOpen"
+              :scroll-y="scrollOpen && listInfo.publishList.data.length !== 0"
               @scrolltolower="handleScrolltolower(listInfo.publishList)"
             >
               <view
@@ -143,12 +143,17 @@
                   </view>
                 </view>
               </view>
+              <template v-if="listInfo.publishList.data.length === 0">
+                <view style="margin-top: 25%">
+                  <commonFill title="暂无已发布数据" />
+                </view>
+              </template>
             </scroll-view>
           </swiper-item>
           <swiper-item>
             <scroll-view
               :style="{ height: swiperHeight + 'px' }"
-              :scroll-y="scrollOpen"
+              :scroll-y="scrollOpen && listInfo.explanationList.data.length !== 0"
               @scrolltolower="handleScrolltolower(listInfo.explanationList)"
             >
               <view
@@ -187,11 +192,15 @@
                   </view>
                 </view>
               </view>
+              <template v-if="listInfo.explanationList.data.length === 0">
+                <view style="margin-top: 25%">
+                  <commonFill title="暂无已解答数据" />
+                </view>
+              </template>
             </scroll-view>
           </swiper-item>
-        </swiper>
-      </view></view
-    >
+        </swiper> </view
+    ></view>
   </view>
 </template>
 
@@ -403,15 +412,15 @@ export default {
     // 点击问题列表中的卡片，进入题目详情
     const handleClickQuestion = (id: number) => {
       uni.navigateTo({
-        url: `/pages/question/questionDetail?id=${id}`
-      })
-    }
+        url: `/pages/question/questionDetail?id=${id}`,
+      });
+    };
     // 点击题解列表中的卡片，进入题解详情
     const handleExplanation = (id: number) => {
       uni.navigateTo({
-        url: `/pages/question/questionExplanationDetail?id=${id}`
-      })
-    }
+        url: `/pages/question/questionExplanationDetail?id=${id}`,
+      });
+    };
     // 列表到达底部的处理函数
     const handleScrolltolower = (item: List) => {
       // 判断其中data的长度是否已不够进行分页
@@ -450,7 +459,7 @@ export default {
       handleSwiperChange,
       handleScrolltolower,
       handleClickQuestion,
-      handleExplanation
+      handleExplanation,
     };
   },
 };
