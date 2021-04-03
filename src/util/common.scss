@@ -1,11 +1,6 @@
-// 单行超出隐藏省略号
-@mixin text-ellipsis-one() {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
 // 自定义多行超出省略号
-@mixin text-ellipsis($line) {
+@mixin text-ellipsis($line: 1) {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

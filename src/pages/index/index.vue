@@ -192,6 +192,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../util/common.scss";
+
 .indexBox {
   .topBox {
     position: relative;
@@ -245,6 +247,8 @@ export default {
     }
 
     .nickname {
+      width: 460rpx;
+      @include text-ellipsis;
       color: #fff;
       margin-top: 4rpx;
       font-size: 80rpx;

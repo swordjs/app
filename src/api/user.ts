@@ -47,7 +47,6 @@ export async function getUserBaseContentByUserID(params: {
   userID: string;
 }): Promise<ActionResult> {
   return new Promise((resolve) => {
-    console.log("啊哈", params.userID)
     db.collection("uni-id-users")
       .where({
         _id: params.userID

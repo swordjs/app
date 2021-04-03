@@ -175,6 +175,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../util/common.scss";
+
 .questionDetail {
   height: 100vh;
   overflow-y: hidden;
@@ -191,6 +193,7 @@ export default {
       font-size: 32rpx;
       color: #fff;
       margin-top: 42rpx;
+      @include text-ellipsis(2);
     }
 
     .info {

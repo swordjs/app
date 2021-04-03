@@ -364,7 +364,6 @@ export default {
         title: "加载结果中...",
         mask: true,
       });
-      console.log(params.index);
       const result = await functionList[params.index]({
         userID: userID.value,
         limit: listInfo.value[keyName].limit,
@@ -660,11 +659,11 @@ export default {
           }
         }
         .main {
-          width: 690rpx;
+          width: 100%;
           margin-top: 20rpx;
           font-size: 28rpx;
           .mainTitle {
-            @include text-ellipsis-one;
+            @include text-ellipsis(2);
           }
           .mainContent {
             color: #666666;

@@ -243,7 +243,7 @@ page {
 
           .nickName {
             max-width: 400rpx;
-            @include text-ellipsis-one;
+            @include text-ellipsis;
             font-size: 28rpx;
             color: #5454a1;
           }
