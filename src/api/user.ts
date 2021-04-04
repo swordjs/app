@@ -1,15 +1,16 @@
+import callFunction from "./../common/callFunction";
 const db = uniCloud.database();
 const dbCmd = db.command;
 
 /**
  * @name 关注用户
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
 export async function postFollow(params: {
   targetID: string;
 }): Promise<ActionResult> {
-  const { success, result } = await uniCloud.callFunction({
+  return await callFunction({
     name: "application",
     data: {
       route: `api/user/checkFollowers`,
@@ -18,32 +19,25 @@ export async function postFollow(params: {
         follower: params.targetID,
       },
     },
+    checkLogin: true
   });
-  return {
-    success,
-    data: result,
-  };
 }
 
 /**
  * @name 获取用户首页的信息（赞同数，解题数等）
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
 export async function getUserContentByID(params: {
   userID: string;
 }): Promise<ActionResult> {
-  const { success, result } = await uniCloud.callFunction({
+  return await callFunction({
     name: "application",
     data: {
       route: `api/user/getUserContentByID/${params.userID}`,
       method: "GET",
     },
   });
-  return {
-    success,
-    data: result,
-  };
 }
 
 /**
@@ -56,7 +50,7 @@ export async function getUserBaseContentByUserID(params: {
   return new Promise((resolve) => {
     db.collection("uni-id-users")
       .where({
-        _id: params.userID
+        _id: params.userID,
       })
       .field("nickname,avatar,followers")
       .get()
@@ -75,4 +69,3 @@ export async function getUserBaseContentByUserID(params: {
       });
   });
 }
-

@@ -6,5 +6,5 @@ declare module "*.vue" {
 
 interface ActionResult{
   success: boolean,
-  data: any
+  data?: any
 }
