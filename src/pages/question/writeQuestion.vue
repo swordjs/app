@@ -94,7 +94,7 @@ export default defineComponent({
             });
             uni.hideLoading();
             if (addResult.success) {
-              const explanationID = addResult.result._id;
+              const explanationID = addResult.data._id;
               // 题解详情页面
               uni.redirectTo({
                 url: `/pages/question/questionExplanationDetail?id=${explanationID}`,

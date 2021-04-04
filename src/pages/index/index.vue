@@ -28,9 +28,8 @@
       <button
         hover-class="none"
         v-if="!isLogin"
-        open-type="getUserInfo"
         class="getUserButton"
-        @getuserinfo="handleClickUser"
+        @click="handleClickUser"
       >
         <view class="nickname">未登录</view>
       </button>
@@ -142,12 +141,13 @@ export default {
         })
       } else {
         // 微信登录
-        uni.getUserInfo({
+        wx.getUserProfile({
+          desc: '用于完善用户资料',
           success: ({ userInfo }) => {
+            console.log(userInfo);
             uni.login({
               provider: "weixin",
               async success(res) {
-                console.log(res);
                 // 传入用户信息和code
                 uni.showLoading({
                   title: "登录中...",
@@ -157,9 +157,9 @@ export default {
                 const loginData = await loginByWechat(userInfo, res);
                 uni.hideLoading();
                 // 存储返回的token以及用户信息，id等
-                if (loginData.success && loginData.result.code === 0) {
-                  uni.setStorageSync("uni_id_token", loginData.result.token);
-                  uni.setStorageSync("uni_id", loginData.result.uid);
+                if (loginData.success && loginData.data.code === 0) {
+                  uni.setStorageSync("uni_id_token", loginData.data.token);
+                  uni.setStorageSync("uni_id", loginData.data.uid);
                   uni.setStorageSync("userInfo", userInfo);
                   // 显示微信个人信息
                   user.value = userInfo;
