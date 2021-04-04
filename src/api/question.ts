@@ -16,7 +16,7 @@ export async function getQuestionListData(params: {
     const { limit, page, areaID, userID } = params;
     db.collection("question,uni-id-users")
       .where(`areaID == '${areaID}' && deleteDate == '' && state == 'pass'`)
-      .field(`publishUserID{avatar,nickname,_id},title,content`)
+      .field(`publishUserID{avatar,nickname,_id},title,content,createDate`)
       .orderBy("createDate desc")
       .skip(limit * (page - 1))
       .limit(limit)
