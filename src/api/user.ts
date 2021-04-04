@@ -1,6 +1,11 @@
 const db = uniCloud.database();
 const dbCmd = db.command;
 
+/**
+ * @name 关注用户
+ * @param params 
+ * @returns 
+ */
 export async function postFollow(params: {
   targetID: string;
 }): Promise<ActionResult> {
@@ -21,7 +26,9 @@ export async function postFollow(params: {
 }
 
 /**
- * 获取用户全部信息UserID（包括赞同数，粉丝数等）
+ * @name 获取用户首页的信息（赞同数，解题数等）
+ * @param params 
+ * @returns 
  */
 export async function getUserContentByID(params: {
   userID: string;
@@ -40,7 +47,7 @@ export async function getUserContentByID(params: {
 }
 
 /**
- * 获取用户基本信息根据UserID
+ * @name 获取用户基本信息根据UserID
  * @param params
  */
 export async function getUserBaseContentByUserID(params: {

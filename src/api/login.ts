@@ -1,3 +1,9 @@
+/**
+ * @name 微信登录
+ * @param userInfo 
+ * @param res 
+ * @returns 
+ */
 export async function loginByWechat(userInfo, res) {
   const { success, result } = await uniCloud.callFunction({
     name: "application",

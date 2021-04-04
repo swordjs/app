@@ -65,6 +65,11 @@ export async function getQuestionDetailByID(params: {
   });
 }
 
+/**
+ * @name 增加题目浏览量
+ * @param params 
+ * @returns 
+ */
 export async function postAddPageView(params: { _id: string }) {
   const { success, result } = await uniCloud.callFunction({
     name: "application",
@@ -82,6 +87,11 @@ export async function postAddPageView(params: { _id: string }) {
   };
 }
 
+/**
+ * @name 获取题目列表根据用户ID
+ * @param params 
+ * @returns 
+ */
 export async function getQuestionListByUser(params: {
   userID: string;
   limit: number;

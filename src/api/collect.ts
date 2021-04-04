@@ -1,7 +1,10 @@
 const db = uniCloud.database();
-const dbCmd = db.command;
 
-// 根据多个收藏夹ID，去查询目标id是否存在
+/**
+ * @name 检查自己是否已收藏题解
+ * @param params 
+ * @returns 
+ */
 export async function checkIDInCollect(params: {
   id: string;
 }): Promise<ActionResult> {

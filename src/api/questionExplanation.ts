@@ -1,6 +1,10 @@
 const db = uniCloud.database();
 
-// 新增题解
+/**
+ * @name 新增题解
+ * @param params 
+ * @returns 
+ */
 export async function addQuestionExplanation(params: {
   _id: string;
   content: string;
@@ -19,7 +23,11 @@ export async function addQuestionExplanation(params: {
   };
 }
 
-// 赞同题解/取消赞同题解
+/**
+ * @name 赞同题解/取消赞同题解
+ * @param params 
+ * @returns 
+ */
 export async function adoptionQuestionExplanation(params: { _id: string }) {
   const { success, result } = await uniCloud.callFunction({
     name: "application",
@@ -35,7 +43,11 @@ export async function adoptionQuestionExplanation(params: { _id: string }) {
   };
 }
 
-// 收藏/取消收藏题解
+/**
+ * @name 收藏/取消收藏题解
+ * @param params 
+ * @returns 
+ */
 export async function collectQuestionExplanation(params: { _id: string }) {
   const { success, result } = await uniCloud.callFunction({
     name: "application",
@@ -64,7 +76,7 @@ export async function getExplanationsByQuestionID(params: {
     const { limit, page } = params;
     db.collection("questionExplanation,uni-id-users")
       .where(`questionID == '${params.questionID}'`)
-      .field(`userID{avatar,nickname},content`)
+      .field(`userID{avatar,nickname},content,createDate`)
       .skip(limit * (page - 1))
       .limit(limit)
       .orderBy("createDate desc")
@@ -85,6 +97,11 @@ export async function getExplanationsByQuestionID(params: {
   });
 }
 
+/**
+ * @name 获取题解详情根据ID
+ * @param params 
+ * @returns 
+ */
 export async function getExplanationsByID(params: {
   id: string;
 }): Promise<ActionResult> {
@@ -114,7 +131,7 @@ export async function getExplanationsByID(params: {
 /**
  * @name 检查用户是否已经答过这道题
  * @param params
- * @returns explanationID
+ * @returns ActionResult
  */
 export async function checkExplanationByUser(params: {
   _id: string;
@@ -142,7 +159,11 @@ export async function checkExplanationByUser(params: {
   });
 }
 
-// 获取题解列表根据用户ID，查询该用户的题解列表以及题目信息
+/**
+ * @name 获取题解列表根据用户ID，查询该用户的题解列表以及题目信息
+ * @param params 
+ * @returns ActionResult
+ */
 export async function getExplanationsByUserID(params: {
   userID: string;
   limit: number;
@@ -154,7 +175,7 @@ export async function getExplanationsByUserID(params: {
       .where({
         userID: params.userID,
       })
-      .field(`questionID{title,_id, publishUserID{nickname, avatar}},content`)
+      .field(`questionID{title,_id, publishUserID{nickname, avatar}},content,createDate`)
       .orderBy("createDate desc")
       .skip(limit * (page - 1))
       .limit(limit)
