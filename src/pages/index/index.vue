@@ -206,7 +206,7 @@ export default {
       width: 70rpx;
       height: 70rpx;
       border-radius: 50%;
-      margin-top: calc(var(--status-bar-height) + 30rpx);
+      margin-top: calc(var(--status-bar-height) + 40rpx);
       margin-left: 48rpx;
     }
     button::after {
@@ -251,7 +251,7 @@ export default {
       @include text-ellipsis;
       color: #fff;
       margin-top: 4rpx;
-      font-size: 80rpx;
+      font-size: 75rpx;
       margin-left: 48rpx;
     }
 
