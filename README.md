@@ -20,9 +20,9 @@
 <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/c1746d60-2e22-4161-b23d-38b910b73c91.jpg" width="15%"><img style="margin-left: 40px;" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/e4395033-d45f-4e3e-a930-78ff91c8db54.png" width="40%">
 
 ##### 开源免费不易，请关注我们的公众号以及开源仓库
-[给Github点star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)_
-[给Gitee点star, 拉取代码时请选择最新分支](https://gitee.com/yinzhuoei/InternetQuestionBank)_
-[去Dcloud插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)_
+[![沈昊Seho/InternetQuestionBank](https://gitee.com/yinzhuoei/InternetQuestionBank/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/yinzhuoei/InternetQuestionBank)
+[Github点star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)_
+[Dcloud插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)_
 # 目录
 - [特点](#特点)
 - [技术栈](#技术栈)
