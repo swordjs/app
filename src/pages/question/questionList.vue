@@ -2,7 +2,7 @@
   <view class="questionListBox">
     <view class="item" v-for="question in dataList" :key="question._id">
       <!-- 背景卡片 -->
-      <view class="topCard write">
+      <view class="topCard">
         <!-- 标题 -->
         <view class="title" @click="handleQuestionDetail(question._id)">
           {{ question.title }}
@@ -209,21 +209,22 @@ page {
     border-radius: 20rpx;
     margin: 0 auto;
     margin-top: 66rpx;
-
+    &:nth-child(odd){
+      .topCard{
+        background: url(../../static/question/questionWriteBackrgound.png)
+          no-repeat center / 100%;
+      }
+    }
+    &:nth-child(even){
+      .topCard{
+        background: url(../../static/question/questionBookBackrgound.png)
+          no-repeat center / 100%;
+      }
+    }
     .topCard {
       width: 100%;
       height: 320rpx;
       overflow: hidden;
-
-      &.write {
-        background: url(../../static/question/questionWriteBackrgound.png)
-          no-repeat center / 100%;
-      }
-
-      &.book {
-        background: url(../../static/question/questionBookBackrgound.png)
-          no-repeat center / 100%;
-      }
 
       .title {
         width: 616rpx;
