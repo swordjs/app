@@ -17,8 +17,12 @@
 
 项目的起源是一个 github 仓库，名为[前端知识每日 3+1](https://github.com/haizlin/fe-interview)，正是这个优秀的题库项目才有了我们团队开发聚合题库的想法。在我们国内程序员圈子，大多数小伙伴为了更好的技术发展和 offer，都通过训练题来提高自己的眼界，其中不乏包括算法/业务/软技能的题目，但是因为我们的环境和侧重点不一样，所以我们接触的项目和题目都不一样，而市面上很少有一个项目能做到，涵盖不同圈子的聚合题库。 《剑指题解》项目就是一个优秀的互联网行业聚合题库神器。
 
-<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/c1746d60-2e22-4161-b23d-38b910b73c91.jpg" width=20%><img style="margin-left: 40px;" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/e4395033-d45f-4e3e-a930-78ff91c8db54.png" width=50%>
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/c1746d60-2e22-4161-b23d-38b910b73c91.jpg" width="15%"><img style="margin-left: 40px;" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/e4395033-d45f-4e3e-a930-78ff91c8db54.png" width="40%">
 
+##### 开源免费不易，请关注我们的公众号以及开源仓库
+[给Github点star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)_
+[给Gitee点star, 拉取代码时请选择最新分支](https://gitee.com/yinzhuoei/InternetQuestionBank)_
+[去Dcloud插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)_
 # 目录
 - [特点](#特点)
 - [技术栈](#技术栈)
@@ -36,12 +40,12 @@
 
 # 特点
 
-1. <font color=Blue>汇聚优秀的开源题目，以技术社区为主线展开的刷题 APP</font>
-2. <font color=Blue>根据用户的喜好</font>，去推送相关的最新题目，不会再刷到 “牛头不对马嘴”无用的题目
-3. 我们绑定了微信服务号，<font color=Blue>每日定时推送给用户最新的题目</font>，让你能在每天清晨就开启活力新一天
-4. <font color=Blue>刷题 APP 无广告，无硬性推广</font>，一切盈利皆在赞助/官网流量
+1. 汇聚优秀的开源题目，以技术社区为主线展开的刷题 APP
+2. 根据用户的喜好，去推送相关的最新题目，不会再刷到 “牛头不对马嘴”无用的题目
+3. 我们绑定了微信服务号，每日定时推送给用户最新的题目，让你能在每天清晨就开启活力新一天
+4. 刷题 APP 无广告，无硬性推广，一切盈利皆在赞助/官网流量
 5. 我们还有很多有意思的待开发 feature，比如大佬带萌新模式，还将开启校园/企业的通道，让每一个学生/员工都能每时每刻提高自己
-6. 剑指题解开源项目，<font color=Blue>从原型图到小程序，UI 图，UML，API 文档，第三方 API 对接说明书，使用说明都将免费开源</font>，欢迎各位同僚二开，让这个行业变得更好，我们将用心地辅助你们解决在技术上的难题。
+6. 剑指题解开源项目，从原型图到小程序，UI 图，UML，API 文档，第三方 API 对接说明书，使用说明都将免费开源，欢迎各位同僚二开，让这个行业变得更好，我们将用心地辅助你们解决在技术上的难题。
 
 
 # 技术栈
@@ -244,7 +248,7 @@ uniCloud.callFunction({
 - [Guide哥的JAVA题库](https://github.com/Snailclimb/JavaGuide)
 
 # 联系我们
-<img width=300 height=400 src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/309debe7-7f2a-47ae-a415-875e5b1f4922.jpg"></img>
+<img width="30%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/309debe7-7f2a-47ae-a415-875e5b1f4922.jpg"></img>
 
 # 许可
 
