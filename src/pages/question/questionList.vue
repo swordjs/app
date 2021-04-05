@@ -1,58 +1,53 @@
 <template>
   <view class="questionListBox">
-    <swiper
-      @change="handleQuestionChange"
-      next-margin="940rpx"
-      vertical
-      :style="{ height: scrollHeight + 'px' }"
-    >
-      <swiper-item v-for="question in dataList" :key="question._id">
-        <view class="item">
-          <!-- 背景卡片 -->
-          <view class="topCard write">
-            <!-- 标题 -->
-            <view class="title" @click="handleQuestionDetail(question._id)">
-              {{ question.title }}
-            </view>
-            <!-- 个人信息 -->
-            <view class="user" @click.stop="handlePublishUser(question.publishUserID[0]._id)">
-              <image
-                :src="question.publishUserID[0].avatar"
-                class="headPicture"
-                mode=""
-              ></image>
-              <view class="uerContent">
-                <view class="nickName">{{
-                  question.publishUserID[0].nickname
-                }}</view>
-                <view class="authentication">官方认证出题人</view>
-              </view>
-            </view>
-          </view>
-          <!-- 详情 -->
-          <view class="detail">
-            <view class="title">
-              问题描述<image
-                class="quote"
-                src="../../static/question/quote.png"
-                mode=""
-              ></image>
-            </view>
-            <view class="content">
-              {{ question.content === "" && "暂无题目介绍" }}
-            </view>
-            <!-- 链接 -->
-            <view class="link">看看其他小伙伴怎么做的吧 ></view>
-          </view>
-          <!-- 开始 -->
-          <view class="start" @click="handleStart(question._id, question.title)"
-            >Start</view
-          >
+    <view class="item" v-for="question in dataList" :key="question._id">
+      <!-- 背景卡片 -->
+      <view class="topCard write">
+        <!-- 标题 -->
+        <view class="title" @click="handleQuestionDetail(question._id)">
+          {{ question.title }}
         </view>
-      </swiper-item>
-    </swiper>
+        <!-- 个人信息 -->
+        <view
+          class="user"
+          @click.stop="handlePublishUser(question.publishUserID[0]._id)"
+        >
+          <image
+            :src="question.publishUserID[0].avatar"
+            class="headPicture"
+            mode=""
+          ></image>
+          <view class="uerContent">
+            <view class="nickName">{{
+              question.publishUserID[0].nickname
+            }}</view>
+            <view class="authentication">官方认证出题人</view>
+          </view>
+        </view>
+      </view>
+      <!-- 详情 -->
+      <view class="detail">
+        <view class="title">
+          问题描述<image
+            class="quote"
+            src="../../static/question/quote.png"
+            mode=""
+          ></image>
+        </view>
+        <view class="content">
+          {{ question.content === "" && "暂无题目介绍" }}
+        </view>
+        <!-- 链接 -->
+        <view class="link">看看其他小伙伴怎么做的吧 ></view>
+      </view>
+      <!-- 开始 -->
+      <view class="start" @click="handleStart(question._id, question.title)"
+        >Start</view
+      >
+    </view>
   </view>
 </template>
+
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
@@ -79,6 +74,18 @@ export default defineComponent({
     // 获取列表
     this.handleGetData();
   },
+  onReachBottom() {
+    if (this.pageConfig.page * this.pageConfig.limit > this.dataList.length) {
+      uni.showToast({
+        title: "再往下就没内容啦~",
+        icon: "none",
+      });
+    } else {
+      this.pageConfig.page++;
+      // 分页加载
+      this.handleGetData();
+    }
+  },
   setup() {
     // 分页相关配置
     let pageConfig: {
@@ -91,7 +98,6 @@ export default defineComponent({
     // 定义一个列表
     const dataList = ref<IDataList[] | []>([]);
     const areaID = ref<string>("");
-    const scrollHeight: number = uni.getSystemInfoSync().screenHeight;
     const userID: string = uni.getStorageSync("uni_id");
 
     // 根据规则获取题目列表
@@ -108,17 +114,20 @@ export default defineComponent({
       });
       uni.hideLoading();
       if (result.success) {
+        uni.showToast({
+          title: "加载成功",
+          icon: "none"
+        })
         dataList.value = dataList.value.concat(result.data);
-        console.log(dataList.value);
       }
     };
-    
+
     // 进入个人中心
     const handlePublishUser = (_id: string) => {
       uni.navigateTo({
         url: `/pages/user/index?userID=${_id}`,
       });
-    }
+    };
     // 进入题解详情
     const handleQuestionDetail = (_id: string) => {
       uni.navigateTo({
@@ -131,8 +140,8 @@ export default defineComponent({
       if (userID !== "") {
         uni.showLoading({
           title: "请稍后...",
-          mask: true
-        })
+          mask: true,
+        });
         // 判断此题是否答过，如果答过，则直接进入解答详情中
         const result = await checkExplanationByUser({
           _id,
@@ -167,10 +176,10 @@ export default defineComponent({
       }
     };
     return {
+      pageConfig,
       userID,
       areaID,
       dataList,
-      scrollHeight,
       handleGetData,
       handleQuestionDetail,
       handleQuestionChange,
@@ -184,6 +193,7 @@ export default defineComponent({
 <style>
 page {
   background-color: #f6f7f9;
+  margin-bottom: 20rpx;
 }
 </style>
 

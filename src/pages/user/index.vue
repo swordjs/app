@@ -349,13 +349,15 @@ export default {
     };
     // 获取列表, index为非必填参数，如果传递了，tabCurrent将无效，将通过索引来直接查询方法不通过swiperCount查询
     const getQuestionList = async (
-      params: {
+      params?: {
         index?: number;
-        pagination: boolean;
-      } = { pagination: false }
+      }
     ) => {
-      if (!params.index) {
-        params.index = tabCurrent.value;
+      // 没传入参数或者没传入index就默认按照tab来作为index查询
+      if (!params?.index) {
+        params = {
+          index: tabCurrent.value
+        };
       }
       const functionList = [getQuestionListByUser, getExplanationsByUserID];
       const keyName: "publishList" | "explanationList" =
@@ -371,13 +373,9 @@ export default {
       });
       uni.hideLoading();
       if (result.success) {
-        if (params.pagination) {
-          listInfo.value[keyName].data = listInfo.value[keyName].data.concat(
+        listInfo.value[keyName].data = listInfo.value[keyName].data.concat(
             result.data
           );
-        } else {
-          listInfo.value[keyName].data = result.data;
-        }
       }
     };
     const handleSwiperChange = (e) => {
@@ -442,9 +440,7 @@ export default {
       } else {
         item.page++;
         // 分页加载
-        getQuestionList({
-          pagination: true,
-        });
+        getQuestionList();
       }
     };
     return {
