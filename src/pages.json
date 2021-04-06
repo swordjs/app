@@ -42,6 +42,14 @@
         "navigationBarTitleText": "",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/common/noRelease",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "暂未发布",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "easycom": {

@@ -62,7 +62,7 @@
         <view class="content"> 最近的[前端练习题]有更新 </view>
       </view>
       <!-- 动态 -->
-      <view class="menumain dynamic">
+      <view class="menumain dynamic" @click="handleUrl('/pages/common/noRelease')">
         <view class="title">动态</view>
         <view class="content"> 后续版本迭代，尽情期待~ </view>
         <!-- 头像组 -->
@@ -79,12 +79,12 @@
       </view>
     </view>
     <!-- 社区 -->
-    <view class="community">
+    <view class="community" @click="handleUrl('/pages/common/noRelease')">
       <view class="title">社区</view>
       <view class="content">后续版本迭代，尽情期待~</view>
     </view>
     <!-- 推荐文章 -->
-    <view class="article">
+    <view class="article" @click="handleUrl('/pages/common/noRelease')">
       <view class="title">推荐文章</view>
       <view class="articleList">
         <view class="articleListItem">

@@ -14,7 +14,8 @@
     "app-tools": "file:../common/app-tools",
     "explain": "file:../common/explain",
     "uni-id": "file:../common/uni-id",
-    "form-data-utils": "file:../common/form-data-utils"
+    "form-data-utils": "file:../common/form-data-utils",
+    "fastscan": "file:../common/fastscan"
   },
   "devDependencies": {}
 }
