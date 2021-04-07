@@ -34,6 +34,7 @@ import { defineComponent, ref } from "vue";
 // api
 import { uploadFileToCloudStorage } from "../../api/common";
 import { addQuestionExplanation } from "../../api/questionExplanation";
+import { removeHtmlTag } from "../../util/common"
 interface IPageParams {
   id: string;
   questionID: string;
@@ -79,7 +80,7 @@ export default defineComponent({
       const editor = this.$refs.editor;
       editor.editorCtx.getContents({
         success: async ({ html }: { html: string }) => {
-          if (html === "") {
+          if (removeHtmlTag(html) === "") {
             uni.showToast({
               title: "请填写题解内容oh~",
               icon: "none",
