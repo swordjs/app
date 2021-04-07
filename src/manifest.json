@@ -71,6 +71,9 @@
         "usingComponents" : true
     },
     "mp-qq" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "setting" : {
+            "urlCheck" : false
+        }
     }
 }
