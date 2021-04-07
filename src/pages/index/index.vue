@@ -114,6 +114,11 @@ import { ref } from "vue";
 // api
 import { loginByWechat } from "../../api/login";
 export default {
+  onShareAppMessage(){
+    return {
+      title: `${this.user.nickName}邀请你使用剑指题解，一起快乐刷题吧~`
+    }
+  },
   setup() {
     // 首页展示的信息，头像/昵称等
     const user = ref({
@@ -144,7 +149,6 @@ export default {
         wx.getUserProfile({
           desc: '用于完善用户资料',
           success: ({ userInfo }) => {
-            console.log(userInfo);
             uni.login({
               provider: "weixin",
               async success(res) {

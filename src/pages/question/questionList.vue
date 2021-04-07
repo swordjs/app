@@ -68,11 +68,17 @@ export default defineComponent({
   onLoad(params: IPageParams) {
     this.areaID = params.areaID;
     // 动态设置标题
+    this.areaName = params.areaName;
     uni.setNavigationBarTitle({
       title: params.areaName,
     });
     // 获取列表
     this.handleGetData();
+  },
+  onShareAppMessage(){
+    return {
+      title: `今天我刷了剑指题解的${this.areaName}题，你呢？`
+    }
   },
   onReachBottom() {
     if (this.pageConfig.page * this.pageConfig.limit > this.dataList.length) {
@@ -98,6 +104,7 @@ export default defineComponent({
     // 定义一个列表
     const dataList = ref<IDataList[] | []>([]);
     const areaID = ref<string>("");
+    const areaName = ref<string>("");
     const userID: string = uni.getStorageSync("uni_id");
 
     // 根据规则获取题目列表
@@ -176,6 +183,7 @@ export default defineComponent({
       }
     };
     return {
+      areaName,
       pageConfig,
       userID,
       areaID,

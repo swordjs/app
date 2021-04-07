@@ -94,6 +94,11 @@ export default {
     // 调用增加浏览量的方法
     this.handleAddPageView();
   },
+  onShareAppMessage(){
+    return {
+      title: `剑指题解：${this.detailData.title}`
+    }
+  },
   setup() {
     // 分页相关配置
     let pageConfig: {

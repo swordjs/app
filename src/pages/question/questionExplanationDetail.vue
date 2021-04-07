@@ -64,6 +64,11 @@ export default {
       this.getExplanationData();
     }
   },
+  onShareAppMessage(){
+    return {
+      title: `${this.data.userID[0].nickname}解答了[${this.data.questionID[0].title}]，快来围观吧~`
+    }
+  },
   setup() {
     const id = ref("");
     const data = ref<{

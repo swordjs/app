@@ -251,6 +251,18 @@ export default {
       index: 1,
     });
   },
+  onShareAppMessage(){
+    let title: string = "";
+    if(this.isSelf){
+      // 如果是本人
+      title = "我在剑指题解等你，一起成长！快来关注我吧~"
+    }else{
+      title = `向你推荐了${this.userInfo.nickname}，快来关注TA吧~`
+    }
+    return {
+      title
+    }
+  },
   onPageScroll({ scrollTop }) {
     if (this.navigationBarHeight < scrollTop) {
       if (!this.navigationBarSticky) {
