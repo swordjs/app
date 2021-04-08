@@ -6,25 +6,45 @@
         {{ questionInfo.title }}
       </view>
     </view>
-    <view class="editor">
+    <view class="editor" v-show="writeType === 'RichText'">
       <!-- 撰写答案 -->
       <robin-editor
         ref="editor"
         class="editor"
         width="690"
-        v-model="questionInfo.content"
         :muiltImage="true"
         :header="false"
       ></robin-editor>
     </view>
-
-    <view class="submit" @click="handleSaveEditor">
-      <i-icon
-        @click="handleSaveEditor"
-        name="check-line"
-        color="#fff"
-        size="45rpx"
-      ></i-icon>
+    <!-- MarkDown编辑 -->
+    <view class="markDownEditor" v-show="writeType === 'MarkDown'">
+      <robin-editor
+        :header="false"
+        ref="markDownEditor"
+        class="editor"
+        width="690"
+        :autoHideToolbar="true"
+      >
+      </robin-editor>
+    </view>
+    <view class="controlMenu">
+      <!-- 切换撰写状态 -->
+      <view class="changeWriteType" @click="changeWriteType">
+        <i-icon
+          @click="changeWriteType"
+          name="arrow-left-right-line"
+          color="#0069fa"
+          size="38rpx"
+        ></i-icon>
+      </view>
+      <view class="submit" @click="handleSaveEditor">
+        <i-icon
+          @click="handleSaveEditor"
+          name="check-line"
+          color="#fff"
+          size="50rpx"
+        ></i-icon>
+      </view>
     </view>
   </view>
 </template>
@@ -34,7 +54,8 @@ import { defineComponent, ref } from "vue";
 // api
 import { uploadFileToCloudStorage } from "../../api/common";
 import { addQuestionExplanation } from "../../api/questionExplanation";
-import { removeHtmlTag } from "../../util/common"
+import { removeHtmlTag } from "../../util/common";
+import * as marked from "marked";
 interface IPageParams {
   id: string;
   questionID: string;
@@ -50,6 +71,8 @@ export default defineComponent({
     this.$refs.editor.setImageUploader(this.beforeUploadImage);
   },
   setup() {
+    // 撰写答案的类型，富文本/MarkDown
+    const writeType = ref<"RichText" | "MarkDown">("RichText");
     // 题目信息
     const questionInfo = ref<{
       id?: string;
@@ -60,26 +83,52 @@ export default defineComponent({
       title: "",
       questionID: "",
     });
+    // 切换撰写答案类型
+    const changeWriteType = () => {
+      writeType.value =
+        writeType.value === "RichText" ? "MarkDown" : "RichText";
+      if (writeType.value === "RichText") {
+        uni.showToast({
+          title: "您已切换为富文本",
+          icon: "none",
+        });
+      } else {
+        uni.showToast({
+          title: "您已切换为MarkDown",
+          icon: "none",
+        });
+      }
+    };
     const beforeUploadImage = async (img, callback) => {
       const res = await uploadFileToCloudStorage({
         filePath: img,
-        cloudPath: "img"
+        cloudPath: "img",
       });
-      if(res.success){
+      if (res.success) {
         callback(res.data.fileID);
       }
     };
     return {
+      changeWriteType,
+      writeType,
       questionInfo,
       beforeUploadImage,
     };
   },
   methods: {
     async handleSaveEditor() {
+      let content = "";
+      switch (this.writeType) {
+        case "RichText":
+          break;
+        case "MarkDown":
+          break;
+      }
       // 获取编辑器引用
       const editor = this.$refs.editor;
       editor.editorCtx.getContents({
         success: async ({ html }: { html: string }) => {
+          return;
           if (removeHtmlTag(html) === "") {
             uni.showToast({
               title: "请填写题解内容oh~",
@@ -152,21 +201,52 @@ view {
   border-radius: 8px;
   margin-top: 10rpx;
 }
-.submit {
+.markDownEditor {
+  width: 690rpx;
+  margin: 0 auto;
+  border-radius: 8px;
+  margin-top: 10rpx;
+  background: #fff;
+  editor {
+    padding: 20rpx;
+  }
+}
+.controlMenu {
+  width: 690rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100rpx;
-  height: 100rpx;
-  background: #0069fa;
-  border-radius: 50%;
   position: fixed;
   bottom: 30rpx;
   left: 50%;
   transform: translateX(-50%);
-  text-align: center;
-  &:active {
-    opacity: 0.7;
+  background: #fff;
+  .changeWriteType {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 96rpx;
+    height: 96rpx;
+    border: 2rpx solid #0069fa;
+    border-radius: 50%;
+    box-shadow: 0px 4px 11px 0px rgba(38, 46, 99, 0.15);
+    &:active {
+      opacity: 0.7;
+    }
+  }
+  .submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100rpx;
+    height: 100rpx;
+    background: #0069fa;
+    border-radius: 50%;
+    margin-left: 20rpx;
+    box-shadow: 0px 4px 11px 0px rgba(38, 46, 99, 0.15);
+    &:active {
+      opacity: 0.7;
+    }
   }
 }
 </style>
