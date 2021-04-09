@@ -297,6 +297,7 @@ export default {
     width: 686rpx;
     height: 240rpx;
     border-radius: 15px;
+    overflow: hidden;
     opacity: 0.72;
     color: #fff;
     margin: 80rpx auto 16rpx auto;
@@ -304,6 +305,7 @@ export default {
     image {
       width: 100%;
       height: 100%;
+      
     }
   }
 
