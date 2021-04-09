@@ -9,7 +9,7 @@
     <view class="editor" v-show="writeType === 'RichText'">
       <!-- 撰写答案 -->
       <robin-editor
-        ref="editor"
+        ref="RichText"
         class="editor"
         width="690"
         :muiltImage="true"
@@ -20,7 +20,7 @@
     <view class="markDownEditor" v-show="writeType === 'MarkDown'">
       <robin-editor
         :header="false"
-        ref="markDownEditor"
+        ref="MarkDown"
         class="editor"
         width="690"
         :autoHideToolbar="true"
@@ -68,7 +68,7 @@ export default defineComponent({
   },
   mounted() {
     // 因为uniapp的vue3bug，我不能直接通过props传递函数，因为函数在template中是undefined，等待官方解决...
-    this.$refs.editor.setImageUploader(this.beforeUploadImage);
+    this.$refs.RichText.setImageUploader(this.beforeUploadImage);
   },
   setup() {
     // 撰写答案的类型，富文本/MarkDown
@@ -125,16 +125,19 @@ export default defineComponent({
           break;
       }
       // 获取编辑器引用
-      const editor = this.$refs.editor;
+      const editor = this.$refs[this.writeType];
       editor.editorCtx.getContents({
         success: async ({ html }: { html: string }) => {
-          return;
           if (removeHtmlTag(html) === "") {
             uni.showToast({
               title: "请填写题解内容oh~",
               icon: "none",
             });
           } else {
+            // 如果是MarkDown需要转换
+            if(this.writeType === "MarkDown"){
+              html = marked(html)
+            }
             uni.showLoading({
               mask: true,
             });
