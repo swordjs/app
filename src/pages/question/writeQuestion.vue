@@ -223,7 +223,6 @@ view {
   bottom: 30rpx;
   left: 50%;
   transform: translateX(-50%);
-  background: #fff;
   .changeWriteType {
     display: flex;
     justify-content: center;
@@ -232,6 +231,7 @@ view {
     height: 96rpx;
     border: 2rpx solid #0069fa;
     border-radius: 50%;
+    background: #fff;
     box-shadow: 0px 4px 11px 0px rgba(38, 46, 99, 0.15);
     &:active {
       opacity: 0.7;
