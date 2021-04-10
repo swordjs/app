@@ -1,0 +1,27 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"publishUserID": {
+			"bsonType": "string",
+			"foreignKey": "uni-id-users._id"
+		},
+		"tagID": {
+			"bsonType": "array",
+			"foreignKey": "questionTag._id"
+		},
+		"questionExplanation": {
+			"bsonType": "array",
+			"foreignKey": "questionExplanation._id"
+		}
+	}
+}
