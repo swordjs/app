@@ -1,4 +1,220 @@
-// 在本文件中可配置云数据库初始化，数据格式见：https://uniapp.dcloud.io/uniCloud/cf-database?id=db_init
-// 编写完毕后对本文件点右键，可按配置规则创建表和添加数据
-{
+{
+    "question": {
+        "data": [
+            {
+                "_id": "600c4e48a228c7dcd8efcbdc",
+                "title": "在Less中数据URI的作用是什么？",
+                "areaID": "5fdf56a3e2c1ee0001a52e49",
+                "publishUserID": "5ff5bdd5770c7900015b1f80",
+                "content": "",
+                "questionExplanation": [
+                    "606ad9a149586100016baa47"
+                ],
+                "tagID": [
+                    "5ff5bc78fce5d000011cd530"
+                ],
+                "state": "pass",
+                "createDate": "2021-01-23T16:24:54.540Z",
+                "updateDate": "2021-01-23T16:24:54.540Z",
+                "deleteDate": ""
+            }
+        ],
+        "schema": {
+            "bsonType": "object",
+            "required": [],
+            "permission": {
+                "read": true,
+                "create": false,
+                "update": false,
+                "delete": false
+            },
+            "properties": {
+                "_id": {
+                    "description": "ID，系统自动生成"
+                },
+                "publishUserID": {
+                    "bsonType": "string",
+                    "foreignKey": "uni-id-users._id"
+                },
+                "tagID": {
+                    "bsonType": "array",
+                    "foreignKey": "questionTag._id"
+                },
+                "questionExplanation": {
+                    "bsonType": "array",
+                    "foreignKey": "questionExplanation._id"
+                }
+            }
+        }
+    },
+    "questionArea": {
+        "data": [
+            {
+                "_id": "600a35b2ba58b00001e4612f",
+                "name": "JAVA",
+                "iconPath": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/2f8fc430-c330-4c2d-a20b-a57dcbe777d4.png",
+                "createDate": "2020-12-20T13:50:27.917Z",
+                "updateDate": "2020-12-20T13:53:41.104Z",
+                "deleteDate": ""
+            }
+        ],
+        "schema": {
+            "bsonType": "object",
+            "required": [],
+            "permission": {
+                "read": true,
+                "create": false,
+                "update": false,
+                "delete": false
+            },
+            "properties": {
+                "_id": {
+                    "description": "ID，系统自动生成"
+                }
+            }
+        }
+    },
+    "questionExplanation": {
+        "data": [
+            {
+                "_id": "6069d87bfe0f45000127d2d4",
+                "questionID": "600cf4ab592a505a7161fd04",
+                "userID": "6069d7f7f9ac6b000150c60a",
+                "content": "<p><br></p>",
+                "userAgreed": [
+                    "6069d7f7f9ac6b000150c60a"
+                ],
+                "userDisagreed": [],
+                "createDate": "2021-04-04T15:17:15.332Z",
+                "updateDate": "2021-04-04T15:17:15.332Z",
+                "deleteDate": ""
+            }
+        ],
+        "schema": {
+            "bsonType": "object",
+            "required": [],
+            "permission": {
+                "read": true,
+                "create": false,
+                "update": false,
+                "delete": false
+            },
+            "properties": {
+                "_id": {
+                    "description": "ID，系统自动生成"
+                },
+                "questionID": {
+                    "bsonType": "object",
+                    "foreignKey": "question._id"
+                },
+                "userID": {
+                    "bsonType": "object",
+                    "foreignKey": "uni-id-users._id"
+                }
+            }
+        }
+    },
+    "questionTag": {
+        "data": [
+            {
+                "_id": "5fdfe2df23976b0001d43aa3",
+                "areaID": "5fdf56a3e2c1ee0001a52e49",
+                "name": "小程序",
+                "createDate": "2020-12-20T23:48:47.044Z",
+                "updateDate": "2020-12-20T23:48:47.044Z",
+                "deleteDate": ""
+            }
+        ],
+        "schema": {
+            "bsonType": "object",
+            "required": [],
+            "permission": {
+                "read": true,
+                "create": false,
+                "update": false,
+                "delete": false
+            },
+            "properties": {
+                "_id": {
+                    "description": "ID，系统自动生成"
+                }
+            }
+        }
+    },
+    "uni-id-permissions": {
+        "data": [
+            {
+                "_id": "60004860d06eec00012ba375",
+                "permission_id": "PUSH_QUESTIONS",
+                "permission_name": "发布题目权限",
+                "comment": "必须具有认证出题人/机构才可拥有此权限",
+                "created_date": "2021-01-14T13:31:15.653Z"
+            }
+        ]
+    },
+    "uni-id-roles": {
+        "data": [
+            {
+                "_id": "5fff8242bbbf9b0001ccb074",
+                "role_id": "admin",
+                "role_name": "超级管理员",
+                "permission": [
+                    "ANY"
+                ],
+                "comment": "拥有全部权限适用于超级管理员",
+                "create_date": 0
+            }
+        ]
+    },
+    "uni-id-users": {
+        "data": [
+            {
+                "_id": "5ff5bdd5770c7900015b1f80",
+                "register_date": 1608249221299,
+                "register_ip": "1.80.233.209",
+                "token": [],
+                "avatar": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/af1eb623-fdd7-40dd-bd25-26739f432e77.jpg",
+                "gender": 1,
+                "nickname": "前端面试3+1",
+                "sign": "前端面试3+1：https://github.com/haizlin/fe-interview",
+                "followers": [
+                    "5fdbef8506add500010d273e"
+                ]
+            }
+        ]
+    },
+    "userCollect": {
+        "data": [
+            {
+                "_id": "605dfb8bf83a000001cfd05b",
+                "name": "默认收藏夹",
+                "userID": "605df8968e68f00001e63f0b",
+                "collectData": [
+                    {
+                        "type": "explanation",
+                        "id": "6041724fb510d00001e675a0"
+                    },
+                    {
+                        "type": "explanation",
+                        "id": "6068589af9ac6b00014caf7a"
+                    }
+                ]
+            }
+        ],
+        "schema": {
+            "bsonType": "object",
+            "required": [],
+            "permission": {
+                "read": true,
+                "create": false,
+                "update": false,
+                "delete": false
+            },
+            "properties": {
+                "_id": {
+                    "description": "ID，系统自动生成"
+                }
+            }
+        }
+    }
 }
