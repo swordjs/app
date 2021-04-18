@@ -29,6 +29,26 @@ namespace questionExplanation {
         })
         .catch((err) => err);
     }
+    // 修改题解
+    async updateQuestionExplanation() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "_id",
+            value: "题解ID",
+          },
+          {
+            key: "content",
+            value: "内容",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => {
+          return await this.handler("updateQuestionExplanation");
+        })
+        .catch((err) => err);
+    }
     // 采纳/取消采纳题解
     async adoptionQuestionExplanation() {
       return handleMustRequireParam(
@@ -46,7 +66,7 @@ namespace questionExplanation {
         .catch((err) => err);
     }
     // 收藏/取消收藏题解
-    async collectQuestionExplanation(){
+    async collectQuestionExplanation() {
       return handleMustRequireParam(
         [
           {

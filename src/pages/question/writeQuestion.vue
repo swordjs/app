@@ -11,6 +11,7 @@
       <robin-editor
         ref="RichText"
         class="editor"
+        :value="questionInfo.content"
         width="690"
         :muiltImage="true"
         :header="false"
@@ -21,6 +22,7 @@
       <robin-editor
         :header="false"
         ref="MarkDown"
+        :value="questionInfo.content"
         class="editor"
         width="690"
         :autoHideToolbar="true"
@@ -53,18 +55,33 @@
 import { defineComponent, ref } from "vue";
 // api
 import { uploadFileToCloudStorage } from "../../api/common";
-import { addQuestionExplanation } from "../../api/questionExplanation";
+import {
+  getExplanationsByID,
+  addQuestionExplanation,
+  updateQuestionExplanation,
+} from "../../api/questionExplanation";
 import { removeHtmlTag } from "../../util/common";
 import * as marked from "marked";
 interface IPageParams {
   id: string;
   questionID: string;
   title: string;
+  explanationID?: string;
 }
 export default defineComponent({
   onLoad(params: IPageParams) {
-    this.questionInfo.questionID = params.questionID;
-    this.questionInfo.title = params.title;
+    if (params.questionID) this.questionInfo.questionID = params.questionID;
+    if (params.title) this.questionInfo.title = params.title;
+    // 如果是修改题解会传入一个题解的ID
+    if (params.explanationID) {
+      this.questionInfo.explanationID = params.explanationID;
+      // 设置标题
+      uni.setNavigationBarTitle({
+        title: "修改题解",
+      });
+      // 根据题解ID获取题解内容
+      this.getExplanationData();
+    }
   },
   mounted() {
     // 因为uniapp的vue3bug，我不能直接通过props传递函数，因为函数在template中是undefined，等待官方解决...
@@ -78,10 +95,14 @@ export default defineComponent({
       id?: string;
       title: string;
       questionID: string;
+      explanationID?: string;
+      content: string;
     }>({
       id: "",
       title: "",
       questionID: "",
+      explanationID: null,
+      content: "",
     });
     // 切换撰写答案类型
     const changeWriteType = () => {
@@ -108,16 +129,29 @@ export default defineComponent({
         callback(res.data.fileID);
       }
     };
+    const getExplanationData = async () => {
+      uni.showLoading({
+        title: "获取题解中...",
+        mask: true,
+      });
+      const result = await getExplanationsByID({
+        id: questionInfo.value.explanationID,
+      });
+      uni.hideLoading();
+      if (result.success) {
+        questionInfo.value.content = result.data[0].content;
+      }
+    };
     return {
       changeWriteType,
       writeType,
       questionInfo,
       beforeUploadImage,
+      getExplanationData,
     };
   },
   methods: {
     async handleSaveEditor() {
-      let content = "";
       switch (this.writeType) {
         case "RichText":
           break;
@@ -135,19 +169,34 @@ export default defineComponent({
             });
           } else {
             // 如果是MarkDown需要转换
-            if(this.writeType === "MarkDown"){
-              html = marked(html)
+            if (this.writeType === "MarkDown") {
+              html = marked(html);
             }
+            // 是否是 【修改问题】
+            const isEdit: boolean = this.questionInfo.explanationID !== null;
             uni.showLoading({
               mask: true,
             });
-            const addResult = await addQuestionExplanation({
-              _id: this.questionInfo.questionID,
+            let func = null;
+            switch (isEdit) {
+              case true:
+                func = updateQuestionExplanation;
+                break;
+              default:
+                func = addQuestionExplanation;
+                break;
+            }
+            const result = await func({
+              _id: isEdit
+                ? this.questionInfo.explanationID
+                : this.questionInfo.questionID,
               content: html,
             });
             uni.hideLoading();
-            if (addResult.success) {
-              const explanationID = addResult.data._id;
+            if (result.success) {
+              const explanationID = isEdit
+                ? this.questionInfo.explanationID
+                : result.data._id;
               // 题解详情页面
               uni.redirectTo({
                 url: `/pages/question/questionExplanationDetail?id=${explanationID}`,

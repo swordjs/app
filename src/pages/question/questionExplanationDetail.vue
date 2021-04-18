@@ -32,12 +32,20 @@
       </view>
       <view class="contentRight">
         <view class="star">
-          <!-- 收藏 -->
-          <i-icon
-            @click="handleCollect"
-            :color="isCollect && '#EA4D4D'"
-            :name="isCollect ? 'star-smile-fill' : 'star-smile-line'"
-          ></i-icon>
+          <!-- 收藏/修改回答 -->
+          <template v-if="!isSelf">
+            <i-icon
+              @click="handleCollect"
+              :color="isCollect && '#EA4D4D'"
+              :name="isCollect ? 'star-smile-fill' : 'star-smile-line'"
+            ></i-icon>
+          </template>
+          <template v-else>
+            <i-icon
+              @click="handleEdit"
+              name="edit-box-line"
+            ></i-icon>
+          </template>
         </view>
         <!-- 评论 -->
         <i-icon @click="handleComment" name="message-2-line"></i-icon>
@@ -47,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import {
   getExplanationsByID,
   adoptionQuestionExplanation,
@@ -64,22 +72,31 @@ export default {
       this.getExplanationData();
     }
   },
-  onShareAppMessage(){
+  onShareAppMessage() {
     return {
-      title: `${this.data.userID[0].nickname}解答了[${this.data.questionID[0].title}]，快来围观吧~`
-    }
+      title: `${this.data.userID[0].nickname}解答了[${this.data.questionID[0].title}]，快来围观吧~`,
+    };
   },
   setup() {
     const id = ref("");
     const data = ref<{
       userAgreed?: string[];
+      questionID?: {
+        title: string;
+      };
       userID?: {
+        _id: string;
         collect: string[];
       }[];
       _id?: string;
     }>({
+      userID: [],
       userAgreed: [],
     });
+    const isSelf = computed(() => {
+      const userID = uni.getStorageSync("uni_id");
+      return userID === data.value.userID[0]?._id;
+    })
     // 是否已采纳
     const isAdoption = ref<boolean>(false);
     // 是否已收藏
@@ -104,10 +121,9 @@ export default {
         isAdoption.value = data.value.userAgreed.some(
           (u) => u === uni.getStorageSync("uni_id")
         );
-        console.log(data.value);
         // 查看自己的用户信息收藏夹中是否存在此题解
         const isCollectResult = await checkIDInCollect({
-          id: data.value._id
+          id: data.value._id,
         });
         if (isCollectResult.success) {
           isCollect.value = isCollectResult.data;
@@ -153,6 +169,13 @@ export default {
       }
     };
 
+    // 修改回答
+    const handleEdit = () => {
+      uni.navigateTo({
+        url: `/pages/question/writeQuestion?explanationID=${data.value._id}&title=${data.value.questionID[0].title}`
+      })
+    }
+
     // 评论
     const handleComment = () => {
       uni.showToast({
@@ -162,6 +185,7 @@ export default {
     };
     return {
       id,
+      isSelf,
       data,
       isAdoption,
       isCollect,
@@ -170,6 +194,7 @@ export default {
       handleLike,
       handleComment,
       handleCollect,
+      handleEdit
     };
   },
 };
@@ -286,7 +311,7 @@ page {
     }
     .contentRight {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       margin-right: 30rpx;
       .star {

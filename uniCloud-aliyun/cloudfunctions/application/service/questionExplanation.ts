@@ -9,10 +9,11 @@ namespace QuestionExplanationService {
     userID: string;
     nowDate: string;
   }
-  interface IAddQuestionExplanation {
+
+  type ParamsType = {
     _id: string;
     content: string;
-  }
+  };
   module.exports = class QuestionExplanationService {
     public userID: string;
     public nowDate: string;
@@ -20,10 +21,10 @@ namespace QuestionExplanationService {
       this.userID = data?.userID;
       this.nowDate = new Date().toISOString();
     }
-    public async addQuestionExplanation(params: IAddQuestionExplanation) {
+    public async addQuestionExplanation(params: ParamsType) {
       const { _id, content } = params;
       const checkResult = fastscan.filter(content);
-      uniCloud.logger.log(checkResult)
+      uniCloud.logger.log(checkResult);
       const explanationResult = await collection.add({
         questionID: _id,
         userID: this.userID,
@@ -47,6 +48,13 @@ namespace QuestionExplanationService {
           _id: explanationResult.id,
         };
       }
+    }
+    public async updateQuestionExplanation(params: ParamsType) {
+      const { _id, content } = params;
+      return await collection.doc(_id).update({
+        content,
+        updateDate: this.nowDate,
+      });
     }
     public async adoptionQuestionExplanation(params: { _id: string }) {
       // 判断当前题解中的采纳列表中是否存在此userID

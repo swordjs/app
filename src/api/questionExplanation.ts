@@ -17,7 +17,27 @@ export async function addQuestionExplanation(params: {
       method: "POST",
       params,
     },
-    checkLogin: true
+    checkLogin: true,
+  });
+}
+
+/**
+ * @name 修改题解
+ * @param params 
+ * @returns 
+ */
+export async function updateQuestionExplanation(params: {
+  _id: string;
+  content: string;
+}) {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/questionExplanation`,
+      method: "PUT",
+      params,
+    },
+    checkLogin: true,
   });
 }
 
@@ -34,7 +54,7 @@ export async function adoptionQuestionExplanation(params: { _id: string }) {
       method: "POST",
       params,
     },
-    checkLogin: true
+    checkLogin: true,
   });
 }
 
@@ -51,7 +71,7 @@ export async function collectQuestionExplanation(params: { _id: string }) {
       method: "POST",
       params,
     },
-    checkLogin: true
+    checkLogin: true,
   });
 }
 
@@ -101,7 +121,7 @@ export async function getExplanationsByID(params: {
     db.collection("questionExplanation,question,uni-id-users")
       .doc(params.id)
       .field(
-        `questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname,collect}`
+        `questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname,collect,_id}`
       )
       .get()
       .then((res) => {
