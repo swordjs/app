@@ -27,7 +27,7 @@ class 收藏夹 {
     +String name
     +Array collectData
 }
-class 用户认证{
+class 用户申请认证表{
     +UUID _id
     +UUID userID
     +String state
@@ -35,6 +35,13 @@ class 用户认证{
     --申请和修改认证--
     +void addAuthByUser()
     +void updateAuthByUser()
+}
+class 用户验证码表{
+    +UUID _id
+    +String mobile
+    +String type
+    +String code
+    +String state
 }
 class 题目专区 {
     +UUID _id
@@ -108,28 +115,26 @@ class 权限{
     +String permission_name
     +String comment
 }
-class 题目统计{
-    +UUID _id
-    +UUID questionID
-    +Array statisticsInfo
-}
+
+
 class 服务号推送日志{
     +UUID _id
     +String type
     +String content
 }
+
 题目专区 --> "many" 题目分类标签::areaID
 用户 --> "many" 题目
-用户 --> "many" 用户认证::userID
+用户 --> "many" 用户申请认证表::userID
 用户 --> "many" 文章::userID
 用户 --> "many" 角色
+用户 --> "many" 用户验证码表
 用户::collect --> "many" 收藏夹::_id
 用户 --> "many" 权限
 文章::tagID --> "many" 题目分类标签
 题目 --> "many" 题目分类标签
 题目 <-- 题目专区
 题目 --> "many" 题解::questionID
-题目 --> "many" 题目统计::questionID
 note left of 用户::_id
 由Uni-id生成的唯一主键
 end note
