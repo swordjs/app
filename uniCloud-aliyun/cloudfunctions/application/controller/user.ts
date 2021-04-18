@@ -16,6 +16,10 @@ namespace User {
     async loginByWechat(urlParams) {
       return await this.hanlder("loginByWechat", urlParams);
     }
+    // 用户相关的短信验证码
+    async sendSms(urlParams){
+      return await this.hanlder("sendSms", urlParams);
+    }
     // 注册用户根据手机号
     addUserByPhone() {
       return handleMustRequireParam(

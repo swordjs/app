@@ -51,6 +51,14 @@ namespace UserService {
       });
       return res;
     }
+    public async sendSms(params, urlParams) {
+      const { type, phone } = urlParams;
+      return await uniID.sendSmsCode({
+        mobile: phone,
+        templateId: "11846",
+        type,
+      });
+    }
     public async addUserByPhone(params: IAddUserByPhone) {
       const { username, password } = params;
       return await uniID.register({
@@ -104,13 +112,15 @@ namespace UserService {
         const {
           total: explanationCount,
         } = await questionExplanation.getExplanationCountByUser(userID);
-        const {data: likeData} = await questionExplanation.getLikeCountByUser(userID);
+        const { data: likeData } = await questionExplanation.getLikeCountByUser(
+          userID
+        );
         return {
           ...baseUserInfo,
           fansCount,
           questionCount,
           explanationCount,
-          likeCount: likeData.length
+          likeCount: likeData.length,
         };
       }
     }

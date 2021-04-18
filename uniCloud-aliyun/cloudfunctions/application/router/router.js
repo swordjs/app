@@ -7,6 +7,11 @@ module.exports = [
         action: "addUserByPhone",
       },
       {
+        route: "sendSms/{type}/{phone}",
+        httpMethod: "POST",
+        action: "sendSms",
+      },
+      {
         route: "loginByWechat/{code}",
         httpMethod: "POST",
         action: "loginByWechat",
@@ -128,7 +133,7 @@ module.exports = [
         action: "addQuestionExplanation",
       },
       {
-        action: "updateQuestionExplanation"
+        action: "updateQuestionExplanation",
       },
       {
         route: "adoptionQuestionExplanation",
