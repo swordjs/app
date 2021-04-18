@@ -110,6 +110,10 @@ namespace User {
             key: "avatar",
             value: "头像",
           },
+          {
+            key: "sign",
+            value: "签名",
+          },
         ],
         this.event.params
       )
