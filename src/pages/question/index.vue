@@ -29,7 +29,7 @@ export default defineComponent({
     getListData();
     const handleArea = (item: {_id: string, name: string}) => {
       uni.navigateTo({
-        url: `/pages/question/questionList?areaID=${item._id}&areaName=${item.name}`
+        url: `/pages/question/questionList?areaID=${item._id}&areaName=${encodeURIComponent(item.name)}`
       })
     }
     return {

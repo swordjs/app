@@ -68,9 +68,9 @@ export default defineComponent({
   onLoad(params: IPageParams) {
     this.areaID = params.areaID;
     // 动态设置标题
-    this.areaName = params.areaName;
+    this.areaName = decodeURIComponent(params.areaName);
     uni.setNavigationBarTitle({
-      title: params.areaName,
+      title: this.areaName,
     });
     // 获取列表
     this.handleGetData();
@@ -116,8 +116,7 @@ export default defineComponent({
       const result = await getQuestionListData({
         limit: pageConfig.limit,
         page: pageConfig.page,
-        areaID: areaID.value,
-        userID,
+        areaID: areaID.value
       });
       uni.hideLoading();
       if (result.success) {
