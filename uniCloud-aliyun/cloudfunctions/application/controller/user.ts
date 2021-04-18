@@ -86,7 +86,7 @@ namespace User {
     }
 
     // 校验Token是否有效
-    async checkToken(urlParams) {
+    async checkpToken(urlParams) {
       return await this.hanlder("checkToken", urlParams);
     }
 
