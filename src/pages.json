@@ -1,70 +1,83 @@
 {
-  "pages": [
-    {
-      "path": "pages/index/index",
-      "style": {}
-    },
-    {
-      "path": "pages/question/index",
-      "style": {
-        "navigationStyle": "default",
-        "navigationBarTitleText": "题解专区"
-      }
-    },
-    {
-      "path": "pages/question/questionList",
-      "style": {
-        "navigationStyle": "default",
-        "navigationBarTitleText": ""
-      }
-    },
-    {
-      "path": "pages/user/index"
-    },
-    {
-      "path": "pages/question/questionDetail",
-      "style": {
-        "navigationBarTitleText": "",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/question/writeQuestion",
-      "style": {
-        "navigationStyle": "default",
-        "navigationBarTitleText": "写题解",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/question/questionExplanationDetail",
-      "style": {
-        "navigationBarTitleText": "",
-        "enablePullDownRefresh": false
-      }
-    },
-    {
-      "path": "pages/common/noRelease",
-      "style": {
-        "navigationStyle": "default",
-        "navigationBarTitleText": "暂未发布",
-        "enablePullDownRefresh": false
-      }
-    }
-  ],
-  "easycom": {
-    "autoscan": true,
-    "custom": {
-      "^common(.*)": "@/components/common/common$1.vue",
-      "^i-(.*)": "@/components/i-uniapp/i-$1/i-$1.vue",
-      "Tabs": "@/components/v-tabs/v-tabs.vue"
-    }
-  },
-  "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "剑指题解",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8",
-    "navigationStyle": "custom"
-  }
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {}
+		},
+		{
+			"path": "pages/question/index",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "题解专区"
+			}
+		},
+		{
+			"path": "pages/question/questionList",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/user/index"
+		},
+		{
+			"path": "pages/question/questionDetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/question/writeQuestion",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "写题解",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/question/questionExplanationDetail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/common/noRelease",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "暂未发布",
+				"enablePullDownRefresh": false
+			}
+		}, {
+			"path": "pages/search/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/search/list",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	],
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^common(.*)": "@/components/common/common$1.vue",
+			"^i-(.*)": "@/components/i-uniapp/i-$1/i-$1.vue",
+			"Tabs": "@/components/v-tabs/v-tabs.vue"
+		}
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "剑指题解",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom"
+	}
 }
