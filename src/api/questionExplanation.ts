@@ -121,7 +121,7 @@ export async function getExplanationsByID(params: {
     db.collection("questionExplanation,question,uni-id-users")
       .doc(params.id)
       .field(
-        `questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname,collect,_id}`
+        `questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname,_id}`
       )
       .get()
       .then((res) => {

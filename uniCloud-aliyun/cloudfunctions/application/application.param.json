@@ -3,11 +3,10 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/certificationApplyOrder/updateCertificationApplyOrderState",
-	"method": "PUT",
+	"route": "api/questionExplanation/collectQuestionExplanation",
+	"method": "POST",
 	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDVkZjg5NjhlNjhmMDAwMDFlNjNmMGIiLCJyb2xlIjpbXSwicGVybWlzc2lvbiI6W10sImlhdCI6MTYxNjc3MTIyMiwiZXhwIjoxZSsxNTh9.Kbp16ZKbRYd-iVbpfguFvdRPGHBxtlyH9OsUC2TocAU",
 	"params": {
-		"_id": "607e0e815a4ad4000168b180",
-		"state": "pass"
+		"_id": "6056085ce1d3930001dc57fd"
 	}
 }

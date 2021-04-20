@@ -58,7 +58,6 @@ namespace QuestionService {
         content: params.content || "",
         publishUserID: this.userID,
         tagID: params.tagID || "",
-        questionExplanation: [],
         state: "onlist",
         createDate: this.nowDate,
         updateDate: this.nowDate,
@@ -155,12 +154,6 @@ namespace QuestionService {
           pageView: pageView + 1,
         });
       }
-    }
-    // 新增题解关联ID，题解模块调用
-    public async addQuestionExplanationByID(params: {_id: string, questionExplanationID: string}){
-      return await collection.doc(params._id).update({
-        questionExplanation: dbCmd.push([params.questionExplanationID])
-      });
     }
     // 根据UserID获取发布了多少道题目
     public async questionCountByUserID(userID){
