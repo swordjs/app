@@ -49,20 +49,6 @@
 				"navigationBarTitleText": "暂未发布",
 				"enablePullDownRefresh": false
 			}
-		}, {
-			"path": "pages/search/index",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/search/list",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
-			}
-
 		}
 	],
 	"easycom": {
