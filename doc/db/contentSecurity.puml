@@ -1,0 +1,15 @@
+@startuml
+
+start
+:进入内容安全公共模块;
+if (文本识别) then ( )
+    :将不安全的字符进行*处理;
+elseif (图片识别) then( )
+    :屏蔽反暴力血腥等不合法图片;
+elseif (富文本识别) then( )
+    :对富文本中不正当词汇做出预警判断;
+endif
+
+stop
+
+@enduml
