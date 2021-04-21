@@ -1,21 +1,23 @@
 {
-  "name": "application",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "app-tools": "file:../common/app-tools",
-    "explain": "file:../common/explain",
-    "uni-id": "file:../common/uni-id",
-    "form-data-utils": "file:../common/form-data-utils",
-    "fastscan": "file:../common/fastscan"
-  },
-  "devDependencies": {}
+	"name": "application",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"app-tools": "file:../common/app-tools",
+		"content-security": "file:../common/content-security",
+		"explain": "file:../common/explain",
+		"fastscan": "file:../common/fastscan",
+		"form-data-utils": "file:../common/form-data-utils",
+		"sensitive-word-filter": "file:../common/fastscan",
+		"uni-id": "file:../common/uni-id"
+	},
+	"devDependencies": {}
 }
