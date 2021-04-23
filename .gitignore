@@ -22,3 +22,4 @@ yarn-error.log*
 *.sln
 *.sw*
 uniCloud-aliyun/cloudfunctions/common/uni-id/config.json
+uniCloud-aliyun/cloudfunctions/common/get-accesstoken/config.json
