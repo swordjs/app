@@ -4,6 +4,7 @@
     <view class="topBox">
       <!-- hello world -->
       <view class="title"></view>
+      <view class="titleMask"></view>
     </view>
     <!-- Form -->
     <view class="formBox">
@@ -301,6 +302,38 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+@keyframes helloWorld {
+  0% {
+    transform: translateX(38rpx);
+  }
+  10% {
+    transform: translateX(calc(38rpx * 2));
+  }
+  20% {
+    transform: translateX(calc(38rpx * 3));
+  }
+  30% {
+    transform: translateX(calc(38rpx * 4));
+  }
+  40% {
+    transform: translateX(calc(38rpx * 5));
+  }
+  50% {
+    transform: translateX(calc(38rpx * 6));
+  }
+  60% {
+    transform: translateX(calc(38rpx * 7));
+  }
+  70% {
+    transform: translateX(calc(38rpx * 8));
+  }
+  80%{
+    transform: translateX(calc(38rpx * 9));
+  }
+  90%{
+    transform: translateX(calc(38rpx * 10));
+  }
+}
 .topBox {
   width: 100%;
   height: 346rpx;
@@ -313,7 +346,7 @@ export default defineComponent({
     position: relative;
     width: 420rpx;
     height: 64rpx;
-    background: url(../../static/user/helloworld.png) no-repeat center / 100%;
+    background: url(../../static/user/helloworld.png) no-repeat center / 420rpx 64rpx;
     margin-top: 176rpx;
     margin-left: 68rpx;
 
@@ -335,6 +368,16 @@ export default defineComponent({
       height: 12rpx;
       background: #a6b6f3;
     }
+  }
+  .titleMask{
+    transform: translateX(420rpx);
+    position: absolute;
+    width: 420rpx;
+    height: 64rpx;
+    top: 285rpx;
+    left: 68rpx;
+    background: #fff;
+    animation: helloWorld 11s;
   }
 }
 
