@@ -17,7 +17,25 @@ namespace User {
       return await this.hanlder("loginByWechat", urlParams);
     }
     // 用户相关的短信验证码
-    async sendSms(urlParams){
+    async loginBySms() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "phone",
+            value: "手机号",
+          },
+          {
+            key: "code",
+            value: "验证码",
+          }
+        ],
+        this.event.params
+      )
+        .then(async () => await this.hanlder("loginBySms"))
+        .catch((err) => err);
+    }
+    // 手机和验证码直接登录
+    async sendSms(urlParams) {
       return await this.hanlder("sendSms", urlParams);
     }
     // 注册用户根据手机号

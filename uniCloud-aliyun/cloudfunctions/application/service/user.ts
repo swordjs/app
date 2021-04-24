@@ -39,9 +39,10 @@ namespace UserService {
       urlParams: { code: string }
     ) {
       const { code } = urlParams;
-      // 把用户信息也添加到库中
+      // 把用户信息也添加到库中, 设置角色为默认角色
       const res = await uniID.loginByWeixin({
         code,
+        role: ["normal"],
         needPermission: true, // 返回权限
       });
       // 更新用户信息（昵称，头像，性别等）
@@ -50,6 +51,41 @@ namespace UserService {
         ...params,
       });
       return res;
+    }
+    public async loginBySms(params: { phone: string; code: string }) {
+      const { phone, code } = params;
+      const result = await uniID.loginBySms({
+        mobile: phone,
+        code,
+        needPermission: true,
+        role: ["normal"],
+      });
+      if (result.code === 0) {
+        let userBaseInfo = {};
+        // 根据返回的Type判断如果是新注册用户，就更新一些基础个人信息
+        if (result.type === "register") {
+          // 更新用户信息（昵称，头像，性别等）
+          userBaseInfo = {
+            nickname: "暂未昵称",
+            avatar:
+              "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/97f24e41-574b-4f46-8939-abbea060f3d3.png",
+            sign: "感谢支持剑指题解",
+          };
+          // 执行更新
+          await uniID.updateUser({
+            uid: result.uid,
+            ...userBaseInfo,
+          });
+        }
+        // 在返回结果的userInfo中新增我们刚刚update的信息
+        return {
+          ...result,
+          userInfo: {
+            ...result.userInfo,
+            ...userBaseInfo,
+          },
+        };
+      }
     }
     public async sendSms(params, urlParams) {
       const { type, phone } = urlParams;

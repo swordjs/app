@@ -7,6 +7,11 @@ module.exports = [
         action: "addUserByPhone",
       },
       {
+        route: "loginBySms",
+        httpMethod: "POST",
+        action: "loginBySms",
+      },
+      {
         route: "sendSms/{type}/{phone}",
         httpMethod: "POST",
         action: "sendSms",

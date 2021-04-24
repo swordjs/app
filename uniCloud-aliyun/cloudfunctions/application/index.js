@@ -19,7 +19,8 @@ exports.main = async (event, context) => {
 						"checkToken",
 						"loginByWechat",
 						"getUserContentByID",
-						"sendSms"
+						"sendSms",
+						"loginBySms"
 					],
 				},
 				{

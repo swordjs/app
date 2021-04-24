@@ -62,7 +62,10 @@
         <view class="content"> 最近的[前端练习题]有更新 </view>
       </view>
       <!-- 动态 -->
-      <view class="menumain dynamic" @click="handleUrl('/pages/common/noRelease')">
+      <view
+        class="menumain dynamic"
+        @click="handleUrl('/pages/common/noRelease')"
+      >
         <view class="title">动态</view>
         <view class="content"> 后续版本迭代，尽情期待~ </view>
         <!-- 头像组 -->
@@ -111,13 +114,11 @@
 
 <script lang="ts">
 import { ref } from "vue";
-// api
-import { loginByWechat } from "../../api/login";
 export default {
-  onShareAppMessage(){
+  onShareAppMessage() {
     return {
-      title: `${this.user.nickName}邀请你使用剑指题解，一起快乐刷题吧~`
-    }
+      title: `${this.user.nickName}邀请你使用剑指题解，一起快乐刷题吧~`,
+    };
   },
   setup() {
     // 首页展示的信息，头像/昵称等
@@ -142,46 +143,12 @@ export default {
         const userID = uni.getStorageSync("uni_id");
         // 进入个人中心页面
         uni.navigateTo({
-          url: `/pages/user/index?userID=${userID}`
-        })
+          url: `/pages/user/index?userID=${userID}`,
+        });
       } else {
-        // 微信登录
-        wx.getUserProfile({
-          desc: '用于完善用户资料',
-          success: ({ userInfo }) => {
-            uni.login({
-              provider: "weixin",
-              async success(res) {
-                // 传入用户信息和code
-                uni.showLoading({
-                  title: "登录中...",
-                  mask: true
-                });
-                // 这里判断是登录/还是注册，如果是注册，默认调接口绑定一个角色Normal
-                const loginData = await loginByWechat(userInfo, res);
-                uni.hideLoading();
-                // 存储返回的token以及用户信息，id等
-                if (loginData.success && loginData.data.code === 0) {
-                  uni.setStorageSync("uni_id_token", loginData.data.token);
-                  uni.setStorageSync("uni_id", loginData.data.uid);
-                  uni.setStorageSync("userInfo", userInfo);
-                  // 显示微信个人信息
-                  user.value = userInfo;
-                  // 已登录状态变更
-                  isLogin.value = true;
-                }
-              },
-              fail(err) {
-                uni.showToast({
-                  title: "微信登录失败",
-                  icon: "none",
-                });
-              },
-            });
-          },
-          fail: () => {
-            console.log("未授权用户基本信息");
-          },
+        // 未登录进入登录页面
+        uni.navigateTo({
+          url: "/pages/user/login",
         });
       }
     };
@@ -305,7 +272,6 @@ export default {
     image {
       width: 100%;
       height: 100%;
-      
     }
   }
 
