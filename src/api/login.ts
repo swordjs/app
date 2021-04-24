@@ -6,7 +6,7 @@ import callFunction from "./../common/callFunction";
  * @param res
  * @returns
  */
-export async function loginByWechat(userInfo, res) {
+export async function loginByWechat(userInfo, res): Promise<ActionResult> {
   return await callFunction({
     name: "application",
     data: {
@@ -17,6 +17,39 @@ export async function loginByWechat(userInfo, res) {
         avatar: userInfo.avatarUrl,
         nickname: userInfo.nickName,
       },
+    },
+  });
+}
+
+/**
+ * @name 发送短信验证码
+ * @param params
+ * @returns
+ */
+export async function sendSms(params: {
+  phone: string;
+  type: string;
+}): Promise<ActionResult> {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/user/sendSms/${params.type}/${params.phone}`,
+      method: "POST",
+      params: {},
+    },
+  });
+}
+
+export async function loginBySms(params: {
+  phone: string;
+  code: string;
+}): Promise<any> {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/user/loginBySms`,
+      method: "POST",
+      params,
     },
   });
 }
