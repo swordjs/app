@@ -59,6 +59,16 @@
             }
             
         }
+        ,{
+            "path" : "pages/user/editProfile",
+            "style" :                                                                                    
+            {
+				"navigationStyle": "default",
+                "navigationBarTitleText": "修改资料",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"easycom": {
 		"autoscan": true,

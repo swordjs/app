@@ -55,9 +55,6 @@ export default {
       align-content: center;
       color: #666666;
       font-size: 28rpx;
-      & /deep/ .i-icon {
-        margin-top: 0;
-      }
     }
   }
 }

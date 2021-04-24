@@ -30,7 +30,7 @@
           <view class="sign">{{ userInfo.sign }}</view>
         </view>
         <!-- 关注/编辑 -->
-        <view v-if="!isSelf" class="followOrEdit" @click="handleCardButton">
+        <view v-if="!isSelf" class="follow" @click="handleCardButton">
           <i-icon
             @click="handleCardButton"
             v-if="!attentionUser"
@@ -40,6 +40,18 @@
           >
           </i-icon>
           <text>{{ attentionUser ? "取消关注" : "关注" }}</text>
+        </view>
+        <view v-else class="edit" @click="handleEditProfile">
+          <i-icon
+            @click="handleEditProfile"
+            v-if="!attentionUser"
+            size="30rpx"
+            style="margin-right: 10rpx;"
+            color="#FFDB86"
+            name="pencil-fill"
+          >
+          </i-icon>
+          <text>编辑</text>
         </view>
       </view>
       <!-- 卡片 -->
@@ -441,6 +453,10 @@ export default {
         url: `/pages/question/questionExplanationDetail?id=${id}`,
       });
     };
+    // 修改资料的入口
+    const handleEditProfile = () => {
+      
+    }
     // 列表到达底部的处理函数
     const handleScrolltolower = (item: List) => {
       // 判断其中data的长度是否已不够进行分页
@@ -537,7 +553,7 @@ export default {
           @include text-ellipsis(2);
         }
       }
-      .followOrEdit {
+      .follow {
         position: absolute;
         right: 0;
         top: 50%;
@@ -553,6 +569,23 @@ export default {
         text {
           //   margin-right: 6rpx;
         }
+        &:active {
+          opacity: 0.7;
+        }
+      }
+      .edit{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #5D6AF6;
+        font-size: 24rpx;
+        color: #e4e5ff;
+        padding: 8rpx 24rpx;
+        border-radius: 13px;
         &:active {
           opacity: 0.7;
         }

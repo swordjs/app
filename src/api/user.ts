@@ -52,7 +52,7 @@ export async function getUserBaseContentByUserID(params: {
       .where({
         _id: params.userID,
       })
-      .field("nickname,avatar,followers")
+      .field("nickname,avatar,followers,sign,gender")
       .get()
       .then((res) => {
         const { success, result } = res;
@@ -67,5 +67,26 @@ export async function getUserBaseContentByUserID(params: {
           icon: "none",
         });
       });
+  });
+}
+
+
+export async function updateUserProfile(params: {
+  nickname: string,
+  avatar: string,
+  gender: number,
+  sign: string
+}): Promise<ActionResult> {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/user`,
+      method: "PUT",
+      params: {
+        ...params,
+        uid: uni.getStorageSync("uni_id")
+      }
+    },
+    checkLogin: true
   });
 }
