@@ -255,13 +255,15 @@ type ListInfo = {
 export default {
   onLoad(event: { userID: string }) {
     this.userID = event.userID;
-    this.getUserInfo();
     this.getQuestionList({
       index: 0,
     });
     this.getQuestionList({
       index: 1,
     });
+  },
+  onShow(){
+    this.getUserInfo();
   },
   onShareAppMessage(){
     let title: string = "";
@@ -455,7 +457,9 @@ export default {
     };
     // 修改资料的入口
     const handleEditProfile = () => {
-      
+      uni.navigateTo({
+        url: "/pages/user/editProfile"
+      })
     }
     // 列表到达底部的处理函数
     const handleScrolltolower = (item: List) => {
@@ -495,6 +499,7 @@ export default {
       handleScrolltolower,
       handleClickQuestion,
       handleExplanation,
+      handleEditProfile
     };
   },
 };

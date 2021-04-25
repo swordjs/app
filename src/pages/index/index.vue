@@ -120,6 +120,9 @@ export default {
       title: `${this.user.nickName}邀请你使用剑指题解，一起快乐刷题吧~`,
     };
   },
+  onShow(){
+    this.handleLoadUserInfo();
+  },
   setup() {
     // 首页展示的信息，头像/昵称等
     const user = ref({
@@ -128,9 +131,12 @@ export default {
     });
     // 是否登录
     const isLogin = ref(uni.getStorageSync("uni_id_token") !== "");
-    if (isLogin.value) {
-      user.value = uni.getStorageSync("userInfo");
-    }
+    
+    const handleLoadUserInfo = () => {
+      if (isLogin.value) {
+        user.value = uni.getStorageSync("userInfo");
+      }
+    };
     const handleUrl = (path: string) => {
       uni.navigateTo({
         url: path,
@@ -156,6 +162,7 @@ export default {
       isLogin,
       user,
       handleUrl,
+      handleLoadUserInfo,
       handleClickUser,
     };
   },

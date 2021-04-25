@@ -3,8 +3,16 @@
     <view class="form">
       <i-form>
         <i-field label="头像">
-          <image @click="handleUploadAvatar" :src="form.avatar" class="avatar" mode="scaleToFill"></image>
-          <i-icon @click="handleUploadAvatar" name="arrow-drop-right-line"></i-icon>
+          <image
+            @click="handleUploadAvatar"
+            :src="form.avatar"
+            class="avatar"
+            mode="scaleToFill"
+          ></image>
+          <i-icon
+            @click="handleUploadAvatar"
+            name="arrow-drop-right-line"
+          ></i-icon>
         </i-field>
         <i-field label="昵称">
           <i-input
@@ -96,12 +104,13 @@ export default {
       }
     };
     const submitActive = computed(() => {
-      return Object.values(form).filter(i => i === "").length === 0;
-    })
+      return Object.values(form).filter((i) => i === "").length === 0;
+    });
     const handleSubmit = async () => {
       if (submitActive.value) {
         uni.showLoading({
           title: "保存中...",
+          mask: true,
         });
         const updateData = await updateUserProfile({
           sign: form.sign,
@@ -109,22 +118,29 @@ export default {
           gender: form.sex,
           nickname: form.nickname,
         });
-        if (updateData.success){
+        if (updateData.success) {
           uni.hideLoading();
-          uni.showToast({
-            title: "保存成功",
-            icon: "none",
-          });
           uni.setStorageSync("userInfo", {
             avatarUrl: form.avatar,
-            nickname: form.nickname
+            nickName: form.nickname,
+          });
+          uni.showModal({
+            title: "提示",
+            content: "保存成功",
+            showCancel: false,
+            confirmText: "好的",
+            success: () => {
+              uni.navigateBack({
+                delta: 1,
+              });
+            },
           });
         }
-      }else{
+      } else {
         uni.showToast({
           title: "您有空未填写",
-          icon: "none"
-        })
+          icon: "none",
+        });
       }
     };
     const handleCutterCancel = () => {
