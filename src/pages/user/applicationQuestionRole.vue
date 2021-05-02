@@ -36,6 +36,12 @@ import notLogin from "../../util/notLogin";
 // api
 import { addCertificationApplyOrder } from "../../api/certificationApplyOrder";
 export default defineComponent({
+  onShareAppMessage() {
+    return {
+      imageUrl: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/d9120b07-0203-4b86-93ba-72fdcd2df843.png",
+      title: `快来和我一起成为剑指题解官方出题官，一起向计算机行业输送优质的题目吧！`,
+    };
+  },
   setup() {
     // 表单Form
     const form = reactive({
