@@ -10,6 +10,7 @@ type CallFunctionParams = {
 const errorMessage = {
   401: "您暂未登录或登录状态过期",
 };
+import notLogin from "../util/notLogin";
 
 /**
  * @name 查询是否登录
@@ -28,14 +29,7 @@ export default (params: CallFunctionParams): Promise<ActionResult> => {
   return new Promise(async (resolve) => {
     // 如果接口注明需要验证token，如果没传递，则不会执行请求
     if (params.checkLogin) {
-      if (!checkLogin()) {
-        uni.hideLoading();
-        uni.showToast({
-          title: "您暂未登录，请登陆后再试试",
-          icon: "none",
-        });
-        return;
-      }
+      notLogin();
     }
     const { result } = await uniCloud.callFunction({
       name: params.name,

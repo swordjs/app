@@ -1,6 +1,6 @@
 <template>
   <view class="box">
-    <commonFill title="此功能暂未发布，尽情期待"></commonFill>
+    <commonFill title="您的账户积分不足，暂未解锁"></commonFill>
   </view>
 </template>
 <script lang='ts'>

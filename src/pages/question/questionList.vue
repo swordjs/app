@@ -54,6 +54,7 @@ import { defineComponent, ref } from "vue";
 // api
 import { getQuestionListData } from "../../api/question";
 import { checkExplanationByUser } from "../../api/questionExplanation";
+import notLogin from "../../util/notLogin";
 interface IPageParams {
   areaID: string;
   areaName: string;
@@ -75,10 +76,10 @@ export default defineComponent({
     // 获取列表
     this.handleGetData();
   },
-  onShareAppMessage(){
+  onShareAppMessage() {
     return {
-      title: `今天我刷了剑指题解的${this.areaName}题，你呢？`
-    }
+      title: `今天我刷了剑指题解的${this.areaName}题，你呢？`,
+    };
   },
   onReachBottom() {
     if (this.pageConfig.page * this.pageConfig.limit > this.dataList.length) {
@@ -105,8 +106,6 @@ export default defineComponent({
     const dataList = ref<IDataList[] | []>([]);
     const areaID = ref<string>("");
     const areaName = ref<string>("");
-    const userID: string = uni.getStorageSync("uni_id");
-
     // 根据规则获取题目列表
     const handleGetData = async () => {
       uni.showLoading({
@@ -116,14 +115,14 @@ export default defineComponent({
       const result = await getQuestionListData({
         limit: pageConfig.limit,
         page: pageConfig.page,
-        areaID: areaID.value
+        areaID: areaID.value,
       });
       uni.hideLoading();
       if (result.success) {
         uni.showToast({
           title: "加载成功",
-          icon: "none"
-        })
+          icon: "none",
+        });
         dataList.value = dataList.value.concat(result.data);
       }
     };
@@ -142,8 +141,7 @@ export default defineComponent({
     };
     // 进入新增题解页面
     const handleStart = async (_id: string, title: string) => {
-      // 如果没有登录
-      if (userID !== "") {
+      notLogin(async (userID) => {
         uni.showLoading({
           title: "请稍后...",
           mask: true,
@@ -165,12 +163,7 @@ export default defineComponent({
             });
           }
         }
-      } else {
-        uni.showToast({
-          title: "请先登录喔~",
-          icon: "none",
-        });
-      }
+      });
     };
     const handleQuestionChange = (e) => {
       const current: number = e.detail.current;
@@ -184,7 +177,6 @@ export default defineComponent({
     return {
       areaName,
       pageConfig,
-      userID,
       areaID,
       dataList,
       handleGetData,
@@ -216,14 +208,14 @@ page {
     border-radius: 20rpx;
     margin: 0 auto;
     margin-top: 66rpx;
-    &:nth-child(odd){
-      .topCard{
+    &:nth-child(odd) {
+      .topCard {
         background: url(../../static/question/questionWriteBackrgound.png)
           no-repeat center / 100%;
       }
     }
-    &:nth-child(even){
-      .topCard{
+    &:nth-child(even) {
+      .topCard {
         background: url(../../static/question/questionBookBackrgound.png)
           no-repeat center / 100%;
       }
