@@ -1,5 +1,9 @@
 <template>
-  <view class="indexBox">
+  <view
+    class="indexBox"
+    @touchstart="handleTouchStart"
+    @touchend="handleTouchEnd"
+  >
     <!-- 顶部背景 -->
     <view class="topBox">
       <!-- 头像 -->
@@ -109,21 +113,31 @@
         </view>
       </view>
     </view>
+    <menu-drawer :show="drawerShow" @change="drawerShow = !drawerShow" :user="user" :isLogin="isLogin"/>
   </view>
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 export default {
   onShareAppMessage() {
     return {
       title: `${this.user.nickName}邀请你使用剑指题解，一起快乐刷题吧~`,
     };
   },
-  onShow(){
+  onShow() {
     this.handleLoadUserInfo();
   },
   setup() {
+    const drawerShow = ref<boolean>(false);
+    // 触摸坐标
+    const startData = reactive<{
+      clientX: number;
+      clientY: number;
+    }>({
+      clientX: 0,
+      clientY: 0,
+    });
     // 首页展示的信息，头像/昵称等
     const user = ref({
       nickName: "",
@@ -131,7 +145,7 @@ export default {
     });
     // 是否登录
     const isLogin = ref(uni.getStorageSync("uni_id_token") !== "");
-    
+
     const handleLoadUserInfo = () => {
       if (isLogin.value) {
         user.value = uni.getStorageSync("userInfo");
@@ -146,11 +160,8 @@ export default {
     const handleClickUser = () => {
       // 判断是否登录
       if (isLogin.value) {
-        const userID = uni.getStorageSync("uni_id");
-        // 进入个人中心页面
-        uni.navigateTo({
-          url: `/pages/user/index?userID=${userID}`,
-        });
+        // 打开首页用户弹窗
+        drawerShow.value = true;
       } else {
         // 未登录进入登录页面
         uni.navigateTo({
@@ -158,12 +169,32 @@ export default {
         });
       }
     };
+    const handleTouchStart = (e) => {
+      startData.clientX = e.changedTouches[0].clientX;
+      startData.clientY = e.changedTouches[0].clientY;
+    };
+    const handleTouchEnd = (e) => {
+      const subX = e.changedTouches[0].clientX - startData.clientX;
+      const subY = e.changedTouches[0].clientY - startData.clientY;
+      if (Math.abs(subX) > Math.abs(subY)) {
+        if (subX > 50) {
+          // 右滑
+          drawerShow.value = true;
+        } else if (subX < -50) {
+          // 左滑
+          drawerShow.value = false;
+        }
+      }
+    };
     return {
+      drawerShow,
       isLogin,
       user,
       handleUrl,
       handleLoadUserInfo,
       handleClickUser,
+      handleTouchStart,
+      handleTouchEnd,
     };
   },
 };
