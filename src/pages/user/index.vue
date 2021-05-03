@@ -254,7 +254,7 @@ type ListInfo = {
 };
 export default {
   onLoad(event: { userID: string }) {
-    this.userID = event.userID;
+    this.userID = event.userID || uni.getStorageSync("uni_id");
     this.getQuestionList({
       index: 0,
     });
