@@ -22,6 +22,27 @@ export async function loginByWechat(userInfo, res): Promise<ActionResult> {
 }
 
 /**
+ * @name QQ登录
+ * @param userInfo 
+ * @param res 
+ * @returns 
+ */
+export async function loginByQQ(userInfo, res): Promise<ActionResult> {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/user/loginByQQ/${res.code}`,
+      method: "POST",
+      params: {
+        gender: userInfo.gender,
+        avatar: userInfo.avatarUrl,
+        nickname: userInfo.nickName,
+      },
+    },
+  });
+}
+
+/**
  * @name 发送短信验证码
  * @param params
  * @returns
@@ -40,6 +61,11 @@ export async function sendSms(params: {
   });
 }
 
+/**
+ * @name 根据验证码进行登录
+ * @param params 
+ * @returns 
+ */
 export async function loginBySms(params: {
   phone: string;
   code: string;

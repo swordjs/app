@@ -91,9 +91,11 @@
         </view>
         <!-- #endif -->
         <!-- #ifdef MP-QQ -->
-        <view class="item">
-          <image src="../../static/user/qq.png"></image>
-        </view>
+        <button open-type="getUserInfo" @getuserinfo="handleQQ">
+          <view class="item" @click="handleQQ">
+            <image src="../../static/user/qq.png"></image>
+          </view>
+        </button>
         <!-- #endif -->
       </view>
     </view>
@@ -106,7 +108,7 @@ type LoginData = {
 };
 import { defineComponent, reactive, ref, computed, watchEffect } from "vue";
 // api
-import { sendSms, loginBySms, loginByWechat } from "../../api/login";
+import { sendSms, loginBySms, loginByWechat, loginByQQ } from "../../api/login";
 export default defineComponent({
   onLoad(e: { from: string }) {
     if (e?.from === "1") {
@@ -252,7 +254,7 @@ export default defineComponent({
             async success(res) {
               // 传入用户信息和code
               uni.showLoading({
-                title: "登录中...",
+                title: "微信登录中...",
                 mask: true,
               });
               // 这里判断是登录/还是注册，如果是注册，默认调接口绑定一个角色Normal
@@ -271,10 +273,35 @@ export default defineComponent({
             },
           });
         },
-        fail: () => {
-          console.log("未授权用户基本信息");
-        },
       });
+    };
+    // QQ登录
+    const handleQQ = ({ detail }) => {
+      const info = detail.userInfo;
+      if (info) {
+        uni.login({
+          async success(res) {
+            if (res.code) {
+              uni.showLoading({
+                title: "QQ登录中",
+                mask: true,
+              });
+              // 调用QQ登录接口
+              const loginResult = await loginByQQ(info, res);
+              uni.hideLoading();
+              if (loginResult.success) {
+                
+              }
+            }
+          },
+          fail() {
+            uni.showToast({
+              title: "QQ登录失败",
+              icon: "none",
+            });
+          },
+        });
+      }
     };
     watchEffect(() => {
       if (codeInfo.count === 59) {
@@ -297,6 +324,7 @@ export default defineComponent({
       handleCheckPhone,
       handleLogin,
       handleWechat,
+      handleQQ,
     };
   },
 });
@@ -327,10 +355,10 @@ export default defineComponent({
   70% {
     transform: translateX(calc(38rpx * 8));
   }
-  80%{
+  80% {
     transform: translateX(calc(38rpx * 9));
   }
-  90%{
+  90% {
     transform: translateX(calc(38rpx * 10));
   }
 }
@@ -346,7 +374,8 @@ export default defineComponent({
     position: relative;
     width: 420rpx;
     height: 64rpx;
-    background: url(../../static/user/helloworld.png) no-repeat center / 420rpx 64rpx;
+    background: url(../../static/user/helloworld.png) no-repeat center / 420rpx
+      64rpx;
     margin-top: 176rpx;
     margin-left: 68rpx;
 
@@ -369,7 +398,7 @@ export default defineComponent({
       background: #a6b6f3;
     }
   }
-  .titleMask{
+  .titleMask {
     transform: translateX(420rpx);
     position: absolute;
     width: 420rpx;

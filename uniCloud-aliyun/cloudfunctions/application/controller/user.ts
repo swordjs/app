@@ -16,6 +16,10 @@ namespace User {
     async loginByWechat(urlParams) {
       return await this.hanlder("loginByWechat", urlParams);
     }
+    // QQ登录
+    async loginByQQ(urlParams){
+      return await this.hanlder("loginByQQ", urlParams)
+    }
     // 用户相关的短信验证码
     async loginBySms() {
       return handleMustRequireParam(

@@ -5,10 +5,6 @@ namespace UserService {
   const explanationService = require("./questionExplanation");
   const db = uniCloud.database();
   const collection = db.collection("uni-id-users");
-
-  interface ILoginByWechat {
-    code: string;
-  }
   interface IAddUserByPhone {
     username: string;
     password: string;
@@ -34,10 +30,7 @@ namespace UserService {
       this.nowDate = new Date().toISOString();
       this.token = data.token;
     }
-    public async loginByWechat(
-      params: ILoginByWechat,
-      urlParams: { code: string }
-    ) {
+    public async loginByWechat(params, urlParams: { code: string }) {
       const { code } = urlParams;
       // 把用户信息也添加到库中, 设置角色为默认角色
       const res = await uniID.loginByWeixin({
@@ -51,6 +44,9 @@ namespace UserService {
         ...params,
       });
       return res;
+    }
+    public async loginByQQ(params, urlParams: { code: string }) {
+      const { code } = urlParams;
     }
     public async loginBySms(params: { phone: string; code: string }) {
       const { phone, code } = params;

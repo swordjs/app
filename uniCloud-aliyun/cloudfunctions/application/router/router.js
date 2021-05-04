@@ -22,6 +22,11 @@ module.exports = [
         action: "loginByWechat",
       },
       {
+        route: "loginByQQ/{code}",
+        httpMethod: "POST",
+        action: "loginByQQ",
+      },
+      {
         route: "postLoginByPhone",
         httpMethod: "POST",
         action: "postLoginByPhone",
