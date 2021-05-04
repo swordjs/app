@@ -997,6 +997,11 @@
   resolved "https://registry.nlark.com/@dcloudio/uni-helper-json/download/@dcloudio/uni-helper-json-1.0.13.tgz#4e8aa062daaefb30d98973c035a7b0ab628329c7"
   integrity sha1-ToqgYtqu+zDZiXPANaewq2KDKcc=
 
+"@dcloudio/uni-i18n@2.0.0-31620210325001":
+  version "2.0.0-31620210325001"
+  resolved "https://registry.nlark.com/@dcloudio/uni-i18n/download/@dcloudio/uni-i18n-2.0.0-31620210325001.tgz#68c14139438594721cef6b7c1ed3b2a2ad8840ce"
+  integrity sha1-aMFBOUOFlHIc72t8HtOyoq2IQM4=
+
 "@dcloudio/uni-i18n@^0.0.3":
   version "0.0.3"
   resolved "https://registry.nlark.com/@dcloudio/uni-i18n/download/@dcloudio/uni-i18n-0.0.3.tgz#c7ff6ea6a4ea5cd5ef8dc3d674afa2e64502c151"
