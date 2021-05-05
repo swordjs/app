@@ -1,10 +1,14 @@
 namespace UserService {
   // 公告模块
   const uniID = require("uni-id");
+  const request = require("request");
   const questionService = require("./question");
   const explanationService = require("./questionExplanation");
   const db = uniCloud.database();
   const collection = db.collection("uni-id-users");
+  const QQ_SESSION_URL = "https://api.q.qq.com/sns/jscode2session";
+  // 获取QQ小程序相关的APPID和密钥
+  const config = require("./../config/oauth");
   interface IAddUserByPhone {
     username: string;
     password: string;
@@ -45,8 +49,23 @@ namespace UserService {
       });
       return res;
     }
-    public async loginByQQ(params, urlParams: { code: string }) {
-      const { code } = urlParams;
+    public loginByQQ(params, urlParams: { code: string }): Promise<any> {
+      return new Promise((resolve) => {
+        const { code } = urlParams;
+        const { appid, appsecret } = config.mpqq.oauth.qq;
+        // 判断openid是否存在此用户
+        // 调用QQ接口获取openid相关信息
+        request(
+          `${QQ_SESSION_URL}?appid=${appid}&secret=${appsecret}&js_code=${code}&grant_type=authorization_code`,
+          (error, response, body) => {
+            console.log(response, body, error)
+            // if(response && response.statusCode === 200){
+            //   console.log("response:", response);
+            // }
+            resolve(response);
+          }
+        );
+      });
     }
     public async loginBySms(params: { phone: string; code: string }) {
       const { phone, code } = params;

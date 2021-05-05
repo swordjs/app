@@ -4,7 +4,7 @@ namespace QuestionExplanationService {
   const collection = db.collection("questionExplanation");
   const collectService = db.collection("userCollect");
   const dbCmd = db.command;
-  const fastscan = require("fastscan");
+  // const fastscan = require("fastscan");
   interface IQuestionExplanation {
     userID: string;
     nowDate: string;
