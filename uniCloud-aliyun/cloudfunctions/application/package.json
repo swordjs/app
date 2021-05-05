@@ -14,8 +14,8 @@
 		"app-tools": "file:../common/app-tools",
 		"content-security": "file:../common/content-security",
 		"explain": "file:../common/explain",
-		"fastscan": "file:../common/fastscan",
 		"form-data-utils": "file:../common/form-data-utils",
+		"request": "^2.81.0",
 		"sensitive-word-filter": "file:../common/fastscan",
 		"uni-id": "file:../common/uni-id"
 	},

@@ -1,5 +1,5 @@
 {
-    "watch": ["controller", "service"],
+    "watch": ["src"],
     "ext": "ts,js,json",
     "exec": "etsc",
     "legacyWatch": true
