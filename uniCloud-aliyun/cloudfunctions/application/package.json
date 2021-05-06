@@ -15,7 +15,6 @@
 		"content-security": "file:../common/content-security",
 		"explain": "file:../common/explain",
 		"form-data-utils": "file:../common/form-data-utils",
-		"request": "^2.81.0",
 		"sensitive-word-filter": "file:../common/fastscan",
 		"uni-id": "file:../common/uni-id"
 	},

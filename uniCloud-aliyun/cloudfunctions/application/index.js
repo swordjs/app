@@ -20,6 +20,7 @@ exports.main = async (event, context) => {
 						"loginByWechat",
 						"getUserContentByID",
 						"sendSms",
+						"loginByQQ",
 						"loginBySms"
 					],
 				},

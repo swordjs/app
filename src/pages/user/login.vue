@@ -92,7 +92,7 @@
         <!-- #endif -->
         <!-- #ifdef MP-QQ -->
         <button open-type="getUserInfo" @getuserinfo="handleQQ">
-          <view class="item" @click="handleQQ">
+          <view class="item">
             <image src="../../static/user/qq.png"></image>
           </view>
         </button>
@@ -282,15 +282,17 @@ export default defineComponent({
         uni.login({
           async success(res) {
             if (res.code) {
+              console.log(res.code)
               uni.showLoading({
                 title: "QQ登录中",
                 mask: true,
               });
+              console.log(res);
               // 调用QQ登录接口
-              const loginResult = await loginByQQ(info, res);
+              const loginData = await loginByQQ(info, res);
               uni.hideLoading();
-              if (loginResult.success) {
-                
+              if (loginData.success) {
+                setInfo(loginData, info);
               }
             }
           },

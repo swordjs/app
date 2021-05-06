@@ -1,10 +1,11 @@
 namespace UserService {
   // 公告模块
   const uniID = require("uni-id");
-  const request = require("request");
+  const https = require("https");
   const questionService = require("./question");
   const explanationService = require("./questionExplanation");
   const db = uniCloud.database();
+  const dbCmd = db.command;
   const collection = db.collection("uni-id-users");
   const QQ_SESSION_URL = "https://api.q.qq.com/sns/jscode2session";
   // 获取QQ小程序相关的APPID和密钥
@@ -24,14 +25,19 @@ namespace UserService {
   interface IUserData {
     userID: string;
     token: string;
+    context: {
+      CLIENTIP: string;
+    };
   }
   module.exports = class User {
     public nowDate: string;
+    public clientIp: string;
     public userID: string;
     public token: string;
     constructor(data: IUserData) {
       this.userID = data.userID;
       this.nowDate = new Date().toISOString();
+      this.clientIp = data?.context?.CLIENTIP || "";
       this.token = data.token;
     }
     public async loginByWechat(params, urlParams: { code: string }) {
@@ -49,20 +55,74 @@ namespace UserService {
       });
       return res;
     }
-    public loginByQQ(params, urlParams: { code: string }): Promise<any> {
+    public loginByQQ(params, urlParams: { code: string }): Promise<{
+      token: string;
+      uid: string
+    }> {
       return new Promise((resolve) => {
+        const { nickname, avatar } = params;
         const { code } = urlParams;
         const { appid, appsecret } = config.mpqq.oauth.qq;
-        // 判断openid是否存在此用户
+        const currentTime = new Date().getTime();
+        // 用户id
+        let currentUserID: string = "";
         // 调用QQ接口获取openid相关信息
-        request(
+        https.get(
           `${QQ_SESSION_URL}?appid=${appid}&secret=${appsecret}&js_code=${code}&grant_type=authorization_code`,
-          (error, response, body) => {
-            console.log(response, body, error)
-            // if(response && response.statusCode === 200){
-            //   console.log("response:", response);
-            // }
-            resolve(response);
+          (resp) => {
+            let data: any = "";
+            resp.on("data", (chunk) => {
+              data += chunk;
+            });
+            resp.on("end", async () => {
+              data = JSON.parse(data);
+              if (data.errcode === 0) {
+                let openID = data.openid;
+                // 判断openid是否存在
+                const userInfo = await collection
+                  .where({
+                    ["qq_openid"]: dbCmd.eq({
+                      "mp-qq": openID,
+                    }),
+                  })
+                  .get();
+                if (userInfo.data.length === 0) {
+                  // 未注册, 进行注册
+                  const { id } = await collection.add({
+                    qq_openid: {
+                      "mp-qq": openID,
+                    },
+                    register_date: currentTime,
+                    register_ip: this.clientIp,
+                    followers: [],
+                    role: ["normal"],
+                    nickname,
+                    avatar,
+                  });
+                  currentUserID = id;
+                } else {
+                  currentUserID = userInfo.data[0]._id;
+                  // 登录修改 日期和ip
+                  await collection.doc(currentUserID).update({
+                    last_login_date: currentTime,
+                    last_login_ip: this.clientIp,
+                  });
+                }
+                // 生成token并且返回
+                const { token } = await uniID.createToken({
+                  uid: currentUserID,
+                  needPermission: true,
+                });
+                // token创建完成之后update用户表
+                await collection.doc(currentUserID).update({
+                  token: dbCmd.push(token),
+                });
+                resolve({
+                  token,
+                  uid: currentUserID,
+                });
+              }
+            });
           }
         );
       });
