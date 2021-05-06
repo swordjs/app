@@ -95,6 +95,7 @@ namespace UserService {
                     register_date: currentTime,
                     register_ip: this.clientIp,
                     followers: [],
+                    sign: "感谢支持剑指题解",
                     role: ["normal"],
                     nickname,
                     avatar,
