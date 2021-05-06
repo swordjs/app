@@ -17,8 +17,8 @@ namespace User {
       return await this.hanlder("loginByWechat", urlParams);
     }
     // QQ登录
-    async loginByQQ(urlParams){
-      return await this.hanlder("loginByQQ", urlParams)
+    async loginByQQ(urlParams) {
+      return await this.hanlder("loginByQQ", urlParams);
     }
     // 用户相关的短信验证码
     async loginBySms() {
@@ -31,7 +31,7 @@ namespace User {
           {
             key: "code",
             value: "验证码",
-          }
+          },
         ],
         this.event.params
       )
@@ -41,6 +41,28 @@ namespace User {
     // 手机和验证码直接登录
     async sendSms(urlParams) {
       return await this.hanlder("sendSms", urlParams);
+    }
+    // 绑定手机号
+    async bindMobile() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "uid",
+            value: "用户ID",
+          },
+          {
+            key: "mobile",
+            value: "手机号",
+          },
+          {
+            key: "code",
+            value: "验证码",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => await this.hanlder("bindMobile"))
+        .catch((err) => err);
     }
     // 注册用户根据手机号
     addUserByPhone() {

@@ -3,11 +3,11 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/user/loginByQQ/b4c2d3165ca60188e0ff0a52e2890a6d",
+	"route": "api/user/bindMobile",
 	"method": "POST",
 	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDVkZjg5NjhlNjhmMDAwMDFlNjNmMGIiLCJyb2xlIjpbXSwicGVybWlzc2lvbiI6W10sImlhdCI6MTYxNjc3MTIyMiwiZXhwIjoxZSsxNTh9.Kbp16ZKbRYd-iVbpfguFvdRPGHBxtlyH9OsUC2TocAU",
 	"params": {
-		"nickname": "赶鸭子",
-		"avatar": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/97f24e41-574b-4f46-8939-abbea060f3d3.png"
+		"uid": "609470a92a20060001d36a55",
+		"mobile": "18291563761"
 	}
 }

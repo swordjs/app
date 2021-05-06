@@ -27,6 +27,11 @@ module.exports = [
         action: "loginByQQ",
       },
       {
+        route: "bindMobile",
+        httpMethod: "POST",
+        action: "bindMobile",
+      },
+      {
         route: "postLoginByPhone",
         httpMethod: "POST",
         action: "postLoginByPhone",

@@ -55,9 +55,12 @@ namespace UserService {
       });
       return res;
     }
-    public loginByQQ(params, urlParams: { code: string }): Promise<{
+    public loginByQQ(
+      params,
+      urlParams: { code: string }
+    ): Promise<{
       token: string;
-      uid: string
+      uid: string;
     }> {
       return new Promise((resolve) => {
         const { nickname, avatar } = params;
@@ -169,6 +172,17 @@ namespace UserService {
         mobile: phone,
         templateId: "11846",
         type,
+      });
+    }
+    public async bindMobile(params: {
+      uid: string;
+      mobile: string;
+      code: string;
+    }) {
+      return await uniID.bindMobile({
+        uid: params.uid,
+        mobile: params.mobile,
+        code: params.code,
       });
     }
     public async addUserByPhone(params: IAddUserByPhone) {
