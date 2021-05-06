@@ -78,11 +78,11 @@
         customStyle="border:none;background:#5671E8;box-shadow: 0px 4px 8px 0px rgba(36,63,101,0.2);border-radius: 24px;"
         @click="handleLogin"
       >
-        登录/注册
+        {{ !isBind ? "登录/注册" : "立即绑定" }}
       </i-button>
     </view>
     <!-- 其他登录方式 -->
-    <view class="other">
+    <view class="other" v-if="!isBind">
       <view class="desc">其他登录方式</view>
       <view class="itemList">
         <!-- #ifdef MP-WEIXIN -->
@@ -108,11 +108,20 @@ type LoginData = {
 };
 import { defineComponent, reactive, ref, computed, watchEffect } from "vue";
 // api
-import { sendSms, loginBySms, loginByWechat, loginByQQ } from "../../api/login";
+import {
+  sendSms,
+  loginBySms,
+  loginByWechat,
+  loginByQQ,
+  bindMobile,
+} from "../../api/login";
 export default defineComponent({
-  onLoad(e: { from: string }) {
+  onLoad(e: { from: string; bind: string }) {
     if (e?.from === "1") {
       this.isFrom = true;
+    }
+    if (e?.bind === "1") {
+      this.isBind = true;
     }
   },
   setup() {
@@ -123,6 +132,8 @@ export default defineComponent({
         position: "bottom",
       });
     };
+    // 判断登录是否是需要是绑定功能，如果是，就展示绑定的逻辑
+    const isBind = ref<boolean>(false);
     // 判断登录页面是否是从其他页面进入的，如果是，则登录成功后不会进入首页，而会后退
     const isFrom = ref<boolean>(false);
     // 获取验证码
@@ -177,7 +188,7 @@ export default defineComponent({
         });
         const result = await sendSms({
           phone: loginData.phone.trim(),
-          type: "login",
+          type: isBind ? "bind" : "login",
         });
         uni.hideLoading();
         if (result.success) {
@@ -203,43 +214,72 @@ export default defineComponent({
     };
     const handleLogin = async () => {
       if (loginButtonControl.value) {
-        let surroundings = "";
-        // #ifdef MP-WEIXIN
-        surroundings = "微信";
-        // #endif
-        // #ifdef MP-QQ
-        surroundings = "QQ";
-        // #endif
-        // 需要提示一个弹窗，如果用户之前只用了微信/QQ登录使用，那么用手机号直接登录会新建一个账号，指引用户仍使用QQ/微信登录然后去设置页面绑定手机号
-        uni.showModal({
-          title: "贴心提示",
-          content: `如果您之前只用了${surroundings}登录且未绑定手机号，那么您直接使用手机号登录会自动注册一个新号。所以为了保证您的数据互通，请使用您之前${surroundings}登录方式登录成功之后在【设置】中绑定手机后，才可以直接使用手机号登录享受数据互通。`,
-          cancelText: "取消",
-          confirmColor: "登录/注册",
-          success: async (res) => {
-            if (res.confirm) {
-              uni.showLoading({
-                title: "登录中...",
-                mask: true,
-              });
-              const loginResult = await loginBySms({
-                phone: loginData.phone.trim(),
-                code: loginData.code,
-              });
-
-              uni.hideLoading();
-              if (loginResult.success) {
-                // 存储token以及个人信息等
-                setInfo(loginResult, {
-                  nickName: loginResult.data.userInfo.nickname,
-                  avatarUrl: loginResult.data.userInfo.avatar,
+        // 登录
+        if (!isBind.value) {
+          let surroundings = "";
+          // #ifdef MP-WEIXIN
+          surroundings = "微信";
+          // #endif
+          // #ifdef MP-QQ
+          surroundings = "QQ";
+          // #endif
+          // 需要提示一个弹窗，如果用户之前只用了微信/QQ登录使用，那么用手机号直接登录会新建一个账号，指引用户仍使用QQ/微信登录然后去设置页面绑定手机号
+          uni.showModal({
+            title: "贴心提示",
+            content: `如果您之前只用了${surroundings}登录且未绑定手机号，那么您直接使用手机号登录会自动注册一个新号。所以为了保证您的数据互通，请使用您之前${surroundings}登录方式登录成功之后在【设置】中绑定手机后，才可以直接使用手机号登录享受数据互通。`,
+            cancelText: "取消",
+            confirmColor: "登录/注册",
+            success: async (res) => {
+              if (res.confirm) {
+                uni.showLoading({
+                  title: "登录中...",
+                  mask: true,
                 });
-              } else {
-                toast("登录失败，请稍后再试");
+                const loginResult = await loginBySms({
+                  phone: loginData.phone.trim(),
+                  code: loginData.code,
+                });
+
+                uni.hideLoading();
+                if (loginResult.success) {
+                  // 存储token以及个人信息等
+                  setInfo(loginResult, {
+                    nickName: loginResult.data.userInfo.nickname,
+                    avatarUrl: loginResult.data.userInfo.avatar,
+                  });
+                } else {
+                  toast("登录失败，请稍后再试");
+                }
               }
-            }
-          },
-        });
+            },
+          });
+        } else {
+          // 绑定
+          uni.showLoading({
+            title: "绑定中",
+            mask: true,
+          });
+          const bindResult = await bindMobile({
+            uid: uni.getStorageSync("uni_id"),
+            mobile: loginData.phone.trim(),
+            code: loginData.code,
+          });
+          uni.hideLoading();
+          if (bindResult.success) {
+            uni.showModal({
+              title: "提示",
+              showCancel: false,
+              content: "绑定手机号成功，您可以使用手机号登录啦！",
+              success: (res: { confirm: boolean }) => {
+                if (res.confirm) {
+                  uni.navigateBack({
+                    delta: 1,
+                  });
+                }
+              },
+            });
+          }
+        }
       } else {
         toast("请确认手机号和验证码是否合法");
       }
@@ -282,7 +322,7 @@ export default defineComponent({
         uni.login({
           async success(res) {
             if (res.code) {
-              console.log(res.code)
+              console.log(res.code);
               uni.showLoading({
                 title: "QQ登录中",
                 mask: true,
@@ -315,6 +355,7 @@ export default defineComponent({
       }
     });
     return {
+      isBind,
       isFrom,
       loginData,
       codeInfo,

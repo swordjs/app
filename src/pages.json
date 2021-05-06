@@ -66,14 +66,30 @@
         "enablePullDownRefresh": false
       }
     },
-	{
-		"path": "pages/user/applicationQuestionRole",
-		"style": {
-		  "navigationStyle": "default",
-		  "navigationBarTitleText": "申请出题官权限",
-		  "enablePullDownRefresh": false
-		}
-	  }
+    {
+      "path": "pages/user/applicationQuestionRole",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "申请出题官权限",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/user/setting",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "设置",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/user/bind",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "绑定",
+        "enablePullDownRefresh": false
+      }
+    }
   ],
   "easycom": {
     "autoscan": true,

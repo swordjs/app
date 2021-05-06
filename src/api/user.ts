@@ -52,7 +52,7 @@ export async function getUserBaseContentByUserID(params: {
       .where({
         _id: params.userID,
       })
-      .field("nickname,avatar,followers,sign,gender")
+      .field("nickname,avatar,followers,sign,gender,wx_openid,qq_openid,mobile,mobile_confirmed")
       .get()
       .then((res) => {
         const { success, result } = res;

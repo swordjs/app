@@ -23,9 +23,9 @@ export async function loginByWechat(userInfo, res): Promise<ActionResult> {
 
 /**
  * @name QQ登录
- * @param userInfo 
- * @param res 
- * @returns 
+ * @param userInfo
+ * @param res
+ * @returns
  */
 export async function loginByQQ(userInfo, res): Promise<ActionResult> {
   return await callFunction({
@@ -62,9 +62,29 @@ export async function sendSms(params: {
 }
 
 /**
- * @name 根据验证码进行登录
+ * @name 绑定手机号
  * @param params 
  * @returns 
+ */
+export async function bindMobile(params: {
+  uid: string;
+  mobile: string;
+  code: string;
+}): Promise<ActionResult> {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/user/bindMobile`,
+      method: "POST",
+      params
+    },
+  });
+}
+
+/**
+ * @name 根据验证码进行登录
+ * @param params
+ * @returns
  */
 export async function loginBySms(params: {
   phone: string;
