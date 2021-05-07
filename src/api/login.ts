@@ -43,6 +43,45 @@ export async function loginByQQ(userInfo, res): Promise<ActionResult> {
 }
 
 /**
+ * @name 绑定微信
+ * @param params 
+ * @returns 
+ */
+export async function bindWechat(params: {
+  code: string,
+  uid: string
+}): Promise<ActionResult> {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/user/bindWechat`,
+      method: "POST",
+      params
+    },
+  });
+}
+
+/**
+ * @name 绑定QQ
+ * @param params 
+ * @returns 
+ */
+export async function bindQQ(params: {
+  code: string,
+  uid: string
+}): Promise<ActionResult> {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/user/bindQQ`,
+      method: "POST",
+      params
+    },
+  });
+}
+
+
+/**
  * @name 发送短信验证码
  * @param params
  * @returns
