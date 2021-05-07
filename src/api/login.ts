@@ -99,3 +99,16 @@ export async function loginBySms(params: {
     },
   });
 }
+
+
+export async function logout(params: {
+  token: string
+}): Promise<ActionResult> {
+  return await callFunction({
+    name: "application",
+    data: {
+      route: `api/user/userLogout/${params.token}`,
+      method: "GET"
+    },
+  });
+}

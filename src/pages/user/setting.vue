@@ -1,28 +1,75 @@
 <template>
   <view class="setting">
-    <view class="item" @click="url('/pages/user/editProfile')">
+    <view class="item" @click="url('/pages/user/bind', true)">
       <text>绑定手机/绑定第三方账号</text>
-      <i-icon style="margin-right: 15rpx;" name="arrow-right-s-line"></i-icon>
+      <i-icon style="margin-right: 15rpx" name="arrow-right-s-line"></i-icon>
     </view>
     <view class="item">
       <text>当前版本</text>
       <text class="value">{{ currentVersion }}</text>
     </view>
+    <view class="logOut" @click="handleLogout" v-if="isLogin">
+      <i-button type="primary" size="large" round>退出登录</i-button>
+    </view>
   </view>
 </template>
 
-<script>
+<script lang="ts">
+import notLogin from "../../util/notLogin";
+import { logout } from "../../api/login";
+import { ref } from "vue";
 export default {
+  onShow(){
+    this.isLogin = uni.getStorageSync("uni_id_token") !== "";
+  },
   setup() {
     // 获取当前版本
     const currentVersion = uni.getAccountInfoSync().miniProgram.version;
-    const url = (value) => {
-      uni.navigateTo({
-        url: value,
-      });
+    // 是否登录
+    const isLogin = ref<boolean>(false);
+    const url = (value, isLogin) => {
+      isLogin
+        ? notLogin(() => {
+            uni.navigateTo({
+              url: value,
+            });
+          })
+        : uni.navigateTo({
+            url: value,
+          });
     };
+    // 退出登录
+    const handleLogout = () => {
+      uni.showModal({
+        title: "提示",
+        content: "您确定退出登陆吗？",
+        success: async (res: {confirm: boolean}) => {
+          if(res.confirm){
+            uni.showLoading({
+              title: "退出中...",
+              mask: true
+            })
+            // 退出调用logout方法，取消token
+            const logOutResult = await logout({
+              token: uni.getStorageSync("uni_id_token")
+            });
+            uni.hideLoading();
+            if(logOutResult.success){
+              // 清除所有的缓存
+              uni.clearStorageSync();
+              // 退出到登录页面
+              uni.redirectTo({
+                url: "/pages/user/login"
+              })
+            }
+          }
+        }
+      })
+    }
     return {
+      isLogin,
       currentVersion,
+      handleLogout,
       url,
     };
   },
@@ -56,5 +103,9 @@ page {
     color: #bcbdc3;
     margin-right: 30rpx;
   }
+}
+.logOut{
+  margin: 30rpx;
+  margin-top: 45rpx;
 }
 </style>

@@ -7,9 +7,6 @@ type CallFunctionParams = {
   };
   checkLogin?: boolean;
 };
-const errorMessage = {
-  401: "您暂未登录或登录状态过期",
-};
 import notLogin from "../util/notLogin";
 
 /**
@@ -45,13 +42,13 @@ export default (params: CallFunctionParams): Promise<ActionResult> => {
     };
     if (result.code) {
       // 判断code是否存在于errorMessage对象中
-      if (result.code in errorMessage) {
+      if (result.code !== 0) {
         response = {
           success: false,
         };
         uni.hideLoading();
         uni.showToast({
-          title: errorMessage[result.code],
+          title: result.msg,
           icon: "none",
         });
       }

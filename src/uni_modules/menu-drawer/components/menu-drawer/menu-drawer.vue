@@ -35,7 +35,7 @@
             <text>申请认证出题人</text>
           </view>
         </view>
-        <view class="menu">
+        <view class="menu" @click="handleClickItem('/pages/user/setting')">
           <view class="menuItem">
             <i-icon name="settings-2-fill" color="#FFCC5C"></i-icon>
             <text>设置</text>

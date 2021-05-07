@@ -199,8 +199,8 @@ namespace UserService {
         password,
       });
     }
-    public async userLogout({ urlParams }) {
-      const { token } = urlParams;
+    public async userLogout(params) {
+      const { token } = params;
       return await uniID.logout(token);
     }
     public async checkToken({ urlParams }) {
