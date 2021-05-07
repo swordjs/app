@@ -16,9 +16,45 @@ namespace User {
     async loginByWechat(urlParams) {
       return await this.hanlder("loginByWechat", urlParams);
     }
+    // 微信绑定
+    async bindWechat() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "code",
+            value: "code码",
+          },
+          {
+            key: "uid",
+            value: "用户ID",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => await this.hanlder("bindWechat"))
+        .catch((err) => err);
+    }
     // QQ登录
     async loginByQQ(urlParams) {
       return await this.hanlder("loginByQQ", urlParams);
+    }
+    // QQ绑定
+    async bindQQ() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "code",
+            value: "code码",
+          },
+          {
+            key: "uid",
+            value: "用户ID",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => await this.hanlder("bindQQ"))
+        .catch((err) => err);
     }
     // 用户相关的短信验证码
     async loginBySms() {

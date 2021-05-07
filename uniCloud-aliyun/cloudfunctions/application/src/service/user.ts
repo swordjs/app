@@ -55,6 +55,13 @@ namespace UserService {
       });
       return res;
     }
+    public async bindWechat(params) {
+      const { code, uid } = params;
+      return await uniID.bindWeixin({
+        uid,
+        code,
+      });
+    }
     public loginByQQ(
       params,
       urlParams: { code: string }
@@ -65,70 +72,70 @@ namespace UserService {
       return new Promise((resolve) => {
         const { nickname, avatar } = params;
         const { code } = urlParams;
-        const { appid, appsecret } = config.mpqq.oauth.qq;
         const currentTime = new Date().getTime();
         // 用户id
         let currentUserID: string = "";
         // 调用QQ接口获取openid相关信息
-        https.get(
-          `${QQ_SESSION_URL}?appid=${appid}&secret=${appsecret}&js_code=${code}&grant_type=authorization_code`,
-          (resp) => {
-            let data: any = "";
-            resp.on("data", (chunk) => {
-              data += chunk;
+        this.code2sessionByQQ(code).then(async (openID) => {
+          const userInfo = await collection
+            .where({
+              ["qq_openid"]: dbCmd.eq({
+                "mp-qq": openID,
+              }),
+            })
+            .get();
+          if (userInfo.data.length === 0) {
+            // 未注册, 进行注册
+            const { id } = await collection.add({
+              qq_openid: {
+                "mp-qq": openID,
+              },
+              register_date: currentTime,
+              register_ip: this.clientIp,
+              followers: [],
+              sign: "感谢支持剑指题解",
+              role: ["normal"],
+              nickname,
+              avatar,
             });
-            resp.on("end", async () => {
-              data = JSON.parse(data);
-              if (data.errcode === 0) {
-                let openID = data.openid;
-                // 判断openid是否存在
-                const userInfo = await collection
-                  .where({
-                    ["qq_openid"]: dbCmd.eq({
-                      "mp-qq": openID,
-                    }),
-                  })
-                  .get();
-                if (userInfo.data.length === 0) {
-                  // 未注册, 进行注册
-                  const { id } = await collection.add({
-                    qq_openid: {
-                      "mp-qq": openID,
-                    },
-                    register_date: currentTime,
-                    register_ip: this.clientIp,
-                    followers: [],
-                    sign: "感谢支持剑指题解",
-                    role: ["normal"],
-                    nickname,
-                    avatar,
-                  });
-                  currentUserID = id;
-                } else {
-                  currentUserID = userInfo.data[0]._id;
-                  // 登录修改 日期和ip
-                  await collection.doc(currentUserID).update({
-                    last_login_date: currentTime,
-                    last_login_ip: this.clientIp,
-                  });
-                }
-                // 生成token并且返回
-                const { token } = await uniID.createToken({
-                  uid: currentUserID,
-                  needPermission: true,
-                });
-                // token创建完成之后update用户表
-                await collection.doc(currentUserID).update({
-                  token: dbCmd.push(token),
-                });
-                resolve({
-                  token,
-                  uid: currentUserID,
-                });
-              }
+            currentUserID = id;
+          } else {
+            currentUserID = userInfo.data[0]._id;
+            // 登录修改 日期和ip
+            await collection.doc(currentUserID).update({
+              last_login_date: currentTime,
+              last_login_ip: this.clientIp,
             });
           }
-        );
+          // 生成token并且返回
+          const { token } = await uniID.createToken({
+            uid: currentUserID,
+            needPermission: true,
+          });
+          // token创建完成之后update用户表
+          await collection.doc(currentUserID).update({
+            token: dbCmd.push(token),
+          });
+          resolve({
+            token,
+            uid: currentUserID,
+          });
+        });
+      });
+    }
+    public bindQQ(params) {
+      return new Promise((resolve) => {
+        const { code, uid } = params;
+        this.code2sessionByQQ(code).then(async (openID) => {
+          // 修改QQ绑定
+          resolve(
+            await collection.doc(uid).update({
+              qq_openid: {
+                "mp-qq": openID,
+              },
+            })
+          );
+        });
       });
     }
     public async loginBySms(params: { phone: string; code: string }) {
@@ -275,6 +282,29 @@ namespace UserService {
           followers: followers,
         });
       }
+    }
+    private code2sessionByQQ(code: string): Promise<string | boolean> {
+      return new Promise((resolve, reject) => {
+        const { appid, appsecret } = config.mpqq.oauth.qq;
+        https.get(
+          `${QQ_SESSION_URL}?appid=${appid}&secret=${appsecret}&js_code=${code}&grant_type=authorization_code`,
+          (resp) => {
+            let data: any = "";
+            resp.on("data", (chunk) => {
+              data += chunk;
+            });
+            resp.on("end", async () => {
+              data = JSON.parse(data);
+              if (data.errcode === 0) {
+                let openID = data.openid;
+                resolve(openID);
+              } else {
+                reject(false);
+              }
+            });
+          }
+        );
+      });
     }
   };
 }
