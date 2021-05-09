@@ -42,7 +42,7 @@
       <view class="search">
         <input
           maxlength="15"
-          placeholder="热点功能，后续版本迭代..."
+          placeholder="搜索功能暂未开放，团队加急赶制中..."
           placeholder-style="color: #C3C5D4;"
           type="text"
         />
@@ -71,7 +71,7 @@
         @click="handleUrl('/pages/common/noRelease')"
       >
         <view class="title">动态</view>
-        <view class="content"> 后续版本迭代，尽情期待~ </view>
+        <view class="content"> 您的等级暂未解锁此功能 </view>
         <!-- 头像组 -->
         <view class="headPictureList">
           <image
@@ -88,7 +88,7 @@
     <!-- 社区 -->
     <view class="community" @click="handleUrl('/pages/common/noRelease')">
       <view class="title">社区</view>
-      <view class="content">后续版本迭代，尽情期待~</view>
+      <view class="content">您的等级暂未解锁此功能</view>
     </view>
     <!-- 推荐文章 -->
     <view class="article" @click="handleUrl('/pages/common/noRelease')">
@@ -96,7 +96,7 @@
       <view class="articleList">
         <view class="articleListItem">
           <view class="articleListItemTitle">
-            文章社区后续版本迭代，尽情期待~
+            您的等级暂未解锁此功能
           </view>
           <!-- 头像 -->
           <view class="bottom">

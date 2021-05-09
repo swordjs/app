@@ -4,8 +4,8 @@
       <text>绑定手机/绑定第三方账号</text>
       <i-icon style="margin-right: 15rpx" name="arrow-right-s-line"></i-icon>
     </view>
-    <view class="item">
-      <text>当前版本</text>
+    <view class="item" @click="handleCheckVersion">
+      <text>检查版本更新</text>
       <text class="value">{{ currentVersion }}</text>
     </view>
     <view class="logOut" @click="handleLogout" v-if="isLogin">
@@ -19,7 +19,7 @@ import notLogin from "../../util/notLogin";
 import { logout } from "../../api/login";
 import { ref } from "vue";
 export default {
-  onShow(){
+  onShow() {
     this.isLogin = uni.getStorageSync("uni_id_token") !== "";
   },
   setup() {
@@ -38,38 +38,67 @@ export default {
             url: value,
           });
     };
+    // 检查版本更新
+    const handleCheckVersion = () => {
+      const updateManager = uni.getUpdateManager();
+      updateManager.onCheckForUpdate((res: { hasUpdate: boolean }) => {
+        // 请求完新版本信息的回调
+        if (res.hasUpdate) {
+          updateManager.onUpdateReady(function (res) {
+            uni.showModal({
+              title: "更新提示",
+              content: "新版本已经准备好，是否重启应用？",
+              success(res) {
+                if (res.confirm) {
+                  // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+                  updateManager.applyUpdate();
+                }
+              },
+            });
+          });
+        }
+      });
+      updateManager.onUpdateFailed(function (res) {
+        // 新的版本下载失败
+        uni.showToast({
+          title: "版本下载失败，请重试",
+          icon: "none",
+        });
+      });
+    };
     // 退出登录
     const handleLogout = () => {
       uni.showModal({
         title: "提示",
         content: "您确定退出登陆吗？",
-        success: async (res: {confirm: boolean}) => {
-          if(res.confirm){
+        success: async (res: { confirm: boolean }) => {
+          if (res.confirm) {
             uni.showLoading({
               title: "退出中...",
-              mask: true
-            })
+              mask: true,
+            });
             // 退出调用logout方法，取消token
             const logOutResult = await logout({
-              token: uni.getStorageSync("uni_id_token")
+              token: uni.getStorageSync("uni_id_token"),
             });
             uni.hideLoading();
-            if(logOutResult.success){
+            if (logOutResult.success) {
               // 清除所有的缓存
               uni.clearStorageSync();
               // 退出到登录页面
               uni.redirectTo({
-                url: "/pages/user/login"
-              })
+                url: "/pages/user/login",
+              });
             }
           }
-        }
-      })
-    }
+        },
+      });
+    };
     return {
       isLogin,
       currentVersion,
       handleLogout,
+      handleCheckVersion,
       url,
     };
   },
@@ -104,7 +133,7 @@ page {
     margin-right: 30rpx;
   }
 }
-.logOut{
+.logOut {
   margin: 30rpx;
   margin-top: 45rpx;
 }
