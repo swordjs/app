@@ -74,6 +74,7 @@
         "usingComponents" : true,
         "setting" : {
             "urlCheck" : false
-        }
+        },
+        "appid" : "1111697492"
     }
 }

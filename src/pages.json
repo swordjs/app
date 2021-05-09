@@ -89,6 +89,12 @@
         "navigationBarTitleText": "绑定",
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/common/webview",
+      "style": {
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "easycom": {

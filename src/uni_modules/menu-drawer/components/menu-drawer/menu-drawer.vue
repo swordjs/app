@@ -40,7 +40,7 @@
             <i-icon name="settings-2-fill" color="#FFCC5C"></i-icon>
             <text>设置</text>
           </view>
-          <view class="menuItem">
+          <view class="menuItem" @click="handleClickItem('/pages/common/webview?url=https://www.yinzhuoei.com/index.php/archives/515/')">
             <i-icon name="shield-star-fill" color="#FFCC5C"></i-icon>
             <text>关于剑指题解</text>
           </view>
