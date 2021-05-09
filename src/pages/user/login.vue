@@ -188,7 +188,7 @@ export default defineComponent({
         });
         const result = await sendSms({
           phone: loginData.phone.trim(),
-          type: isBind ? "bind" : "login",
+          type: isBind.value ? "bind" : "login",
         });
         uni.hideLoading();
         if (result.success) {
