@@ -216,43 +216,25 @@ export default defineComponent({
       if (loginButtonControl.value) {
         // 登录
         if (!isBind.value) {
-          let surroundings = "";
-          // #ifdef MP-WEIXIN
-          surroundings = "微信";
-          // #endif
-          // #ifdef MP-QQ
-          surroundings = "QQ";
-          // #endif
-          // 需要提示一个弹窗，如果用户之前只用了微信/QQ登录使用，那么用手机号直接登录会新建一个账号，指引用户仍使用QQ/微信登录然后去设置页面绑定手机号
-          uni.showModal({
-            title: "贴心提示",
-            content: `如果您之前只用了${surroundings}登录且未绑定手机号，那么您直接使用手机号登录会自动注册一个新号。所以为了保证您的数据互通，请使用您之前${surroundings}登录方式登录成功之后在【设置】中绑定手机后，才可以直接使用手机号登录享受数据互通。`,
-            cancelText: "取消",
-            confirmColor: "登录/注册",
-            success: async (res) => {
-              if (res.confirm) {
-                uni.showLoading({
-                  title: "登录中...",
-                  mask: true,
-                });
-                const loginResult = await loginBySms({
-                  phone: loginData.phone.trim(),
-                  code: loginData.code,
-                });
-
-                uni.hideLoading();
-                if (loginResult.success) {
-                  // 存储token以及个人信息等
-                  setInfo(loginResult, {
-                    nickName: loginResult.data.userInfo.nickname,
-                    avatarUrl: loginResult.data.userInfo.avatar,
-                  });
-                } else {
-                  toast("登录失败，请稍后再试");
-                }
-              }
-            },
+          uni.showLoading({
+            title: "登录中...",
+            mask: true,
           });
+          const loginResult = await loginBySms({
+            phone: loginData.phone.trim(),
+            code: loginData.code,
+          });
+
+          uni.hideLoading();
+          if (loginResult.success) {
+            // 存储token以及个人信息等
+            setInfo(loginResult, {
+              nickName: loginResult.data.userInfo.nickname,
+              avatarUrl: loginResult.data.userInfo.avatar,
+            });
+          } else {
+            toast("登录失败，请稍后再试");
+          }
         } else {
           // 绑定
           uni.showLoading({
