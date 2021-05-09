@@ -320,6 +320,7 @@ export default defineComponent({
       const info = detail.userInfo;
       if (info) {
         uni.login({
+          provider: "qq",
           async success(res) {
             if (res.code) {
               console.log(res.code);

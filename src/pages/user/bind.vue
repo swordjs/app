@@ -7,7 +7,7 @@
       </text>
     </view>
     <!-- #ifdef MP-WEIXIN -->
-    <view class="item">
+    <view class="item" @click="bindService('weixin')">
       <text>绑定微信</text>
       <text class="value">
         {{ userInfo.wx_openid ? "绑定成功" : "去绑定" }}
@@ -15,7 +15,7 @@
     </view>
     <!-- #endif -->
     <!-- #ifdef MP-QQ -->
-    <view class="item">
+    <view class="item" @click="bindService('qq')">
       <text>绑定QQ</text>
       <text class="value">
         {{ userInfo.qq_openid ? "绑定成功" : "去绑定" }}
@@ -25,16 +25,24 @@
   </view>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, ref } from "vue";
 // api
 import { getUserBaseContentByUserID } from "../../api/user";
+import { bindQQ, bindWechat } from "../../api/login";
+type UserInfo = {
+  mobile: string,
+  mobile_confirmed: number
+}
 export default {
   onShow() {
     this.getUserInfo();
   },
   setup() {
-    const userInfo = ref({});
+    const userInfo = ref<UserInfo>({
+      mobile: "",
+      mobile_confirmed: 0
+    });
     // 获取用户信息
     const getUserInfo = async () => {
       uni.showLoading({
@@ -62,6 +70,43 @@ export default {
         });
       }
     };
+    // 绑定
+    const bindService = (provider: "weixin" | "qq") => {
+      let bindFunc: Function;
+      switch (provider) {
+        case "weixin":
+          bindFunc = bindWechat;
+          break;
+        case "qq":
+          bindFunc = bindQQ;
+          break;
+      }
+      uni.login({
+        provider,
+        async success(res) {
+          // 传入用户信息和code
+          uni.showLoading({
+            title: "绑定中...",
+            mask: true,
+          });
+          // 这里判断是登录/还是注册，如果是注册，默认调接口绑定一个角色Normal
+          const bindData = await bindFunc({
+            code: res.code,
+          });
+          uni.hideLoading();
+          // 存储返回的token以及用户信息，id等
+          if (bindData.success) {
+            getUserInfo();
+          }
+        },
+        fail() {
+          uni.showToast({
+            title: "微信登录失败",
+            icon: "none",
+          });
+        },
+      });
+    };
     const url = (value) => {
       uni.navigateTo({
         url: value,
@@ -73,6 +118,7 @@ export default {
       isBindMobile,
       handleBindMobile,
       url,
+      bindService,
     };
   },
 };

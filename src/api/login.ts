@@ -44,42 +44,43 @@ export async function loginByQQ(userInfo, res): Promise<ActionResult> {
 
 /**
  * @name 绑定微信
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
 export async function bindWechat(params: {
-  code: string,
-  uid: string
+  code: string;
 }): Promise<ActionResult> {
   return await callFunction({
     name: "application",
     data: {
       route: `api/user/bindWechat`,
       method: "POST",
-      params
+      params: {
+        code: params.code,
+        uid: uni.getStorageSync("uni_id"),
+      },
     },
   });
 }
 
 /**
  * @name 绑定QQ
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
-export async function bindQQ(params: {
-  code: string,
-  uid: string
-}): Promise<ActionResult> {
+export async function bindQQ(params: { code: string }): Promise<ActionResult> {
   return await callFunction({
     name: "application",
     data: {
       route: `api/user/bindQQ`,
       method: "POST",
-      params
+      params: {
+        code: params.code,
+        uid: uni.getStorageSync("uni_id"),
+      },
     },
   });
 }
-
 
 /**
  * @name 发送短信验证码
@@ -102,8 +103,8 @@ export async function sendSms(params: {
 
 /**
  * @name 绑定手机号
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
 export async function bindMobile(params: {
   uid: string;
@@ -115,7 +116,7 @@ export async function bindMobile(params: {
     data: {
       route: `api/user/bindMobile`,
       method: "POST",
-      params
+      params,
     },
   });
 }
@@ -139,15 +140,12 @@ export async function loginBySms(params: {
   });
 }
 
-
-export async function logout(params: {
-  token: string
-}): Promise<ActionResult> {
+export async function logout(params: { token: string }): Promise<ActionResult> {
   return await callFunction({
     name: "application",
     data: {
       route: `api/user/userLogout/${params.token}`,
-      method: "GET"
+      method: "GET",
     },
   });
 }
