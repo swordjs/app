@@ -22,6 +22,11 @@ namespace CertificationApplyOrderService {
       this.nowDate = new Date().toISOString();
     }
     async addCertificationApplyOrder(params: IAddCertificationParams) {
+      // 调用钉钉通知函数
+      uniCloud.callFunction({
+        name: "dingtalk-robot",
+        data: { content: `有一个新的出题官认证申请，申请时间为${this.nowDate}\n申请内容为: ${JSON.stringify(params.content)}\n请及时查看，尤其是群主，你别忘记了！` },
+      });
       return await collection.add({
         state: "pending",
         userID: this.userID,
