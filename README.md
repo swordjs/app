@@ -17,19 +17,20 @@
 
 项目的起源是一个 github 仓库，名为[前端知识每日 3+1](https://github.com/haizlin/fe-interview)，正是这个优秀的题库项目才有了我们团队开发聚合题库的想法。在我们国内程序员圈子，大多数小伙伴为了更好的技术发展和 offer，都通过训练题来提高自己的眼界，其中不乏包括算法/业务/软技能的题目，但是因为我们的环境和侧重点不一样，所以我们接触的项目和题目都不一样，而市面上很少有一个项目能做到，涵盖不同圈子的聚合题库。 《剑指题解》项目就是一个优秀的互联网行业聚合题库神器。
 
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-86dc45ba-28e8-4734-a880-bbf700b08cf9/19fe73b3-bd01-4c7e-8418-4c90c25c4035.png" width="15%">
 <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/c1746d60-2e22-4161-b23d-38b910b73c91.jpg" width="15%"><img style="margin-left: 40px;" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/e4395033-d45f-4e3e-a930-78ff91c8db54.png" width="40%">
 
 ##### 开源免费不易，请关注我们的公众号以及开源仓库
 [![沈昊Seho/InternetQuestionBank](https://gitee.com/yinzhuoei/InternetQuestionBank/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/yinzhuoei/InternetQuestionBank)<br/>
-[Github点star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)<br/>
+[Github点star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)
 [Dcloud插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)
 # 目录
 - [特点](#特点)
 - [技术栈](#技术栈)
 - [安装](./install.md)
 - [UML](#UML)
-  - [类图](#类图)
-  - [拉取任务](#拉取任务)
+  - [类图](##类图)
+  - [拉取任务](##拉取任务)
 - [设计概览](#设计概览)
 - [API](#API)
 - [贡献者](#贡献者)
@@ -68,6 +69,7 @@
     <img class="imgIcon" src="http://static.yinzhuoei.com/typecho/2021/01/17/697832282748067.jpg" width="20%"></img>
 </a>
 </div>
+
 # UML
 
 由于此部分在开发新 feature 的工作中可能会进行变更或者本就有实质性的错误，欢迎向我们反馈错误，我们将感激不尽。
