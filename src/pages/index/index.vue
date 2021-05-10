@@ -66,13 +66,13 @@
         <view class="content"> 最近的[前端练习题]有更新 </view>
       </view>
       <!-- 动态 -->
-      <view
+      <!-- <view
         class="menumain dynamic"
         @click="handleUrl('/pages/common/noRelease')"
       >
         <view class="title">动态</view>
         <view class="content"> 您的等级暂未解锁此功能 </view>
-        <!-- 头像组 -->
+        头像组
         <view class="headPictureList">
           <image
             :style="{ zIndex: index, left: index * 15 + 'px' }"
@@ -83,22 +83,22 @@
             mode="scaleToFill"
           ></image>
         </view>
-      </view>
+      </view> -->
     </view>
     <!-- 社区 -->
-    <view class="community" @click="handleUrl('/pages/common/noRelease')">
+    <!-- <view class="community" @click="handleUrl('/pages/common/noRelease')">
       <view class="title">社区</view>
       <view class="content">您的等级暂未解锁此功能</view>
-    </view>
+    </view> -->
     <!-- 推荐文章 -->
-    <view class="article" @click="handleUrl('/pages/common/noRelease')">
+    <!-- <view class="article" @click="handleUrl('/pages/common/noRelease')">
       <view class="title">推荐文章</view>
       <view class="articleList">
         <view class="articleListItem">
           <view class="articleListItemTitle">
             您的等级暂未解锁此功能
           </view>
-          <!-- 头像 -->
+          头像
           <view class="bottom">
             <image
               class="headPicture"
@@ -112,7 +112,7 @@
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
     <menu-drawer :show="drawerShow" @change="drawerShow = !drawerShow" :user="user" :isLogin="isLogin"/>
   </view>
 </template>
@@ -315,7 +315,7 @@ export default {
 
   .menu {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     .menumain {
