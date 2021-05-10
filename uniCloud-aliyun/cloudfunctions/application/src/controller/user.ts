@@ -56,7 +56,7 @@ namespace User {
         .then(async () => await this.hanlder("bindQQ"))
         .catch((err) => err);
     }
-    // 用户相关的短信验证码
+    // 手机号验证码登录
     async loginBySms() {
       return handleMustRequireParam(
         [
@@ -74,7 +74,7 @@ namespace User {
         .then(async () => await this.hanlder("loginBySms"))
         .catch((err) => err);
     }
-    // 手机和验证码直接登录
+    // 发送验证码
     async sendSms(urlParams) {
       return await this.hanlder("sendSms", urlParams);
     }
