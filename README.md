@@ -13,24 +13,26 @@
 <img src="https://img.shields.io/github/license/swordCodePractice/InternetQuestionBank"></img>
 </div>
 
- - - - 
+---
 
 项目的起源是一个 github 仓库，名为[前端知识每日 3+1](https://github.com/haizlin/fe-interview)，正是这个优秀的题库项目才有了我们团队开发聚合题库的想法。在我们国内程序员圈子，大多数小伙伴为了更好的技术发展和 offer，都通过训练题来提高自己的眼界，其中不乏包括算法/业务/软技能的题目，但是因为我们的环境和侧重点不一样，所以我们接触的项目和题目都不一样，而市面上很少有一个项目能做到，涵盖不同圈子的聚合题库。 《剑指题解》项目就是一个优秀的互联网行业聚合题库神器。
 
-<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-86dc45ba-28e8-4734-a880-bbf700b08cf9/19fe73b3-bd01-4c7e-8418-4c90c25c4035.png" width="15%">
+<div><img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-86dc45ba-28e8-4734-a880-bbf700b08cf9/19fe73b3-bd01-4c7e-8418-4c90c25c4035.png" width="15%">
 <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/c1746d60-2e22-4161-b23d-38b910b73c91.jpg" width="15%"><img style="margin-left: 40px;" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/e4395033-d45f-4e3e-a930-78ff91c8db54.png" width="40%">
+</div>
 
 ##### 开源免费不易，请关注我们的公众号以及开源仓库
+
 [![沈昊Seho/InternetQuestionBank](https://gitee.com/yinzhuoei/InternetQuestionBank/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/yinzhuoei/InternetQuestionBank)<br/>
-[Github点star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)
-[Dcloud插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)
+[Github 点 star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)
+[Dcloud 插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)
+
 # 目录
+
 - [特点](#特点)
 - [技术栈](#技术栈)
 - [安装](./install.md)
 - [UML](#UML)
-  - [类图](##类图)
-  - [拉取任务](##拉取任务)
 - [设计概览](#设计概览)
 - [API](#API)
 - [贡献者](#贡献者)
@@ -49,12 +51,11 @@
 5. 我们还有很多有意思的待开发 feature，比如大佬带萌新模式，还将开启校园/企业的通道，让每一个学生/员工都能每时每刻提高自己
 6. 剑指题解开源项目，从原型图到小程序，UI 图，UML，API 文档，第三方 API 对接说明书，使用说明都将免费开源，欢迎各位同僚二开，让这个行业变得更好，我们将用心地辅助你们解决在技术上的难题。
 
-
 # 技术栈
 
 - [uniapp](https://uniapp.dcloud.io/)
 - [unicloud](https://unicloud.dcloud.net.cn/home)
-- [unicloud前端网页托管服务](https://unicloud.dcloud.net.cn/home)
+- [unicloud 前端网页托管服务](https://unicloud.dcloud.net.cn/home)
 - [vue3](https://vue3js.cn/)
 - [typescript](https://www.tslang.cn/)
 
@@ -99,6 +100,7 @@
 
 设计源文件请移步：[点击查看-为了您的体验，请务必下载最新版本的设计图](https://www.yuque.com/u509950/lmm8g4/oy2ztb)
 原型图在线预览: [点击查看, 如果失效请联系我们](https://app.mockplus.cn/s/16Fus8k9TTz)
+
 # API
 
 《剑指题解》团队在 API 层面，开源的内容非常有限制，因为涉及到多位合作伙伴的题库授权，所以如果您要使用聚合题库 API 请联系我们商议，如果您是学习者，那么在语雀中的 API 文档会帮助到您，在这里我们将简单介绍。
@@ -242,15 +244,17 @@ uniCloud.callFunction({
 
 # 相关开源物料
 
-- [语雀](https://www.yuque.com/books/share/7825dfb4-e7d2-403a-b462-21eaf9d3017e?#)  
-- [摹客产品设计-联系@seho获取原型图](https://app.mockplus.cn/s/ceKIIx7cyes)
+- [语雀](https://www.yuque.com/books/share/7825dfb4-e7d2-403a-b462-21eaf9d3017e?#)
+- [摹客产品设计-联系@seho 获取原型图](https://app.mockplus.cn/s/ceKIIx7cyes)
 
 # 题库合作伙伴
+
 - [前端面试 3+1 开源题库](https://github.com/haizlin/fe-interview)
-- [Guide哥的JAVA题库](https://github.com/Snailclimb/JavaGuide)
+- [Guide 哥的 JAVA 题库](https://github.com/Snailclimb/JavaGuide)
 - [达达前端](https://github.com/webVueBlog/interview-answe)
 
-# QQ群和钉钉群欢迎大家加入
+# QQ 群和钉钉群欢迎大家加入
+
 <img width="30%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/6f5b6587-8efe-400f-8fcb-f277892a9854.png" />
 <img width="32%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/309debe7-7f2a-47ae-a415-875e5b1f4922.jpg"></img>
 
