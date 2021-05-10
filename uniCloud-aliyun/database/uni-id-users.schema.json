@@ -69,6 +69,24 @@
 			"bsonType": "string",
 			"description": "微信unionid"
 		},
+		"qq_unionid": {
+			"bsonType": "string",
+			"description": "QQunionid"
+		},
+		"qq_openid": {
+			"bsonType": "object",
+			"description": "QQ各个平台openid",
+			"properties": {
+				"app-plus": {
+					"bsonType": "string",
+					"description": "app平台QQopenid"
+				},
+				"mp-qq": {
+					"bsonType": "string",
+					"description": "QQ小程序平台openid"
+				}
+			}
+		},
 		"wx_openid": {
 			"bsonType": "object",
 			"description": "微信各个平台openid",
