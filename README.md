@@ -27,6 +27,10 @@
 [Github 点 star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)
 [Dcloud 插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)
 
+<a href="https://t.1yb.co/pfaP">
+<img width="50%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-86dc45ba-28e8-4734-a880-bbf700b08cf9/78978813-0347-4d90-a0d8-14df925572da.png"></img>
+</a>
+
 # 目录
 
 - [特点](#特点)
