@@ -41,9 +41,9 @@
         <view class="link">看看其他小伙伴怎么做的吧 ></view>
       </view>
       <!-- 开始 -->
-      <view class="start" @click="handleStart(question._id, question.title)"
+      <!-- <view class="start" @click="handleStart(question._id, question.title)"
         >Start</view
-      >
+      > -->
     </view>
   </view>
 </template>
