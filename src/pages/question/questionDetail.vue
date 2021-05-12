@@ -3,14 +3,18 @@
     <view class="top">
       <!-- 顶部的bar -->
       <i-navigation-bar />
+      <view class="tags">
+        <view class="tag" v-for="tag in detailData.tagID" :key="tag._id">{{
+          tag.name
+        }}</view>
+      </view>
       <view class="title">
         {{ detailData.title || "" }}
       </view>
       <view class="info">
-        <view class="tags">
-          <view class="tag" v-for="tag in detailData.tagID" :key="tag._id">{{
-            tag.name
-          }}</view>
+        <!-- 我要写题解 -->
+        <view class="write" @click="handleWrite">
+          <i-button hairline plain customStyle="color:#fff;border-color:#fff;" :shadow="false" size="mini">我要写题解</i-button>
         </view>
         <view class="browse">
           <image src="../../static/question/eyes.png"></image>
@@ -66,8 +70,8 @@
             </view>
           </view>
           <template v-if="explanations.length === 0">
-            <view style="margin-top: 25%;">
-               <commonFill title="还没有人解答oh，快来成为第一个吧!"/>
+            <view style="margin-top: 25%">
+              <commonFill title="还没有人解答oh，快来成为第一个吧!" />
             </view>
           </template>
         </swiper-item>
@@ -79,6 +83,7 @@
 <script lang="ts">
 import Tabs from "../../components/v-tabs/v-tabs.vue";
 import { ref } from "vue";
+import notLogin from "../../util/notLogin";
 // api
 import { getQuestionDetailByID, postAddPageView } from "../../api/question";
 import { getExplanationsByQuestionID } from "../../api/questionExplanation";
@@ -94,10 +99,10 @@ export default {
     // 调用增加浏览量的方法
     this.handleAddPageView();
   },
-  onShareAppMessage(){
+  onShareAppMessage() {
     return {
-      title: `剑指题解：${this.detailData.title}`
-    }
+      title: `剑指题解：${this.detailData.title}`,
+    };
   },
   setup() {
     // 分页相关配置
@@ -141,6 +146,12 @@ export default {
         explanations.value = explanations.value.concat(explanationData.data);
       }
     };
+    // 跳转到写题解页面
+    const handleWrite = () => {
+      notLogin(() => {
+        
+      })
+    }
     // 跳转到题解详情页面
     const handleExplanationCard = (target: { _id: string }) => {
       uni.navigateTo({
@@ -169,12 +180,13 @@ export default {
       handleGetDetailData,
       handleGetQuestionExplanation,
       handleExplanationCard,
+      handleWrite,
       handleAddPageView,
       handleBack,
     };
   },
   components: {
-    Tabs,
+    Tabs
   },
 };
 </script>
@@ -189,46 +201,47 @@ export default {
     display: inline-block;
     position: relative;
     width: 100%;
-    height: 396rpx;
+    min-height: 460rpx;
     background: linear-gradient(360deg, #809bf5 0%, #506be6 100%);
+    .tags {
+      width: 666rpx;
+      margin: 0 auto;
+      margin-top: 30rpx;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
 
+      .tag {
+        color: #fff;
+        font-size: 24rpx;
+        background: linear-gradient(270deg, #ffd398 0%, #ffa85f 100%);
+        border-radius: 2px;
+        padding: 2rpx 16rpx;
+      }
+
+      .tag:not(:last-child) {
+        margin-right: 16rpx;
+      }
+    }
     .title {
       width: 666rpx;
+      height: 88rpx;
       margin: 0 auto;
       font-size: 32rpx;
       color: #fff;
-      margin-top: 42rpx;
+      margin-top: 22rpx;
       @include text-ellipsis(2);
     }
 
     .info {
-      position: absolute;
-      bottom: 90rpx;
-      left: 40rpx;
+     
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 666rpx;
       margin: 0 auto;
       margin-top: 20rpx;
-
-      .tags {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-
-        .tag {
-          color: #fff;
-          font-size: 24rpx;
-          background: linear-gradient(270deg, #ffd398 0%, #ffa85f 100%);
-          border-radius: 2px;
-          padding: 2rpx 16rpx;
-        }
-
-        .tag:not(:last-child) {
-          margin-right: 16rpx;
-        }
-      }
+      margin-bottom: 20rpx;
 
       .browse {
         display: flex;
