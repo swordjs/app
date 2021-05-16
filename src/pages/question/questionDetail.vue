@@ -3,18 +3,14 @@
     <view class="top">
       <!-- 顶部的bar -->
       <i-navigation-bar />
-      <view class="tags">
-        <view class="tag" v-for="tag in detailData.tagID" :key="tag._id">{{
-          tag.name
-        }}</view>
-      </view>
       <view class="title">
         {{ detailData.title || "" }}
       </view>
       <view class="info">
-        <!-- 我要写题解 -->
-        <view class="write" @click="handleWrite">
-          <i-button hairline plain customStyle="color:#fff;border-color:#fff;" :shadow="false" size="mini">我要写题解</i-button>
+        <view class="tags">
+          <view class="tag" v-for="tag in detailData.tagID" :key="tag._id">{{
+            tag.name
+          }}</view>
         </view>
         <view class="browse">
           <image src="../../static/question/eyes.png"></image>
@@ -42,33 +38,37 @@
         :style="{ height: swiperHeight + 'px' }"
       >
         <swiper-item @touchmove.stop>
-          <view
-            @click="handleExplanationCard(explanation)"
-            class="itemCard"
-            v-for="explanation in explanations"
-            :key="explanation._id"
-          >
-            <view class="itemCardTop">
-              <image
-                class="headPicture"
-                :src="explanation.userID[0].avatar"
-                mode="scaleToFill"
-              ></image>
-              <view class="nickname">{{ explanation.userID[0].nickname }}</view>
-            </view>
-            <view class="itemBody">
-              <!-- 可能有图片 -->
-              <!-- <view class="images">
+          <scroll-view :scroll-y="true" style="height: 100%">
+            <view
+              @click="handleExplanationCard(explanation)"
+              class="itemCard"
+              v-for="explanation in explanations"
+              :key="explanation._id"
+            >
+              <view class="itemCardTop">
+                <image
+                  class="headPicture"
+                  :src="explanation.userID[0].avatar"
+                  mode="scaleToFill"
+                ></image>
+                <view class="nickname">{{
+                  explanation.userID[0].nickname
+                }}</view>
+              </view>
+              <view class="itemBody">
+                <!-- 可能有图片 -->
+                <!-- <view class="images">
                 <image
                   src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
                   mode="scaleToFill"
                 ></image>
               </view> -->
-              <view class="itemMain">
-                {{ removeHtmlTag(explanation.content) }}
+                <view class="itemMain">
+                  {{ removeHtmlTag(explanation.content) }}
+                </view>
               </view>
             </view>
-          </view>
+          </scroll-view>
           <template v-if="explanations.length === 0">
             <view style="margin-top: 25%">
               <commonFill title="还没有人解答oh，快来成为第一个吧!" />
@@ -77,21 +77,49 @@
         </swiper-item>
       </swiper>
     </view>
+    <!-- 操作栏 -->
+    <view class="bottom">
+      <!-- 写题解 -->
+      <template v-if="!explanationIDBySelf">
+        <i-button
+          @click="handleWrite"
+          customStyle="background-color: #5671E8;border-color: #5671E8;width: 100px; line-height:37px;"
+          round
+          >写题解</i-button
+        >
+      </template>
+      <!-- 查看自己的题解 -->
+      <template v-else>
+        <i-button
+          @click="handleExplanationDetailBySelf"
+          customStyle="background-color: #5671E8;border-color: #5671E8;width: 170px; line-height:37px;"
+          round
+          >查看自己的题解</i-button
+        >
+      </template>
+    </view>
   </view>
 </template>
 
 <script lang="ts">
 import Tabs from "../../components/v-tabs/v-tabs.vue";
-import { ref } from "vue";
-import notLogin from "../../util/notLogin";
+import { computed, ref } from "vue";
 // api
 import { getQuestionDetailByID, postAddPageView } from "../../api/question";
-import { getExplanationsByQuestionID } from "../../api/questionExplanation";
+import {
+  getExplanationsByQuestionID,
+  checkExplanationByUser,
+} from "../../api/questionExplanation";
 import { removeHtmlTag } from "../../util/common";
+import notLogin from "../../util/notLogin";
 interface IPageParams {
   id: string;
 }
 export default {
+  onShow(){
+    // 每次进入页面需要查询这个题是否已做过
+    this.getExplanationIDBySelf();
+  },
   onLoad(params: IPageParams) {
     this.id = params.id;
     this.handleGetDetailData();
@@ -113,11 +141,28 @@ export default {
       page: 1,
       limit: 10,
     };
-    const detailData = ref({});
+    const detailData = ref<{
+      title: string;
+    }>({
+      title: "",
+    });
     const explanations = ref([]);
     const id = ref<string>("");
-    // 计算屏幕高度 - tab的高度 - 导航栏的高度 = swiper高度
-    const swiperHeight = uni.getSystemInfoSync().screenHeight - 251;
+    const explanationIDBySelf = ref<string | boolean>("");
+    // 查询自身是否解答过这道题了
+    const getExplanationIDBySelf = async () => {
+      // 判断是否登录
+      const id = uni.getStorageSync("uni_id");
+      if (id === "") return false;
+      const result = await checkExplanationByUser({
+        _id: id.value,
+      });
+      if (result.success) {
+        explanationIDBySelf.value = result.data === null ? false : result.data;
+      }
+    };
+    // 计算屏幕高度 - tab的高度 - 导航栏的高度 = swiper高度 - 底部操作栏高度
+    const swiperHeight = uni.getSystemInfoSync().screenHeight - 251 - 49;
     const tabCurrent = ref(0);
     const tabs = ref(["解答"]);
     const handleSwiperChange = (e) => {
@@ -146,16 +191,25 @@ export default {
         explanations.value = explanations.value.concat(explanationData.data);
       }
     };
-    // 跳转到写题解页面
-    const handleWrite = () => {
-      notLogin(() => {
-        
-      })
-    }
     // 跳转到题解详情页面
     const handleExplanationCard = (target: { _id: string }) => {
       uni.navigateTo({
         url: `/pages/question/questionExplanationDetail?id=${target._id}`,
+      });
+    };
+    // 点击写题解按钮
+    const handleWrite = () => {
+      // 判断是否登录
+      notLogin(async () => {
+        uni.navigateTo({
+          url: `/pages/question/writeQuestion?questionID=${id.value}&title=${detailData.value.title}`,
+        });
+      });
+    };
+    // 点击自己的题解详情
+    const handleExplanationDetailBySelf = () => {
+      uni.navigateTo({
+        url: `/pages/question/questionExplanationDetail?id=${explanationIDBySelf.value}`,
       });
     };
     const handleAddPageView = () => {
@@ -170,23 +224,26 @@ export default {
     }
     return {
       id,
+      explanationIDBySelf,
       detailData,
       explanations,
       swiperHeight,
       tabCurrent,
       tabs,
       removeHtmlTag,
+      getExplanationIDBySelf,
       handleSwiperChange,
       handleGetDetailData,
       handleGetQuestionExplanation,
       handleExplanationCard,
-      handleWrite,
       handleAddPageView,
+      handleExplanationDetailBySelf,
       handleBack,
+      handleWrite,
     };
   },
   components: {
-    Tabs
+    Tabs,
   },
 };
 </script>
@@ -201,47 +258,46 @@ export default {
     display: inline-block;
     position: relative;
     width: 100%;
-    min-height: 460rpx;
+    height: 396rpx;
     background: linear-gradient(360deg, #809bf5 0%, #506be6 100%);
-    .tags {
-      width: 666rpx;
-      margin: 0 auto;
-      margin-top: 30rpx;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
 
-      .tag {
-        color: #fff;
-        font-size: 24rpx;
-        background: linear-gradient(270deg, #ffd398 0%, #ffa85f 100%);
-        border-radius: 2px;
-        padding: 2rpx 16rpx;
-      }
-
-      .tag:not(:last-child) {
-        margin-right: 16rpx;
-      }
-    }
     .title {
       width: 666rpx;
-      height: 88rpx;
       margin: 0 auto;
       font-size: 32rpx;
       color: #fff;
-      margin-top: 22rpx;
+      margin-top: 42rpx;
       @include text-ellipsis(2);
     }
 
     .info {
-     
+      position: absolute;
+      bottom: 90rpx;
+      left: 40rpx;
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 666rpx;
       margin: 0 auto;
       margin-top: 20rpx;
-      margin-bottom: 20rpx;
+
+      .tags {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .tag {
+          color: #fff;
+          font-size: 24rpx;
+          background: linear-gradient(270deg, #ffd398 0%, #ffa85f 100%);
+          border-radius: 2px;
+          padding: 2rpx 16rpx;
+        }
+
+        .tag:not(:last-child) {
+          margin-right: 16rpx;
+        }
+      }
 
       .browse {
         display: flex;
@@ -261,7 +317,18 @@ export default {
       }
     }
   }
-
+  .bottom {
+    width: 690rpx;
+    height: 98rpx;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+  }
   .main {
     display: inline-block;
     width: 750rpx;
@@ -273,6 +340,7 @@ export default {
       margin-top: 30rpx;
       transform: translateX(-24rpx);
     }
+
     .itemCard {
       width: 630rpx;
       padding: 30rpx;
@@ -282,6 +350,9 @@ export default {
       margin-top: 20rpx;
       &:not(:first-child) {
         border-top: 2rpx solid #f1f3fc;
+      }
+      &:last-child {
+        margin-bottom: 20rpx;
       }
 
       .itemCardTop {
