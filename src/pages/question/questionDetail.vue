@@ -197,7 +197,7 @@ export default {
       }
     };
     // 题解列表触底加载
-    const handleScrollTolower = () => {
+    const handleExplanationTolower = () => {
       const {page, limit} = pageConfig.value;
       if (page * limit > explanations.value.length) {
         uni.showToast({
@@ -250,7 +250,7 @@ export default {
       handleGetDetailData,
       handleGetQuestionExplanation,
       handleExplanationCard,
-      handleScrollTolower,
+      handleExplanationTolower,
       handleAddPageView,
       handleBack,
       handleWrite,
