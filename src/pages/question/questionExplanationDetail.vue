@@ -6,7 +6,7 @@
     </view>
     <view class="card">
       <!-- 用户信息 -->
-      <view class="user">
+      <view class="user" @click="handleUser(data.userID[0]._id)">
         <image :src="data.userID[0].avatar" class="headPicture" mode=""></image>
         <view class="uerContent">
           <view class="nickName">{{ data.userID[0].nickname }}</view>
@@ -110,7 +110,7 @@ export default {
     // 获取最新的userID
     const getUserID = () => {
       userID.value = uni.getStorageSync("uni_id");
-    }
+    };
     // 查询自身是否解答过这道题了
     const getExplanationIDBySelf = async () => {
       // 判断是否登录
@@ -210,14 +210,17 @@ export default {
         isCollect.value = !isCollect.value;
       }
     };
-
     // 修改回答
     const handleEdit = () => {
       uni.navigateTo({
         url: `/pages/question/writeQuestion?explanationID=${data.value._id}&title=${data.value.questionID[0].title}`,
       });
     };
-
+    const handleUser = (_id: string) => {
+      uni.navigateTo({
+        url: `/pages/user/index?userID=${_id}`,
+      });
+    };
     // 写题解
     const handleWrite = () => {
       // 判断是否登录
@@ -257,6 +260,7 @@ export default {
       handleComment,
       handleCollect,
       handleWrite,
+      handleUser,
       handleExplanationDetailBySelf,
       handleEdit,
     };

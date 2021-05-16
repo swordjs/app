@@ -1,10 +1,10 @@
 <template>
   <view class="questionListBox">
-    <view class="item" v-for="question in dataList" :key="question._id">
+    <view class="item" v-for="question in dataList" :key="question._id" @click="handleQuestionDetail(question._id)">
       <!-- 背景卡片 -->
       <view class="topCard">
         <!-- 标题 -->
-        <view class="title" @click="handleQuestionDetail(question._id)">
+        <view class="title">
           {{ question.title }}
         </view>
         <!-- 个人信息 -->
@@ -37,8 +37,6 @@
         <view class="content">
           {{ question.content === "" && "暂无题目介绍" }}
         </view>
-        <!-- 链接 -->
-        <view class="link">看看其他小伙伴怎么做的吧 ></view>
       </view>
     </view>
   </view>
@@ -49,8 +47,6 @@
 import { defineComponent, ref } from "vue";
 // api
 import { getQuestionListData } from "../../api/question";
-import { checkExplanationByUser } from "../../api/questionExplanation";
-import notLogin from "../../util/notLogin";
 interface IPageParams {
   areaID: string;
   areaName: string;
@@ -265,32 +261,6 @@ page {
         @include text-ellipsis(3);
       }
 
-      .link {
-        text-align: center;
-        font-size: 20rpx;
-        color: #a8c0fe;
-        margin-top: 30rpx;
-        text-decoration: underline;
-      }
-    }
-
-    .start {
-      position: absolute;
-      left: 50%;
-      bottom: -44rpx;
-      transform: translateX(-50%);
-      width: 480rpx;
-      text-align: center;
-      line-height: 88rpx;
-      background: linear-gradient(270deg, #ffd781 0%, #ffa75e 100%);
-      box-shadow: 0px 4px 8px 0px rgba(172, 121, 71, 0.25);
-      border-radius: 46rpx;
-      color: #fff;
-      font-size: 32rpx;
-
-      &:active {
-        opacity: 0.8;
-      }
     }
 
     &:first-child {

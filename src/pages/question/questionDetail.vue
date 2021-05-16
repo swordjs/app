@@ -50,7 +50,7 @@
               v-for="explanation in explanations"
               :key="explanation._id"
             >
-              <view class="itemCardTop">
+              <view class="itemCardTop" @click.stop="handleUser(explanation.userID[0]._id)">
                 <image
                   class="headPicture"
                   :src="explanation.userID[0].avatar"
@@ -210,6 +210,12 @@ export default {
         handleGetQuestionExplanation();
       }
     }
+    // 点击用户头像
+    const handleUser = (_id: string) => {
+      uni.navigateTo({
+        url: `/pages/user/index?userID=${_id}`,
+      });
+    }; 
     // 跳转到题解详情页面
     const handleExplanationCard = (target: { _id: string }) => {
       uni.navigateTo({
@@ -254,6 +260,7 @@ export default {
       handleAddPageView,
       handleBack,
       handleWrite,
+      handleUser
     };
   },
   components: {
