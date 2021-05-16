@@ -38,7 +38,7 @@
         :style="{ height: swiperHeight + 'px' }"
       >
         <swiper-item @touchmove.stop>
-          <scroll-view :scroll-y="true" style="height: 100%">
+          <scroll-view :scroll-y="true" style="height: 100%" v-if="explanations.length !== 0">
             <view
               @click="handleExplanationCard(explanation)"
               class="itemCard"
@@ -69,7 +69,7 @@
               </view>
             </view>
           </scroll-view>
-          <template v-if="explanations.length === 0">
+          <template v-else>
             <view style="margin-top: 25%">
               <commonFill title="还没有人解答oh，快来成为第一个吧!" />
             </view>
@@ -152,8 +152,8 @@ export default {
     // 查询自身是否解答过这道题了
     const getExplanationIDBySelf = async () => {
       // 判断是否登录
-      const id = uni.getStorageSync("uni_id");
-      if (id === "") return false;
+      const userID = uni.getStorageSync("uni_id");
+      if (userID === "") return false;
       const result = await checkExplanationByUser({
         _id: id.value,
       });
@@ -189,6 +189,7 @@ export default {
       uni.hideLoading();
       if (explanationData.success) {
         explanations.value = explanations.value.concat(explanationData.data);
+        console.log(explanations.value)
       }
     };
     // 跳转到题解详情页面
