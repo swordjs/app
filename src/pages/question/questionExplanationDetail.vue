@@ -21,7 +21,7 @@
         ></robin-editor>
       </view>
     </view>
-    <view class="bottom">
+    <view class="bottom" :class="{ left: !isSelf }">
       <view class="like" @click="handleLike">
         <i-icon
           :color="isAdoption && '#EA4D4D'"
@@ -41,14 +41,31 @@
             ></i-icon>
           </template>
           <template v-else>
-            <i-icon
-              @click="handleEdit"
-              name="edit-box-line"
-            ></i-icon>
+            <i-icon @click="handleEdit" name="edit-box-line"></i-icon>
           </template>
         </view>
         <!-- 评论 -->
         <i-icon @click="handleComment" name="message-2-line"></i-icon>
+      </view>
+      <!-- button按钮，查看自己的题解/写题解 -->
+      <view class="button" v-if="!isSelf">
+        <template v-if="!explanationIDBySelf">
+          <i-button
+            @click="handleWrite"
+            customStyle="background-color: #5671E8;border-color: #5671E8;width: 100px; line-height:37px;"
+            round
+            >写题解</i-button
+          >
+        </template>
+        <!-- 查看自己的题解 -->
+        <template v-else>
+          <i-button
+            @click="handleExplanationDetailBySelf"
+            customStyle="background-color: #5671E8;border-color: #5671E8;width: 170px; line-height:37px;"
+            round
+            >查看自己的题解</i-button
+          >
+        </template>
       </view>
     </view>
   </view>
@@ -61,14 +78,22 @@ import {
   adoptionQuestionExplanation,
   collectQuestionExplanation,
 } from "../../api/questionExplanation";
+import { checkExplanationByUser } from "../../api/questionExplanation";
 import { checkIDInCollect } from "../../api/collect";
+import notLogin from "../../util/notLogin";
 type IPageParams = {
   id: string;
+  questionID: string;
 };
 export default {
+  onShow() {
+    this.getUserID();
+    this.getExplanationIDBySelf();
+  },
   onLoad(target: IPageParams) {
-    if (target.id) {
+    if (target.id && target.questionID) {
       this.id = target.id;
+      this.questionID = target.questionID;
       this.getExplanationData();
     }
   },
@@ -79,6 +104,24 @@ export default {
   },
   setup() {
     const id = ref("");
+    const questionID = ref("");
+    const explanationIDBySelf = ref<string | boolean>("");
+    const userID = ref<string>("");
+    // 获取最新的userID
+    const getUserID = () => {
+      userID.value = uni.getStorageSync("uni_id");
+    }
+    // 查询自身是否解答过这道题了
+    const getExplanationIDBySelf = async () => {
+      // 判断是否登录
+      if (userID.value === "") return false;
+      const result = await checkExplanationByUser({
+        _id: questionID.value,
+      });
+      if (result.success) {
+        explanationIDBySelf.value = result.data === null ? false : result.data;
+      }
+    };
     const data = ref<{
       userAgreed?: string[];
       questionID?: {
@@ -94,9 +137,8 @@ export default {
       userAgreed: [],
     });
     const isSelf = computed(() => {
-      const userID = uni.getStorageSync("uni_id");
-      return userID === data.value.userID[0]?._id;
-    })
+      return userID.value === data.value.userID[0]?._id;
+    });
     // 是否已采纳
     const isAdoption = ref<boolean>(false);
     // 是否已收藏
@@ -117,6 +159,7 @@ export default {
       uni.hideLoading();
       if (result.success) {
         data.value = result.data[0];
+        console.log(data.value);
         // 查询题解赞同列表中是否有自己
         isAdoption.value = data.value.userAgreed.some(
           (u) => u === uni.getStorageSync("uni_id")
@@ -172,10 +215,26 @@ export default {
     // 修改回答
     const handleEdit = () => {
       uni.navigateTo({
-        url: `/pages/question/writeQuestion?explanationID=${data.value._id}&title=${data.value.questionID[0].title}`
-      })
-    }
+        url: `/pages/question/writeQuestion?explanationID=${data.value._id}&title=${data.value.questionID[0].title}`,
+      });
+    };
 
+    // 写题解
+    const handleWrite = () => {
+      // 判断是否登录
+      notLogin(async () => {
+        uni.navigateTo({
+          url: `/pages/question/writeQuestion?questionID=${questionID.value}&title=${data.value.questionID[0].title}`,
+        });
+      });
+    };
+
+    // 查看自己的题解
+    const handleExplanationDetailBySelf = () => {
+      uni.navigateTo({
+        url: `/pages/question/questionExplanationDetail?id=${explanationIDBySelf.value}&questionID=${questionID.value}`,
+      });
+    };
     // 评论
     const handleComment = () => {
       uni.showToast({
@@ -185,16 +244,22 @@ export default {
     };
     return {
       id,
+      getUserID,
       isSelf,
+      questionID,
       data,
       isAdoption,
+      explanationIDBySelf,
       isCollect,
       getExplanationData,
+      getExplanationIDBySelf,
       handleBack,
       handleLike,
       handleComment,
       handleCollect,
-      handleEdit
+      handleWrite,
+      handleExplanationDetailBySelf,
+      handleEdit,
     };
   },
 };
@@ -291,6 +356,7 @@ page {
     }
   }
   .bottom {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -299,6 +365,7 @@ page {
     position: fixed;
     bottom: 0;
     background-color: #fff;
+
     .like {
       display: flex;
       justify-content: flex-start;
@@ -316,6 +383,18 @@ page {
       margin-right: 30rpx;
       .star {
         margin-right: 50rpx;
+      }
+    }
+    // 不同状态下的样式变化
+    &.left {
+      justify-content: flex-start;
+      .contentRight {
+        margin-left: 40rpx;
+      }
+      .button {
+        position: absolute;
+        right: 30rpx;
+        align-self: flex-end;
       }
     }
   }

@@ -40,10 +40,6 @@
         <!-- 链接 -->
         <view class="link">看看其他小伙伴怎么做的吧 ></view>
       </view>
-      <!-- 开始 -->
-      <!-- <view class="start" @click="handleStart(question._id, question.title)"
-        >Start</view
-      > -->
     </view>
   </view>
 </template>
@@ -139,32 +135,6 @@ export default defineComponent({
         url: `/pages/question/questionDetail?id=${_id}`,
       });
     };
-    // 进入新增题解页面
-    const handleStart = async (_id: string, title: string) => {
-      notLogin(async (userID) => {
-        uni.showLoading({
-          title: "请稍后...",
-          mask: true,
-        });
-        // 判断此题是否答过，如果答过，则直接进入解答详情中
-        const result = await checkExplanationByUser({
-          _id,
-        });
-        uni.hideLoading();
-        if (result.success) {
-          if (result.data === null) {
-            uni.navigateTo({
-              url: `/pages/question/writeQuestion?questionID=${_id}&title=${title}`,
-            });
-          } else {
-            // 题解详情
-            uni.navigateTo({
-              url: `/pages/question/questionExplanationDetail?id=${result.data}`,
-            });
-          }
-        }
-      });
-    };
     const handleQuestionChange = (e) => {
       const current: number = e.detail.current;
       // 判断是当前数组的最后一个
@@ -182,8 +152,7 @@ export default defineComponent({
       handleGetData,
       handleQuestionDetail,
       handleQuestionChange,
-      handlePublishUser,
-      handleStart,
+      handlePublishUser
     };
   },
 });

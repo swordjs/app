@@ -172,7 +172,7 @@
             >
               <view
                 class="itemCard"
-                @click="handleExplanation(item._id)"
+                @click="handleExplanation(item._id, item.questionID[0]._id)"
                 v-for="item in listInfo.explanationList.data"
                 :key="item._id"
               >
@@ -402,6 +402,7 @@ export default {
         listInfo.value[keyName].data = listInfo.value[keyName].data.concat(
             result.data
           );
+        console.log(listInfo.value[keyName].data)
       }
     };
     const handleSwiperChange = (e) => {
@@ -450,9 +451,9 @@ export default {
       });
     };
     // 点击题解列表中的卡片，进入题解详情
-    const handleExplanation = (id: number) => {
+    const handleExplanation = (id: number, questionID: number) => {
       uni.navigateTo({
-        url: `/pages/question/questionExplanationDetail?id=${id}`,
+        url: `/pages/question/questionExplanationDetail?id=${id}&questionID=${questionID}`,
       });
     };
     // 修改资料的入口

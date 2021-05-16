@@ -199,7 +199,7 @@ export default defineComponent({
                 : result.data._id;
               // 题解详情页面
               uni.redirectTo({
-                url: `/pages/question/questionExplanationDetail?id=${explanationID}`,
+                url: `/pages/question/questionExplanationDetail?id=${explanationID}&questionID=${this.questionInfo.questionID}`,
               });
             }
           }

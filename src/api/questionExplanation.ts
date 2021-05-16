@@ -147,12 +147,13 @@ export async function getExplanationsByID(params: {
  */
 export async function checkExplanationByUser(params: {
   _id: string;
+  userID?: string
 }): Promise<ActionResult> {
   return new Promise((resolve) => {
     db.collection("questionExplanation")
       .where({
         questionID: params._id,
-        userID: uni.getStorageSync("uni_id"),
+        userID: params.userID || uni.getStorageSync("uni_id"),
       })
       .get()
       .then((res) => {

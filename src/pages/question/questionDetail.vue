@@ -91,7 +91,7 @@
       <!-- 查看自己的题解 -->
       <template v-else>
         <i-button
-          @click="handleExplanationDetailBySelf"
+          @click="handleExplanationCard({_id: explanationIDBySelf})"
           customStyle="background-color: #5671E8;border-color: #5671E8;width: 170px; line-height:37px;"
           round
           >查看自己的题解</i-button
@@ -103,7 +103,7 @@
 
 <script lang="ts">
 import Tabs from "../../components/v-tabs/v-tabs.vue";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 // api
 import { getQuestionDetailByID, postAddPageView } from "../../api/question";
 import {
@@ -194,7 +194,7 @@ export default {
     // 跳转到题解详情页面
     const handleExplanationCard = (target: { _id: string }) => {
       uni.navigateTo({
-        url: `/pages/question/questionExplanationDetail?id=${target._id}`,
+        url: `/pages/question/questionExplanationDetail?id=${target._id}&questionID=${id.value}`,
       });
     };
     // 点击写题解按钮
@@ -206,12 +206,7 @@ export default {
         });
       });
     };
-    // 点击自己的题解详情
-    const handleExplanationDetailBySelf = () => {
-      uni.navigateTo({
-        url: `/pages/question/questionExplanationDetail?id=${explanationIDBySelf.value}`,
-      });
-    };
+    
     const handleAddPageView = () => {
       postAddPageView({
         _id: id.value,
@@ -237,7 +232,6 @@ export default {
       handleGetQuestionExplanation,
       handleExplanationCard,
       handleAddPageView,
-      handleExplanationDetailBySelf,
       handleBack,
       handleWrite,
     };
