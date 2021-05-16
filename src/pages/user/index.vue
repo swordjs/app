@@ -106,7 +106,7 @@
             <scroll-view
               :style="{ height: swiperHeight + 'px' }"
               :scroll-y="scrollOpen && listInfo.publishList.data.length !== 0"
-              @scrolltolower="handleScrolltolower(listInfo.publishList)"
+              @scrolltolower="handleScrollTolower(listInfo.publishList)"
             >
               <view
                 class="itemCard"
@@ -168,7 +168,7 @@
               :scroll-y="
                 scrollOpen && listInfo.explanationList.data.length !== 0
               "
-              @scrolltolower="handleScrolltolower(listInfo.explanationList)"
+              @scrolltolower="handleScrollTolower(listInfo.explanationList)"
             >
               <view
                 class="itemCard"
@@ -402,7 +402,6 @@ export default {
         listInfo.value[keyName].data = listInfo.value[keyName].data.concat(
             result.data
           );
-        console.log(listInfo.value[keyName].data)
       }
     };
     const handleSwiperChange = (e) => {
@@ -463,7 +462,7 @@ export default {
       })
     }
     // 列表到达底部的处理函数
-    const handleScrolltolower = (item: List) => {
+    const handleScrollTolower = (item: List) => {
       // 判断其中data的长度是否已不够进行分页
       if (item.page * item.limit > item.data.length) {
         uni.showToast({
@@ -497,7 +496,7 @@ export default {
       getQuestionList,
       handleCardButton,
       handleSwiperChange,
-      handleScrolltolower,
+      handleScrollTolower,
       handleClickQuestion,
       handleExplanation,
       handleEditProfile

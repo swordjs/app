@@ -38,7 +38,12 @@
         :style="{ height: swiperHeight + 'px' }"
       >
         <swiper-item @touchmove.stop>
-          <scroll-view :scroll-y="true" style="height: 100%" v-if="explanations.length !== 0">
+          <scroll-view
+            @scrolltolower="handleExplanationTolower"
+            :scroll-y="true"
+            style="height: 100%"
+            v-if="explanations.length !== 0"
+          >
             <view
               @click="handleExplanationCard(explanation)"
               class="itemCard"
@@ -91,7 +96,7 @@
       <!-- 查看自己的题解 -->
       <template v-else>
         <i-button
-          @click="handleExplanationCard({_id: explanationIDBySelf})"
+          @click="handleExplanationCard({ _id: explanationIDBySelf })"
           customStyle="background-color: #5671E8;border-color: #5671E8;width: 170px; line-height:37px;"
           round
           >查看自己的题解</i-button
@@ -134,13 +139,13 @@ export default {
   },
   setup() {
     // 分页相关配置
-    let pageConfig: {
+    let pageConfig = ref<{
       page: number;
       limit: number;
-    } = {
+    }>({
       page: 1,
-      limit: 10,
-    };
+      limit: 20,
+    });
     const detailData = ref<{
       title: string;
     }>({
@@ -180,18 +185,31 @@ export default {
     };
     // 获取题解列表
     const handleGetQuestionExplanation = async () => {
-      uni.showLoading({ title: "获取题解列表...", mask: true });
+      uni.showLoading({ title: "加载中...", mask: true });
       const explanationData = await getExplanationsByQuestionID({
         questionID: id.value,
-        limit: pageConfig.limit,
-        page: pageConfig.page,
+        limit: pageConfig.value.limit,
+        page: pageConfig.value.page,
       });
       uni.hideLoading();
       if (explanationData.success) {
         explanations.value = explanations.value.concat(explanationData.data);
-        console.log(explanations.value)
       }
     };
+    // 题解列表触底加载
+    const handleScrollTolower = () => {
+      const {page, limit} = pageConfig.value;
+      if (page * limit > explanations.value.length) {
+        uni.showToast({
+          title: "再往下就没内容啦~",
+          icon: "none",
+        });
+      } else {
+        pageConfig.value.page++;
+        // 分页加载
+        handleGetQuestionExplanation();
+      }
+    }
     // 跳转到题解详情页面
     const handleExplanationCard = (target: { _id: string }) => {
       uni.navigateTo({
@@ -232,6 +250,7 @@ export default {
       handleGetDetailData,
       handleGetQuestionExplanation,
       handleExplanationCard,
+      handleScrollTolower,
       handleAddPageView,
       handleBack,
       handleWrite,
