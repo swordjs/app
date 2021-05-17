@@ -49,9 +49,10 @@
 
 	/* #endif */
 	.i-icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		font-family: remixicon !important;
 		text-decoration: none;
-		text-align: center;
-		vertical-align: middle;
 	}
 </style>
