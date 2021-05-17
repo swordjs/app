@@ -123,6 +123,24 @@ class 服务号推送日志{
     +String content
 }
 
+namespace 搜索 #DDDDDD {
+    class 搜索日志 {
+        +UUID _id
+        +String content
+        +String timestamp
+        +String user_id
+    }
+    class 热搜 {
+        +UUID _id
+        +String content
+        +Number count
+        +String create_date
+    }
+    .搜索资源 --> .用户
+    .搜索资源 --> .题目
+    .搜索资源 --> .题解
+}
+
 题目专区 --> "many" 题目分类标签::areaID
 用户 --> "many" 题目
 用户 --> "many" 用户申请认证表::userID
