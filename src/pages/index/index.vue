@@ -39,13 +39,8 @@
       </button>
       <view v-else class="nickname">{{ user.nickName }}!</view>
       <!-- 搜索框 -->
-      <view class="search">
-        <input
-          maxlength="15"
-          placeholder="搜索功能暂未开放，团队加急赶制中..."
-          placeholder-style="color: #C3C5D4;"
-          type="text"
-        />
+      <view class="search" @click="handleUrl('/pages/search/index')">
+        <view class="main">搜索功能暂未开放，团队加急赶制中...</view>
         <image class="icon" src="../../static/index/search.png"></image>
       </view>
     </view>
@@ -113,7 +108,12 @@
         </view>
       </view>
     </view> -->
-    <menu-drawer :show="drawerShow" @change="drawerShow = !drawerShow" :user="user" :isLogin="isLogin"/>
+    <menu-drawer
+      :show="drawerShow"
+      @change="drawerShow = !drawerShow"
+      :user="user"
+      :isLogin="isLogin"
+    />
   </view>
 </template>
 
@@ -278,10 +278,11 @@ export default {
       box-shadow: 0px 4px 11px 0px rgba(38, 46, 99, 0.15);
       border-radius: 10px;
 
-      input {
+      .main {
         width: calc(100% - 40rpx - 30rpx - 72rpx);
         margin-left: 40rpx;
         font-size: 28rpx;
+        color: #ccc;
       }
 
       .icon {

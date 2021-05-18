@@ -97,6 +97,20 @@
       }
     }
   ],
+  "subPackages": [
+    {
+      "root": "pages/search",
+      "pages": [
+        {
+          "path": "index",
+          "style": {
+            "navigationStyle": "default",
+            "navigationBarTitleText": "搜索"
+          }
+        }
+      ]
+    }
+  ],
   "easycom": {
     "autoscan": true,
     "custom": {
