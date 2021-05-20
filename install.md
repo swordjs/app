@@ -19,7 +19,7 @@
 - 安装基础 [NodeJs](http://nodejs.cn/download/) 开发环境
 - 下载并安装 [HbuilderX](https://www.dcloud.io/hbuilderx.html) 开发工具
 - 下载并安装 [微信开发者工具](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
-
+- 如果你是macos系统，那么请注意，您必须本地的node环境要>10，且需要配置hbulderX运行的node环境必须是本地的node（hbuilderx有自带的低版本node，我们不能使用低版本的node），那么如何设置hbuilderx的node版本呢，打开hbuilderx -> 偏好设置 -> 运行配置 -> 设置node启动为本地的node即可。
 
 
 ```javascript
