@@ -256,6 +256,7 @@ uniCloud.callFunction({
 - [前端面试 3+1 开源题库](https://github.com/haizlin/fe-interview)
 - [Guide 哥的 JAVA 题库](https://github.com/Snailclimb/JavaGuide)
 - [达达前端](https://github.com/webVueBlog/interview-answe)
+- [凌枫-phpQ&A-授权中...](https://github.com/colinlet/PHP-Interview-QA)
 
 # QQ 群和钉钉群欢迎大家加入
 
