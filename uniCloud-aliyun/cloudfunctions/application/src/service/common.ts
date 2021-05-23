@@ -5,12 +5,5 @@ namespace CommonService {
     constructor({ event }) {
         this.event = event;
     }
-    uploadFile() {
-      const file = formParser(this.event).file;
-      return uniCloud.uploadFile({
-        cloudPath: file.filename,
-        fileContent: file.fileContent,
-      });
-    }
   };
 }
