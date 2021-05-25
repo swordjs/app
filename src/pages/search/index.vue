@@ -23,6 +23,13 @@
       <view class="word-container" v-if="localSearchList.length">
         <view class="word-container_header">
           <text class="word-container_header-text">搜索历史</text>
+          <i-icon
+            v-if="!localSearchListDel"
+            color="#999999"
+            size="35rpx"
+            name="delete-bin-line"
+            @click="localSearchListDel = true"
+          />
           <view
             v-if="localSearchListDel"
             class="flex-center flex-row"
@@ -36,7 +43,7 @@
                 padding-bottom: 4rpx;
                 padding-right: 20rpx;
               "
-              @click="LocalSearchListClear"
+              @click="handleClearLocalSearchList"
               >全部删除</text
             >
             <text
@@ -58,10 +65,15 @@
             class="flex-center flex-row word-container_body-text"
             v-for="(word, index) in localSearchList"
             :key="index"
-            @click="LocalSearchlistItemClick(word, index)"
+            @click="handleClickLocalSearchItem(word, index)"
           >
             <text class="word-display" :key="word">{{ word }}</text>
-            <uni-icons v-if="localSearchListDel" size="12" type="closeempty" />
+            <i-icon
+              v-if="localSearchListDel"
+              color="#999999"
+              size="35rpx"
+              name="close-line"
+            />
           </view>
         </view>
       </view>
@@ -70,59 +82,29 @@
         <view class="word-container_header">
           <view class="flex-center flex-row">
             <text class="word-container_header-text">搜索发现</text>
-            <!-- <uni-icons
+            <i-icon
+              name="loader-3-line"
               v-if="!netHotListIsHide"
-              class="search-icons"
               color="#999999"
-              size="14"
-              type="reload"
-              @click="searchHotRefresh"
-            ></uni-icons> -->
+              size="35rpx"
+              style="margin-left: 10rpx"
+              @click="getNetHotList(true)"
+            ></i-icon>
           </view>
-          <!-- <uni-icons
-            class="search-icons"
-            style="padding-right: 0"
-            color="#999999"
-            size="18"
-            :type="netHotListIsHide ? 'eye-slash' : 'eye'"
-            @click="netHotListIsHide = !netHotListIsHide"
-          ></uni-icons> -->
         </view>
-
-        <!-- <unicloud-db
-          ref="udb"
-          #default="{ data, loading, error, options }"
-          field="content"
-          collection="opendb-search-hot"
-          orderby="create_date desc,count desc"
-          page-data="replace"
-          :page-size="10"
-        >
-          <text
-            v-if="loading && !netHotListIsHide"
-            class="word-container_body-info"
-            >正在加载...</text
-          >
-          <view v-else class="word-container_body">
-            <template v-if="!netHotListIsHide">
-              <text v-if="error" class="word-container_body-info">{{
-                error.message
-              }}</text>
-              <template v-else>
-                <text
-                  v-for="(word, index) in data"
-                  class="word-container_body-text"
-                  :key="index"
-                  @click="search(word.content)"
-                  >{{ word.content }}</text
-                >
-              </template>
+        <view class="word-container_body">
+          <template>
+            <template>
+              <text
+                v-for="(word, index) in netHotList"
+                class="word-container_body-text"
+                :key="index"
+                @click="handleClickLocalSearchItem(word.content)"
+                >{{ word.content }}</text
+              >
             </template>
-            <view v-else style="flex: 1">
-              <text class="word-container_body-info">当前搜索发现已隐藏</text>
-            </view>
-          </view>
-        </unicloud-db> -->
+          </template>
+        </view>
       </view>
     </view>
     <!-- 搜索联想 -->
@@ -149,7 +131,11 @@ const localSearchListKey = "__local_search_history"; //	本地历史存储字段
 // 公共方法
 import { arrUnique, debounce } from "../../util/common";
 // api
-import { search } from "../../api/search";
+import {
+  search,
+  addSearchLog as addLog,
+  getHotSearchWordList,
+} from "../../api/search";
 import { watch, ref, computed } from "vue";
 
 export default {
@@ -186,6 +172,23 @@ export default {
       page: 1,
     });
     const associativeList = ref<Array<any>>([]);
+    // 搜索发现（热搜数组）
+    const netHotList = ref<Array<any>>([]);
+    const getNetHotList = async (initiative: boolean = false) => {
+      // 如果是主动调用，则显示加载框
+      if (initiative) {
+        uni.showLoading({
+          title: "获取最新热搜中...",
+          mask: true,
+        });
+      }
+      const wordResult = await getHotSearchWordList();
+      uni.hideLoading();
+      if (wordResult.success) {
+        netHotList.value = wordResult.data;
+      }
+    };
+    getNetHotList(); // 获取热搜词
     // 本地搜索记录
     const localSearchList = ref<Array<any>>(
       uni.getStorageSync(localSearchListKey)
@@ -194,14 +197,13 @@ export default {
     // 是否显示词法关联结果内容
     const associativeShow = computed(() => {
       return searchText.value && associativeList.value.length;
-    })
+    });
     watch(
       searchText,
       debounce(async () => {
         // 每次关键词的变化，页数都设置为1
         associativeConfig.value.page = 1;
         if (searchText.value) {
-          console.log("hahh");
           await handleSearch({
             key: searchText.value,
           });
@@ -216,11 +218,19 @@ export default {
       key?: string;
       pagination?: boolean;
     }) => {
+      // 在不分页的情况下才会显示loading框
+      if (!params.pagination) {
+        uni.showLoading({
+          title: "检索中...",
+          mask: true,
+        });
+      }
       const res = await search({
         searchText: params?.key || searchText.value,
         limit: associativeConfig.value.limit,
         page: associativeConfig.value.page,
       });
+      uni.hideLoading();
       if (res.success) {
         associativeList.value = params?.pagination
           ? associativeList.value.concat(res.data)
@@ -247,30 +257,32 @@ export default {
         const uniId = uni.getStorageSync("uni_id");
         // 如果未登陆
         if (!uniId) {
-          resolve(
-            uni.getSystemInfoSync().system +
+          resolve({
+            id:
+              uni.getSystemInfoSync().system +
               "_" +
-              Math.random().toString(36).substr(2)
-          );
+              Math.random().toString(36).substr(2),
+            isDeviceID: true,
+          });
         } else {
           // 登陆返回uniID
-          resolve(uniId);
+          resolve({
+            id: uniId,
+            isDeviceID: false,
+          });
         }
       });
     };
     // 添加搜索记录
     const addSearchLog = (value: string) => {
       // 在此处存搜索记录，如果登录则需要存 user_id，若未登录则存device_id
-      getDeviceId().then((device_id) => {
-        // this.searchLogDb.add({
-        //   // user_id: device_id,
-        //   device_id,
-        //   content: value,
-        //   create_date: Date.now(),
-        // });
+      getDeviceId().then(async ({ id, isDeviceID }) => {
+        await addLog({
+          content: value,
+          [isDeviceID ? "device_id" : "user_id"]: id,
+        });
       });
     };
-
     // 处理本地搜索记录的函数
     const localSearchListManage = (word: string) => {
       let list = uni.getStorageSync(localSearchListKey);
@@ -294,11 +306,32 @@ export default {
       // 将此关键词纳入库
       addSearchLog(searchText.value);
       // 处理本地搜索记录
-      localSearchListManage(searchText.value)
+      localSearchListManage(searchText.value);
       // 跳转页面到具体页面
       uni.navigateTo({
         url: `/pages/question/questionDetail?id=${item._id}`,
       });
+    };
+    // 删除某一个搜索历史
+    const handleDeleteLocalSearchListItem = (index: number) => {
+      // 本地数组删除
+      localSearchList.value.splice(index, 1);
+      // 本地缓存重新赋值
+      uni.setStorageSync(localSearchListKey, localSearchList.value);
+      // 如果本地搜索数组为空，则就取消编辑状态
+      if (localSearchList.value.length === 0) {
+        localSearchListDel.value = false;
+      }
+    };
+    // 点击本地的搜索历史item项
+    const handleClickLocalSearchItem = (word: string, index: number) => {
+      // 判断是否是可编辑状态，如果是编辑状态，则就删除
+      if (localSearchListDel.value) {
+        handleDeleteLocalSearchListItem(index);
+      } else {
+        // 给搜索框赋值
+        searchText.value = word;
+      }
     };
     // 清空本地搜索结果
     const handleClearLocalSearchList = () => {
@@ -315,13 +348,11 @@ export default {
           }
         },
       });
-    }
-    // 重新拉取热点
-    const searchHotRefresh = () => {
-      // this.$refs.udb.refresh();
-    }
+    };
+
     return {
       associativeList,
+      netHotList,
       localSearchList,
       associativeShow,
       associativeConfig,
@@ -331,8 +362,11 @@ export default {
       handleSearch,
       clear,
       cancel,
+      getNetHotList,
       handleClickAssociative,
-      handleClearLocalSearchList
+      handleClickLocalSearchItem,
+      handleClearLocalSearchList,
+      handleDeleteLocalSearchListItem,
     };
   },
   created() {
@@ -340,7 +374,7 @@ export default {
     //   this.keyBoardPopup = res.height !== 0;
     // });
     // this.searchText = getApp().globalData.searchText;
-  }
+  },
 };
 </script>
 

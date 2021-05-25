@@ -189,4 +189,15 @@ module.exports = [
       },
     ],
   },
+  {
+    route: "api/search",
+    service: "search",
+    routes: [
+      {
+        route: "addSeachLog",
+        action: "addSeachLog",
+        httpMethod: "POST",
+      },
+    ],
+  },
 ];
