@@ -84,7 +84,6 @@
             <text class="word-container_header-text">搜索发现</text>
             <i-icon
               name="loader-3-line"
-              v-if="!netHotListIsHide"
               color="#999999"
               size="35rpx"
               style="margin-left: 10rpx"
@@ -160,7 +159,6 @@ export default {
   },
   setup() {
     const searchText = ref<string>("");
-    const netHotListIsHide = ref<boolean>(false);
     // 默认热搜词, 如果没有输入即回车，则搜索热词，但是不会加入搜索记录
     const hotWorld = ref<string>("请搜索你感兴趣的内容");
     // 关联结果分页配置项
@@ -186,6 +184,12 @@ export default {
       uni.hideLoading();
       if (wordResult.success) {
         netHotList.value = wordResult.data;
+        if (netHotList.value.length === 0 && initiative) {
+          uni.showLoading({
+            title: "暂无热搜oh，请稍等再试试吧～",
+            mask: true,
+          });
+        }
       }
     };
     getNetHotList(); // 获取热搜词
