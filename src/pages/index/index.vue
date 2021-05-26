@@ -40,7 +40,7 @@
       <view v-else class="nickname">{{ user.nickName }}!</view>
       <!-- 搜索框 -->
       <view class="search" @click="handleUrl('/pages/search/index')">
-        <view class="main">搜索功能暂未开放，团队加急赶制中...</view>
+        <view class="main">快来看看今天有哪些技术热点吧～</view>
         <image class="icon" src="../../static/index/search.png"></image>
       </view>
     </view>
