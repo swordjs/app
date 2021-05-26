@@ -648,6 +648,7 @@ export default {
 
   .previewNodes {
     width: 100%;
+    font-size: 28rpx;
     word-break: break-all;
   }
 }

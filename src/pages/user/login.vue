@@ -246,8 +246,8 @@ export default defineComponent({
             mobile: loginData.phone.trim(),
             code: loginData.code,
           });
-          uni.hideLoading();
           if (bindResult.success) {
+            uni.hideLoading();
             uni.showModal({
               title: "提示",
               showCancel: false,

@@ -188,8 +188,9 @@ export async function getExplanationsByUserID(params: {
       .where({
         userID: params.userID,
       })
+      // publishUserID{nickname, avatar}
       .field(
-        `questionID{title,_id, publishUserID{nickname, avatar}},content,createDate`
+        `questionID{title,_id},content,createDate`
       )
       .orderBy("createDate desc")
       .skip(limit * (page - 1))

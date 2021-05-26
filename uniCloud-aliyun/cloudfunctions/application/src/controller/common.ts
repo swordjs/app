@@ -9,9 +9,5 @@ namespace Common {
       });
       return await service[methodName](this.event.params);
     }
-    // 上传文件
-    async uploadFile() {
-      return this.handler("uploadFile");
-    }
   };
 }

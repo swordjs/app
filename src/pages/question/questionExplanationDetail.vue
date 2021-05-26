@@ -45,7 +45,7 @@
           </template>
         </view>
         <!-- 评论 -->
-        <i-icon @click="handleComment" name="message-2-line"></i-icon>
+        <!-- <i-icon @click="handleComment" name="message-2-line"></i-icon> -->
       </view>
       <!-- button按钮，查看自己的题解/写题解 -->
       <view class="button" v-if="!isSelf">
@@ -385,7 +385,7 @@ page {
       align-items: center;
       margin-right: 30rpx;
       .star {
-        margin-right: 50rpx;
+        // margin-right: 50rpx;
       }
     }
     // 不同状态下的样式变化
