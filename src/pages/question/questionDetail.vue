@@ -33,6 +33,7 @@
         ></Tabs>
       </view>
       <swiper
+        class="swiper"
         :current="tabCurrent"
         @change="handleSwiperChange"
         :style="{ height: swiperHeight + 'px' }"
@@ -50,7 +51,10 @@
               v-for="explanation in explanations"
               :key="explanation._id"
             >
-              <view class="itemCardTop" @click.stop="handleUser(explanation.userID[0]._id)">
+              <view
+                class="itemCardTop"
+                @click.stop="handleUser(explanation.userID[0]._id)"
+              >
                 <image
                   class="headPicture"
                   :src="explanation.userID[0].avatar"
@@ -121,7 +125,7 @@ interface IPageParams {
   id: string;
 }
 export default {
-  onShow(){
+  onShow() {
     // 每次进入页面需要查询这个题是否已做过
     this.getExplanationIDBySelf();
   },
@@ -166,8 +170,17 @@ export default {
         explanationIDBySelf.value = result.data === null ? false : result.data;
       }
     };
+    // 解答页面的滚动视图高度，需要初始化减掉49，这个49是底部操作的高度，之后会经过动态计算，算出距离顶部的高度，然后动态减去
+    const swiperHeight = ref<number>(uni.getSystemInfoSync().screenHeight - 49);
     // 计算屏幕高度 - tab的高度 - 导航栏的高度 = swiper高度 - 底部操作栏高度
-    const swiperHeight = uni.getSystemInfoSync().screenHeight - 251 - 49;
+    let query = uni.createSelectorQuery();
+    let dom = query.select(".swiper");
+    dom
+      .boundingClientRect(function ({top}) {
+        swiperHeight.value -= top;
+        console.log(swiperHeight.value);
+      })
+      .exec();
     const tabCurrent = ref(0);
     const tabs = ref(["解答"]);
     const handleSwiperChange = (e) => {
@@ -198,7 +211,7 @@ export default {
     };
     // 题解列表触底加载
     const handleExplanationTolower = () => {
-      const {page, limit} = pageConfig.value;
+      const { page, limit } = pageConfig.value;
       if (page * limit > explanations.value.length) {
         uni.showToast({
           title: "再往下就没内容啦~",
@@ -209,13 +222,13 @@ export default {
         // 分页加载
         handleGetQuestionExplanation();
       }
-    }
+    };
     // 点击用户头像
     const handleUser = (_id: string) => {
       uni.navigateTo({
         url: `/pages/user/index?userID=${_id}`,
       });
-    }; 
+    };
     // 跳转到题解详情页面
     const handleExplanationCard = (target: { _id: string }) => {
       uni.navigateTo({
@@ -231,7 +244,7 @@ export default {
         });
       });
     };
-    
+
     const handleAddPageView = () => {
       postAddPageView({
         _id: id.value,
@@ -260,7 +273,7 @@ export default {
       handleAddPageView,
       handleBack,
       handleWrite,
-      handleUser
+      handleUser,
     };
   },
   components: {
@@ -279,7 +292,8 @@ export default {
     display: inline-block;
     position: relative;
     width: 100%;
-    height: 396rpx;
+    min-height: 306rpx;
+    padding-bottom: 90rpx;
     background: linear-gradient(360deg, #809bf5 0%, #506be6 100%);
 
     .title {
@@ -292,9 +306,6 @@ export default {
     }
 
     .info {
-      position: absolute;
-      bottom: 90rpx;
-      left: 40rpx;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -358,7 +369,7 @@ export default {
     transform: translateY(-64rpx);
     .tab {
       width: 200rpx;
-      margin-top: 30rpx;
+      margin-top: 50rpx;
       transform: translateX(-24rpx);
     }
 
