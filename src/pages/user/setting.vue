@@ -56,6 +56,11 @@ export default {
               },
             });
           });
+        } else {
+          uni.showToast({
+            title: "您已是最新版",
+            icon: "none",
+          });
         }
       });
       updateManager.onUpdateFailed(function (res) {
