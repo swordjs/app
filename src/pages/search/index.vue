@@ -185,9 +185,9 @@ export default {
       if (wordResult.success) {
         netHotList.value = wordResult.data;
         if (netHotList.value.length === 0 && initiative) {
-          uni.showLoading({
+          uni.showToast({
             title: "暂无热搜oh，请稍等再试试吧～",
-            mask: true,
+            icon: "none",
           });
         }
       }
@@ -222,13 +222,6 @@ export default {
       key?: string;
       pagination?: boolean;
     }) => {
-      // 在不分页的情况下才会显示loading框
-      if (!params.pagination) {
-        uni.showLoading({
-          title: "检索中...",
-          mask: true,
-        });
-      }
       const res = await search({
         searchText: params?.key || searchText.value,
         limit: associativeConfig.value.limit,
