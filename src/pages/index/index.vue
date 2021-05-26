@@ -288,10 +288,6 @@ export default {
       .icon {
         width: 72rpx;
         height: 68rpx;
-
-        &:active {
-          opacity: 0.8;
-        }
       }
     }
   }
