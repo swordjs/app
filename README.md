@@ -81,7 +81,7 @@
 
 ## 类图
 
-<img src="https://github.com/swordCodePractice/InternetQuestionBank/blob/v1.0.0-dev/out/doc/db/core/core.png?raw=true"></img>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/710380/1622082319380-de20565e-18c8-4006-975c-cb3cad095cf6.png"></img>
 
 ## 拉取任务
 
