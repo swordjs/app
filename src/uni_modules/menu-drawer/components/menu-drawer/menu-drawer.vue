@@ -131,7 +131,7 @@
 				height: 80rpx;
 				border-radius: 50%;
 				position: absolute;
-				top: 108rpx;
+				top: 218rpx;
 				right: -30rpx;
 				background: rgba(74, 95, 255, 0.82);
 

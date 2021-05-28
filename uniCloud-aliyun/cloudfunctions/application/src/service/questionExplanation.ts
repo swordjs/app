@@ -4,7 +4,6 @@ namespace QuestionExplanationService {
   const collection = db.collection("questionExplanation");
   const collectService = db.collection("userCollect");
   const dbCmd = db.command;
-  const fastscan = require("fastscan");
   interface IQuestionExplanation {
     userID: string;
     nowDate: string;
@@ -23,12 +22,10 @@ namespace QuestionExplanationService {
     }
     public async addQuestionExplanation(params: ParamsType) {
       const { _id, content } = params;
-      const checkResult = fastscan.filter(content);
-      uniCloud.logger.log(checkResult);
       const explanationResult = await collection.add({
         questionID: _id,
         userID: this.userID,
-        content: checkResult.text,
+        content: content,
         userAgreed: [],
         userDisagreed: [],
         createDate: this.nowDate,

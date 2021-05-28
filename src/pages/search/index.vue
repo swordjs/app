@@ -122,10 +122,6 @@
 </template>
 
 <script lang="ts">
-const searchLogDbName = "opendb-search-log"; // 搜索记录数据库
-const mallGoodsDbName = "opendb-mall-goods"; // 商品数据库
-const associativeSearchField = "name"; // 联想时，搜索框值检索数据库字段名
-const associativeField = "name,content,goods_desc,goods_sn"; // 联想列表每一项携带的字段
 const localSearchListKey = "__local_search_history"; //	本地历史存储字段名
 // 公共方法
 import { arrUnique, debounce } from "../../util/common";

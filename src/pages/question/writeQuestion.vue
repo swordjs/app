@@ -61,6 +61,7 @@ import {
   updateQuestionExplanation,
 } from "../../api/questionExplanation";
 import { removeHtmlTag } from "../../util/common";
+import { checkContentSecurity } from "../../api/common";
 import * as marked from "marked";
 interface IPageParams {
   id: string;
@@ -186,6 +187,20 @@ export default defineComponent({
                 func = addQuestionExplanation;
                 break;
             }
+            // 检查内容是否安全（仅文字）
+            const checkResult = await checkContentSecurity({
+              content: html
+            })
+            if(checkResult.success && !checkResult.data){
+              // 如果校验失败，则提示
+              uni.hideLoading();
+              uni.showToast({
+                title: "您提交的内容中有敏感字符",
+                icon: "none"
+              });
+              return;
+            }
+            // 提交内容
             const result = await func({
               _id: isEdit
                 ? this.questionInfo.explanationID

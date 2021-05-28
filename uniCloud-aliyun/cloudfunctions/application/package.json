@@ -12,11 +12,8 @@
 	"license": "ISC",
 	"dependencies": {
 		"app-tools": "file:../common/app-tools",
-		"content-security": "file:../common/content-security",
 		"explain": "file:../common/explain",
-		"fastscan": "file:../common/fastscan",
 		"form-data-utils": "file:../common/form-data-utils",
-		"sensitive-word-filter": "file:../common/fastscan",
 		"uni-id": "file:../common/uni-id"
 	},
 	"devDependencies": {}

@@ -356,38 +356,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-@keyframes helloWorld {
-  0% {
-    transform: translateX(38rpx);
-  }
-  10% {
-    transform: translateX(calc(38rpx * 2));
-  }
-  20% {
-    transform: translateX(calc(38rpx * 3));
-  }
-  30% {
-    transform: translateX(calc(38rpx * 4));
-  }
-  40% {
-    transform: translateX(calc(38rpx * 5));
-  }
-  50% {
-    transform: translateX(calc(38rpx * 6));
-  }
-  60% {
-    transform: translateX(calc(38rpx * 7));
-  }
-  70% {
-    transform: translateX(calc(38rpx * 8));
-  }
-  80% {
-    transform: translateX(calc(38rpx * 9));
-  }
-  90% {
-    transform: translateX(calc(38rpx * 10));
-  }
-}
 .topBox {
   width: 100%;
   height: 346rpx;
@@ -432,7 +400,6 @@ export default defineComponent({
     top: 285rpx;
     left: 68rpx;
     background: #fff;
-    animation: helloWorld 11s;
   }
 }
 

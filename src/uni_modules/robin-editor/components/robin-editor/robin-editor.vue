@@ -614,7 +614,7 @@ export default {
       box-sizing: border-box;
       width: 100%;
       height: 100%;
-      font-size: 16px;
+      font-size: 32rpx;
       line-height: 1.5;
       padding: 20rpx;
     }
