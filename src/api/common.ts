@@ -1,6 +1,3 @@
-/**
- * 公共API
- */
 
 /**
  * @name 客户端直传云存储(阿里云)
@@ -34,5 +31,29 @@ export function uploadFileToCloudStorage(params: {
           data: err,
         });
       });
+  });
+}
+
+/**
+ * @name 内容安全函数，调用即可检测内容是否有违规字段
+ * @param params
+ * @returns
+ */
+export async function checkContentSecurity(params: {
+  content: string;
+}): Promise<any> {
+  let platform = "";
+  // #ifdef MP-WEIXIN
+  platform = "mp-weixin";
+  // #endif
+  // #ifdef MP-QQ
+  platform = "mp-qq";
+  // #endif
+  return await uniCloud.callFunction({
+    name: "content-security",
+    data: {
+      content: params.content,
+      platform,
+    },
   });
 }
