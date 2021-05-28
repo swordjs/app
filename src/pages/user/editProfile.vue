@@ -48,20 +48,32 @@
   </view>
 </template>
 
-<script>
+<script lang="ts">
 import kpsImageCutter from "@/components/ksp-image-cutter/ksp-image-cutter.vue";
-import { onLoad, ref, reactive, computed } from "vue";
+import { ref, reactive, computed } from "vue";
 // api
 import { getUserBaseContentByUserID, updateUserProfile } from "../../api/user";
-import { uploadFileToCloudStorage } from "../../api/common";
+import {
+  uploadFileToCloudStorage,
+  checkContentSecurity,
+} from "../../api/common";
+type ProfileForm = {
+  gender: number,
+  sign: string,
+  nickname: string,
+  avatar: string
+}
 export default {
+  onLoad(){
+    this.getUserProfile();
+  },
   components: {
     kpsImageCutter,
   },
   setup() {
     const imageCutterUrl = ref("");
-    const form = reactive({
-      gender: "",
+    const form = reactive<ProfileForm>({
+      gender: -1,
       sign: "",
       nickname: "",
       avatar: "",
@@ -85,7 +97,7 @@ export default {
       });
     };
     const handleSexChange = (e) => {
-      form.sex = Number(e.target.value);
+      form.gender = Number(e.target.value);
     };
     const userID = uni.getStorageSync("uni_id");
     const getUserProfile = async () => {
@@ -106,35 +118,63 @@ export default {
     const submitActive = computed(() => {
       return Object.values(form).filter((i) => i === "").length === 0;
     });
+    // 检查昵称和签名中是否有违规字段
+    const check = async () => {
+      const toast = (label) => {
+        uni.hideLoading();
+        uni.showToast({
+          title: `您的${label}含有违规词汇`,
+          icon: "none",
+        });
+      };
+      // 指定一个检查字典，字典循环完就代表检查完毕
+      const checkList = {
+        签名: form.sign,
+        昵称: form.nickname,
+      };
+      for (let key in checkList) {
+        const result = await checkContentSecurity({
+          content: checkList[key],
+        });
+        if (result.success && !result.result) {
+          toast(key);
+          return false;
+        }
+      }
+      return true;
+    };
     const handleSubmit = async () => {
       if (submitActive.value) {
         uni.showLoading({
           title: "保存中...",
           mask: true,
         });
-        const updateData = await updateUserProfile({
-          sign: form.sign,
-          avatar: form.avatar,
-          gender: form.sex,
-          nickname: form.nickname,
-        });
-        if (updateData.success) {
-          uni.hideLoading();
-          uni.setStorageSync("userInfo", {
-            avatarUrl: form.avatar,
-            nickName: form.nickname,
+        // 检查敏感词汇
+        if (await check()) {
+          const updateData = await updateUserProfile({
+            sign: form.sign,
+            avatar: form.avatar,
+            gender: form.gender,
+            nickname: form.nickname,
           });
-          uni.showModal({
-            title: "提示",
-            content: "保存成功",
-            showCancel: false,
-            confirmText: "好的",
-            success: () => {
-              uni.navigateBack({
-                delta: 1,
-              });
-            },
-          });
+          if (updateData.success) {
+            uni.hideLoading();
+            uni.setStorageSync("userInfo", {
+              avatarUrl: form.avatar,
+              nickName: form.nickname,
+            });
+            uni.showModal({
+              title: "提示",
+              content: "保存成功",
+              showCancel: false,
+              confirmText: "好的",
+              success: () => {
+                uni.navigateBack({
+                  delta: 1,
+                });
+              },
+            });
+          }
         }
       } else {
         uni.showToast({
@@ -155,10 +195,6 @@ export default {
         imageCutterUrl.value = "";
       });
     };
-    // 获取其用户信息
-    onLoad(() => {
-      getUserProfile();
-    });
     return {
       imageCutterUrl,
       showPicker,
@@ -168,6 +204,7 @@ export default {
       handleSexChange,
       handleCutterCancel,
       handleCutterOk,
+      getUserProfile,
     };
   },
 };
