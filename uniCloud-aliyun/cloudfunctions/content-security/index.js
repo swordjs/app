@@ -15,6 +15,7 @@ const handleCheck = async (url, data, platform) => {
 };
 exports.main = async (event, context) => {
 	// 默认值，默认平台微信，类型默认是文字段落
+	// 其实云函数是可以直接获取运行平台的，但是此函数业务中不仅仅是要在小程序中用，会把云函数url化之后暴露给其他业务用，所以我们直接使用指定传参platform来进行处理
 	const {
 		platform = "mp-weixin", type = "text", content
 	} = event;
