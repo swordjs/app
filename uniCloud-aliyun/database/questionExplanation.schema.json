@@ -15,6 +15,10 @@
 			"bsonType": "object",
 			"foreignKey": "question._id"
 		},
+		"questionID.publishUserID": {
+			"bsonType": "object",
+			"foreignKey": "uni-id-users._id"
+		},
 		"userID": {
 			"bsonType": "object",
 			"foreignKey": "uni-id-users._id"
