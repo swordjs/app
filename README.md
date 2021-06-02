@@ -257,7 +257,6 @@ uniCloud.callFunction({
 - [Guide 哥的 JAVA 题库](https://github.com/Snailclimb/JavaGuide)
 - [达达前端](https://github.com/webVueBlog/interview-answe)
 - [凌枫-phpQ&A](https://github.com/colinlet/PHP-Interview-QA)
-- [凌枫-phpQ&A](https://github.com/colinlet/PHP-Interview-QA)
 - [PHP interview best practices in China](https://github.com/wudi/PHP-Interview-Best-Practices-in-China)
 # QQ 群和钉钉群欢迎大家加入
 
