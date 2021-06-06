@@ -263,6 +263,7 @@ uniCloud.callFunction({
 <img width="30%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/6f5b6587-8efe-400f-8fcb-f277892a9854.png" />
 <img width="32%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/309debe7-7f2a-47ae-a415-875e5b1f4922.jpg"></img>
 
+其他渠道联系我们：[联系我们](https://www.yuque.com/docs/share/92cb643e-b6a4-4dd9-8cb4-224556e4ccef)
 # 许可
 
 Apache License © 剑指题解
