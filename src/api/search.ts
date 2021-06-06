@@ -1,4 +1,5 @@
 import callFunction from "../common/callFunction";
+import { arrObjectUnique } from "../util/common";
 const db = uniCloud.database();
 
 /**
@@ -71,14 +72,20 @@ export async function addSearchLog(params:{
 export async function getHotSearchWordList(): Promise<ActionResult> {
   return new Promise((resolve) => {
   db.collection("opendb-search-hot")
-      .orderBy("create_date", "desc")
-      .orderBy("count", "desc")
-      .get()
+      .aggregate()
+      .sort({
+        create_date: -1,
+        count: -1
+      })
+      .skip(0)
+      .limit(50)
+      .end()
       .then((res) => {
         const { success, result } = res;
+        // 循环热搜结果，根据content去重复
         resolve({
           success,
-          data: result.data,
+          data: arrObjectUnique(result.data, "content").slice(0, 15),
         });
       })
       .catch((err: { message: string }) => {
