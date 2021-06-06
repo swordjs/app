@@ -60,5 +60,19 @@ namespace CertificationApplyOrder {
           .then(async () => await this.handler("updateCertificationApplyOrderState"))
           .catch((err) => err);
       }
+	 // 申请单列表分页查询
+	 async getCertificationApplyOrder(){
+		 return handleMustRequireParam(
+		   [
+		     {
+		       key: "state",
+		       value: "状态",
+		     }
+		   ],
+		   this.event.params
+		 )
+		   .then(async () => await this.handler("getCertificationApplyOrder"))
+		   .catch((err) => err);
+	 }
   };
 }

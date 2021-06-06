@@ -20,7 +20,7 @@
     </view>
     <view class="search-body" v-if="!associativeShow">
       <!-- 搜索历史 -->
-      <view class="word-container" v-if="localSearchList.length">
+      <view class="word-container" v-if=  "localSearchList.length">
         <view class="word-container_header">
           <text class="word-container_header-text">搜索历史</text>
           <i-icon
@@ -149,7 +149,9 @@ export default {
       } else {
         // ++页数并且进行调用搜索
         this.associativeConfig.page++;
-        this.handleSearch();
+        this.handleSearch({
+          pagination: true
+        });
       }
     }
   },

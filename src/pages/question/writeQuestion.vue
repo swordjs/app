@@ -191,7 +191,7 @@ export default defineComponent({
             const checkResult = await checkContentSecurity({
               content: html
             })
-            if(checkResult.success && !checkResult.data){
+            if(checkResult.success && !checkResult.result){
               // 如果校验失败，则提示
               uni.hideLoading();
               uni.showToast({

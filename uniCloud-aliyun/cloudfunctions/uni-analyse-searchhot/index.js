@@ -14,9 +14,8 @@ exports.main = async (event, context) => {
 	const SEARCHHOT_db = DB.collection(SEARCHHOT);
 	const SEARCHLOG_db = DB.collection(SEARCHLOG);
 	const timeEnd = Date.now() - SEARCHLOG_timeZone;
-
 	let {
-		data: searchHotData
+		data: searchLogData
 	} = await SEARCHLOG_db
 		.aggregate()
 		.match({
@@ -40,10 +39,9 @@ exports.main = async (event, context) => {
 		.end();
 
 	let now = Date.now();
-	searchHotData.map(item => {
+	searchLogData.map(item => {
 		item.create_date = now;
 		return item;
 	}).slice(0, SEARCHHOT_size);
-	// searchHotData = searchHotData.sort((a, b) => b.count - a.count).slice(0, SEARCHHOT_size);
-	return searchHotData.length ? await SEARCHHOT_db.add(searchHotData) : ''
+	return searchLogData.length ? await SEARCHHOT_db.add(searchLogData) : ''
 };

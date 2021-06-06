@@ -1,8 +1,20 @@
 export const removeHtmlTag = (htmlStr: string) => {
   return htmlStr.replace(/<[^>]+>/gi, "");
 };
+
+// 对象数组去重
+export const arrObjectUnique = (arr: any[], key: string) => {
+  const temp = {};
+  for(let k in arr){
+    if(arr[k][key] && !temp[arr[k][key]]){
+      temp[arr[k][key]] = arr[k];
+    }
+  }
+  return Object.values(temp);
+}
+
 // 数组去重
-export const arrUnique = (arr) => {
+export const arrUnique = (arr: any[]) => {
   for (let i = arr.length - 1; i >= 0; i--) {
     const curIndex = arr.indexOf(arr[i]);
     const lastIndex = arr.lastIndexOf(arr[i]);

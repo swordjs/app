@@ -22,7 +22,7 @@ namespace SearchService {
      return await collection.add({
         content: params.content,
         [params.device_id ? 'device_id' : 'user_id']: params.device_id ? params.device_id : params.user_id,
-        create_date: this.nowDate
+        create_date: Date.now()
       });
     }
   };
