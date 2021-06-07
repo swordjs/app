@@ -33,9 +33,9 @@
 
 # 目录
 
+- [安装](https://www.yuque.com/docs/share/b3e2c390-0441-46a1-a3da-ae6b9d108f2e)
 - [特点](#特点)
 - [技术栈](#技术栈)
-- [安装](./install.md)
 - [UML](#UML)
 - [设计概览](#设计概览)
 - [API](#API)
