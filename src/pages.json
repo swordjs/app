@@ -95,6 +95,14 @@
       "style": {
         "enablePullDownRefresh": false
       }
+    },
+    {
+      "path": "pages/user/setPassword",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "密码管理",
+        "enablePullDownRefresh": false
+      }
     }
   ],
   "subPackages": [

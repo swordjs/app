@@ -222,6 +222,12 @@ namespace UserService {
     public async getUserContentByToken() {
       return await uniID.getUserInfoByToken(this.token);
     }
+    public async resetPassword(params: { id: string; password: string }) {
+      return await uniID.resetPwd({
+        uid: params.id,
+        password: params.password,
+      });
+    }
     public async getUserContentByID({ userID }) {
       // return await collection.doc(this.userID).get();
       const baseUserInfo = await uniID.getUserInfo({

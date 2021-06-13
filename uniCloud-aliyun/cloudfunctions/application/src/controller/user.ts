@@ -233,5 +233,24 @@ namespace User {
         })
         .catch((err) => err);
     }
+    async resetPassword() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "id",
+            value: "用户ID"
+          },
+          {
+            key: "password",
+            value: "重置后的密码",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => {
+          return await this.hanlder("resetPassword");
+        })
+        .catch((error) => error);
+    }
   };
 }
