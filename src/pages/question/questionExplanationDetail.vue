@@ -10,7 +10,7 @@
         <image :src="data.userID[0].avatar" class="headPicture" mode=""></image>
         <view class="uerContent">
           <view class="nickName">{{ data.userID[0].nickname }}</view>
-          <view class="authentication">Dcloud2021插件大赛，冲鸭！</view>
+          <view class="authentication">{{ data.userID[0].sign }}</view>
         </view>
       </view>
       <view class="content">
