@@ -144,9 +144,10 @@ export default {
       avatarUrl: "",
     });
     // 是否登录
-    const isLogin = ref(uni.getStorageSync("uni_id_token") !== "");
-
+    const isLogin = ref<boolean>(false);
     const handleLoadUserInfo = () => {
+      // 判断是否登陆
+      isLogin.value = uni.getStorageSync("uni_id_token") !== "";
       if (isLogin.value) {
         user.value = uni.getStorageSync("userInfo");
       }
