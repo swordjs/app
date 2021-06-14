@@ -4,6 +4,10 @@
       <text>绑定手机/绑定第三方账号</text>
       <i-icon style="margin-right: 15rpx" name="arrow-right-s-line"></i-icon>
     </view>
+    <view class="item" @click="url('/pages/user/setPassword', true)">
+      <text>密码管理</text>
+      <i-icon style="margin-right: 15rpx" name="arrow-right-s-line"></i-icon>
+    </view>
     <view class="item" @click="handleCheckVersion">
       <text>检查版本更新</text>
       <text class="value">{{ currentVersion }}</text>

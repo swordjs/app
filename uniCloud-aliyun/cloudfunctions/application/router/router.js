@@ -52,6 +52,11 @@ module.exports = [
         action: "userLogout",
       },
       {
+        route: "resetPassword",
+        httpMethod: "POST",
+        action: "resetPassword"
+      },
+      {
         route: "checkToken/{token}",
         httpMethod: "GET",
         action: "checkToken",
