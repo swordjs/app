@@ -415,6 +415,7 @@ export default {
       const result = await getUserContentByID({
         userID: userID.value,
       });
+      console.log(result);
       uni.hideLoading();
       if (result.success) {
         const {

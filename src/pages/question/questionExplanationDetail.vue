@@ -10,7 +10,7 @@
         <image :src="data.userID[0].avatar" class="headPicture" mode=""></image>
         <view class="uerContent">
           <view class="nickName">{{ data.userID[0].nickname }}</view>
-          <view class="authentication">Dcloud2021插件大赛，冲鸭！</view>
+          <view class="authentication">{{ data.userID[0].sign }}</view>
         </view>
       </view>
       <view class="content">
@@ -304,8 +304,9 @@ page {
 
     .title {
       width: 666rpx;
-      height: 88rpx;
+      min-height: 58rpx;
       margin: 0 auto;
+      margin-bottom: 30rpx;
       color: #fff;
       font-size: 32rpx;
       margin-top: 50rpx;
@@ -314,13 +315,11 @@ page {
   }
 
   .card {
-    position: relative;
-    top: -120rpx;
     width: 666rpx;
-    height: 978rpx;
+    min-height: 978rpx;
     margin: 0 auto;
     background-color: #fff;
-    // transform: translateY(-180rpx);
+    transform: translateY(-90rpx);
     border-radius: 8px;
     overflow: hidden;
     .user {

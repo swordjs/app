@@ -38,12 +38,12 @@
 - [技术栈](#技术栈)
 - [UML](#UML)
 - [设计概览](#设计概览)
-- [API](#API)
-- [贡献者](#贡献者)
-- [核心维护者](#核心维护者)
+- [API设计](#API设计（读写职责分离）)
+- [作者和贡献者们](#作者和贡献者们)
 - [相关开源物料](#相关开源物料)
 - [题库合作伙伴](#题库合作伙伴)
-- [联系我们](#联系我们)
+- [用户群&联系我们](#QQ群和钉钉群)
+- [友情开源项目](#友情开源项目)
 - [许可](#许可)
 
 # 特点
@@ -105,31 +105,7 @@
 设计源文件请移步：[点击查看-为了您的体验，请务必下载最新版本的设计图](https://www.yuque.com/u509950/lmm8g4/oy2ztb)
 原型图在线预览: [点击查看, 如果失效请联系我们](https://app.mockplus.cn/s/16Fus8k9TTz)
 
-# API
-
-《剑指题解》团队在 API 层面，开源的内容非常有限制，因为涉及到多位合作伙伴的题库授权，所以如果您要使用聚合题库 API 请联系我们商议，如果您是学习者，那么在语雀中的 API 文档会帮助到您，在这里我们将简单介绍。
-
-uniapp 的云函数开发，我们是第一次接触，所以在此之前我们做了很多调研，在下文也提到了关于 explain.js 这个框架的作用，我们也是非常感谢 uniapp 开源社区有这样创作质量的第一批的 unicloud 框架开发者，在咨询了官方人员之后，我们了解到如果要使用 ts 来开发，需要把 ts 编译成 js 来放在云函数目录，所以我们选择了以下的技术栈，开发者可以很爽的使用 ts 来开发 unicloud 云函数：
-
-- esbuild-node-tsc
-- nodemon
-
-esbuild-node-tsc 这个工具是基于 esbuild 的，利用其特性，我们可以比 ts 官方提出的 tsc 编译工具更快，快几十倍到上百倍，这也是得益于 esbuild 的使用 go 语言直接编译的特性。
-
-nodemon 可以帮助我们监听目录文件，一旦改变就执行打包 ts 命令直接将编译好的 js 放在指定目录
-所以我们把 explain.js 的配置也相应的改变，我们在 services 目录中存储的是我们 ts 文件，在 dist 中存储的是我们编译好的 js 文件，而 dist 目录就是 explain 需要的：
-
-```js
-config.init({
-  baseDir: __dirname,
-  serviceDir: "/dist/",
-});
-```
-
-需要注意的事情是：
-由于云函数大小限制，我们需要把相关依赖全部安装到全局，包括 typescript
-
-## 读写职责分离
+# API设计（读写职责分离）
 
 读写职责分离模式（CQRS）是一种把查询(Queries) 数据和和更新(Commands) 数据通过使用各自独立的接口分开的模式。
 Uniapp 的 Unicloud 很好，其中的 jql 也是大开眼界，确实统一了前端开发操作数据库的体验，让我们前端开发操作数据库非常友好，但是我们使用 CQRS 将这些原本封装的很好的 API 不予以使用。
@@ -227,20 +203,18 @@ uniCloud.callFunction({
   },
 });
 ```
-
-# 贡献者
+想要了解更多API相关内容，请移步我们的[API文档](https://www.yuque.com/mlgrgm/lmm8g4/bgxcw3)
+# 作者和贡献者们
 
 感谢为《剑指题解》这个优秀项目贡献自己一份力的小伙伴们:
 
 <table><tbody>
       <tr><td><a target="_blank" href="https://github.com/1018715564"><img width="60px" src="https://avatars1.githubusercontent.com/u/35763284?s=460&u=018d91407ac17ac3b6abbd16cdca5b080b385b32&v=4"></a></td>
       <td><a target="_blank" href="https://github.com/maruichao52"><img width="60px" src="https://avatars0.githubusercontent.com/u/41415464?s=460&u=4e8e3f255ba143921d7eb3489cdb1be0ee4cbf4c&v=4"></a></td>
-      <td><a target="_blank" href="https://github.com/githubbfw"><img width="60px" src="https://avatars3.githubusercontent.com/u/20768069?s=460&u=2b274b4c5c123e727cad136e52ed116507e1c8f7&v=4"></a></td>
+      </td>
         </tr></tbody></table>
 
 如果您想加入到我们的贡献者队列中，[请联系我们，这里还有相关贡献者的介绍，希望对您有帮助](https://www.yuque.com/u509950/lmm8g4/bw6hgz)
-
-# 核心维护者
 
 - [@Seho: 负责前端和后端的开发，产品设计，以及产品的市场调研还有相关社区维护宣传](https://github.com/1018715564)
 - [@maruichao52：负责后端开发工作以及后端分析工作以及社区维护宣传](https://github.com/maruichao52)
@@ -258,13 +232,25 @@ uniCloud.callFunction({
 - [达达前端](https://github.com/webVueBlog/interview-answe)
 - [凌枫-phpQ&A](https://github.com/colinlet/PHP-Interview-QA)
 - [PHP interview best practices in China](https://github.com/wudi/PHP-Interview-Best-Practices-in-China)
-# QQ 群和钉钉群欢迎大家加入
 
+# QQ群和钉钉群
+
+<div style="display: flex;justify-content: flex-start;">
 <img width="30%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/6f5b6587-8efe-400f-8fcb-f277892a9854.png" />
 <img width="32%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/309debe7-7f2a-47ae-a415-875e5b1f4922.jpg"></img>
+</div>
 
 其他渠道联系我们：[联系我们](https://www.yuque.com/docs/share/92cb643e-b6a4-4dd9-8cb4-224556e4ccef)
+
+# 友情开源项目
+
+<table><tbody>
+      <tr><td style="text-align: center;"><a target="_blank" href="https://ext.dcloud.net.cn/plugin?id=271"><img width="80px" style="margin-top: 15px;" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/7ede4b51-1574-49b9-a84d-0ad8b8bf65a8.jpeg"></a>
+      <p style="font-size: 14px;">秋云ucharts跨端图表库</p>
+      </td>
+</tr></tbody>
+</table>
+
 # 许可
 
 Apache License © 剑指题解
-如果您在其他有关我们的文档见到了与之不符合的协议内容，请联系我们，这可能是我们的历史遗留的代码问题。
