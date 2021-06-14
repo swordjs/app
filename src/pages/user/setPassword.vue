@@ -28,9 +28,14 @@ export default {
     const handleSubmit = async () => {
       // 校验密码合法性
       if (password.value.length >= 6) {
+        uni.showLoading({
+          title: "设置中...",
+          mask: true
+        })
         const resetResult = await resetPassword({
           password: password.value,
         });
+        uni.hideLoading();
         if (resetResult.success) {
           // 清空全部缓存
           uni.clearStorageSync();
