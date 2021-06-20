@@ -233,6 +233,9 @@ uniCloud.callFunction({
 - [凌枫-phpQ&A](https://github.com/colinlet/PHP-Interview-QA)
 - [PHP interview best practices in China](https://github.com/wudi/PHP-Interview-Best-Practices-in-China)
 
+# 下载小程序后台管理系统源代码下载
+- [Dcloud插件市场下载](https://ext.dcloud.net.cn/plugin?id=5404)
+- [Github下载](https://github.com/swordCodePractice/swordUserAdmin/tree/master)
 # QQ群和钉钉群
 
 <div style="display: flex;justify-content: flex-start;">
