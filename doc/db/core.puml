@@ -96,8 +96,7 @@ class 文章{
     +Array tagID
     +String title
     +String content
-    +void addArticle()
-    +void deleteArticle()
+    +String state
 }
 
 class 角色{
