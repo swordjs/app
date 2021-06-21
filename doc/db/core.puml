@@ -93,13 +93,11 @@ class 题解{
 class 文章{
     +UUID _id
     +UUID userID
-    +UUID tagID
+    +Array tagID
     +String title
     +String content
-    +Number like
     +void addArticle()
     +void deleteArticle()
-    +void likeArticle()
 }
 
 class 角色{
