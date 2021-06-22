@@ -21,11 +21,13 @@
 		},
 		"tagID": {
 			"bsonType": "array",
-			"description": "标签"
+			"description": "标签",
+			"foreignKey": "questionTag._id"
 		},
 		"userID": {
 			"bsonType": "string",
-			"description": "发布者用户"
+			"description": "发布者用户",
+			"foreignKey": "uni-id-users._id"
 		},
 		"state": {
 			"bsonType": "string",
