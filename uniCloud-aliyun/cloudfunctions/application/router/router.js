@@ -205,4 +205,18 @@ module.exports = [
       },
     ],
   },
+  {
+    route: "api/article",
+    service: "article",
+    routes: [
+      {
+        action: "addArticle"
+      },
+	  {
+	    route: "auditArticle",
+	    action: "auditArticle",
+	    httpMethod: "POST",
+	  },
+    ],
+  },
 ];
