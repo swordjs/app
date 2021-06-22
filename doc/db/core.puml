@@ -97,6 +97,7 @@ class 文章{
     +String title
     +String content
     +String state
+    +String rejectReason
 }
 
 class 角色{
