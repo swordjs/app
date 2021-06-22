@@ -10,6 +10,11 @@
 	"properties": {
 		"_id": {
 			"description": "ID，系统自动生成"
+		},
+		"areaID": {
+			"bsonType": "object",
+			"description": "专区id",
+			"foreignKey": "questionArea._id"
 		}
 	}
 }

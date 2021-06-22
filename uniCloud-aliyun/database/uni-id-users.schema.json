@@ -14,12 +14,14 @@
 		"username": {
 			"bsonType": "string",
 			"title": "用户名",
-			"description": "用户名，不允许重复，是手机号"
+			"description": "用户名，不允许重复",
+			"trim": "both"
 		},
 		"password": {
 			"bsonType": "password",
 			"title": "密码",
-			"description": "密码，加密存储"
+			"description": "密码，加密存储",
+			"trim": "both"
 		},
 		"password_secret_version": {
 			"bsonType": "int",
@@ -29,7 +31,8 @@
 		"nickname": {
 			"bsonType": "string",
 			"title": "昵称",
-			"description": "用户昵称"
+			"description": "用户昵称",
+			"trim": "both"
 		},
 		"gender": {
 			"bsonType": "int",
@@ -47,10 +50,70 @@
 				"value": 2
 			}]
 		},
+		"status": {
+			"bsonType": "int",
+			"description": "用户状态：0 正常 1 禁用 2 审核中 3 审核拒绝",
+			"title": "用户状态",
+			"defaultValue": 0,
+			"enum": [{
+				"text": "正常",
+				"value": 0
+			}, {
+				"text": "禁用",
+				"value": 1
+			}, {
+				"text": "审核中",
+				"value": 2
+			}, {
+				"text": "审核拒绝",
+				"value": 3
+			}]
+		},
+		"mobile": {
+			"bsonType": "string",
+			"title": "手机号码",
+			"description": "手机号码",
+			"pattern": "^\\+?[0-9-]{3,20}$",
+			"trim": "both"
+		},
+		"mobile_confirmed": {
+			"bsonType": "int",
+			"description": "手机号验证状态：0 未验证 1 已验证",
+			"title": "手机号验证状态",
+			"defaultValue": 0,
+			"enum": [{
+				"text": "未验证",
+				"value": 0
+			}, {
+				"text": "已验证",
+				"value": 1
+			}]
+		},
+		"email": {
+			"bsonType": "string",
+			"format": "email",
+			"title": "邮箱",
+			"description": "邮箱地址",
+			"trim": "both"
+		},
+		"email_confirmed": {
+			"bsonType": "int",
+			"description": "邮箱验证状态：0 未验证 1 已验证",
+			"title": "邮箱验证状态",
+			"defaultValue": 0,
+			"enum": [{
+				"text": "未验证",
+				"value": 0
+			}, {
+				"text": "已验证",
+				"value": 1
+			}]
+		},
 		"avatar": {
 			"bsonType": "string",
 			"title": "头像地址",
-			"description": "头像地址"
+			"description": "头像地址",
+			"trim": "both"
 		},
 		"role": {
 			"bsonType": "array",
@@ -69,24 +132,6 @@
 			"bsonType": "string",
 			"description": "微信unionid"
 		},
-		"qq_unionid": {
-			"bsonType": "string",
-			"description": "QQunionid"
-		},
-		"qq_openid": {
-			"bsonType": "object",
-			"description": "QQ各个平台openid",
-			"properties": {
-				"app-plus": {
-					"bsonType": "string",
-					"description": "app平台QQopenid"
-				},
-				"mp-qq": {
-					"bsonType": "string",
-					"description": "QQ小程序平台openid"
-				}
-			}
-		},
 		"wx_openid": {
 			"bsonType": "object",
 			"description": "微信各个平台openid",
@@ -101,10 +146,15 @@
 				}
 			}
 		},
+		"ali_openid": {
+			"bsonType": "string",
+			"description": "支付宝平台openid"
+		},
 		"comment": {
 			"bsonType": "string",
 			"title": "备注",
-			"description": "备注"
+			"description": "备注",
+			"trim": "both"
 		},
 		"realname_auth": {
 			"bsonType": "object",
@@ -193,7 +243,8 @@
 		},
 		"inviter_uid": {
 			"bsonType": "array",
-			"description": "用户全部上级邀请者"
+			"description": "用户全部上级邀请者",
+			"trim": "both"
 		},
 		"my_invite_code": {
 			"bsonType": "string",

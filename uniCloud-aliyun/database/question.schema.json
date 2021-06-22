@@ -18,6 +18,10 @@
 		"tagID": {
 			"bsonType": "array",
 			"foreignKey": "questionTag._id"
+		},
+		"areaID": {
+			"bsonType": "array",
+			"foreignKey": "questionArea._id"
 		}
 	}
 }

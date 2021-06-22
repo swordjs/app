@@ -1,10 +1,11 @@
 {
 	"bsonType": "object",
+	"required": ["content", "count"],
 	"permission": {
-		"create": false,
-		"delete": false,
 		"read": true,
-		"update": false
+		"create": false,
+		"update": false,
+		"delete": false
 	},
 	"properties": {
 		"_id": {
@@ -22,6 +23,5 @@
 			"bsonType": "timestamp",
 			"description": "统计时间"
 		}
-	},
-	"required": ["content", "count"]
+	}
 }
