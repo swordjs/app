@@ -32,6 +32,32 @@ module.exports = class ArticleController extends explain.service {
       .then(async () => await this.handler("addArticle"))
       .catch((err) => err);
   }
+  // 修改文章
+  async updateArticle(){
+    return handleMustRequireParam(
+      [
+        {
+          key: "id",
+          value: "文章id",
+        },
+        {
+          key: "content",
+          value: "内容",
+        },
+        {
+          key: "title",
+          value: "标题",
+        },
+        {
+          key: "tagID",
+          value: "标签",
+        },
+      ],
+      this.event.params
+    )
+      .then(async () => await this.handler("updateArticle"))
+      .catch((err) => err);
+  }
   // 审核文章
   async auditArticle() {
     return handleMustRequireParam(

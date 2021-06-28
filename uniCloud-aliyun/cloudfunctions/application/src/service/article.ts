@@ -32,6 +32,14 @@ module.exports = class ArticleService {
       deleteDate: ""
     });
   }
+  async updateArticle(params: {id: string, title: string, content: string, tagID: string[]}){
+    return await collection.doc(params.id).update({
+      title: params.title,
+      content: params.content,
+      tagID: params.tagID,
+      updateDate: this.nowDate
+    });
+  }
   async auditArticle(params: { id: string; state: string; rejectReason?: string }) {
     const updateParams = {
       state: params.state,

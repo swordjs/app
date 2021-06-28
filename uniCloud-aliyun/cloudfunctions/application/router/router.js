@@ -54,7 +54,7 @@ module.exports = [
       {
         route: "resetPassword",
         httpMethod: "POST",
-        action: "resetPassword"
+        action: "resetPassword",
       },
       {
         route: "checkToken/{token}",
@@ -210,13 +210,16 @@ module.exports = [
     service: "article",
     routes: [
       {
-        action: "addArticle"
+        action: "addArticle",
       },
-	  {
-	    route: "auditArticle",
-	    action: "auditArticle",
-	    httpMethod: "POST",
-	  },
+      {
+        action: "updateArticle",
+      },
+      {
+        route: "auditArticle",
+        action: "auditArticle",
+        httpMethod: "POST",
+      },
     ],
   },
 ];
