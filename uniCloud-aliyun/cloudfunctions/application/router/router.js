@@ -4,9 +4,6 @@ module.exports = [
     service: "user",
     routes: [
       {
-        action: "addUserByPhone",
-      },
-      {
         route: "loginBySms",
         httpMethod: "POST",
         action: "loginBySms",
@@ -40,11 +37,6 @@ module.exports = [
         route: "bindMobile",
         httpMethod: "POST",
         action: "bindMobile",
-      },
-      {
-        route: "postLoginByPhone",
-        httpMethod: "POST",
-        action: "postLoginByPhone",
       },
       {
         route: "userLogout/{token}",

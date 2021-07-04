@@ -12,6 +12,7 @@ module.exports = class ArticleService {
     title: string;
     content: string;
     tagID: string[];
+    desc: string
   }) {
     // 调用钉钉通知函数
     uniCloud.callFunction({
@@ -25,6 +26,7 @@ module.exports = class ArticleService {
       title: params.title,
       content: params.content,
       tagID: params.tagID,
+      desc: params.desc,
       userID: this.userID,
       state: "onlist",
       createDate: this.nowDate,

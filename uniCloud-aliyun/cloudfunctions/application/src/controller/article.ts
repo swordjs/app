@@ -25,6 +25,10 @@ module.exports = class ArticleController extends explain.service {
         {
           key: "tagID",
           value: "标签内容",
+        },
+        {
+          key: "desc",
+          value: "描述"
         }
       ],
       this.event.params
