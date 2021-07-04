@@ -322,6 +322,7 @@ page {
     transform: translateY(-90rpx);
     border-radius: 8px;
     overflow: hidden;
+    padding-bottom: 30rpx;
     .user {
       display: flex;
       justify-content: flex-start;
