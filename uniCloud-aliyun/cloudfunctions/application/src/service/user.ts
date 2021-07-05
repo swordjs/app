@@ -10,14 +10,7 @@ namespace UserService {
   const QQ_SESSION_URL = "https://api.q.qq.com/sns/jscode2session";
   // 获取QQ小程序相关的APPID和密钥
   const config = require("./../config/oauth");
-  interface IAddUserByPhone {
-    username: string;
-    password: string;
-  }
-  interface IPostLoginByPhone {
-    username: string;
-    password: string;
-  }
+
   interface ICheckFollowers {
     uid: string;
     follower: string;
@@ -51,7 +44,9 @@ namespace UserService {
       // 更新用户信息（昵称，头像，性别等）
       await uniID.updateUser({
         uid: res.uid,
-        ...params,
+        nickname: params.nickname,
+        avatar: params.avatar,
+        gender: params.gender,
       });
       return res;
     }
@@ -70,7 +65,7 @@ namespace UserService {
       uid: string;
     }> {
       return new Promise((resolve) => {
-        const { nickname, avatar } = params;
+        const { nickname, avatar, gender } = params;
         const { code } = urlParams;
         const currentTime = new Date().getTime();
         // 用户id
@@ -97,6 +92,7 @@ namespace UserService {
               role: ["normal"],
               nickname,
               avatar,
+              gender,
             });
             currentUserID = id;
           } else {
@@ -190,20 +186,6 @@ namespace UserService {
         uid: params.uid,
         mobile: params.mobile,
         code: params.code,
-      });
-    }
-    public async addUserByPhone(params: IAddUserByPhone) {
-      const { username, password } = params;
-      return await uniID.register({
-        username,
-        password,
-      });
-    }
-    public async postLoginByPhone(params: IPostLoginByPhone) {
-      const { username, password } = params;
-      return await uniID.login({
-        username,
-        password,
       });
     }
     public async userLogout(params) {

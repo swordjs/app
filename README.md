@@ -197,8 +197,8 @@ uniCloud.callFunction({
     route: "api/user",
     method: "POST",
     params: {
-      username: "18291563764",
-      password: "sas",
+      username: "",
+      password: "",
     },
   },
 });

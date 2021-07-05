@@ -86,28 +86,36 @@
       <view class="content">您的等级暂未解锁此功能</view>
     </view> -->
     <!-- 推荐文章 -->
-    <!-- <view class="article" @click="handleUrl('/pages/common/noRelease')">
+    <view class="article" @click="handleUrl('/pages/common/noRelease')">
       <view class="title">推荐文章</view>
       <view class="articleList">
-        <view class="articleListItem">
-          <view class="articleListItemTitle">
-            您的等级暂未解锁此功能
+        <view
+          class="articleListItem"
+          v-for="article in articleList"
+          :key="article._id"
+          @click="handleClickArticle(article._id)"
+        >
+          <!-- 文章主体 -->
+          <view class="top">
+            <view class="topTitle">{{ article.title }}</view>
+            <view class="topContent">
+              {{ removeHtmlTag(article.content) }}
+            </view>
           </view>
-          头像
           <view class="bottom">
             <image
               class="headPicture"
-              src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+              :src="article.userID[0].avatar"
               mode="scaleToFill"
             ></image>
             <view class="right">
-              <view class="nickname"></view>
-              <view class="date"></view>
+              <view class="nickname">{{ article.userID[0].nickname }}</view>
+              <view class="date">{{ article.userID[0].sign }}</view>
             </view>
           </view>
         </view>
       </view>
-    </view> -->
+    </view>
     <menu-drawer
       :show="drawerShow"
       @change="drawerShow = !drawerShow"
@@ -119,6 +127,9 @@
 
 <script lang="ts">
 import { reactive, ref } from "vue";
+import { getArticleList } from "../../api/article";
+import { removeHtmlTag } from "../../util/common";
+
 export default {
   onShareAppMessage() {
     return {
@@ -130,6 +141,7 @@ export default {
   },
   setup() {
     const drawerShow = ref<boolean>(false);
+    const articleList = ref<any[]>([]);
     // 触摸坐标
     const startData = reactive<{
       clientX: number;
@@ -170,6 +182,14 @@ export default {
         });
       }
     };
+    // 获取文章列表功能
+    const getArticle = async () => {
+      const res = await getArticleList();
+      if (res.success) {
+        articleList.value = res.data;
+      }
+    };
+    getArticle();
     const handleTouchStart = (e) => {
       startData.clientX = e.changedTouches[0].clientX;
       startData.clientY = e.changedTouches[0].clientY;
@@ -187,15 +207,24 @@ export default {
         }
       }
     };
+    // 点击文章详情
+    const handleClickArticle = (id: string) => {
+      uni.navigateTo({
+        url: `/pages/article/articleDetail?id=${id}`,
+      });
+    };
     return {
       drawerShow,
       isLogin,
       user,
+      articleList,
+      removeHtmlTag,
       handleUrl,
       handleLoadUserInfo,
       handleClickUser,
       handleTouchStart,
       handleTouchEnd,
+      handleClickArticle,
     };
   },
 };
@@ -413,8 +442,8 @@ export default {
 
       .articleListItem {
         width: 606rpx;
-        height: 190rpx;
-        padding: 30rpx 42rpx 36rpx 42rpx;
+        min-height: 190rpx;
+        padding: 30rpx 42rpx 30rpx 42rpx;
         background: #ffffff;
         box-shadow: 0px 4px 11px 0px rgba(38, 46, 99, 0.15);
         border-radius: 10px;
@@ -424,7 +453,18 @@ export default {
           font-size: 28rpx;
           word-break: break-all;
         }
-
+        .top {
+          word-wrap: break-word;
+          .topTitle {
+            font-size: 34rpx;
+            @include text-ellipsis(2);
+          }
+          .topContent {
+            font-size: 28rpx;
+            margin-top: 30rpx;
+            @include text-ellipsis(3);
+          }
+        }
         .bottom {
           display: flex;
           justify-content: flex-start;

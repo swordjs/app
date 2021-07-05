@@ -4,9 +4,6 @@ module.exports = [
     service: "user",
     routes: [
       {
-        action: "addUserByPhone",
-      },
-      {
         route: "loginBySms",
         httpMethod: "POST",
         action: "loginBySms",
@@ -42,11 +39,6 @@ module.exports = [
         action: "bindMobile",
       },
       {
-        route: "postLoginByPhone",
-        httpMethod: "POST",
-        action: "postLoginByPhone",
-      },
-      {
         route: "userLogout/{token}",
         httpMethod: "GET",
         action: "userLogout",
@@ -54,7 +46,7 @@ module.exports = [
       {
         route: "resetPassword",
         httpMethod: "POST",
-        action: "resetPassword"
+        action: "resetPassword",
       },
       {
         route: "checkToken/{token}",
@@ -201,6 +193,23 @@ module.exports = [
       {
         route: "addSeachLog",
         action: "addSeachLog",
+        httpMethod: "POST",
+      },
+    ],
+  },
+  {
+    route: "api/article",
+    service: "article",
+    routes: [
+      {
+        action: "addArticle",
+      },
+      {
+        action: "updateArticle",
+      },
+      {
+        route: "auditArticle",
+        action: "auditArticle",
         httpMethod: "POST",
       },
     ],

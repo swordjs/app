@@ -1,7 +1,6 @@
 @startuml
 class 用户 {
     {static} +UUID _id
-    +String username
     +Array token
     +String avatar
     +String sign
@@ -14,8 +13,6 @@ class 用户 {
     +UUID AuthID
     --登录注册登出,校验token相关--
     +void loginByWechat()
-    +void addUserByPhone()
-    +void postLoginByPhone()
     +void updateUserInfo()
     +void userLogout()
     +void checkToken()
@@ -93,13 +90,12 @@ class 题解{
 class 文章{
     +UUID _id
     +UUID userID
-    +UUID tagID
+    +Array tagID
     +String title
     +String content
-    +Number like
-    +void addArticle()
-    +void deleteArticle()
-    +void likeArticle()
+    +String desc
+    +String state
+    +String rejectReason
 }
 
 class 角色{

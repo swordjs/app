@@ -100,66 +100,6 @@ namespace User {
         .then(async () => await this.hanlder("bindMobile"))
         .catch((err) => err);
     }
-    // 注册用户根据手机号
-    addUserByPhone() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "username",
-            value: "用户名",
-          },
-          {
-            key: "password",
-            value: "密码",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => {
-          const { username, password } = this.event.params;
-          if (!/^1[3456789]\d{9}$/.test(username)) {
-            return appErrorMessage("用户名格式不正确");
-          } else if (password === "" || password.length < 6) {
-            return appErrorMessage("密码格式不正确");
-          } else {
-            return await this.hanlder("addUserByPhone");
-          }
-        })
-        .catch((err) => {
-          return err;
-        });
-    }
-
-    // 用户登录根据手机号
-    postLoginByPhone() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "username",
-            value: "用户名",
-          },
-          {
-            key: "password",
-            value: "密码",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => {
-          const { username, password } = this.event.params;
-          if (!/^1[3456789]\d{9}$/.test(username)) {
-            return appErrorMessage("用户名格式不正确");
-          } else if (password === "" || password.length < 6) {
-            return appErrorMessage("密码格式不正确");
-          } else {
-            return await this.hanlder("postLoginByPhone");
-          }
-        })
-        .catch((err) => {
-          return err;
-        });
-    }
-
     // 用户登出, 登出需要客户端删除持久性缓存
     async userLogout(urlParams) {
       return await this.hanlder("userLogout", urlParams);

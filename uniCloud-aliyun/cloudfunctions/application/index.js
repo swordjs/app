@@ -16,8 +16,6 @@ exports.main = async (event, context) => {
           {
             service: "user",
             actions: [
-              "addUserByPhone",
-              "postLoginByPhone",
               "checkToken",
               "loginByWechat",
               "getUserContentByID",
