@@ -24,6 +24,11 @@
 			"description": "标签",
 			"foreignKey": "questionTag._id"
 		},
+		"desc": {
+			"bsonType": "string",
+			"description": "描述",
+			"foreignKey": "uni-id-users._id"
+		},
 		"userID": {
 			"bsonType": "string",
 			"description": "发布者用户",

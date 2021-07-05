@@ -1,5 +1,11 @@
 {
 	"bsonType": "object",
+	"permission": {
+		"read": true,
+		"create": false,
+		"update": false,
+		"delete": false
+	},
 	"required": ["name", "menu_id"],
 	"properties": {
 		"_id": {
