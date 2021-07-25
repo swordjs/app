@@ -137,6 +137,15 @@ namespace 搜索 #DDDDDD {
     .搜索资源 --> .题解
 }
 
+namespace 开放API #DDDDDD {
+    class API类型(列表) {
+        +UUID _id
+        +String name
+        +String remark
+        +String type
+    }
+}
+
 题目专区 --> "many" 题目分类标签::areaID
 用户 --> "many" 题目
 用户 --> "many" 用户申请认证表::userID
