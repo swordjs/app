@@ -11,6 +11,7 @@
 	"keywords" : [],
 	"author" : "",
 	"license" : "ISC",
+	
 	"dependencies" : 
 	{
 		"app-tools" : "file:../common/app-tools",
