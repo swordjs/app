@@ -11,6 +11,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"explain": "file:../explain",
-		"explain-cache": "file:../explain-cache"
+		"explain-cache": "file:../explain-cache",
+		"uni-config-center": "file:../uni-config-center"
 	}
 }

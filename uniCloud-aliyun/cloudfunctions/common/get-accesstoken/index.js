@@ -1,4 +1,9 @@
-const config = require("./config.json");
+const createConfig = require("uni-config-center");
+
+const accesstokenConfig = createConfig({
+	pluginId: 'get-accesstoken'
+});
+
 const explain = require("explain");
 const https = require("https");
 explain.cache = require("explain-cache");
@@ -20,6 +25,7 @@ const getAccessToken = async (url, type) => {
   }
 };
 module.exports = async function(type) {
+  const config = accesstokenConfig.config();
   // 判断缓存中是否存在
   const res = await explain.cache.get(type + "-accesstoken");
   if (res) {

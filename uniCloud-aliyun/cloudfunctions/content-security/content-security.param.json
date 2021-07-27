@@ -2,5 +2,5 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 {
 	"platform": "mp-weixin",
-	"content": "qq"
+	"content": ""
 }
