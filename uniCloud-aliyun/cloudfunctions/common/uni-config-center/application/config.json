@@ -1,6 +1,8 @@
 {
-  "oauth": {
+  "qq": {
+    "oauth": {
       "appid": "1111697492",
       "appsecret": "dDUmTodqwNJMGRTB"
     }
+  }
 }

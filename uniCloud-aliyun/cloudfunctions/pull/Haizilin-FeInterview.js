@@ -4,13 +4,19 @@
  * 所属专区：前端
  */
 const http = require("http");
-const Config = require("./config.json");
+const createConfig = require("uni-config-center");
 // 云函数获取数据库的引用
 const db = uniCloud.database();
 const collection = db.collection('question');
+
+const pullConfig = createConfig({
+	pluginId: 'pull'
+});
+
 exports.main = function() {
 	return new Promise(async (resolve, reject) => {
-		const webDevelope = Config["webDevelope"];
+		const config = pullConfig.config();
+		const webDevelope = config["webDevelope"];
 		// 获取今日题库的API
 		const toDayAPI =
 			"http://api.h-camel.com/api?mod=interview&ctr=issues&act=today";
@@ -53,7 +59,8 @@ exports.main = function() {
 										publishUserID, // 对应用户
 										content: questions[key].body,
 										questionExplanation: [],
-										tagID: [webDevelope.tag[questions[key].label]],
+										tagID: [webDevelope.tag[questions[key]
+											.label]],
 										createDate: nowDate,
 										state: "pass",
 										updateDate: nowDate,
@@ -86,5 +93,5 @@ async function storeQuetionInDatabase(questions) {
 		success: true,
 		...result
 	}
-	
+
 }
