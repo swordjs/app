@@ -39,6 +39,7 @@
 - [UML](#UML)
 - [设计概览](#设计概览)
 - [API设计](#API设计（读写职责分离）)
+- [开放API-新版本!](#开放API)
 - [配套后台管理系统](#配套后台管理系统)
 - [作者和贡献者们](#作者和贡献者们)
 - [相关开源物料](#相关开源物料)
@@ -205,6 +206,10 @@ uniCloud.callFunction({
 });
 ```
 想要了解更多API相关内容，请移步我们的[API文档](https://www.yuque.com/mlgrgm/lmm8g4/bgxcw3)
+
+#开放API
+
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/a1a3f103-db54-4f46-ae65-c3377e80ef23.jpg" />
 
 # 配套后台管理系统
 后台管理系统开放角色为：管理员, 普通用户，认证答题官（具有发布权限），目前版本仍然在完善中，而且大可放心的是，后台管理系统仍然使用unicloud进行快速开发，在读取我们没有使用jql，而是直接在页面渲染client-db组件。
