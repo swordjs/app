@@ -11,7 +11,7 @@ exports.main = async (event, context) => {
 		apiID
 	} = event.queryStringParameters;
 	// 获取请求体中的值
-	const body = event.body;
+	const body = JSON.parse(event.body);
 	// 判断token和apiID是否传递了
 	if (token === "" || apiID === "") {
 		return error({
@@ -111,6 +111,7 @@ const handleApi = async (params) => {
 						uniIdToken
 					},
 				});
+				uniCloud.logger.log(res)
 				if (!res.success) {
 					return error({
 						code: 502,
@@ -122,7 +123,7 @@ const handleApi = async (params) => {
 						code: 502,
 						message: `api远端服务连接无误，但是在执行中出现了错误 ${res.result.msg}`
 					});
-				} else if (res.success && res.result.code === 0) {
+				} else if (res.success) {
 					// 连接和执行都没问题，返回它的结果
 					return {
 						code: 200,
