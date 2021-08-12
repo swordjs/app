@@ -11,7 +11,7 @@ namespace UserService {
   // 获取QQ小程序相关的APPID和密钥
   const createConfig = require("uni-config-center");
   const appConfig = createConfig({
-    pluginId: "application",
+    pluginId: "get-accesstoken",
   });
 
   interface ICheckFollowers {
@@ -278,7 +278,7 @@ namespace UserService {
       return new Promise((resolve, reject) => {
         const {
           oauth: { appid, appsecret },
-        } = appConfig.config("qq");
+        } = appConfig.config("qq-miniprogram");
         https.get(
           `${QQ_SESSION_URL}?appid=${appid}&secret=${appsecret}&js_code=${code}&grant_type=authorization_code`,
           (resp) => {
