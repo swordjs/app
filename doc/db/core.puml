@@ -142,7 +142,7 @@ namespace 开放API #DDDDDD {
         +UUID _id
         +String name
         +String remark
-        +String type
+        +String state
     }
 }
 
