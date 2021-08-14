@@ -96,12 +96,12 @@ const handleApi = async (params) => {
 		// 查询成功, 获取开放api的详情
 		// 判断api的状态，如果是close，那就不能访问	
 		let result = apiResult.data[0];
-		if (result.type === "close") {
+		if (result.state === "close") {
 			return error({
 				code: 501,
 				message: "该api目前是关闭/维护等不可使用状态，请联系管理员"
 			})
-		} else if (result.type === "open") {
+		} else if (result.state === "open") {
 			// 请求url, 获取其中的info
 			const {
 				url
