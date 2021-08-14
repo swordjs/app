@@ -2,6 +2,8 @@
 
 const uniID = require("uni-id");
 const db = uniCloud.database();
+const dbCmd = db.command
+const userCollection = db.collection("uni-id-users");
 const apiCollection = db.collection("openApi");
 
 
@@ -11,7 +13,11 @@ exports.main = async (event, context) => {
 		apiID
 	} = event.queryStringParameters;
 	// 获取请求体中的值
-	const body = JSON.parse(event.body);
+	let body = event.body;
+	// 判断是否是json字符串，如果是就转换一下
+	if (typeof event.body === "string") {
+		body = JSON.parse(body);
+	}
 	// 判断token和apiID是否传递了
 	if (token === "" || apiID === "") {
 		return error({
@@ -31,6 +37,7 @@ exports.main = async (event, context) => {
 		return await handleApi({
 			apiID,
 			uniIdToken: token,
+			userID,
 			body
 		})
 	} else {
@@ -76,7 +83,8 @@ const handleApi = async (params) => {
 	const {
 		apiID,
 		uniIdToken,
-		body
+		body,
+		userID
 	} = params;
 	const apiResult = await apiCollection.doc(apiID).get();
 	if (apiResult.data.length === 0) {
@@ -111,7 +119,6 @@ const handleApi = async (params) => {
 						uniIdToken
 					},
 				});
-				uniCloud.logger.log(res)
 				if (!res.success) {
 					return error({
 						code: 502,
@@ -124,6 +131,7 @@ const handleApi = async (params) => {
 						message: `api远端服务连接无误，但是在执行中出现了错误 ${res.result.msg}`
 					});
 				} else if (res.success) {
+					await handleUserRequestNumber(userID)
 					// 连接和执行都没问题，返回它的结果
 					return {
 						code: 200,
@@ -139,4 +147,12 @@ const handleApi = async (params) => {
 			}
 		}
 	}
+}
+
+
+// 减去相关用户的调用次数
+const handleUserRequestNumber = async (userID) => {
+	return await userCollection.doc(userID).update({
+		openApiRequestNumber: dbCmd.inc(-1)
+	})
 }
