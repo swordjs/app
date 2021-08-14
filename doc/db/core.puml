@@ -10,7 +10,7 @@ class 用户 {
     +Array followers
     +Array collect
     +Array settingInfo
-    +UUID AuthID
+    +Number openApiRequestNumber
     --登录注册登出,校验token相关--
     +void loginByWechat()
     +void updateUserInfo()
