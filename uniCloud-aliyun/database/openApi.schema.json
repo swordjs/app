@@ -19,9 +19,25 @@
 			"bsonType": "string",
 			"description": "备注"
 		},
-		"type": {
+		"state": {
 			"bsonType": "string",
-			"description": "类型，0不开放，1开放"
+			"description": "类型，close不开放，open开放"
+		},
+		"info": {
+			"bsonType": "object",
+			"description": "openapi的信息，其中包括url等等"
+		},
+		"createDate": {
+			"bsonType": "timestamp",
+			"description": "创建时间"
+		},
+		"updateDate": {
+			"bsonType": "timestamp",
+			"description": "修改时间"
+		},
+		"deleteDate": {
+			"bsonType": "timestamp",
+			"description": "删除时间"
 		}
 	}
 }

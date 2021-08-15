@@ -249,6 +249,10 @@
 		"my_invite_code": {
 			"bsonType": "string",
 			"description": "用户自身邀请码"
+		},
+		"openApiRequestNumber": {
+			"bsonType": "number",
+			"description": "剩余请求openapi公共模块接口的次数"
 		}
 	}
 }
