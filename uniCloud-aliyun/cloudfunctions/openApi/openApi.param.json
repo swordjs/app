@@ -4,8 +4,8 @@
 	"path": "/",
 	"httpMethod": "GET",
 	"queryStringParameters": {
-		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDg0MWViNGIwOWQ0YTAwMDE3NzU2N2MiLCJyb2xlIjpbImFkbWluIiwibm9ybWFsIl0sInBlcm1pc3Npb24iOltdLCJpYXQiOjE2Mjc0Mjc1NTUsImV4cCI6MWUrMTU4fQ.CbPQcS2gRC2uXCMzs0EMSzsjRrivp8MWTuGPXjIgvCo",
-		"apiID": "610876981b51d100018d01b6"
+		"token": "",
+		"apiID": ""
 	},
 	"body": {
 		"state": "pass"
