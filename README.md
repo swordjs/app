@@ -33,13 +33,14 @@
 
 # 目录
 
+- [官网](https://swordcodepractice.github.io/website/#/)
 - [安装](https://www.yuque.com/docs/share/b3e2c390-0441-46a1-a3da-ae6b9d108f2e)
 - [特点](#特点)
 - [技术栈](#技术栈)
 - [UML](#UML)
 - [设计概览](#设计概览)
 - [API设计](#API设计（读写职责分离）)
-- [开放API-新版本!](#开放API)
+- [开放API](#开放API)
 - [配套后台管理系统](#配套后台管理系统)
 - [作者和贡献者们](#作者和贡献者们)
 - [相关开源物料](#相关开源物料)
@@ -83,7 +84,7 @@
 
 ## 类图
 
-<img src="https://github.com/swordCodePractice/InternetQuestionBank/blob/master/out/doc/db/core/core.png?raw=true"></img>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/710380/1629013599645-9202859f-2da6-4af6-ac52-e9f9edd0bfe3.png?x-oss-process=image%2Fresize%2Cw_752"></img>
 
 ## 拉取任务
 
@@ -218,12 +219,13 @@ openAPI是剑指题解1.0.9版本之后的新内容，我们将暴露一部分�
 剑指题解程序中的token在目前的版本中是永久的，这是非常不安全的，预计在1.0之后的版本会对token进行有效期调整。openapi的2要素就是token+apiid，token是永久的token（除非您在APP中退出当前账号，这才会销毁token）。我们在后台管理系统中提供了非常简便的【复制公共API】按钮，只需要按照文档进行请求即可。
 
 [查阅公共api文档](https://www.yuque.com/mlgrgm/lmm8g4/axpewl)
+
 # 配套后台管理系统
 后台管理系统开放角色为：管理员, 普通用户，认证答题官（具有发布权限），目前版本仍然在完善中，而且大可放心的是，后台管理系统仍然使用unicloud进行快速开发，在读取我们没有使用jql，而是直接在页面渲染client-db组件。
-关于为什么和app的技术栈不一样，我这边简单归纳了几点，首先我希望后台管理系统是大家一起维护提pr的，作为一款管理产品，拓展不会太宽，是要求门槛很低且需要快速开发的，所以我选择了上手较快的云开发产品
+关于为什么和app的技术栈不一样，我这边简单归纳了几点，首先我希望后台管理系统是大家一起维护提pr的，作为一款管理产品，拓展不会太宽，是要求门槛很低且需要快速开发的，所以选择了上手较快的云开发产品
 
-关于已经有小程序账号的用户如何进入管理后台：[请移步这个文档](https://www.yuque.com/mlgrgm/lmm8g4/pg6t14)
-剑指题解后台管理系统: http://sword.admin.yinzhuoei.com/#/pages/login/login
+关于已经有小程序账号的用户如何进入管理后台：[请移步这个文档](https://www.yuque.com/mlgrgm/lmm8g4/pg6t14)  
+剑指题解后台管理系统: http://sword.admin.yinzhuoei.com/#/pages/login/login  
 源代码：https://github.com/swordCodePractice/swordUserAdmin
 
 # 作者和贡献者们
