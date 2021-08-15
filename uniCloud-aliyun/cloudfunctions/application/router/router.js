@@ -214,4 +214,21 @@ module.exports = [
       },
     ],
   },
+  {
+    route: "api/openApi",
+    service: "openApi",
+    routes: [
+      {
+        action: "addOpenApi",
+      },
+      {
+        action: "updateOpenApi",
+      },
+      {
+        route: "toggleOpenApiState",
+        action: "toggleOpenApiState",
+        httpMethod: "POST",
+      },
+    ],
+  },
 ];

@@ -10,7 +10,7 @@ class 用户 {
     +Array followers
     +Array collect
     +Array settingInfo
-    +UUID AuthID
+    +Number openApiRequestNumber
     --登录注册登出,校验token相关--
     +void loginByWechat()
     +void updateUserInfo()
@@ -135,6 +135,15 @@ namespace 搜索 #DDDDDD {
     .搜索资源 --> .用户
     .搜索资源 --> .题目
     .搜索资源 --> .题解
+}
+
+namespace 开放API #DDDDDD {
+    class API类型(列表) {
+        +UUID _id
+        +String name
+        +String remark
+        +String state
+    }
 }
 
 题目专区 --> "many" 题目分类标签::areaID

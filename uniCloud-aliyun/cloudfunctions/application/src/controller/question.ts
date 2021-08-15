@@ -6,12 +6,12 @@ namespace Question {
   module.exports = class QuestionController extends explain.service {
     // 获取推荐的题目(version 1)
     // 核心处理服务方法
-    async handler(methodName: string){
+    async handler(methodName: string) {
       const service = new QuestionService({
         userID: this.context.userID,
-        context: this.context
+        context: this.context,
       });
-      return await service[methodName](this.event.params)
+      return await service[methodName](this.event.params);
     }
     // 添加题目
     async addQuestion() {
@@ -40,11 +40,27 @@ namespace Question {
             key: "_id",
             value: "题目ID",
           },
+          {
+            key: "title",
+            value: "题目标题",
+          },
+          {
+            key: "content",
+            value: "题目内容",
+          },
+          {
+            key: "areaID",
+            value: "题目ID",
+          },
+          {
+            key: "tagID",
+            value: "标签ID",
+          },
         ],
         this.event.params
       )
         .then(async () => {
-          return await this.handler("updateQuestion")
+          return await this.handler("updateQuestion");
         })
         .catch((err) => err);
     }
@@ -59,7 +75,7 @@ namespace Question {
         this.event.params
       )
         .then(async () => {
-          return await this.handler("deleteQuestion")
+          return await this.handler("deleteQuestion");
         })
         .catch((err) => err);
     }
@@ -88,7 +104,7 @@ namespace Question {
               "拒绝审核需要传递examineInfo对象，注明拒绝原因"
             );
           }
-          return await this.handler("examineQuestion")
+          return await this.handler("examineQuestion");
         })
         .catch((err) => err);
     }
@@ -104,12 +120,12 @@ namespace Question {
         this.event.params
       )
         .then(async () => {
-          return await this.handler("getQuestionList")
+          return await this.handler("getQuestionList");
         })
         .catch((err) => err);
     }
     // 浏览题目详情（如果没有pageView就默认设置为1）
-    async addPageView(){
+    async addPageView() {
       return handleMustRequireParam(
         [
           {
@@ -120,7 +136,7 @@ namespace Question {
         this.event.params
       )
         .then(async () => {
-          return await this.handler("addPageView")
+          return await this.handler("addPageView");
         })
         .catch((err) => err);
     }

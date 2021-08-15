@@ -21,9 +21,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
-uniCloud-aliyun/cloudfunctions/common/uni-id/config.json
-uniCloud-aliyun/cloudfunctions/common/uni-config-center/uni-id/config.json
-uniCloud-aliyun/cloudfunctions/common/get-accesstoken/config.json
-uniCloud-aliyun/cloudfunctions/common/uni-config-center/uni-id/config.json
-uniCloud-aliyun/cloudfunctions/application/src/config
-uniCloud-aliyun/cloudfunctions/dingtalk-robot/config.json
+uniCloud-aliyun/cloudfunctions/common/uni-config-center/*

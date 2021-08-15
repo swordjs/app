@@ -9,7 +9,10 @@ namespace UserService {
   const collection = db.collection("uni-id-users");
   const QQ_SESSION_URL = "https://api.q.qq.com/sns/jscode2session";
   // 获取QQ小程序相关的APPID和密钥
-  const config = require("./../config/oauth");
+  const createConfig = require("uni-config-center");
+  const appConfig = createConfig({
+    pluginId: "get-accesstoken",
+  });
 
   interface ICheckFollowers {
     uid: string;
@@ -273,7 +276,9 @@ namespace UserService {
     }
     private code2sessionByQQ(code: string): Promise<string | boolean> {
       return new Promise((resolve, reject) => {
-        const { appid, appsecret } = config.mpqq.oauth.qq;
+        const {
+          oauth: { appid, appsecret },
+        } = appConfig.config("qq-miniprogram");
         https.get(
           `${QQ_SESSION_URL}?appid=${appid}&secret=${appsecret}&js_code=${code}&grant_type=authorization_code`,
           (resp) => {
