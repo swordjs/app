@@ -8,14 +8,21 @@ const apiCollection = db.collection("openApi");
 
 
 exports.main = async (event, context) => {
+	// 判断请求类型，如果非post就不处理
+	if (event.httpMethod !== "POST") {
+		return error({
+			code: 406,
+			message: "请求类型必须为post"
+		})
+	}
 	const {
-		token,
-		apiID
+		token = "",
+		apiID = ""
 	} = event.queryStringParameters;
 	// 获取请求体中的值
 	let body = event.body;
 	// 判断是否是json字符串，如果是就转换一下
-	if (typeof event.body === "string") {
+	if (event.body !== "" && typeof event.body === "string") {
 		body = JSON.parse(body);
 	}
 	// 判断token和apiID是否传递了
