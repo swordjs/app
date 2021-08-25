@@ -5,7 +5,7 @@
 {
 	"route": "api/openApi/getQuestionTag",
 	"method": "GET",
-	"uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDg0MWViNGIwOWQ0YTAwMDE3NzU2N2MiLCJyb2xlIjpbImFkbWluIiwibm9ybWFsIl0sInBlcm1pc3Npb24iOltdLCJpYXQiOjE2Mjg0MzI0MzQsImV4cCI6MWUrMTU4fQ.VU_Uls_H8It7HaWFPh0DvWl3pFVIRpj0IgKZeLBk4xA",
+	"uniIdToken": "",
 	"params": {
 		"page": 1,
 		"areaID": "600a35b2ba58b00001e4612f"
