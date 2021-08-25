@@ -1,6 +1,10 @@
 namespace OpenApiService {
   const db = uniCloud.database();
   const collection = db.collection("openApi");
+  const questionCollection = db.collection("question");
+  const questionAreaCollection = db.collection("questionArea");
+  const questionTag = db.collection("questionTag");
+
   module.exports = class OpenApiService {
     public userID: string;
     public nowDate: string;
@@ -38,6 +42,74 @@ namespace OpenApiService {
         state: params.state,
         updateDate: this.nowDate,
       });
+    }
+    // 题目列表
+    async getQuestionList(params: { page: number; areaID?: string }) {
+      const limit: number = 10;
+      const page: number = params.page || 1;
+
+      const whereParams = {
+        state: "pass",
+      };
+      // 可选参数
+      if (params.areaID) {
+        whereParams["areaID"] = params.areaID;
+      }
+      const data = await questionCollection
+        .aggregate()
+        .match(whereParams)
+        .skip(limit * (page - 1))
+        .limit(limit)
+        .sort({
+          createDate: -1,
+        })
+        .lookup({
+          from: "questionArea",
+          localField: "areaID",
+          foreignField: "_id",
+          as: "areaInfo",
+        })
+        .lookup({
+          from: "questionTag",
+          localField: "tagID",
+          foreignField: "_id",
+          as: "tagInfo",
+        })
+        .lookup({
+          from: "uni-id-users",
+          localField: "publishUserID",
+          foreignField: "_id",
+          as: "publishUser",
+        })
+        .end();
+      // 获取数量
+      const countResult = await questionCollection.where(whereParams).count();
+      return {
+        list: data.data,
+        count: countResult.total,
+      };
+    }
+    // 专区列表
+    async getQuestionAreaList() {
+      const res = await questionAreaCollection.get();
+      return {
+        list: res.data,
+      };
+    }
+    // 标签列表
+    async getQuestionTag() {
+      const res = await questionTag
+        .aggregate()
+        .lookup({
+          from: "questionArea",
+          localField: "areaID",
+          foreignField: "_id",
+          as: "areaInfo",
+        })
+        .end();
+      return {
+        list: res.data,
+      };
     }
   };
 }

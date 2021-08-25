@@ -229,6 +229,21 @@ module.exports = [
         action: "toggleOpenApiState",
         httpMethod: "POST",
       },
+      {
+        route: "getQuestionList",
+        action: "getQuestionList",
+        httpMethod: "GET",
+      },
+      {
+        route: "getQuestionAreaList",
+        action: "getQuestionAreaList",
+        httpMethod: "GET",
+      },
+      {
+        route: "getQuestionTag",
+        action: "getQuestionTag",
+        httpMethod: "GET",
+      },
     ],
   },
 ];

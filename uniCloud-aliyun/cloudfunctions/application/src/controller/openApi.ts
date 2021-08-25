@@ -72,5 +72,24 @@ namespace OpenApi {
         .then(async () => await this.handler("toggleOpenApiState"))
         .catch((err) => err);
     }
+    getQuestionList() {
+      return handleMustRequireParam(
+        [
+          {
+            key: "page",
+            value: "page",
+          },
+        ],
+        this.event.params
+      )
+        .then(async () => await this.handler("getQuestionList"))
+        .catch((err) => err);
+    }
+    async getQuestionAreaList() {
+      return await this.handler("getQuestionAreaList");
+    }
+    async getQuestionTag() {
+      return await this.handler("getQuestionTag");
+    }
   };
 }
