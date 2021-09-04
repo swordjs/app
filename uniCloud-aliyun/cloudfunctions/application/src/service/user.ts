@@ -1,17 +1,9 @@
 // 公告模块
 const uniID = require("uni-id");
-const https = require("https");
 const questionService = require("./question");
 const explanationService = require("./questionExplanation");
 const db = uniCloud.database();
-const dbCmd = db.command;
 const collection = db.collection("uni-id-users");
-const QQ_SESSION_URL = "https://api.q.qq.com/sns/jscode2session";
-// 获取QQ小程序相关的APPID和密钥
-const createConfig = require("uni-config-center");
-const appConfig = createConfig({
-  pluginId: "get-accesstoken",
-});
 
 interface ICheckFollowers {
   uid: string;
@@ -59,81 +51,34 @@ module.exports = class User {
       code,
     });
   }
-  public loginByQQ(
+  public async loginByQQ(
     params,
     urlParams: { code: string }
   ): Promise<{
     token: string;
     uid: string;
   }> {
-    return new Promise((resolve) => {
-      const { nickname, avatar, gender } = params;
-      const { code } = urlParams;
-      const currentTime = new Date().getTime();
-      // 用户id
-      let currentUserID: string = "";
-      // 调用QQ接口获取openid相关信息
-      this.code2sessionByQQ(code).then(async (openID) => {
-        const userInfo = await collection
-          .where({
-            ["qq_openid"]: dbCmd.eq({
-              "mp-qq": openID,
-            }),
-          })
-          .get();
-        if (userInfo.data.length === 0) {
-          // 未注册, 进行注册
-          const { id } = await collection.add({
-            qq_openid: {
-              "mp-qq": openID,
-            },
-            register_date: currentTime,
-            register_ip: this.clientIp,
-            followers: [],
-            sign: "感谢支持剑指题解",
-            role: ["normal"],
-            nickname,
-            avatar,
-            gender,
-          });
-          currentUserID = id;
-        } else {
-          currentUserID = userInfo.data[0]._id;
-          // 登录修改 日期和ip
-          await collection.doc(currentUserID).update({
-            last_login_date: currentTime,
-            last_login_ip: this.clientIp,
-          });
-        }
-        // 生成token并且返回
-        const { token } = await uniID.createToken({
-          uid: currentUserID,
-          needPermission: true,
-        });
-        // token创建完成之后update用户表
-        await collection.doc(currentUserID).update({
-          token: dbCmd.push(token),
-        });
-        resolve({
-          token,
-          uid: currentUserID,
-        });
-      });
+    const { code } = urlParams;
+    const { nickname, avatar, gender } = params;
+    // 把用户信息也添加到库中, 设置角色为默认角色
+    const res = await uniID.loginByQQ({
+      code,
+      role: ["normal"],
+      needPermission: true, // 返回权限
     });
+    await uniID.updateUser({
+      uid: res.uid,
+      nickname: nickname,
+      avatar: avatar,
+      gender: gender,
+    });
+    return res;
   }
-  public bindQQ(params) {
-    return new Promise((resolve) => {
-      const { code, uid } = params;
-      this.code2sessionByQQ(code).then(async (openID) => {
-        // 修改QQ绑定
-        resolve(
-          await collection.doc(uid).update({
-            qq_openid: {
-              "mp-qq": openID,
-            },
-          })
-        );
-      });
+  public async bindQQ(params) {
+    const { code, uid } = params;
+    return await uniID.bindQQ({
+      uid,
+      code,
     });
   }
   public async loginBySms(params: { phone: string; code: string }) {
@@ -272,31 +217,6 @@ module.exports = class User {
         followers: followers,
       });
     }
-  }
-  private code2sessionByQQ(code: string): Promise<string | boolean> {
-    return new Promise((resolve, reject) => {
-      const {
-        oauth: { appid, appsecret },
-      } = appConfig.config("qq-miniprogram");
-      https.get(
-        `${QQ_SESSION_URL}?appid=${appid}&secret=${appsecret}&js_code=${code}&grant_type=authorization_code`,
-        (resp) => {
-          let data: any = "";
-          resp.on("data", (chunk) => {
-            data += chunk;
-          });
-          resp.on("end", async () => {
-            data = JSON.parse(data);
-            if (data.errcode === 0) {
-              let openID = data.openid;
-              resolve(openID);
-            } else {
-              reject(false);
-            }
-          });
-        }
-      );
-    });
   }
 };
 
