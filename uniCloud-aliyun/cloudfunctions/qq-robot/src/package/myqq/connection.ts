@@ -1,5 +1,3 @@
-export default class Connection{
-    static collection(){
-        
-    }
-}
+// export default class Connection {
+//   static collection() {}
+// }

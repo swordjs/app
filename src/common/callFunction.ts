@@ -2,21 +2,13 @@ type CallFunctionParams = {
   name: string;
   data: {
     route: string;
-    method: "GET" | "POST" | "PUT" | "DELETE";
-    params?: object;
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+    params?: Record<string, unknown>;
   };
   checkLogin?: boolean;
 };
-import notLogin from "../util/notLogin";
+import notLogin from '../util/notLogin';
 
-/**
- * @name 查询是否登录
- * @returns Boolean
- */
-const checkLogin = (): boolean => {
-  const token: string = uni.getStorageSync("uni_id_token");
-  return token !== "";
-};
 /**
  * @name 云函数调用
  * @params params
@@ -33,23 +25,23 @@ export default (params: CallFunctionParams): Promise<ActionResult> => {
       data: {
         route: params.data.route,
         method: params.data.method,
-        params: params.data.params,
-      },
+        params: params.data.params
+      }
     });
     let response: ActionResult = {
       success: true,
-      data: result,
+      data: result
     };
     if (result.code) {
       // 判断code是否存在于errorMessage对象中
       if (result.code !== 0) {
         response = {
-          success: false,
+          success: false
         };
         uni.hideLoading();
         uni.showToast({
           title: result.msg,
-          icon: "none",
+          icon: 'none'
         });
       }
     }

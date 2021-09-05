@@ -1,6 +1,5 @@
-const { formParser } = require("form-data-utils");
 module.exports = class Common {
-  public event: any;
+  public event: unknown;
   constructor({ event }) {
     this.event = event;
   }

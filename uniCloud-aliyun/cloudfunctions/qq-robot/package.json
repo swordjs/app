@@ -1,16 +1,16 @@
 {
-	"name": "qq-robot",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "nodemon"
-	},
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"explain": "file:../common/explain",
-		"uni-config-center": "file:../common/uni-config-center"
-	}
+  "name": "qq-robot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "explain": "file:../common/explain",
+    "uni-config-center": "file:../common/uni-config-center"
+  }
 }

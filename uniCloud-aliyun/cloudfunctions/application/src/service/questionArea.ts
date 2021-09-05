@@ -1,5 +1,5 @@
 const db = uniCloud.database();
-const collection = db.collection("questionArea");
+const collection = db.collection('questionArea');
 interface IQuestionAreaData {
   userID: string;
 }
@@ -29,7 +29,7 @@ module.exports = class QuestionArea {
   async getAreaList(params: IGetAreaList) {
     const { limit, page } = params;
     const whereParams = {
-      deleteDate: "",
+      deleteDate: ''
     };
     const data = await collection
       .aggregate()
@@ -41,7 +41,7 @@ module.exports = class QuestionArea {
     const countResult = await collection.where(whereParams).count();
     return {
       list: data.data,
-      count: countResult.total,
+      count: countResult.total
     };
   }
   async addQuestionArea(params: IAddQuestionArea) {
@@ -51,7 +51,7 @@ module.exports = class QuestionArea {
       iconPath,
       createDate: this.nowDate,
       updateDate: this.nowDate,
-      deleteDate: "",
+      deleteDate: ''
     });
   }
   async updateQuestionArea(params: IUpdateQuestionArea) {
@@ -59,13 +59,13 @@ module.exports = class QuestionArea {
     return await collection.doc(params._id).update({
       name,
       iconPath,
-      updateDate: this.nowDate,
+      updateDate: this.nowDate
     });
   }
   async deleteQuestionArea(params: IDeleteQuestionArea) {
     return await collection.doc(params._id).update({
       updateDate: this.nowDate,
-      deleteDate: this.nowDate,
+      deleteDate: this.nowDate
     });
   }
 };

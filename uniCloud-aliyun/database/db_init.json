@@ -1,349 +1,334 @@
 {
-    "openApi": {
-        "data": [
-            {
-                "_id": {
-                    "$oid": "612a19b7e55c2c0001286690"
-                },
-                "name": "QUESTION_TAG_LIST",
-                "remark": "题目标签列表",
-                "info": {
-                    "url": {
-                        "name": "application",
-                        "route": "api/openApi/getQuestionTag",
-                        "method": "GET",
-                        "params": []
-                    }
-                },
-                "state": "open",
-                "createDate": {
-                    "$date": "2021-08-28T11:10:47.909Z"
-                },
-                "updateDate": {
-                    "$date": "2021-08-28T11:11:20.921Z"
-                },
-                "deleteDate": ""
-            },
-            {
-                "_id": {
-                    "$oid": "6117a8e831de900001818fbc"
-                },
-                "name": "QUESTION_LIST",
-                "remark": "题目列表",
-                "info": {
-                    "url": {
-                        "name": "application",
-                        "route": "api/openApi/getQuestionList",
-                        "method": "GET",
-                        "params": [
-                            {
-                                "key": "page",
-                                "required": true
-                            }
-                        ]
-                    }
-                },
-                "state": "open",
-                "createDate": {
-                    "$date": "2021-08-14T11:28:40.009Z"
-                },
-                "updateDate": {
-                    "$date": "2021-08-28T11:07:56.494Z"
-                },
-                "deleteDate": ""
-            },
-            {
-                "_id": {
-                    "$oid": "612a199a6311030001c3bcd9"
-                },
-                "name": "QUESTION_AREA_LIST",
-                "remark": "题目专区列表",
-                "info": {
-                    "url": {
-                        "name": "application",
-                        "route": "api/openApi/getQuestionAreaList",
-                        "method": "GET",
-                        "params": []
-                    }
-                },
-                "state": "open",
-                "createDate": {
-                    "$date": "2021-08-28T11:10:18.341Z"
-                },
-                "updateDate": {
-                    "$date": "2021-08-28T11:11:20.03Z"
-                },
-                "deleteDate": ""
-            }
-        ]
-    },
-    "opendb-admin-menus": {
-        "data": [
-            {
-                "_id": {
-                    "$oid": "60bff62eb1031900015399e7"
-                },
-                "create_date": 1602662469396,
-                "enable": true,
-                "icon": "uni-icons-settings",
-                "menu_id": "system_menu",
-                "name": "菜单管理",
-                "parent_id": "system_management",
-                "permission": [],
-                "sort": 1040,
-                "url": "/pages/system/menu/list"
-            },
-            {
-                "_id": {
-                    "$oid": "60ca881cb1031900017efba2"
-                },
-                "menu_id": "question",
-                "name": "我的题目",
-                "icon": "uni-icons-starhalf",
-                "url": "/pages/question/list",
-                "parent_id": "",
-                "permission": [
-                    "ANY",
-                    "NORMAL"
-                ],
-                "enable": true,
-                "create_date": 1623885852531,
-                "sort": 1080
-            },
-            {
-                "_id": {
-                    "$oid": "60d6c2c3249579000115d816"
-                },
-                "menu_id": "system-article",
-                "name": "文章管理",
-                "icon": "uni-icons-map-filled",
-                "url": "/pages/system/article/list",
-                "parent_id": "system_management",
-                "permission": [],
-                "enable": true,
-                "create_date": 1624687299227,
-                "sort": 1100
-            },
-            {
-                "_id": {
-                    "$oid": "60bff62eb1031900015399e4"
-                },
-                "create_date": 1602662469398,
-                "enable": true,
-                "icon": "uni-icons-person",
-                "menu_id": "system_user",
-                "name": "用户管理",
-                "parent_id": "system_management",
-                "permission": [],
-                "sort": 1010,
-                "url": "/pages/system/user/list"
-            },
-            {
-                "_id": {
-                    "$oid": "60bff62eb1031900015399e3"
-                },
-                "create_date": 1602662469396,
-                "enable": true,
-                "icon": "uni-icons-gear",
-                "menu_id": "system_management",
-                "name": "系统管理",
-                "parent_id": "",
-                "permission": [],
-                "sort": 1000,
-                "url": ""
-            },
-            {
-                "_id": {
-                    "$oid": "60c4a5108a69dc0001f3553b"
-                },
-                "menu_id": "system-question",
-                "name": "题目管理",
-                "icon": "uni-icons-starhalf",
-                "url": "/pages/system/question/list",
-                "parent_id": "system_management",
-                "permission": [],
-                "enable": true,
-                "sort": 1070
-            },
-            {
-                "_id": {
-                    "$oid": "60bff62eb1031900015399e5"
-                },
-                "create_date": 1602662469397,
-                "enable": true,
-                "icon": "uni-icons-personadd",
-                "menu_id": "system_role",
-                "name": "角色管理",
-                "parent_id": "system_management",
-                "permission": [],
-                "sort": 1020,
-                "url": "/pages/system/role/list"
-            },
-            {
-                "_id": {
-                    "$oid": "60d11a4f70f7740001bced72"
-                },
-                "menu_id": "acticle",
-                "name": "我的文章",
-                "icon": "uni-icons-map-filled",
-                "url": "/pages/article/list",
-                "parent_id": "",
-                "permission": [
-                    "ANY",
-                    "NORMAL"
-                ],
-                "enable": true,
-                "create_date": 1624316495859,
-                "sort": 1090
-            },
-            {
-                "_id": {
-                    "$oid": "60c29c36827eca0001b1a990"
-                },
-                "menu_id": "tag",
-                "name": "标签管理",
-                "icon": "uni-icons-paperclip",
-                "url": "/pages/system/tag/list",
-                "parent_id": "system_management",
-                "permission": [],
-                "enable": true,
-                "sort": 1060
-            },
-            {
-                "_id": {
-                    "$oid": "60bffce02495790001af1f67"
-                },
-                "menu_id": "system_questionArea",
-                "name": "专区管理",
-                "icon": "uni-icons-shop",
-                "url": "/pages/system/questionArea/list",
-                "parent_id": "system_management",
-                "permission": [],
-                "enable": true,
-                "sort": 1050
-            },
-            {
-                "_id": {
-                    "$oid": "60bff62eb1031900015399e6"
-                },
-                "create_date": 1602662469396,
-                "enable": true,
-                "icon": "uni-icons-locked",
-                "menu_id": "system_permission",
-                "name": "权限管理",
-                "parent_id": "system_management",
-                "permission": [],
-                "sort": 1030,
-                "url": "/pages/system/permission/list"
-            },
-            {
-                "_id": {
-                    "$oid": "6123a07254df77000115134e"
-                },
-                "permission": [
-                    "ANY",
-                    "NORMAL"
-                ],
-                "enable": true,
-                "menu_id": "openApi",
-                "name": "开放API",
-                "icon": "uni-icons-paperplane",
-                "url": "/pages/openApi/list",
-                "parent_id": "",
-                "create_date": 1629712404640,
-                "sort": 1210
-            },
-            {
-                "_id": {
-                    "$oid": "6123a05e75311d0001852ae5"
-                },
-                "menu_id": "system_open_api",
-                "name": "开放API管理",
-                "icon": "uni-icons-paperplane",
-                "url": "/pages/system/openApi/list",
-                "parent_id": "system_management",
-                "permission": [],
-                "enable": true,
-                "create_date": 1628935572160,
-                "sort": 1200
-            }
-        ]
-    },
-    "uni-id-permissions": {
-        "data": [
-            {
-                "_id": {
-                    "$oid": "60004860d06eec00012ba375"
-                },
-                "permission_id": "PUSH_QUESTIONS",
-                "permission_name": "发布题目权限",
-                "comment": "必须具有认证出题人/机构才可拥有此权限",
-                "created_date": {
-                    "$date": "2021-01-14T13:31:15.653Z"
-                }
-            },
-            {
-                "_id": {
-                    "$oid": "6000489fb4900a00012f6eac"
-                },
-                "permission_id": "NORMAL",
-                "permission_name": "用户",
-                "comment": "普通用户所拥有的天然权限",
-                "created_date": {
-                    "$date": "2021-01-14T13:31:15.653Z"
-                }
-            },
-            {
-                "_id": {
-                    "$oid": "600047e1bbbf9b0001d033e1"
-                },
-                "permission_id": "ANY",
-                "permission_name": "全部权限",
-                "comment": "管理员对于系统设置,关键数据操作等使用的权限",
-                "created_date": {
-                    "$date": "2021-01-14T13:31:15.653Z"
-                }
-            }
-        ]
-    },
-    "uni-id-roles": {
-        "data": [
-            {
-                "_id": {
-                    "$oid": "600049c75d1f670001928855"
-                },
-                "role_id": "pushQuestion",
-                "role_name": "出题人",
-                "permission": [
-                    "PUSH_QUESTIONS"
-                ],
-                "comment": "具有发布题目的权限",
-                "create_date": 0
-            },
-            {
-                "_id": {
-                    "$oid": "5fff8242bbbf9b0001ccb074"
-                },
-                "role_id": "admin",
-                "role_name": "超级管理员",
-                "permission": [
-                    "ANY"
-                ],
-                "comment": "拥有全部权限适用于超级管理员",
-                "create_date": 0
-            },
-            {
-                "_id": {
-                    "$oid": "60004a0adcaf1e000122174b"
-                },
-                "role_id": "normal",
-                "role_name": "普通用户",
-                "permission": [
-                    "NORMAL"
-                ],
-                "comment": "普通用户天然角色",
-                "create_date": 0
-            }
-        ]
-    }
+  "openApi": {
+    "data": [
+      {
+        "_id": {
+          "$oid": "612a19b7e55c2c0001286690"
+        },
+        "name": "QUESTION_TAG_LIST",
+        "remark": "题目标签列表",
+        "info": {
+          "url": {
+            "name": "application",
+            "route": "api/openApi/getQuestionTag",
+            "method": "GET",
+            "params": []
+          }
+        },
+        "state": "open",
+        "createDate": {
+          "$date": "2021-08-28T11:10:47.909Z"
+        },
+        "updateDate": {
+          "$date": "2021-08-28T11:11:20.921Z"
+        },
+        "deleteDate": ""
+      },
+      {
+        "_id": {
+          "$oid": "6117a8e831de900001818fbc"
+        },
+        "name": "QUESTION_LIST",
+        "remark": "题目列表",
+        "info": {
+          "url": {
+            "name": "application",
+            "route": "api/openApi/getQuestionList",
+            "method": "GET",
+            "params": [
+              {
+                "key": "page",
+                "required": true
+              }
+            ]
+          }
+        },
+        "state": "open",
+        "createDate": {
+          "$date": "2021-08-14T11:28:40.009Z"
+        },
+        "updateDate": {
+          "$date": "2021-08-28T11:07:56.494Z"
+        },
+        "deleteDate": ""
+      },
+      {
+        "_id": {
+          "$oid": "612a199a6311030001c3bcd9"
+        },
+        "name": "QUESTION_AREA_LIST",
+        "remark": "题目专区列表",
+        "info": {
+          "url": {
+            "name": "application",
+            "route": "api/openApi/getQuestionAreaList",
+            "method": "GET",
+            "params": []
+          }
+        },
+        "state": "open",
+        "createDate": {
+          "$date": "2021-08-28T11:10:18.341Z"
+        },
+        "updateDate": {
+          "$date": "2021-08-28T11:11:20.03Z"
+        },
+        "deleteDate": ""
+      }
+    ]
+  },
+  "opendb-admin-menus": {
+    "data": [
+      {
+        "_id": {
+          "$oid": "60bff62eb1031900015399e7"
+        },
+        "create_date": 1602662469396,
+        "enable": true,
+        "icon": "uni-icons-settings",
+        "menu_id": "system_menu",
+        "name": "菜单管理",
+        "parent_id": "system_management",
+        "permission": [],
+        "sort": 1040,
+        "url": "/pages/system/menu/list"
+      },
+      {
+        "_id": {
+          "$oid": "60ca881cb1031900017efba2"
+        },
+        "menu_id": "question",
+        "name": "我的题目",
+        "icon": "uni-icons-starhalf",
+        "url": "/pages/question/list",
+        "parent_id": "",
+        "permission": ["ANY", "NORMAL"],
+        "enable": true,
+        "create_date": 1623885852531,
+        "sort": 1080
+      },
+      {
+        "_id": {
+          "$oid": "60d6c2c3249579000115d816"
+        },
+        "menu_id": "system-article",
+        "name": "文章管理",
+        "icon": "uni-icons-map-filled",
+        "url": "/pages/system/article/list",
+        "parent_id": "system_management",
+        "permission": [],
+        "enable": true,
+        "create_date": 1624687299227,
+        "sort": 1100
+      },
+      {
+        "_id": {
+          "$oid": "60bff62eb1031900015399e4"
+        },
+        "create_date": 1602662469398,
+        "enable": true,
+        "icon": "uni-icons-person",
+        "menu_id": "system_user",
+        "name": "用户管理",
+        "parent_id": "system_management",
+        "permission": [],
+        "sort": 1010,
+        "url": "/pages/system/user/list"
+      },
+      {
+        "_id": {
+          "$oid": "60bff62eb1031900015399e3"
+        },
+        "create_date": 1602662469396,
+        "enable": true,
+        "icon": "uni-icons-gear",
+        "menu_id": "system_management",
+        "name": "系统管理",
+        "parent_id": "",
+        "permission": [],
+        "sort": 1000,
+        "url": ""
+      },
+      {
+        "_id": {
+          "$oid": "60c4a5108a69dc0001f3553b"
+        },
+        "menu_id": "system-question",
+        "name": "题目管理",
+        "icon": "uni-icons-starhalf",
+        "url": "/pages/system/question/list",
+        "parent_id": "system_management",
+        "permission": [],
+        "enable": true,
+        "sort": 1070
+      },
+      {
+        "_id": {
+          "$oid": "60bff62eb1031900015399e5"
+        },
+        "create_date": 1602662469397,
+        "enable": true,
+        "icon": "uni-icons-personadd",
+        "menu_id": "system_role",
+        "name": "角色管理",
+        "parent_id": "system_management",
+        "permission": [],
+        "sort": 1020,
+        "url": "/pages/system/role/list"
+      },
+      {
+        "_id": {
+          "$oid": "60d11a4f70f7740001bced72"
+        },
+        "menu_id": "acticle",
+        "name": "我的文章",
+        "icon": "uni-icons-map-filled",
+        "url": "/pages/article/list",
+        "parent_id": "",
+        "permission": ["ANY", "NORMAL"],
+        "enable": true,
+        "create_date": 1624316495859,
+        "sort": 1090
+      },
+      {
+        "_id": {
+          "$oid": "60c29c36827eca0001b1a990"
+        },
+        "menu_id": "tag",
+        "name": "标签管理",
+        "icon": "uni-icons-paperclip",
+        "url": "/pages/system/tag/list",
+        "parent_id": "system_management",
+        "permission": [],
+        "enable": true,
+        "sort": 1060
+      },
+      {
+        "_id": {
+          "$oid": "60bffce02495790001af1f67"
+        },
+        "menu_id": "system_questionArea",
+        "name": "专区管理",
+        "icon": "uni-icons-shop",
+        "url": "/pages/system/questionArea/list",
+        "parent_id": "system_management",
+        "permission": [],
+        "enable": true,
+        "sort": 1050
+      },
+      {
+        "_id": {
+          "$oid": "60bff62eb1031900015399e6"
+        },
+        "create_date": 1602662469396,
+        "enable": true,
+        "icon": "uni-icons-locked",
+        "menu_id": "system_permission",
+        "name": "权限管理",
+        "parent_id": "system_management",
+        "permission": [],
+        "sort": 1030,
+        "url": "/pages/system/permission/list"
+      },
+      {
+        "_id": {
+          "$oid": "6123a07254df77000115134e"
+        },
+        "permission": ["ANY", "NORMAL"],
+        "enable": true,
+        "menu_id": "openApi",
+        "name": "开放API",
+        "icon": "uni-icons-paperplane",
+        "url": "/pages/openApi/list",
+        "parent_id": "",
+        "create_date": 1629712404640,
+        "sort": 1210
+      },
+      {
+        "_id": {
+          "$oid": "6123a05e75311d0001852ae5"
+        },
+        "menu_id": "system_open_api",
+        "name": "开放API管理",
+        "icon": "uni-icons-paperplane",
+        "url": "/pages/system/openApi/list",
+        "parent_id": "system_management",
+        "permission": [],
+        "enable": true,
+        "create_date": 1628935572160,
+        "sort": 1200
+      }
+    ]
+  },
+  "uni-id-permissions": {
+    "data": [
+      {
+        "_id": {
+          "$oid": "60004860d06eec00012ba375"
+        },
+        "permission_id": "PUSH_QUESTIONS",
+        "permission_name": "发布题目权限",
+        "comment": "必须具有认证出题人/机构才可拥有此权限",
+        "created_date": {
+          "$date": "2021-01-14T13:31:15.653Z"
+        }
+      },
+      {
+        "_id": {
+          "$oid": "6000489fb4900a00012f6eac"
+        },
+        "permission_id": "NORMAL",
+        "permission_name": "用户",
+        "comment": "普通用户所拥有的天然权限",
+        "created_date": {
+          "$date": "2021-01-14T13:31:15.653Z"
+        }
+      },
+      {
+        "_id": {
+          "$oid": "600047e1bbbf9b0001d033e1"
+        },
+        "permission_id": "ANY",
+        "permission_name": "全部权限",
+        "comment": "管理员对于系统设置,关键数据操作等使用的权限",
+        "created_date": {
+          "$date": "2021-01-14T13:31:15.653Z"
+        }
+      }
+    ]
+  },
+  "uni-id-roles": {
+    "data": [
+      {
+        "_id": {
+          "$oid": "600049c75d1f670001928855"
+        },
+        "role_id": "pushQuestion",
+        "role_name": "出题人",
+        "permission": ["PUSH_QUESTIONS"],
+        "comment": "具有发布题目的权限",
+        "create_date": 0
+      },
+      {
+        "_id": {
+          "$oid": "5fff8242bbbf9b0001ccb074"
+        },
+        "role_id": "admin",
+        "role_name": "超级管理员",
+        "permission": ["ANY"],
+        "comment": "拥有全部权限适用于超级管理员",
+        "create_date": 0
+      },
+      {
+        "_id": {
+          "$oid": "60004a0adcaf1e000122174b"
+        },
+        "role_id": "normal",
+        "role_name": "普通用户",
+        "permission": ["NORMAL"],
+        "comment": "普通用户天然角色",
+        "create_date": 0
+      }
+    ]
+  }
 }

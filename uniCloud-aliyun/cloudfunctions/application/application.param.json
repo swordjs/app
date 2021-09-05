@@ -3,11 +3,11 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-	"route": "api/openApi/getQuestionTag",
-	"method": "GET",
-	"uniIdToken": "",
-	"params": {
-		"page": 1,
-		"areaID": "600a35b2ba58b00001e4612f"
-	}
+  "route": "api/openApi/getQuestionTag",
+  "method": "GET",
+  "uniIdToken": "",
+  "params": {
+    "page": 1,
+    "areaID": "600a35b2ba58b00001e4612f"
+  }
 }

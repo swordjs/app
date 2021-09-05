@@ -1,6 +1,5 @@
 const db = uniCloud.database();
-const dbCmd = db.command;
-const collection = db.collection("article,uni-id-users");
+const collection = db.collection('article,uni-id-users');
 
 /**
  * @name 获取文章列表
@@ -9,28 +8,28 @@ export function getArticleList(): Promise<ActionResult> {
   return new Promise((resolve) => {
     collection
       .where({
-        state: "pass",
+        state: 'pass'
       })
       .field(`userID{avatar,nickname,sign,_id},title,content,createDate`)
-      .orderBy("createDate desc")
+      .orderBy('createDate desc')
       .get()
       .then((res) => {
         const { success, result } = res;
         resolve({
           success,
-          data: result.data,
+          data: result.data
         });
       })
       .catch((err: { message: string }) => {
         uni.showToast({
           title: err.message,
-          icon: "none",
+          icon: 'none'
         });
       });
   });
 }
 
-/** 
+/**
  * @name 获取文章详情根据ID
  */
 export function getArticleByID(params: { id: string }): Promise<ActionResult> {
@@ -43,13 +42,13 @@ export function getArticleByID(params: { id: string }): Promise<ActionResult> {
         const { success, result } = res;
         resolve({
           success,
-          data: result.data,
+          data: result.data
         });
       })
       .catch((err: { message: string }) => {
         uni.showToast({
           title: err.message,
-          icon: "none",
+          icon: 'none'
         });
       });
   });

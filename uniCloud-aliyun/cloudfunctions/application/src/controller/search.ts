@@ -1,10 +1,10 @@
-const explain = require("explain");
-const searchService = require("../service/search");
-const { appErrorMessage, handleMustRequireParam } = require("app-tools");
+const explain = require('explain');
+const searchService = require('../service/search');
+const { handleMustRequireParam } = require('app-tools');
 module.exports = class QuestionTag extends explain.service {
   async handler(methodName: string) {
     const service = new searchService({
-      context: this.context,
+      context: this.context
     });
     return await service[methodName](this.event.params);
   }
@@ -14,13 +14,13 @@ module.exports = class QuestionTag extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "content",
-          value: "搜索内容",
-        },
+          key: 'content',
+          value: '搜索内容'
+        }
       ],
       this.event.params
     ).then(async () => {
-      return await this.handler("addSeachLog");
+      return await this.handler('addSeachLog');
     });
   }
 };

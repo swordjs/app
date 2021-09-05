@@ -1,16 +1,16 @@
 {
-	"name": "explain-cache-clear-timeout",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"explain": "file:../common/explain",
-		"explain-cache": "file:../common/explain-cache"
-	}
+  "name": "explain-cache-clear-timeout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "explain": "file:../common/explain",
+    "explain-cache": "file:../common/explain-cache"
+  }
 }

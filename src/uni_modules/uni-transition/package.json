@@ -8,7 +8,7 @@
     "过渡",
     "uni-transition",
     "过渡动画"
-],
+  ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
     "HBuilderX": ""

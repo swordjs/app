@@ -1,11 +1,11 @@
-const explain = require("explain");
-const certificationService = require("../service/certificationApplyOrder");
-const { appErrorMessage, handleMustRequireParam } = require("app-tools");
+const explain = require('explain');
+const certificationService = require('../service/certificationApplyOrder');
+const { handleMustRequireParam } = require('app-tools');
 module.exports = class CommonController extends explain.service {
   // 核心处理服务方法
   async handler(methodName: string) {
     const service = new certificationService({
-      context: this.context,
+      context: this.context
     });
     return await service[methodName](this.event.params);
   }
@@ -14,13 +14,13 @@ module.exports = class CommonController extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "content",
-          value: "content内容",
-        },
+          key: 'content',
+          value: 'content内容'
+        }
       ],
       this.event.params
     )
-      .then(async () => await this.handler("addCertificationApplyOrder"))
+      .then(async () => await this.handler('addCertificationApplyOrder'))
       .catch((err) => err);
   }
   // 修改申请认证
@@ -28,17 +28,17 @@ module.exports = class CommonController extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "_id",
-          value: "id",
+          key: '_id',
+          value: 'id'
         },
         {
-          key: "content",
-          value: "content内容",
-        },
+          key: 'content',
+          value: 'content内容'
+        }
       ],
       this.event.params
     )
-      .then(async () => await this.handler("updateCertificationApplyOrder"))
+      .then(async () => await this.handler('updateCertificationApplyOrder'))
       .catch((err) => err);
   }
   // 对认证单进行审核/拒绝等操作
@@ -46,19 +46,17 @@ module.exports = class CommonController extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "_id",
-          value: "id",
+          key: '_id',
+          value: 'id'
         },
         {
-          key: "state",
-          value: "状态",
-        },
+          key: 'state',
+          value: '状态'
+        }
       ],
       this.event.params
     )
-      .then(
-        async () => await this.handler("updateCertificationApplyOrderState")
-      )
+      .then(async () => await this.handler('updateCertificationApplyOrderState'))
       .catch((err) => err);
   }
   // 申请单列表分页查询
@@ -66,13 +64,13 @@ module.exports = class CommonController extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "state",
-          value: "状态",
-        },
+          key: 'state',
+          value: '状态'
+        }
       ],
       this.event.params
     )
-      .then(async () => await this.handler("getCertificationApplyOrder"))
+      .then(async () => await this.handler('getCertificationApplyOrder'))
       .catch((err) => err);
   }
 };

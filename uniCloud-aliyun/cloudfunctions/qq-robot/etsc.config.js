@@ -1,11 +1,11 @@
 module.exports = {
-  outDir: "./dist/services",
+  outDir: './dist/services',
   esbuild: {
     minify: true,
-    target: "es2015",
+    target: 'es2015'
   },
   assets: {
-    baseDir: "src",
-    filePatterns: ["**/*.json"],
-  },
+    baseDir: 'src',
+    filePatterns: ['**/*.json']
+  }
 };

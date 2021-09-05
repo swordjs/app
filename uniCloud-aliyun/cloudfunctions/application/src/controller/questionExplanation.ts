@@ -1,10 +1,10 @@
-const explain = require("explain");
-const questionExplanation = require("../service/questionExplanation");
-const { appErrorMessage, handleMustRequireParam } = require("app-tools");
+const explain = require('explain');
+const questionExplanation = require('../service/questionExplanation');
+const { handleMustRequireParam } = require('app-tools');
 module.exports = class QuestionExplanation extends explain.service {
   async handler(methodName: string) {
     const service = new questionExplanation({
-      userID: this.context.userID,
+      userID: this.context.userID
     });
     return await service[methodName](this.event.params);
   }
@@ -13,18 +13,18 @@ module.exports = class QuestionExplanation extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "_id",
-          value: "题目ID",
+          key: '_id',
+          value: '题目ID'
         },
         {
-          key: "content",
-          value: "内容",
-        },
+          key: 'content',
+          value: '内容'
+        }
       ],
       this.event.params
     )
       .then(async () => {
-        return await this.handler("addQuestionExplanation");
+        return await this.handler('addQuestionExplanation');
       })
       .catch((err) => err);
   }
@@ -33,18 +33,18 @@ module.exports = class QuestionExplanation extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "_id",
-          value: "题解ID",
+          key: '_id',
+          value: '题解ID'
         },
         {
-          key: "content",
-          value: "内容",
-        },
+          key: 'content',
+          value: '内容'
+        }
       ],
       this.event.params
     )
       .then(async () => {
-        return await this.handler("updateQuestionExplanation");
+        return await this.handler('updateQuestionExplanation');
       })
       .catch((err) => err);
   }
@@ -53,14 +53,14 @@ module.exports = class QuestionExplanation extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "_id",
-          value: "题解ID",
-        },
+          key: '_id',
+          value: '题解ID'
+        }
       ],
       this.event.params
     )
       .then(async () => {
-        return await this.handler("adoptionQuestionExplanation");
+        return await this.handler('adoptionQuestionExplanation');
       })
       .catch((err) => err);
   }
@@ -69,14 +69,14 @@ module.exports = class QuestionExplanation extends explain.service {
     return handleMustRequireParam(
       [
         {
-          key: "_id",
-          value: "题解ID",
-        },
+          key: '_id',
+          value: '题解ID'
+        }
       ],
       this.event.params
     )
       .then(async () => {
-        return await this.handler("collectQuestionExplanation");
+        return await this.handler('collectQuestionExplanation');
       })
       .catch((err) => err);
   }

@@ -1,5 +1,5 @@
 const db = uniCloud.database();
-const collection = db.collection("questionTag");
+const collection = db.collection('questionTag');
 interface IQuestionTagData {
   userID: string;
 }
@@ -29,28 +29,28 @@ module.exports = class QuestionTag {
   public async getTagList(params: IGetTagList) {
     const { limit, page } = params;
     const whereParams = {
-      deleteDate: "",
+      deleteDate: ''
     };
     const data = await collection
       .aggregate()
       .match(whereParams)
       .sort({
-        createDate: -1,
+        createDate: -1
       })
       .skip(limit * (page - 1))
       .limit(limit)
       .lookup({
-        from: "questionArea",
-        localField: "areaID",
-        foreignField: "_id",
-        as: "areaInfo",
+        from: 'questionArea',
+        localField: 'areaID',
+        foreignField: '_id',
+        as: 'areaInfo'
       })
       .end();
     // 获取数量
     const countResult = await collection.where(whereParams).count();
     return {
       list: data.data,
-      count: countResult.total,
+      count: countResult.total
     };
   }
   public async addQuestionTag(params: IAddQuestionTag) {
@@ -60,7 +60,7 @@ module.exports = class QuestionTag {
       name,
       createDate: this.nowDate,
       updateDate: this.nowDate,
-      deleteDate: "",
+      deleteDate: ''
     });
   }
   public async updateQuestionTag(params: IUpdateQuestionTag) {
@@ -69,13 +69,13 @@ module.exports = class QuestionTag {
       areaID,
       name,
       updateDate: this.nowDate,
-      deleteDate: "",
+      deleteDate: ''
     });
   }
   public async deleteQuestionTag(params: IDeleteQuestionTag) {
     return await collection.doc(params._id).update({
       updateDate: this.nowDate,
-      deleteDate: this.nowDate,
+      deleteDate: this.nowDate
     });
   }
 };

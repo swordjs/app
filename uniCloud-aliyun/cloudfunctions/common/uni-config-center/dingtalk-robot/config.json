@@ -1,8 +1,7 @@
 {
-    "access_token": "099cc8980106a0b6981c6cf58cf91de268563c599a6ee9094b36d94f3eb0c636",
-    "at": {
-      "atMobiles": ["18291563764"],
-      "isAtAll": false
-    }
+  "access_token": "099cc8980106a0b6981c6cf58cf91de268563c599a6ee9094b36d94f3eb0c636",
+  "at": {
+    "atMobiles": ["18291563764"],
+    "isAtAll": false
   }
-  
+}

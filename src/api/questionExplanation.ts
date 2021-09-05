@@ -1,43 +1,37 @@
 const db = uniCloud.database();
-import callFunction from "./../common/callFunction";
+import callFunction from './../common/callFunction';
 
 /**
  * @name 新增题解
  * @param params
  * @returns
  */
-export async function addQuestionExplanation(params: {
-  _id: string;
-  content: string;
-}) {
+export async function addQuestionExplanation(params: { _id: string; content: string }): Promise<ActionResult> {
   return await callFunction({
-    name: "application",
+    name: 'application',
     data: {
       route: `api/questionExplanation`,
-      method: "POST",
-      params,
+      method: 'POST',
+      params
     },
-    checkLogin: true,
+    checkLogin: true
   });
 }
 
 /**
  * @name 修改题解
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
-export async function updateQuestionExplanation(params: {
-  _id: string;
-  content: string;
-}) {
+export async function updateQuestionExplanation(params: { _id: string; content: string }): Promise<ActionResult> {
   return await callFunction({
-    name: "application",
+    name: 'application',
     data: {
       route: `api/questionExplanation`,
-      method: "PUT",
-      params,
+      method: 'PUT',
+      params
     },
-    checkLogin: true,
+    checkLogin: true
   });
 }
 
@@ -46,15 +40,15 @@ export async function updateQuestionExplanation(params: {
  * @param params
  * @returns
  */
-export async function adoptionQuestionExplanation(params: { _id: string }) {
+export async function adoptionQuestionExplanation(params: { _id: string }): Promise<ActionResult> {
   return await callFunction({
-    name: "application",
+    name: 'application',
     data: {
       route: `api/questionExplanation/adoptionQuestionExplanation`,
-      method: "POST",
-      params,
+      method: 'POST',
+      params
     },
-    checkLogin: true,
+    checkLogin: true
   });
 }
 
@@ -63,15 +57,15 @@ export async function adoptionQuestionExplanation(params: { _id: string }) {
  * @param params
  * @returns
  */
-export async function collectQuestionExplanation(params: { _id: string }) {
+export async function collectQuestionExplanation(params: { _id: string }): Promise<ActionResult> {
   return await callFunction({
-    name: "application",
+    name: 'application',
     data: {
       route: `api/questionExplanation/collectQuestionExplanation`,
-      method: "POST",
-      params,
+      method: 'POST',
+      params
     },
-    checkLogin: true,
+    checkLogin: true
   });
 }
 
@@ -79,31 +73,27 @@ export async function collectQuestionExplanation(params: { _id: string }) {
  * @name 获取题解列表根据题目ID
  * @param params
  */
-export async function getExplanationsByQuestionID(params: {
-  questionID: string;
-  page: number;
-  limit: number;
-}): Promise<ActionResult> {
+export async function getExplanationsByQuestionID(params: { questionID: string; page: number; limit: number }): Promise<ActionResult> {
   return new Promise((resolve) => {
     const { limit, page } = params;
-    db.collection("questionExplanation,uni-id-users")
+    db.collection('questionExplanation,uni-id-users')
       .where(`questionID == '${params.questionID}'`)
       .field(`userID{avatar,nickname},content,createDate`)
       .skip(limit * (page - 1))
       .limit(limit)
-      .orderBy("createDate desc")
+      .orderBy('createDate desc')
       .get()
       .then((res) => {
         const { success, result } = res;
         resolve({
           success,
-          data: result.data,
+          data: result.data
         });
       })
       .catch((err: { message: string }) => {
         uni.showToast({
           title: err.message,
-          icon: "none",
+          icon: 'none'
         });
       });
   });
@@ -114,27 +104,23 @@ export async function getExplanationsByQuestionID(params: {
  * @param params
  * @returns
  */
-export async function getExplanationsByID(params: {
-  id: string;
-}): Promise<ActionResult> {
+export async function getExplanationsByID(params: { id: string }): Promise<ActionResult> {
   return new Promise((resolve) => {
-    db.collection("questionExplanation,question,uni-id-users")
+    db.collection('questionExplanation,question,uni-id-users')
       .doc(params.id)
-      .field(
-        `questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname,sign}`
-      )
+      .field(`questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname,sign}`)
       .get()
       .then((res) => {
         const { success, result } = res;
         resolve({
           success,
-          data: result.data,
+          data: result.data
         });
       })
       .catch((err: { message: string }) => {
         uni.showToast({
           title: err.message,
-          icon: "none",
+          icon: 'none'
         });
       });
   });
@@ -145,28 +131,25 @@ export async function getExplanationsByID(params: {
  * @param params
  * @returns ActionResult
  */
-export async function checkExplanationByUser(params: {
-  _id: string;
-  userID?: string
-}): Promise<ActionResult> {
+export async function checkExplanationByUser(params: { _id: string; userID?: string }): Promise<ActionResult> {
   return new Promise((resolve) => {
-    db.collection("questionExplanation")
+    db.collection('questionExplanation')
       .where({
         questionID: params._id,
-        userID: params.userID || uni.getStorageSync("uni_id"),
+        userID: params.userID || uni.getStorageSync('uni_id')
       })
       .get()
       .then((res) => {
         const { success, result } = res;
         resolve({
           success,
-          data: result.data.length > 0 ? result.data[0]._id : null,
+          data: result.data.length > 0 ? result.data[0]._id : null
         });
       })
       .catch((err: { message: string }) => {
         uni.showToast({
           title: err.message,
-          icon: "none",
+          icon: 'none'
         });
       });
   });
@@ -177,22 +160,16 @@ export async function checkExplanationByUser(params: {
  * @param params
  * @returns ActionResult
  */
-export async function getExplanationsByUserID(params: {
-  userID: string;
-  limit: number;
-  page: number;
-}): Promise<ActionResult> {
+export async function getExplanationsByUserID(params: { userID: string; limit: number; page: number }): Promise<ActionResult> {
   return new Promise((resolve) => {
     const { limit, page } = params;
-    db.collection("questionExplanation,question,uni-id-users")
+    db.collection('questionExplanation,question,uni-id-users')
       .where({
-        userID: params.userID,
+        userID: params.userID
       })
       // publishUserID{nickname, avatar}
-      .field(
-        `questionID{title,_id},content,createDate`
-      )
-      .orderBy("createDate desc")
+      .field(`questionID{title,_id},content,createDate`)
+      .orderBy('createDate desc')
       .skip(limit * (page - 1))
       .limit(limit)
       .get()
@@ -200,13 +177,13 @@ export async function getExplanationsByUserID(params: {
         const { success, result } = res;
         resolve({
           success,
-          data: result.data,
+          data: result.data
         });
       })
       .catch((err: { message: string }) => {
         uni.showToast({
           title: err.message,
-          icon: "none",
+          icon: 'none'
         });
       });
   });
