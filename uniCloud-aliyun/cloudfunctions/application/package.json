@@ -17,5 +17,7 @@
     "uni-id": "file:../common/uni-id",
     "uni-config-center": "file:../common/uni-config-center"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^16.7.10"
+  }
 }
