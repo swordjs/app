@@ -1,3 +1,3 @@
-declare var dbCmd: any;
-declare var uni: any;
-declare var uniCloud: any;
+declare const dbCmd: unknown;
+declare const uni: unknown;
+declare const uniCloud: unknown;

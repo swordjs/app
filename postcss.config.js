@@ -1,17 +1,17 @@
-const path = require('path')
+const path = require('path');
 module.exports = {
   parser: require('postcss-comment'),
   plugins: [
     require('postcss-import')({
-      resolve (id, basedir, importOptions) {
+      resolve(id) {
         if (id.startsWith('~@/')) {
-          return path.resolve(process.env.UNI_INPUT_DIR, id.substr(3))
+          return path.resolve(process.env.UNI_INPUT_DIR, id.substr(3));
         } else if (id.startsWith('@/')) {
-          return path.resolve(process.env.UNI_INPUT_DIR, id.substr(2))
+          return path.resolve(process.env.UNI_INPUT_DIR, id.substr(2));
         } else if (id.startsWith('/') && !id.startsWith('//')) {
-          return path.resolve(process.env.UNI_INPUT_DIR, id.substr(1))
+          return path.resolve(process.env.UNI_INPUT_DIR, id.substr(1));
         }
-        return id
+        return id;
       }
     }),
     require('autoprefixer')({
@@ -19,4 +19,4 @@ module.exports = {
     }),
     require('@dcloudio/vue-cli-plugin-uni/packages/postcss')
   ]
-}
+};
