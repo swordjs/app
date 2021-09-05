@@ -39,7 +39,17 @@
     "test:h5": "cross-env UNI_PLATFORM=h5 jest -i",
     "test:ios": "cross-env UNI_PLATFORM=app-plus UNI_OS_NAME=ios jest -i",
     "test:mp-baidu": "cross-env UNI_PLATFORM=mp-baidu jest -i",
-    "test:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin jest -i"
+    "test:mp-weixin": "cross-env UNI_PLATFORM=mp-weixin jest -i",
+    "lint": "eslint 'src/**/*' --fix",
+    "prettier": "prettier --write '**/*.{ts,js,json,markdown}'",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,markdown}": [
+      "prettier --write",
+      "npm run lint",
+      "git add"
+    ]
   },
   "dependencies": {
     "@dcloudio/uni-app-plus": "^2.0.0-alpha-32120210809004",
@@ -81,16 +91,25 @@
     "@dcloudio/vue-cli-plugin-uni-optimize": "^2.0.0-alpha-32120210809004",
     "@dcloudio/webpack-uni-mp-loader": "^2.0.0-alpha-32120210809004",
     "@dcloudio/webpack-uni-pages-loader": "^2.0.0-alpha-32120210809004",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
     "@vue/cli-plugin-babel": "^4.5.13",
     "@vue/cli-plugin-typescript": "^4.5.13",
     "@vue/cli-service": "^4.5.13",
     "@vue/compiler-sfc": "^3.2.2",
     "babel-plugin-import": "^1.11.0",
     "cross-env": "^7.0.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.2",
     "jest": "^25.4.0",
+    "lint-staged": "^11.1.2",
     "mini-types": "^0.1.7",
     "miniprogram-api-typings": "^3.4.2",
+    "nodemon": "^2.0.12",
     "postcss-comment": "^2.0.0",
+    "prettier": "^2.3.2",
     "typescript": "^3.9.10"
   },
   "browserslist": [
