@@ -11,6 +11,6 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "uni-config-center": "file:../../../../../uni-config-center/uniCloud/cloudfunctions/common/uni-config-center"
+    "uni-config-center": "file:../uni-config-center"
   }
 }
