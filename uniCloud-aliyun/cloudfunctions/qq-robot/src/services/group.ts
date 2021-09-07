@@ -1,9 +1,18 @@
 const explain = require('explain');
-const url = 'http://220.167.103.33:10441/MyQQHTTPAPI';
-
-module.exports = class home extends explain.service {
-  async index() {
-    const res = await uniCloud.httpclient.request(url, {
+const createConfig = require('uni-config-center');
+const robotConfig = createConfig({
+  pluginId: 'qq-robot'
+}) as {
+  config: (string: 'myqq-api') => string;
+};
+module.exports = class Group extends explain.service {
+  public url: string;
+  constructor() {
+    super();
+    this.url = robotConfig.config('myqq-api');
+  }
+  async postMessage() {
+    const res = await uniCloud.httpclient.request(this.url, {
       method: 'POST',
       data: {
         function: 'Api_SendMsg', //要调用的函数英文名(查看右侧API列表)

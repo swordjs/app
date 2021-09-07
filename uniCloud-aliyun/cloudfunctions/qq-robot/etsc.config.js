@@ -1,7 +1,6 @@
 module.exports = {
-  outDir: './dist/services',
+  outDir: './dist',
   esbuild: {
-    minify: true,
     target: 'es2015'
   },
   assets: {
