@@ -170,14 +170,14 @@ module.exports = class Question {
     if (params?.areaID) {
       whereParams['areaID'] = params?.areaID;
     }
-    const { data } = await collection
+    const res = await collection
       .aggregate()
       .match(whereParams)
       .sample({
         size: params?.size || 3
       })
       .end();
-    return data;
+    return res;
   }
 };
 
