@@ -13,7 +13,6 @@ module.exports = class tokenFilter extends explain.filter {
       return;
     } else {
       // 检查token合法性和过期时间
-      console.log('token是这个：', event.headers[token_name]);
       const checkData = await uniID.getUserInfoByToken(event.headers[token_name]);
       // token校验不合法
       if (!checkData.uid) {
