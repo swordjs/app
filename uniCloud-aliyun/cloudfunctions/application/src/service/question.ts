@@ -162,6 +162,23 @@ module.exports = class Question {
       })
       .count();
   }
+  // 获取随机题目
+  public async getSampleQuestionList(params: { areaID: string; size: number }) {
+    const whereParams: Record<string, unknown> = {
+      state: 'pass'
+    };
+    if (params?.areaID) {
+      whereParams['areaID'] = params?.areaID;
+    }
+    const { data } = await collection
+      .aggregate()
+      .match(whereParams)
+      .sample({
+        size: params?.size || 3
+      })
+      .end();
+    return data;
+  }
 };
 
 export {};

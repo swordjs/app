@@ -134,6 +134,10 @@ module.exports = class QuestionController extends explain.service {
       })
       .catch((err) => err);
   }
+  // 随机获取题目
+  async getSampleQuestionList() {
+    return await this.handler('getSampleQuestionList');
+  }
 };
 
 export {};

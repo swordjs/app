@@ -144,6 +144,11 @@ module.exports = [
       },
       {
         action: 'getQuestionList'
+      },
+      {
+        route: 'getSampleQuestionList',
+        action: 'getSampleQuestionList',
+        httpMethod: 'GET'
       }
     ]
   },
