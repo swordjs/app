@@ -1,6 +1,12 @@
 'use strict';
-module.exports = class {
-  constructor(t, s, e) {
-    (this.event = t), (this.context = s), (this.explain = e);
+
+/**
+ * 服务抽象基类
+ */
+module.exports = class service {
+  constructor({ event, context, explain }) {
+    this.event = event;
+    this.context = context;
+    this.explain = explain;
   }
 };
