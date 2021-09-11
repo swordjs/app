@@ -1,6 +1,7 @@
 {
-  "route": "api/group/postMessage",
-  "method": "POST",
+  "service": "group",
+  "action": "getSampleQuestionList",
+  "method": "GET",
   "params": {
     "page": 1,
     "areaID": "600a35b2ba58b00001e4612f"
