@@ -1,9 +1,16 @@
+//---------------------------------------------------------------------
+// github        https://github.com/explaincloud/explain-unicloud
+// organization  Explain Cloud
+// author        Sansnn
+// license       MIT
+//---------------------------------------------------------------------
+
 'use strict';
-const program = require('./private/program');
+
 module.exports = {
-  run: async (r, e, t) => program.startup(r, e, t),
+  run: require('./program/run'),
   service: require('./abstracts/service'),
   filter: require('./abstracts/filter'),
-  dateTime: require('./public/dateTime'),
-  object: require('./public/object')
+  dateTime: require('./utils/datetime'),
+  object: require('./utils/object')
 };
