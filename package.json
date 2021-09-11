@@ -47,7 +47,8 @@
   "lint-staged": {
     "*.{ts,js,json,markdown}": [
       "prettier --write",
-      "eslint --fix"
+      "eslint --fix",
+      "git add"
     ]
   },
   "dependencies": {
