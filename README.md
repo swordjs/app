@@ -82,7 +82,10 @@
 
 由于此部分在开发新 feature 的工作中可能会进行变更或者本就有实质性的错误，欢迎向我们反馈错误，我们将感激不尽。
 
-## 类图
+## 云服务/函数架构图
+<img src="https://cdn.nlark.com/yuque/0/2021/svg/710380/1631452380619-abd1ad9d-33be-4f85-9142-3483e62fb600.svg"></img>
+
+## 核心数据库类图
 
 <img src="https://cdn.nlark.com/yuque/0/2021/png/710380/1629013599645-9202859f-2da6-4af6-ac52-e9f9edd0bfe3.png?x-oss-process=image%2Fresize%2Cw_752"></img>
 
