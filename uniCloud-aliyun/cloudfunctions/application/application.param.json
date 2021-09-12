@@ -3,10 +3,15 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-  "route": "api/question/getSampleQuestionList",
-  "method": "GET",
-  "uniIdToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MDVkZjg5NjhlNjhmMDAwMDFlNjNmMGIiLCJyb2xlIjpbInB1c2hRdWVzdGlvbiJdLCJwZXJtaXNzaW9uIjpbIlBVU0hfUVVFU1RJT05TIl0sImlhdCI6MTYyNTQwMzE5NCwiZXhwIjoxZSsxNTh9.gecpGuCSeawyHN9ImdfdvVYBmCp0ApPW9Knt86qw-CE",
-  "params": {
-    "areaID": "600a35b2ba58b00001e4612f"
+  "service": "question",
+  "action": "addQuestion",
+  "data": {
+    "title": "",
+    "areaID": "",
+    "content": "",
+    "tagID": [1]
+  },
+  "headers": {
+    "uni-id-token": ""
   }
 }

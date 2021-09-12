@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon"
+    "proto": "nodemon --config nodemon.proto.json",
+    "etsc": "nodemon --config nodemon.etsc.json"
   },
   "keywords": [],
   "author": "",
@@ -14,8 +15,10 @@
     "app-tools": "file:../common/app-tools",
     "explain": "file:../common/explain",
     "form-data-utils": "file:../common/form-data-utils",
-    "uni-id": "file:../common/uni-id",
-    "uni-config-center": "file:../common/uni-config-center"
+    "ts-validate": "file:../common/tsbuffer-params-validate",
+    "tsbuffer-params-validate": "file:../common/tsbuffer-params-validate",
+    "uni-config-center": "file:../common/uni-config-center",
+    "uni-id": "file:../common/uni-id"
   },
   "devDependencies": {
     "@types/node": "^16.7.10"

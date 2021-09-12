@@ -1,0 +1,57 @@
+{
+  "article/AddArticle": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "title",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "question/AddQuestion": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "title",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "tagID",
+        "type": {
+          "type": "Array",
+          "elementType": {
+            "type": "String"
+          }
+        }
+      }
+    ]
+  }
+}
