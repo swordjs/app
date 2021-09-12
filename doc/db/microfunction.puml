@@ -1,0 +1,66 @@
+@startuml
+'Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+'SPDX-License-Identifier: MIT (For details, see https://github.com/awslabs/aws-icons-for-plantuml/blob/master/LICENSE)
+
+!include <awslib/AWSCommon>
+
+' Uncomment the following line to create simplified view
+' !include <awslib/AWSSimplified>
+
+!include <awslib/GroupIcons/Cloud>
+!include <awslib/Database/DynamoDB>
+!include <awslib/Compute/Bottlerocket>
+!include <awslib/Robotics/RoboMaker>
+!include <awslib/General/Client>
+
+
+top to bottom direction
+
+DynamoDB(coreDB, "文档数据库", "线上环境")
+
+Client(client, "客户端", "browser / qq / wechat")
+
+Cloud(v1, "core-v1", "核心接口")
+Cloud(contentSecurity, "内容安全", "wechat / qq")
+Cloud(pull, "拉取服务", "主要数据来源")
+Cloud(searchHot, "热搜", "产生热搜")
+Cloud(openApi, "开放API", "免费对外服务")
+Cloud(qqrobotApi, "QQ机器人", "作用于qq机器人的api服务")
+Cloud(dingrobot, "钉钉机器人", '运营')
+
+Bottlerocket(service, '服务器', "aws / aliyun")
+Bottlerocket(otherService, '第三方服务器/源', "unknown")
+Bottlerocket(HangUp, '挂机服务', "other service")
+RoboMaker(qqrobot, "QQ机器人", '运营')
+
+' 客户端调用
+client -> "https" v1
+
+' 核心api指向核心数据库
+v1 --> "call" coreDB
+v1 --> "https" contentSecurity
+' 开放api调用v1
+openApi --> "https" v1
+' 开放api返回给客户端
+openApi --> "view" client
+' 热搜指向核心数据库，从而产生热搜
+searchHot --> "call" coreDB
+' 产生之后返回给客户端
+searchHot --> "view" client
+
+' 钉钉机器人内部运营，直接从库中获取数据并且展示
+dingrobot --> "call" coreDB
+
+' 挂机服务托管了qq运营机器人
+HangUp --> "托管" qqrobot
+' qq api 和 机器人互相作用，用于回调/主动调用
+qqrobot "call" <--> "callback" qqrobotApi
+' 第三方服务器定时执行http请求，作用于qq运营机器人（发布题目等等）
+service --> "https" qqrobotApi
+
+' 拉取服务从第三方服务器进行拉取
+pull --> "https" otherService
+' 拉取之后入库
+pull --> "call" coreDB
+
+@enduml
