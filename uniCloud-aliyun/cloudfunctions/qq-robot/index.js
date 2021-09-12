@@ -34,8 +34,8 @@ exports.main = async (event, context) =>
           routes: [
             {
               route: 'main',
-              httpMethod: 'POST',
-              action: 'main'
+              action: 'main',
+              httpMethod: 'POST'
             }
           ]
         }

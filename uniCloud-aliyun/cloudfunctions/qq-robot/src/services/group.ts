@@ -11,7 +11,10 @@ const coreConfig = createConfig({
 }) as {
   config: () => Record<'CORE_API_TEST_HTTP_URL' | 'CORE_API_RELEASE_HTTP_URL' | 'CORE_API_TEST_ADMIN_TOKEN' | 'CORE_API_RELEASE_ADMIN_TOKEN', string>;
 };
-module.exports = class Group extends explain.service {
+module.exports = class group extends explain.service {
+  constructor(context) {
+    super(context);
+  }
   async postMessage(msg: string) {
     const { myqqApi, myqqRobotUsername, myqqRobotGroup } = robotConfig.config();
     const res = await uniCloud.httpclient.request(myqqApi, {
@@ -57,7 +60,7 @@ module.exports = class Group extends explain.service {
           str += `${Number(key) + 1}: ${data[key].title} \n`;
         }
         str += `数据来源于测试环境，仅供测试，尽情期待v1.1.0版本 [@all]`;
-        this.postMessage(str);
+        await this.postMessage(str);
       }
     }
     return res;

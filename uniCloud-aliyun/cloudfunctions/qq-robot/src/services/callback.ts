@@ -1,13 +1,11 @@
 const explain = require('explain');
 const createConfig = require('uni-config-center');
-
+const groupService = require('./group');
 const robotConfig = createConfig({
   pluginId: 'qq-robot'
 }) as {
   config: () => Record<'myqqApi' | 'myqqRobotUsername' | 'myqqRobotGroup' | 'myqqTriggerMessage', string | []>;
 };
-const Group = require('./group');
-const group = new Group();
 
 interface CallBackBody {
   MQ_robot: string;
@@ -15,8 +13,9 @@ interface CallBackBody {
   MQ_type: string;
   MQ_msg: string;
 }
-module.exports = class CallBack extends explain.service {
+module.exports = class callBack extends explain.service {
   async main() {
+    const group = new groupService(this);
     // 只有消息类型为 群 才会触发
     const { myqqRobotUsername } = robotConfig.config();
     // 判断请求头是否符合标准
