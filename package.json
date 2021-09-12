@@ -110,6 +110,7 @@
     "nodemon": "^2.0.12",
     "postcss-comment": "^2.0.0",
     "prettier": "^2.3.2",
+    "tsbuffer-proto-generator": "^1.4.2",
     "typescript": "^3.9.10"
   },
   "browserslist": [
