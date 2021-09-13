@@ -2,7 +2,6 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "lib": ["es2015", "es2017"],
-    "types": ["miniprogram-api-typings", "mini-types"]
+    "typeRoots": ["./typings", "./typings/@dcloudio", "./node_modules/@types"]
   }
 }
-// "@dcloudio/types",

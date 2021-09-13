@@ -1,14 +1,15 @@
+import * as IArticle from '../../proto/article';
 const db = uniCloud.database();
 const collection = db.collection('article');
 
-module.exports = class ArticleService {
+export default class ArticleService {
   public userID: string;
   public nowDate: string;
   constructor(data) {
     this.userID = data.context.userID;
     this.nowDate = new Date().toISOString();
   }
-  async addArticle(params: { title: string; content: string; tagID: string[]; desc: string }) {
+  async addArticle(params: IArticle.AddArticle) {
     // 调用钉钉通知函数
     uniCloud.callFunction({
       name: 'dingtalk-robot',
@@ -29,7 +30,7 @@ module.exports = class ArticleService {
       deleteDate: ''
     });
   }
-  async updateArticle(params: { id: string; title: string; content: string; tagID: string[] }) {
+  async updateArticle(params: IArticle.UpdateArticle) {
     return await collection.doc(params.id).update({
       title: params.title,
       content: params.content,
@@ -37,8 +38,8 @@ module.exports = class ArticleService {
       updateDate: this.nowDate
     });
   }
-  async auditArticle(params: { id: string; state: string; rejectReason?: string }) {
-    const updateParams = {
+  async auditArticle(params: IArticle.AuditArticle) {
+    const updateParams: Omit<IArticle.AuditArticle, 'id'> = {
       state: params.state
     };
     // 判断state如果是拒绝，就入库填写原因
@@ -47,6 +48,4 @@ module.exports = class ArticleService {
     }
     return collection.doc(params.id).update(updateParams);
   }
-};
-
-export {};
+}

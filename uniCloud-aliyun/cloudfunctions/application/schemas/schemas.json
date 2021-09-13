@@ -15,6 +15,86 @@
         "type": {
           "type": "String"
         }
+      },
+      {
+        "id": 2,
+        "name": "tagID",
+        "type": {
+          "type": "Array",
+          "elementType": {
+            "type": "String"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "name": "desc",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "article/UpdateArticle": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "title",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "tagID",
+        "type": {
+          "type": "Array",
+          "elementType": {
+            "type": "String"
+          }
+        }
+      }
+    ]
+  },
+  "article/AuditArticle": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "state",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "rejectReason",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
       }
     ]
   },
@@ -51,6 +131,176 @@
             "type": "String"
           }
         }
+      }
+    ]
+  },
+  "question/UpdateQuestion": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "title",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "content",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      },
+      {
+        "id": 4,
+        "name": "tagID",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      }
+    ]
+  },
+  "question/DeleteQuestion": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "question/ExamineQuestion": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "state",
+        "type": {
+          "type": "Reference",
+          "target": "question/_state"
+        }
+      },
+      {
+        "id": 2,
+        "name": "examineInfo",
+        "type": {
+          "type": "Interface",
+          "properties": [
+            {
+              "id": 0,
+              "name": "reason",
+              "type": {
+                "type": "String"
+              }
+            }
+          ]
+        },
+        "optional": true
+      }
+    ]
+  },
+  "question/_state": {
+    "type": "Union",
+    "members": [
+      {
+        "id": 0,
+        "type": {
+          "type": "Literal",
+          "literal": "pass"
+        }
+      },
+      {
+        "id": 1,
+        "type": {
+          "type": "Literal",
+          "literal": "reject"
+        }
+      }
+    ]
+  },
+  "question/GetQuestionList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "state",
+        "type": {
+          "type": "Reference",
+          "target": "question/_state"
+        }
+      },
+      {
+        "id": 1,
+        "name": "limit",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 2,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      }
+    ]
+  },
+  "question/AddPageView": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "question/GetSampleQuestionList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      },
+      {
+        "id": 1,
+        "name": "size",
+        "type": {
+          "type": "Number"
+        },
+        "optional": true
       }
     ]
   }
