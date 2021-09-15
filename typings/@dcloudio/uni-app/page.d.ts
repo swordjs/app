@@ -47,7 +47,7 @@ declare namespace Page {
     /**
      * 如果 `from` 值是 `button`，则 `target` 是触发这次转发事件的 `button`，否则为 `undefined`
      */
-    target: any;
+    target: unknown;
     /**
      * 页面中包含 `<web-view>` 组件时，返回当前 `<web-view>` 的 url
      */
@@ -113,14 +113,14 @@ declare namespace Page {
     text: string;
   }
 
-  interface PageInstanceBaseProps<D extends AnyObject = any> {
+  interface PageInstanceBaseProps<D extends AnyObject = unknown> {
     /**
      * 到当前页面的路径，类型为 `String`
      */
     route?: string;
   }
 
-  interface PageInstance<D extends AnyObject = any, T extends AnyObject = any> extends PageInstanceBaseProps<D> {
+  interface PageInstance<D extends AnyObject = unknown, T extends AnyObject = unknown> extends PageInstanceBaseProps<D> {
     /**
      * 生命周期回调 监听页面初始化
      *
@@ -219,7 +219,7 @@ declare namespace Page {
      * @param options tab 点击参数
      * @return 返回 `true` 时阻止页面返回
      */
-    onBackPress?(options: BackPressOption): any;
+    onBackPress?(options: BackPressOption): unknown;
     /**
      * 监听原生标题栏搜索输入框输入内容变化事件
      */
@@ -236,7 +236,7 @@ declare namespace Page {
 
   type PageConstructor = <T extends AnyObject & PageInstance>(options: PageInstance<AnyObject, T> & T) => void;
 
-  type GetCurrentPages = <T extends AnyObject = {}>() => Array<PageInstance<AnyObject, T> & T>;
+  type GetCurrentPages = <T extends AnyObject = Record<string, unknown>>() => Array<PageInstance<AnyObject, T> & T>;
 }
 
 declare const getCurrentPages: Page.GetCurrentPages;

@@ -2,6 +2,6 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "lib": ["es2015", "es2017"],
-    "typeRoots": ["./typings", "./typings/@dcloudio", "./node_modules/@types"]
+    "typeRoots": ["./typings"]
   }
 }

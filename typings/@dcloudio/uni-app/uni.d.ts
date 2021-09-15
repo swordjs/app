@@ -17,25 +17,25 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/window/communication?id=on](http://uniapp.dcloud.io/api/window/communication?id=on)
      */
-    $on(eventName: string, callback: (result: any) => void): void;
+    $on(eventName: string, callback: (result: unknown) => void): void;
     /**
      * 触发自定义事件，附加的参数会传递给事件监听器。
      *
      * 文档: [http://uniapp.dcloud.io/api/window/communication?id=emit](http://uniapp.dcloud.io/api/window/communication?id=emit)
      */
-    $emit(eventName: string, param?: any): void;
+    $emit(eventName: string, param?: unknown): void;
     /**
      * 监听一个自定义事件。事件只触发一次，在第一次触发之后移除事件监听器。
      *
      * 文档: [http://uniapp.dcloud.io/api/window/communication?id=once](http://uniapp.dcloud.io/api/window/communication?id=once)
      */
-    $once(eventName: string, callback: (result: any) => void): void;
+    $once(eventName: string, callback: (result: unknown) => void): void;
     /**
      * 移除自定义事件监听器。如果没有指定事件名，则移除所有事件监听器。如果提供事件名，则移除该事件的所有监听器。如果提供了事件名和回调，则只移除这个回调的监听器。
      *
      * 文档: [http://uniapp.dcloud.io/api/window/communication?id=off](http://uniapp.dcloud.io/api/window/communication?id=off)
      */
-    $off(eventName?: string | string[], callback?: (result: any) => void): void;
+    $off(eventName?: string | string[], callback?: (result: unknown) => void): void;
     /**
      * 通过id 获取 subNVues 原生子窗体的实例
      *
@@ -209,7 +209,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/media/video-context?id=createvideocontext](http://uniapp.dcloud.io/api/media/video-context?id=createvideocontext)
      */
-    createVideoContext(videoId: string, currentComponent?: any): VideoContext;
+    createVideoContext(videoId: string, currentComponent?: unknown): VideoContext;
     /**
      * 创建并返回 camera 组件的上下文 cameraContext 对象
      *
@@ -221,7 +221,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/media/camera-context](http://uniapp.dcloud.io/api/media/camera-context)
      */
-    createLivePusherContext(livePusherId: string, currentComponent: any): LivePusherContext;
+    createLivePusherContext(livePusherId: string, currentComponent: unknown): LivePusherContext;
     /**
      * 保存文件到本地
      *
@@ -267,13 +267,13 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/storage/storage?id=setstoragesync](http://uniapp.dcloud.io/api/storage/storage?id=setstoragesync)
      */
-    setStorageSync(key: string, value: any): void;
+    setStorageSync(key: string, value: unknown): void;
     /**
      * 自定义统计上报数据
      *
      * 文档: [http://uniapp.dcloud.io/api/other/report?id=统计](http://uniapp.dcloud.io/api/other/report?id=统计)
      */
-    report(eventName: string, options: any): void;
+    report(eventName: string, options: unknown): void;
     /**
      * 从本地缓存中异步获取指定 key 对应的内容
      *
@@ -285,7 +285,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/storage/storage?id=getstoragesync](http://uniapp.dcloud.io/api/storage/storage?id=getstoragesync)
      */
-    getStorageSync(key: string): any;
+    getStorageSync(key: string): unknown;
     /**
      * 异步获取当前 storage 的相关信息
      *
@@ -345,7 +345,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/location/map?id=createmapcontext](http://uniapp.dcloud.io/api/location/map?id=createmapcontext)
      */
-    createMapContext(mapId: string, currentComponent?: any): MapContext;
+    createMapContext(mapId: string, currentComponent?: unknown): MapContext;
     /**
      * 异步获取系统信息
      *
@@ -381,7 +381,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/system/compass?id=offnetworkstatuschange](http://uniapp.dcloud.io/api/system/compass?id=offnetworkstatuschange)
      */
-    offNetworkStatusChange(callback: (result: any) => void): void;
+    offNetworkStatusChange(callback: (result: unknown) => void): void;
     /**
      * 监听加速度数据
      *
@@ -393,7 +393,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/system/accelerometer?id=offaccelerometerchange](http://uniapp.dcloud.io/api/system/accelerometer?id=offaccelerometerchange)
      */
-    offAccelerometerChange(callback: (result: any) => void): void;
+    offAccelerometerChange(callback: (result: unknown) => void): void;
     /**
      * 开始监听加速度数据
      *
@@ -417,7 +417,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/system/compass?id=offcompasschange](http://uniapp.dcloud.io/api/system/compass?id=offcompasschange)
      */
-    offCompassChange(callback: (result: any) => void): void;
+    offCompassChange(callback: (result: unknown) => void): void;
     /**
      * 开始监听罗盘数据
      *
@@ -477,7 +477,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/key?id=offkeyboardheightchange](http://uniapp.dcloud.io/api/key?id=offkeyboardheightchange)
      */
-    offKeyboardHeightChange(callback?: (result: any) => void): void;
+    offKeyboardHeightChange(callback?: (result: unknown) => void): void;
     /**
      * 获取输入框的光标位置
      *
@@ -783,7 +783,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/tabbar?id=ontabbarmidbuttontap](http://uniapp.dcloud.io/api/ui/tabbar?id=ontabbarmidbuttontap)
      */
-    onTabBarMidButtonTap(callback: (result: any) => void): void;
+    onTabBarMidButtonTap(callback: (result: unknown) => void): void;
     /**
      * 保留当前页面，跳转到应用内的某个页面
      *
@@ -861,25 +861,25 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/intersection-observer?id=createintersectionobserver](http://uniapp.dcloud.io/api/ui/intersection-observer?id=createintersectionobserver)
      */
-    createIntersectionObserver(component: any, options?: CreateIntersectionObserverOptions): IntersectionObserver;
+    createIntersectionObserver(component: unknown, options?: CreateIntersectionObserverOptions): IntersectionObserver;
     /**
      * 创建并返回一个 MediaQueryObserver 对象实例。context: 自定义组件实例。小程序端不支持此参数，传入仅为抹平写法差异
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/media-query-observer?id=createmediaqueryobserver](http://uniapp.dcloud.io/api/ui/media-query-observer?id=createmediaqueryobserver)
      */
-    createMediaQueryObserver(context?: any): MediaQueryObserver;
+    createMediaQueryObserver(context?: unknown): MediaQueryObserver;
     /**
      * 创建 canvas 绘图上下文
      *
      * 文档: [http://uniapp.dcloud.io/api/canvas/createCanvasContext?id=createcanvascontext](http://uniapp.dcloud.io/api/canvas/createCanvasContext?id=createcanvascontext)
      */
-    createCanvasContext(canvasId: string, componentInstance?: any): CanvasContext;
+    createCanvasContext(canvasId: string, componentInstance?: unknown): CanvasContext;
     /**
      * 把当前画布指定区域的内容导出生成指定大小的图片
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/canvas?id=canvastotempfilepath](http://uniapp.dcloud.io/api/ui/canvas?id=canvastotempfilepath)
      */
-    canvasToTempFilePath(options: CanvasToTempFilePathOptions, componentInstance?: any): void;
+    canvasToTempFilePath(options: CanvasToTempFilePathOptions, componentInstance?: unknown): void;
     /**
      * 描述 canvas 区域隐含的像素数据
      *
@@ -903,7 +903,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/window?id=offwindowresize](http://uniapp.dcloud.io/api/ui/window?id=offwindowresize)
      */
-    offWindowResize(callback: (result: any) => void): void;
+    offWindowResize(callback: (result: unknown) => void): void;
     /**
      * 显示 topWindow 窗体
      *
@@ -945,37 +945,37 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/adapt?id=getLeftWindowStyle](http://uniapp.dcloud.io/api/ui/adapt?id=getLeftWindowStyle)
      */
-    getLeftWindowStyle(): any;
+    getLeftWindowStyle(): unknown;
     /**
      * 获取rightWindow窗体样式
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/adapt?id=getRightWindowStyle](http://uniapp.dcloud.io/api/ui/adapt?id=getRightWindowStyle)
      */
-    getRightWindowStyle(): any;
+    getRightWindowStyle(): unknown;
     /**
      * 获取topWindow窗体样式
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/adapt?id=getTopWindowStyle](http://uniapp.dcloud.io/api/ui/adapt?id=getTopWindowStyle)
      */
-    getTopWindowStyle(): any;
+    getTopWindowStyle(): unknown;
     /**
      * 设置leftWindow窗体样式
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/adapt?id=setLeftWindowStyle](http://uniapp.dcloud.io/api/ui/adapt?id=setLeftWindowStyle)
      */
-    setLeftWindowStyle(options: any): void;
+    setLeftWindowStyle(options: unknown): void;
     /**
      * 设置rightWindow窗体样式
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/adapt?id=setRightWindowStyle](http://uniapp.dcloud.io/api/ui/adapt?id=setRightWindowStyle)
      */
-    setRightWindowStyle(options: any): void;
+    setRightWindowStyle(options: unknown): void;
     /**
      * 设置topWindow窗体样式
      *
      * 文档: [http://uniapp.dcloud.io/api/ui/adapt?id=setTopWindowStyle](http://uniapp.dcloud.io/api/ui/adapt?id=setTopWindowStyle)
      */
-    setTopWindowStyle(options: any): void;
+    setTopWindowStyle(options: unknown): void;
     /**
      * 获取服务供应商
      *
@@ -1107,7 +1107,7 @@ declare namespace UniApp {
      *
      * 文档: [http://uniapp.dcloud.io/api/other/get-extconfig?id=getextconfigsync](http://uniapp.dcloud.io/api/other/get-extconfig?id=getextconfigsync)
      */
-    getExtConfigSync(): any;
+    getExtConfigSync(): unknown;
     /**
      * 显示分享按钮
      *
@@ -1311,7 +1311,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/audio/wx.createAudioContext.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/audio/wx.createAudioContext.html)
      */
-    createAudioContext(id: string, component?: any): AudioContext;
+    createAudioContext(id: string, component?: unknown): AudioContext;
     /**
      *
      * 获取全局唯一的文件管理器
@@ -1329,7 +1329,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/live/wx.createLivePlayerContext.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/live/wx.createLivePlayerContext.html)
      */
-    createLivePlayerContext(id: string, component?: any): LivePlayerContext;
+    createLivePlayerContext(id: string, component?: unknown): LivePlayerContext;
     /**
      *
      * 获取日志管理器对象。
@@ -1358,7 +1358,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/media-recorder/wx.createMediaRecorder.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/media-recorder/wx.createMediaRecorder.html)
      */
-    createMediaRecorder(canvas: Record<string, any>, options: CreateMediaRecorderOption): MediaRecorder;
+    createMediaRecorder(canvas: Record<string, unknown>, options: CreateMediaRecorderOption): MediaRecorder;
     /**
      *
      * 获取 NFC 实例
@@ -1737,7 +1737,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/bluetooth-ble/wx.offBLECharacteristicValueChange.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/bluetooth-ble/wx.offBLECharacteristicValueChange.html)
      */
-    offBLECharacteristicValueChange(callback: (...args: any[]) => any): void;
+    offBLECharacteristicValueChange(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听低功耗蓝牙连接状态的改变事件
@@ -1746,7 +1746,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/bluetooth-ble/wx.offBLEConnectionStateChange.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/bluetooth-ble/wx.offBLEConnectionStateChange.html)
      */
-    offBLEConnectionStateChange(callback: (...args: any[]) => any): void;
+    offBLEConnectionStateChange(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听当前外围设备被连接或断开连接事件
@@ -1782,7 +1782,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/bluetooth/wx.offBluetoothAdapterStateChange.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/bluetooth/wx.offBluetoothAdapterStateChange.html)
      */
-    offBluetoothAdapterStateChange(callback: (...args: any[]) => any): void;
+    offBluetoothAdapterStateChange(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听寻找到新设备的事件。
@@ -1791,7 +1791,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/bluetooth/wx.offBluetoothDeviceFound.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/bluetooth/wx.offBluetoothDeviceFound.html)
      */
-    offBluetoothDeviceFound(callback: (...args: any[]) => any): void;
+    offBluetoothDeviceFound(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听设备方向变化事件，参数为空，则取消所有的事件监听。
@@ -1800,7 +1800,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/motion/wx.offDeviceMotionChange.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/motion/wx.offDeviceMotionChange.html)
      */
-    offDeviceMotionChange(callback: (...args: any[]) => any): void;
+    offDeviceMotionChange(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听小程序错误事件。
@@ -1809,7 +1809,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/app/app-event/wx.offError.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/app/app-event/wx.offError.html)
      */
-    offError(callback: (...args: any[]) => any): void;
+    offError(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听获取到 Wi-Fi 列表数据事件。
@@ -1818,7 +1818,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/wifi/wx.offGetWifiList.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/wifi/wx.offGetWifiList.html)
      */
-    offGetWifiList(callback: (...args: any[]) => any): void;
+    offGetWifiList(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听陀螺仪数据变化事件。
@@ -1827,7 +1827,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/gyroscope/wx.offGyroscopeChange.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/gyroscope/wx.offGyroscopeChange.html)
      */
-    offGyroscopeChange(callback: (...args: any[]) => any): void;
+    offGyroscopeChange(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 接收 NFC 设备消息事件，取消事件监听。
@@ -1836,7 +1836,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/nfc/wx.offHCEMessage.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/nfc/wx.offHCEMessage.html)
      */
-    offHCEMessage(callback: (...args: any[]) => any): void;
+    offHCEMessage(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听 mDNS 服务停止搜索的事件
@@ -1890,7 +1890,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/performance/wx.offMemoryWarning.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/performance/wx.offMemoryWarning.html)
      */
-    offMemoryWarning(callback: (...args: any[]) => any): void;
+    offMemoryWarning(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听实时语音通话成员视频状态变化事件
@@ -1935,7 +1935,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/screen/wx.offUserCaptureScreen.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/screen/wx.offUserCaptureScreen.html)
      */
-    offUserCaptureScreen(callback: (...args: any[]) => any): void;
+    offUserCaptureScreen(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听被动断开实时语音通话事件。
@@ -1944,7 +1944,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/voip/wx.offVoIPChatInterrupted.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/voip/wx.offVoIPChatInterrupted.html)
      */
-    offVoIPChatInterrupted(callback: (...args: any[]) => any): void;
+    offVoIPChatInterrupted(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听实时语音通话成员在线状态变化事件。
@@ -1953,7 +1953,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/voip/wx.offVoIPChatMembersChanged.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/voip/wx.offVoIPChatMembersChanged.html)
      */
-    offVoIPChatMembersChanged(callback: (...args: any[]) => any): void;
+    offVoIPChatMembersChanged(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 取消监听连接上 Wi-Fi 的事件。
@@ -1962,7 +1962,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/device/wifi/wx.offWifiConnected.html](https://developers.weixin.qq.com/miniprogram/dev/api/device/wifi/wx.offWifiConnected.html)
      */
-    offWifiConnected(callback: (...args: any[]) => any): void;
+    offWifiConnected(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 监听小程序切后台事件。该事件与 [`App.onHide`](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onhide) 的回调时机一致。
@@ -2316,7 +2316,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/open-api/data-analysis/wx.reportAnalytics.html](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/data-analysis/wx.reportAnalytics.html)
      */
-    reportAnalytics(eventName: string, data: Record<string, any>): void;
+    reportAnalytics(eventName: string, data: Record<string, unknown>): void;
     /**
      *
      * 自定义业务数据监控上报接口。
@@ -2343,7 +2343,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/open-api/performance/wx.reportPerformance.html](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/performance/wx.reportPerformance.html)
      */
-    reportPerformance(id: number, value: number, dimensions?: string | any[]): void;
+    reportPerformance(id: number, value: number, dimensions?: string | unknown[]): void;
     /**
      *
      * 调起客户端小程序订阅消息界面，返回用户订阅消息的操作结果。当用户勾选了订阅面板中的“总是保持以上选择，不再询问”时，模板消息会被添加到用户的小程序设置页，通过 [uni.getSetting](https://developers.weixin.qq.com/miniprogram/dev/api/open-api/setting/wx.getSetting.html) 接口可获取用户对相关模板消息的订阅状态。
@@ -2681,7 +2681,7 @@ declare namespace UniApp {
     /**
      * 需要传递给目标小程序的数据，目标小程序可在 App.vue 的 onLaunch或onShow 中获取到这份数据
      */
-    extraData?: any;
+    extraData?: unknown;
     /**
      * 要打开的小程序版本，有效值： develop（开发版），trial（体验版），release（正式版）。仅在当前小程序为开发版或体验版时此参数有效。如果当前小程序是正式版，则打开的小程序必定是正式版
      * - release: 正式版
@@ -2692,34 +2692,34 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface NavigateBackMiniProgramOptions {
     /**
      * 需要传递给目标小程序的数据，目标小程序可在 App.vue 的 onLaunch或onShow 中获取到这份数据
      */
-    extraData?: any;
+    extraData?: unknown;
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GeneralCallbackResult {
@@ -2745,11 +2745,11 @@ declare namespace UniApp {
     /**
      * 发送消息
      */
-    postMessage(message: any): void;
+    postMessage(message: unknown): void;
     /**
      * 监听消息
      */
-    onMessage(success: (result: any) => void): void;
+    onMessage(success: (result: unknown) => void): void;
   }
 
   interface SubNVuesSetStyleOptions {
@@ -2846,15 +2846,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface RequestOptions {
@@ -2869,7 +2869,7 @@ declare namespace UniApp {
     /**
      * 设置请求的 header，header 中不能设置 Referer。
      */
-    header?: any;
+    header?: unknown;
     /**
      * 默认为 GET
      * 可以是：OPTIONS，GET，HEAD，POST，PUT，DELETE，TRACE，CONNECT
@@ -2925,7 +2925,7 @@ declare namespace UniApp {
     /**
      * 开发者服务器返回的 HTTP Response Header
      */
-    header: any;
+    header: unknown;
     /**
      * 开发者服务器返回的 cookies，格式为字符串数组
      */
@@ -2940,11 +2940,11 @@ declare namespace UniApp {
     /**
      * 监听 HTTP Response Header 事件
      */
-    onHeadersReceived(callback: (result: any) => void): void;
+    onHeadersReceived(callback: (result: unknown) => void): void;
     /**
      * 取消监听 HTTP Response Header 事件
      */
-    offHeadersReceived(callback: (result: any) => void): void;
+    offHeadersReceived(callback: (result: unknown) => void): void;
   }
 
   interface UploadFileOption {
@@ -2962,7 +2962,7 @@ declare namespace UniApp {
     /**
      * 要上传的文件对象
      */
-    file?: File;
+    file?: unknown;
     /**
      * 要上传文件资源的路径
      */
@@ -2978,11 +2978,11 @@ declare namespace UniApp {
     /**
      * HTTP 请求 Header, header 中不能设置 Referer
      */
-    header?: any;
+    header?: unknown;
     /**
      * HTTP 请求中其他额外的 form data
      */
-    formData?: any;
+    formData?: unknown;
     /**
      * 超时时间，单位 ms
      */
@@ -3009,7 +3009,7 @@ declare namespace UniApp {
     /**
      * 要上传的文件对象
      */
-    file?: File;
+    file?: unknown;
     /**
      * 要上传文件资源的路径
      */
@@ -3028,15 +3028,15 @@ declare namespace UniApp {
     /**
      * 取消监听上传进度变化事件
      */
-    offProgressUpdate(callback: (result: any) => void): void;
+    offProgressUpdate(callback: (result: unknown) => void): void;
     /**
      * 监听 HTTP Response Header 事件
      */
-    onHeadersReceived(callback: (result: any) => void): void;
+    onHeadersReceived(callback: (result: unknown) => void): void;
     /**
      * 取消监听 HTTP Response Header 事件
      */
-    offHeadersReceived(callback: (result: any) => void): void;
+    offHeadersReceived(callback: (result: unknown) => void): void;
   }
 
   interface OnProgressUpdateResult {
@@ -3062,7 +3062,7 @@ declare namespace UniApp {
     /**
      * HTTP 请求 Header，header 中不能设置 Referer
      */
-    header?: any;
+    header?: unknown;
     /**
      * 超时时间，单位 ms
      */
@@ -3074,11 +3074,11 @@ declare namespace UniApp {
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface DownloadTask {
@@ -3093,15 +3093,15 @@ declare namespace UniApp {
     /**
      * 取消监听下载进度变化
      */
-    offProgressUpdate(callback: (result: any) => void): void;
+    offProgressUpdate(callback: (result: unknown) => void): void;
     /**
      * 监听 HTTP Response Header 事件
      */
-    onProgressUpdate(callback: (result: any) => void): void;
+    // onProgressUpdate(callback: (result: unknown) => void): void;
     /**
      * 取消监听 HTTP Response Header 事件
      */
-    offHeadersReceived(callback: (result: any) => void): void;
+    offHeadersReceived(callback: (result: unknown) => void): void;
   }
 
   interface OnProgressDownloadResult {
@@ -3149,7 +3149,7 @@ declare namespace UniApp {
     /**
      * HTTP 请求 Header，header 中不能设置 Referer
      */
-    header?: any;
+    header?: unknown;
     /**
      * 默认为 GET
      * 可以是：OPTIONS，GET，HEAD，POST，PUT，DELETE，TRACE，CONNECT
@@ -3162,15 +3162,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SendSocketMessageOptions {
@@ -3231,7 +3231,7 @@ declare namespace UniApp {
     /**
      * 监听 WebSocket 连接关闭事件
      */
-    onClose(callback: (result: any) => void): void;
+    onClose(callback: (result: unknown) => void): void;
     /**
      * 监听 WebSocket 错误
      */
@@ -3253,7 +3253,7 @@ declare namespace UniApp {
     /**
      * 连接成功的 HTTP 响应 Header
      */
-    header: any;
+    header: unknown;
   }
 
   interface ChooseImageOptions {
@@ -3280,11 +3280,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ChooseImageSuccessCallbackResult {
@@ -3293,9 +3293,9 @@ declare namespace UniApp {
      */
     tempFilePaths: string | string[];
     /**
-     * 图片的本地文件列表，每一项是一个 File 对象
+     * 图片的本地文件列表，每一项是一个 unknown 对象
      */
-    tempFiles: ChooseImageSuccessCallbackResultFile | ChooseImageSuccessCallbackResultFile[] | File | File[];
+    tempFiles: ChooseImageSuccessCallbackResultFile | ChooseImageSuccessCallbackResultFile[] | unknown | unknown[];
   }
 
   interface ChooseImageSuccessCallbackResultFile {
@@ -3340,15 +3340,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface LongPressActionsOptions {
@@ -3367,11 +3367,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface LongPressActionsSuccessData {
@@ -3397,11 +3397,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetImageInfoSuccessData {
@@ -3439,11 +3439,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SaveImageToPhotosAlbumResult {
@@ -3477,11 +3477,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CompressImageSuccessResult {
@@ -3518,7 +3518,7 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
@@ -3526,7 +3526,7 @@ declare namespace UniApp {
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CompressVideoSuccessData {
@@ -3548,7 +3548,7 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
@@ -3556,7 +3556,7 @@ declare namespace UniApp {
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetVideoInfoSuccessData {
@@ -3602,7 +3602,7 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
@@ -3610,7 +3610,7 @@ declare namespace UniApp {
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OpenVideoEditorSuccessData {
@@ -3663,11 +3663,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ChooseFileSuccessCallbackResult {
@@ -3676,9 +3676,9 @@ declare namespace UniApp {
      */
     tempFilePaths: string | string[];
     /**
-     * 文件的本地文件列表，每一项是一个 File 对象
+     * 文件的本地文件列表，每一项是一个 unknown 对象
      */
-    tempFiles: ChooseFileSuccessCallbackResultFile | ChooseFileSuccessCallbackResultFile[] | File | File[];
+    tempFiles: ChooseFileSuccessCallbackResultFile | ChooseFileSuccessCallbackResultFile[] | unknown | unknown[];
   }
 
   interface ChooseFileSuccessCallbackResultFile {
@@ -3696,15 +3696,15 @@ declare namespace UniApp {
     /**
      * 录音成功后调用，返回录音文件的临时文件路径，res = {tempFilePath: '录音文件的临时路径'}
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface RecorderManager {
@@ -3727,23 +3727,23 @@ declare namespace UniApp {
     /**
      * 录音开始事件
      */
-    onStart(options: (result: any) => void): void;
+    onStart(options: (result: unknown) => void): void;
     /**
      * 录音暂停事件
      */
-    onPause(options: (result: any) => void): void;
+    onPause(options: (result: unknown) => void): void;
     /**
      * 录音停止事件，会回调文件地址
      */
-    onStop(options: (result: any) => void): void;
+    onStop(options: (result: unknown) => void): void;
     /**
      * 已录制完指定帧大小的文件，会回调录音分片结果数据。如果设置了 frameSize ，则会回调此事件
      */
-    onFrameRecorded(options: (result: any) => void): void;
+    onFrameRecorded(options: (result: unknown) => void): void;
     /**
      * 录音错误事件, 会回调错误信息
      */
-    onError(options: (result: any) => void): void;
+    onError(options: (result: unknown) => void): void;
   }
 
   interface RecorderManagerStartOptions {
@@ -3785,15 +3785,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBackgroundAudioPlayerStateOptions {
@@ -3804,11 +3804,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBackgroundAudioPlayerStateSuccessData {
@@ -3842,15 +3842,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface BackgroundAudioManager {
@@ -3921,43 +3921,43 @@ declare namespace UniApp {
     /**
      * 背景音频进入可以播放状态，但不保证后面可以流畅播放
      */
-    onCanplay(callback: (result: any) => void): void;
+    onCanplay(callback: (result: unknown) => void): void;
     /**
      * 背景音频播放事件
      */
-    onPlay(callback: (result: any) => void): void;
+    onPlay(callback: (result: unknown) => void): void;
     /**
      * 背景音频暂停事件
      */
-    onPause(callback: (result: any) => void): void;
+    onPause(callback: (result: unknown) => void): void;
     /**
      * 背景音频停止事件
      */
-    onStop(callback: (result: any) => void): void;
+    onStop(callback: (result: unknown) => void): void;
     /**
      * 背景音频自然播放结束事件
      */
-    onEnded(callback: (result: any) => void): void;
+    onEnded(callback: (result: unknown) => void): void;
     /**
      * 背景音频播放进度更新事件
      */
-    onTimeUpdate(callback: (result: any) => void): void;
+    onTimeUpdate(callback: (result: unknown) => void): void;
     /**
      * 用户在系统音乐播放面板点击上一曲事件（iOS only）
      */
-    onPrev(callback: (result: any) => void): void;
+    onPrev(callback: (result: unknown) => void): void;
     /**
      * 用户在系统音乐播放面板点击下一曲事件（iOS only）
      */
-    onNext(callback: (result: any) => void): void;
+    onNext(callback: (result: unknown) => void): void;
     /**
      * 背景音频播放错误事件
      */
-    onError(callback: (result: any) => void): void;
+    onError(callback: (result: unknown) => void): void;
     /**
      * 音频加载中事件，当音频因为数据不足，需要停下来加载时会触发
      */
-    onWaiting(callback: (result: any) => void): void;
+    onWaiting(callback: (result: unknown) => void): void;
   }
 
   interface AudioContext {
@@ -4043,83 +4043,83 @@ declare namespace UniApp {
     /**
      * 音频进入可以播放状态，但不保证后面可以流畅播放
      */
-    onCanplay(callback: (result: any) => void): void;
+    onCanplay(callback: (result: unknown) => void): void;
     /**
      * 音频播放事件
      */
-    onPlay(callback: (result: any) => void): void;
+    onPlay(callback: (result: unknown) => void): void;
     /**
      * 音频暂停事件
      */
-    onPause(callback: (result: any) => void): void;
+    onPause(callback: (result: unknown) => void): void;
     /**
      * 音频停止事件
      */
-    onStop(callback: (result: any) => void): void;
+    onStop(callback: (result: unknown) => void): void;
     /**
      * 音频自然播放结束事件
      */
-    onEnded(callback: (result: any) => void): void;
+    onEnded(callback: (result: unknown) => void): void;
     /**
      * 音频播放进度更新事件
      */
-    onTimeUpdate(callback: (result: any) => void): void;
+    onTimeUpdate(callback: (result: unknown) => void): void;
     /**
      * 音频播放错误事件
      */
-    onError(callback: (result: any) => void): void;
+    onError(callback: (result: unknown) => void): void;
     /**
      * 音频加载中事件，当音频因为数据不足，需要停下来加载时会触发
      */
-    onWaiting(callback: (result: any) => void): void;
+    onWaiting(callback: (result: unknown) => void): void;
     /**
      * 音频进行 seek 操作事件
      */
-    onSeeking(callback: (result: any) => void): void;
+    onSeeking(callback: (result: unknown) => void): void;
     /**
      * 音频完成 seek 操作事件
      */
-    onSeeked(callback: (result: any) => void): void;
+    onSeeked(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onCanplay 事件
      */
-    offCanplay(callback: (result: any) => void): void;
+    offCanplay(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onPlay 事件
      */
-    offPlay(callback: (result: any) => void): void;
+    offPlay(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onPause 事件
      */
-    offPause(callback: (result: any) => void): void;
+    offPause(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onStop 事件
      */
-    offStop(callback: (result: any) => void): void;
+    offStop(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onEnded 事件
      */
-    offEnded(callback: (result: any) => void): void;
+    offEnded(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onTimeUpdate 事件
      */
-    offTimeUpdate(callback: (result: any) => void): void;
+    offTimeUpdate(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onWaiting 事件
      */
-    offError(callback: (result: any) => void): void;
+    offError(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onWaiting 事件
      */
-    offWaiting(callback: (result: any) => void): void;
+    offWaiting(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onSeeking 事件
      */
-    offSeeking(callback: (result: any) => void): void;
+    offSeeking(callback: (result: unknown) => void): void;
     /**
      * 取消监听 onSeeked 事件
      */
-    offSeeked(callback: (result: any) => void): void;
+    offSeeked(callback: (result: unknown) => void): void;
   }
 
   interface ChooseVideoOptions {
@@ -4152,11 +4152,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SaveVideoToPhotosAlbumOptions {
@@ -4167,15 +4167,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ChooseVideoSuccess {
@@ -4186,7 +4186,7 @@ declare namespace UniApp {
     /**
      * 选定的视频文件
      */
-    tempFile: File;
+    tempFile: unknown;
     /**
      * 选定视频的时间长度
      */
@@ -4295,11 +4295,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CameraContextTakePhotoResult {
@@ -4317,15 +4317,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CameraContextStopRecordOptions {
@@ -4336,11 +4336,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CameraContextStopRecordResult {
@@ -4408,15 +4408,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SaveFileOptions {
@@ -4431,11 +4431,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SaveFileSuccess {
@@ -4461,11 +4461,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetFileInfoSuccess {
@@ -4491,11 +4491,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetSavedFileListSuccess {
@@ -4536,11 +4536,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetSavedFileInfoSuccess {
@@ -4566,15 +4566,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OpenDocumentOptions {
@@ -4589,15 +4589,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetStorageOptions {
@@ -4608,19 +4608,19 @@ declare namespace UniApp {
     /**
      * 需要存储的内容，只支持原生类型、及能够通过 JSON.stringify 序列化的对象
      */
-    data: any;
+    data: unknown;
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetStorageOptions {
@@ -4631,15 +4631,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetStorageInfoOptions {
@@ -4650,11 +4650,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetStorageInfoSuccess {
@@ -4680,15 +4680,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetLocationOptions {
@@ -4711,11 +4711,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetLocationSuccess {
@@ -4750,7 +4750,7 @@ declare namespace UniApp {
     /**
      * 地址信息
      */
-    address?: any;
+    address?: unknown;
   }
 
   interface ChooseLocationOptions {
@@ -4773,11 +4773,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ChooseLocationSuccess {
@@ -4823,15 +4823,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface MapContext {
@@ -4862,7 +4862,7 @@ declare namespace UniApp {
     /**
      * 获取原生地图对象 plus.maps.Map
      */
-    $getAppMap(): any;
+    $getAppMap(): unknown;
   }
 
   interface MapContextGetCenterLocationOptions {
@@ -4873,11 +4873,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface MapContextMoveToLocationOptions {
@@ -4892,15 +4892,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface LocationObject {
@@ -4938,11 +4938,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 动画结束回调函数
      */
-    animationEnd: (result: any) => void;
+    animationEnd: (result: unknown) => void;
   }
 
   interface MapContextIncludePointsOptions {
@@ -4964,11 +4964,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface MapContextGetRegionResult {
@@ -4990,11 +4990,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface MapContextGetScaleResult {
@@ -5012,11 +5012,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetSystemInfoResult {
@@ -5175,7 +5175,7 @@ declare namespace UniApp {
     /**
      * 上一次缓存的位置信息
      */
-    cacheLocation?: any;
+    cacheLocation?: unknown;
     /**
      * 设备 ID
      */
@@ -5236,11 +5236,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetNetworkTypeSuccess {
@@ -5294,30 +5294,30 @@ declare namespace UniApp {
     /**
      * 成功返回的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopAccelerometerOptions {
     /**
      * 成功返回的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OnCompassChangeSuccess {
@@ -5331,30 +5331,30 @@ declare namespace UniApp {
     /**
      * 成功返回的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopCompassOptions {
     /**
      * 成功返回的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface MakePhoneCallOptions {
@@ -5365,15 +5365,15 @@ declare namespace UniApp {
     /**
      * 成功返回的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ScanCodeOptions {
@@ -5384,7 +5384,7 @@ declare namespace UniApp {
     /**
      * 扫码类型，参数类型是数组，二维码是'qrCode'，一维码是'barCode'，DataMatrix是‘datamatrix’，pdf417是‘pdf417’。
      */
-    scanType?: any[];
+    scanType?: unknown[];
     /**
      * 仅App端支持
      */
@@ -5396,11 +5396,11 @@ declare namespace UniApp {
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ScanCodeSuccessRes {
@@ -5430,15 +5430,15 @@ declare namespace UniApp {
     /**
      * 成功返回的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetClipboardDataOptions {
@@ -5449,11 +5449,11 @@ declare namespace UniApp {
     /**
      * 失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetClipboardDataSuccessRes {
@@ -5467,30 +5467,30 @@ declare namespace UniApp {
     /**
      * 成功则返回成功初始化信息
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CloseBluetoothAdapterOptions {
     /**
      * 成功则返回成功关闭模块信息
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBluetoothAdapterStateOptions {
@@ -5501,11 +5501,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBluetoothAdapterStateSuccess {
@@ -5545,7 +5545,7 @@ declare namespace UniApp {
     /**
      * 蓝牙设备主 service 的 uuid 列表
      */
-    services?: any[];
+    services?: unknown[];
     /**
      * 是否允许重复上报同一设备， 如果允许重复上报，则onDeviceFound 方法会多次上报同一设备，但是 RSSI 值会有不同
      */
@@ -5557,15 +5557,15 @@ declare namespace UniApp {
     /**
      * 成功则返回本机蓝牙适配器状态
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopBluetoothDevicesDiscoveryOptions {
@@ -5576,11 +5576,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopBluetoothDevicesDiscoverySuccess {
@@ -5598,11 +5598,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBluetoothDevicesSuccess {
@@ -5632,11 +5632,11 @@ declare namespace UniApp {
     /**
      * 当前蓝牙设备的广播数据段中的ManufacturerData数据段 （注意：vConsole 无法打印出 ArrayBuffer 类型数据）
      */
-    advertisData: any[];
+    advertisData: unknown[];
     /**
      * 当前蓝牙设备的广播数据段中的ServiceUUIDs数据段
      */
-    advertisServiceUUIDs: any[];
+    advertisServiceUUIDs: unknown[];
     /**
      * 当前蓝牙设备的广播数据段中的LocalName数据段
      */
@@ -5644,14 +5644,14 @@ declare namespace UniApp {
     /**
      * 当前蓝牙设备的广播数据段中的ServiceData数据段
      */
-    serviceData: any[];
+    serviceData: unknown[];
   }
 
   interface GetConnectedBluetoothDevicesOptions {
     /**
      * 蓝牙设备主 service 的 uuid 列表
      */
-    services: any[];
+    services: unknown[];
     /**
      * 成功则返回本机蓝牙适配器状态
      */
@@ -5659,11 +5659,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetConnectedBluetoothDevicesSuccess {
@@ -5692,15 +5692,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
     /**
      * 蓝牙设备 id，参考 device 对象
      */
@@ -5719,15 +5719,15 @@ declare namespace UniApp {
     /**
      * 成功则返回本机蓝牙适配器状态
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OnBLEConnectionStateChangeSuccess {
@@ -5753,11 +5753,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBLEDeviceServicesSuccess {
@@ -5798,11 +5798,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBLEDeviceCharacteristicsSuccess {
@@ -5824,7 +5824,7 @@ declare namespace UniApp {
     /**
      * 该特征值支持的操作类型
      */
-    properties: any;
+    properties: unknown;
   }
 
   interface ReadBLECharacteristicValueOptions {
@@ -5847,11 +5847,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ReadBLECharacteristicValueSuccess {
@@ -5881,7 +5881,7 @@ declare namespace UniApp {
     /**
      * 蓝牙设备特征值对应的二进制值
      */
-    value: any[];
+    value: unknown[];
     /**
      * 成功则返回本机蓝牙适配器状态
      */
@@ -5889,11 +5889,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface NotifyBLECharacteristicValueChangeOptions {
@@ -5920,11 +5920,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OnBLECharacteristicValueChangeSuccess {
@@ -5943,41 +5943,41 @@ declare namespace UniApp {
     /**
      * 特征值最新的值 （注意：vConsole 无法打印出 ArrayBuffer 类型数据）
      */
-    value: any[];
+    value: unknown[];
   }
 
   interface StartBeaconDiscoveryOptions {
     /**
      * iBeacon设备广播的 uuids
      */
-    uuids: any[];
+    uuids: unknown[];
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopBeaconDiscoveryOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetBLEMTUOptions {
@@ -5992,15 +5992,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBLEDeviceRSSIOptions {
@@ -6011,15 +6011,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBeaconsOptions {
@@ -6030,11 +6030,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetBeaconsRes {
@@ -6090,49 +6090,49 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StartHCEOptions {
     /**
      * 需要注册到系统的 AID 列表，每个 AID 为 String 类型
      */
-    aid_list: any[];
+    aid_list: unknown[];
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopHCEOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface HCEMessageRes {
@@ -6143,7 +6143,7 @@ declare namespace UniApp {
     /**
      * 客户端接收到 NFC 设备的指令
      */
-    data: any[];
+    data: unknown[];
     /**
      * 此参数当且仅当 messageType=2 时有效
      */
@@ -6154,49 +6154,49 @@ declare namespace UniApp {
     /**
      * 二进制数据
      */
-    data: any[];
+    data: unknown[];
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StartWifiOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopWifiOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ConnectWifiOptions {
@@ -6215,30 +6215,30 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetWifiListOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface WiFi {
@@ -6268,15 +6268,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface WiFiItem {
@@ -6302,11 +6302,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetConnectedWifiRes {
@@ -6351,15 +6351,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ShowLoadingOptions {
@@ -6374,15 +6374,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ShowModalOptions {
@@ -6421,11 +6421,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ShowModalRes {
@@ -6451,7 +6451,7 @@ declare namespace UniApp {
     /**
      * 按钮的文字数组
      */
-    itemList: any[];
+    itemList: unknown[];
     /**
      * 按钮的文字颜色，默认为"#000000"
      */
@@ -6467,11 +6467,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ShowActionSheetRes {
@@ -6508,15 +6508,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetNavigationbarColorOptions {
@@ -6535,15 +6535,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetTabBarBadgeOptions {
@@ -6558,15 +6558,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface RemoveTabBarBadgeOptions {
@@ -6577,15 +6577,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ShowTabBarRedDotOptions {
@@ -6596,15 +6596,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface HideTabBarRedDotOptions {
@@ -6615,15 +6615,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface NavigationBarAnimation {
@@ -6677,15 +6677,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface RemoveTabBarBadgeOptions {
@@ -6696,15 +6696,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ShowTabBarRedDotOptions {
@@ -6715,15 +6715,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface HideTabBarRedDotOptions {
@@ -6734,15 +6734,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetTabBarStyleOptions {
@@ -6777,15 +6777,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetTabBarItemOptions {
@@ -6812,15 +6812,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ShowTabBarOptions {
@@ -6831,15 +6831,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface HideTabBarOptions {
@@ -6850,15 +6850,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetTopBarTextOptions {
@@ -6869,15 +6869,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface NavigateToOptions {
@@ -6916,19 +6916,19 @@ declare namespace UniApp {
     /**
      * 页面间通信接口，用于监听被打开页面发送到当前页面的数据
      */
-    events?: any;
+    events?: unknown;
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface RedirectToOptions {
@@ -6939,15 +6939,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ReLaunchOptions {
@@ -6958,15 +6958,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SwitchTabOptions {
@@ -6977,15 +6977,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface PreloadPageOptions {
@@ -6996,15 +6996,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface UnPreloadPageOptions {
@@ -7018,7 +7018,7 @@ declare namespace UniApp {
     /**
      * 所有阈值
      */
-    thresholds?: any[];
+    thresholds?: unknown[];
     /**
      * 初始的相交比例
      */
@@ -7106,37 +7106,37 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StartPullDownRefreshOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SelectorQuery {
     /**
      * 将选择器的选取范围更改为自定义组件component内
      */
-    in(component: any): SelectorQuery;
+    in(component: unknown): SelectorQuery;
     /**
      * 在当前页面下选择第一个匹配选择器selector的节点
      */
@@ -7152,7 +7152,7 @@ declare namespace UniApp {
     /**
      * 执行所有的请求
      */
-    exec(callback?: (result: any) => void): NodesRef;
+    exec(callback?: (result: unknown) => void): NodesRef;
   }
 
   interface NodesRef {
@@ -7182,7 +7182,7 @@ declare namespace UniApp {
     /**
      * 节点的dataset
      */
-    dataset?: any;
+    dataset?: unknown;
     /**
      * 节点的左边界坐标
      */
@@ -7308,19 +7308,19 @@ declare namespace UniApp {
     /**
      * data 被序列化为 name=value;name1=value2 的格式挂在属性 data-custom 上
      */
-    data?: any;
+    data?: unknown;
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface EditorContextInsertTextOptions {
@@ -7331,15 +7331,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface EditorContextSetContentsOptions {
@@ -7350,94 +7350,94 @@ declare namespace UniApp {
     /**
      * 表示内容的delta对象
      */
-    delta?: any;
+    delta?: unknown;
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface EditorContextGetContentsOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface EditorContextClearOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface EditorContextRemoveFormatOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface EditorContextUndoOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface EditorContextRedoOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface EditorContextGetSelectionTextOptions {
@@ -7448,11 +7448,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetSelectionTextSuccessCallbackResult {
@@ -7466,15 +7466,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface NodeField {
@@ -7516,11 +7516,11 @@ declare namespace UniApp {
     /**
      * 使用选择器指定一个节点，作为参照区域之一
      */
-    relativeTo(selector: string, margins?: any): IntersectionObserver;
+    relativeTo(selector: string, margins?: unknown): IntersectionObserver;
     /**
      * 指定页面显示区域作为参照区域之一
      */
-    relativeToViewport(margins?: any): IntersectionObserver;
+    relativeToViewport(margins?: unknown): IntersectionObserver;
     /**
      * 指定目标节点并开始监听相交状态变化情况
      */
@@ -7593,7 +7593,7 @@ declare namespace UniApp {
     /**
      * 相交区域的边界
      */
-    intersectionRect: any;
+    intersectionRect: unknown;
     /**
      * 目标节点布局区域的边界
      */
@@ -7747,7 +7747,7 @@ declare namespace UniApp {
     /**
      * 导出动画队列
      */
-    export(): any;
+    export(): unknown;
   }
 
   interface CanvasContext {
@@ -7852,7 +7852,7 @@ declare namespace UniApp {
     /**
      * 设置线条的宽度
      */
-    setLineDash(pattern: any[], offset: number): void;
+    setLineDash(pattern: unknown[], offset: number): void;
     /**
      * 设置最大斜接长度
      */
@@ -7970,7 +7970,7 @@ declare namespace UniApp {
     /**
      * 将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中
      */
-    draw(reserve?: boolean, callback?: (result: any) => void): void;
+    draw(reserve?: boolean, callback?: (result: unknown) => void): void;
     /**
      * 测量文本尺寸信息，目前仅返回文本宽度
      */
@@ -8051,11 +8051,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CanvasToTempFilePathRes {
@@ -8093,11 +8093,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CanvasGetImageDataRes {
@@ -8116,7 +8116,7 @@ declare namespace UniApp {
     /**
      * 图像像素点数据，一维数组，每四项表示一个像素点的rgba
      */
-    data: any[];
+    data: unknown[];
   }
 
   interface CanvasPutImageDataOptions {
@@ -8127,7 +8127,7 @@ declare namespace UniApp {
     /**
      * 图像像素点数据，一维数组，每四项表示一个像素点的rgba
      */
-    data?: any[];
+    data?: unknown[];
     /**
      * 源图像数据在目标画布中的位置偏移量（x 轴方向的偏移量）
      */
@@ -8147,15 +8147,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetScreenBrightnessOptions {
@@ -8166,15 +8166,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetScreenBrightnessOptions {
@@ -8185,11 +8185,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetScreenBrightnessSuccessRes {
@@ -8207,45 +8207,45 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface VibrateLongOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface VibrateShortOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface AddPhoneContactOptions {
@@ -8380,30 +8380,30 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetExtConfigOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetMenuButtonBoundingClientRectRes {
@@ -8449,11 +8449,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetProviderRes {
@@ -8468,7 +8468,7 @@ declare namespace UniApp {
     /**
      * 得到的服务供应商
      */
-    provider: any[];
+    provider: unknown[];
     /**
      * 描述信息
      */
@@ -8509,11 +8509,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface UniverifyStyle {
@@ -8858,7 +8858,7 @@ declare namespace UniApp {
     /**
      * 支付宝小程序登录失败的授权类型，key是授权失败的 scope，value 是对应的错误码
      */
-    authErrorScope?: any;
+    authErrorScope?: unknown;
     /**
      * 支付宝小程序登录成功的授权 scope
      */
@@ -8869,15 +8869,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数，session_key未过期
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数，session_key已过期
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface AuthorizeOptions {
@@ -8888,15 +8888,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetUserInfoOptions {
@@ -8928,11 +8928,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetUserProfileOptions {
@@ -8971,11 +8971,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetUserInfoRes {
@@ -9056,15 +9056,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetCheckBoxStateOptions {
@@ -9075,11 +9075,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetCheckBoxStateRes {
@@ -9145,15 +9145,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface MiniProgramShareOptions {
@@ -9200,15 +9200,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SubscribePushOptions {
@@ -9222,15 +9222,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface UnscribePushOptions {
@@ -9244,15 +9244,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OnPushOptions {
@@ -9266,19 +9266,19 @@ declare namespace UniApp {
     /**
      * 接收到透传数据回调，回调参数（Object）：messageId（消息id）、data（消息内容）
      */
-    callback?: (result: any) => void;
+    callback?: (result: unknown) => void;
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OffPushOptions {
@@ -9292,15 +9292,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ShowShareMenuOptions {
@@ -9315,15 +9315,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   /**
@@ -9337,19 +9337,19 @@ declare namespace UniApp {
     /**
      * 控制隐藏的哪些分享选项
      */
-    hideShareItems: any[];
+    hideShareItems: unknown[];
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface UpdateShareMenuOptions {
@@ -9360,15 +9360,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetShareInfoOptions {
@@ -9387,11 +9387,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetShareInfoRes {
@@ -9417,11 +9417,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ChooseAddressRes {
@@ -9475,11 +9475,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface AddCardData {
@@ -9527,15 +9527,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OpenCardData {
@@ -9559,15 +9559,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetSettingOptions {
@@ -9582,11 +9582,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetSettingSuccessResult {
@@ -9647,7 +9647,7 @@ declare namespace UniApp {
     /**
      * 每一项订阅消息的订阅状态
      */
-    itemSettings: any;
+    itemSettings: unknown;
   }
 
   interface GetWeRunDataOptions {
@@ -9662,11 +9662,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetWeRunDataRes {
@@ -9692,11 +9692,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ChooseInvoiceTitleRes {
@@ -9742,11 +9742,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CheckIsSupportSoterAuthenticationRes {
@@ -9780,11 +9780,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   /**
@@ -9836,11 +9836,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface CheckIsSoterEnrolledInDeviceRes {
@@ -9862,11 +9862,11 @@ declare namespace UniApp {
     /**
      * 当新版本下载完成，会进行回调
      */
-    onUpdateReady(callback: (result: any) => void): void;
+    onUpdateReady(callback: (result: unknown) => void): void;
     /**
      * 当新版本下载失败，会进行回调
      */
-    onUpdateFailed(callback: (result: any) => void): void;
+    onUpdateFailed(callback: (result: unknown) => void): void;
     /**
      * 当新版本下载完成，调用该方法会强制当前uni-app应用上新版本并重启
      */
@@ -9884,11 +9884,11 @@ declare namespace UniApp {
     /**
      * 向 Worker 线程发送的消息。
      */
-    postMessage(message: any): void;
+    postMessage(message: unknown): void;
     /**
      * 监听 Worker 线程向当前线程发送的消息
      */
-    onMessage(callback: (result: any) => void): void;
+    onMessage(callback: (result: unknown) => void): void;
     /**
      * 结束当前 Worker 线程，仅限在主线程 Worker 实例上调用。
      */
@@ -9903,15 +9903,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetBackgroundColorOptions {
@@ -9930,15 +9930,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface SetBackgroundTextStyleOptions {
@@ -9949,15 +9949,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OnGyroscopeChangeSuccess {
@@ -9983,45 +9983,45 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopGyroscopeOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface StopGyroscopeOptions {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface LoadFontFaceOptions {
@@ -10040,15 +10040,15 @@ declare namespace UniApp {
     /**
      * 接口调用成功的回调函数
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface LoadFontFaceOptionsDesc {
@@ -10074,11 +10074,11 @@ declare namespace UniApp {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface GetSelectedTextRangeSuccessCallbackResult {
@@ -10107,11 +10107,11 @@ declare namespace UniApp {
     /**
      * 加载激励视频广告
      */
-    load(): Promise<any>;
+    load(): Promise<unknown>;
     /**
      * 显示激励视频广告
      */
-    show(): Promise<any>;
+    show(): Promise<unknown>;
     /**
      * 获取广告商
      */
@@ -10123,27 +10123,27 @@ declare namespace UniApp {
     /**
      * 绑定 load 事件的监听器
      */
-    onLoad(callback: (result: any) => void): void;
+    onLoad(callback: (result: unknown) => void): void;
     /**
      * 绑定 close 事件的监听器
      */
-    onClose(callback: (result: any) => void): void;
+    onClose(callback: (result: unknown) => void): void;
     /**
      * 绑定 error 事件的监听器
      */
-    onError(callback: (result: any) => void): void;
+    onError(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 load 事件的监听器
      */
-    offLoad(callback: (result: any) => void): void;
+    offLoad(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 close 事件的监听器
      */
-    offClose(callback: (result: any) => void): void;
+    offClose(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 error 事件的监听器
      */
-    offError(callback: (result: any) => void): void;
+    offError(callback: (result: unknown) => void): void;
   }
 
   interface FullScreenVideoAdOptions {
@@ -10157,11 +10157,11 @@ declare namespace UniApp {
     /**
      * 加载全屏视频广告
      */
-    load(): Promise<any>;
+    load(): Promise<unknown>;
     /**
      * 显示全屏视频广告
      */
-    show(): Promise<any>;
+    show(): Promise<unknown>;
     /**
      * 销毁全屏视频广告实例
      */
@@ -10169,27 +10169,27 @@ declare namespace UniApp {
     /**
      * 绑定 load 事件的监听器
      */
-    onLoad(callback: (result: any) => void): void;
+    onLoad(callback: (result: unknown) => void): void;
     /**
      * 绑定 close 事件的监听器
      */
-    onClose(callback: (result: any) => void): void;
+    onClose(callback: (result: unknown) => void): void;
     /**
      * 绑定 error 事件的监听器
      */
-    onError(callback: (result: any) => void): void;
+    onError(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 load 事件的监听器
      */
-    offLoad(callback: (result: any) => void): void;
+    offLoad(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 close 事件的监听器
      */
-    offClose(callback: (result: any) => void): void;
+    offClose(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 error 事件的监听器
      */
-    offError(callback: (result: any) => void): void;
+    offError(callback: (result: unknown) => void): void;
   }
 
   interface InterstitialAdOptions {
@@ -10207,11 +10207,11 @@ declare namespace UniApp {
     /**
      * 加载插屏广告
      */
-    load(): Promise<any>;
+    load(): Promise<unknown>;
     /**
      * 显示插屏广告
      */
-    show(): Promise<any>;
+    show(): Promise<unknown>;
     /**
      * 销毁插屏广告实例
      */
@@ -10219,27 +10219,27 @@ declare namespace UniApp {
     /**
      * 绑定 load 事件的监听器
      */
-    onLoad(callback: (result: any) => void): void;
+    onLoad(callback: (result: unknown) => void): void;
     /**
      * 绑定 close 事件的监听器
      */
-    onClose(callback: (result: any) => void): void;
+    onClose(callback: (result: unknown) => void): void;
     /**
      * 绑定 error 事件的监听器
      */
-    onError(callback: (result: any) => void): void;
+    onError(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 load 事件的监听器
      */
-    offLoad(callback: (result: any) => void): void;
+    offLoad(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 close 事件的监听器
      */
-    offClose(callback: (result: any) => void): void;
+    offClose(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 error 事件的监听器
      */
-    offError(callback: (result: any) => void): void;
+    offError(callback: (result: unknown) => void): void;
   }
 
   interface InteractiveAdOptions {
@@ -10257,11 +10257,11 @@ declare namespace UniApp {
     /**
      * 加载互动广告
      */
-    load(): Promise<any>;
+    load(): Promise<unknown>;
     /**
      * 显示互动广告
      */
-    show(): Promise<any>;
+    show(): Promise<unknown>;
     /**
      * 场景入口曝光打点
      */
@@ -10273,46 +10273,46 @@ declare namespace UniApp {
     /**
      * 绑定 load 事件的监听器
      */
-    onLoad(callback: (result: any) => void): void;
+    onLoad(callback: (result: unknown) => void): void;
     /**
      * 绑定 close 事件的监听器
      */
-    onClose(callback: (result: any) => void): void;
+    onClose(callback: (result: unknown) => void): void;
     /**
      * 绑定 error 事件的监听器
      */
-    onError(callback: (result: any) => void): void;
+    onError(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 load 事件的监听器
      */
-    offLoad(callback: (result: any) => void): void;
+    offLoad(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 close 事件的监听器
      */
-    offClose(callback: (result: any) => void): void;
+    offClose(callback: (result: unknown) => void): void;
     /**
      * 解除绑定 error 事件的监听器
      */
-    offError(callback: (result: any) => void): void;
+    offError(callback: (result: unknown) => void): void;
   }
 
   interface InterceptorOptions {
     /**
      * 拦截前触发
      */
-    invoke?: (result: any) => void;
+    invoke?: (result: unknown) => void;
     /**
      * 成功回调拦截
      */
-    success?: (result: any) => void;
+    success?: (result: unknown) => void;
     /**
      * 失败回调拦截
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 完成回调拦截
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface OnLocaleChangeCallbackResult {
@@ -10399,7 +10399,7 @@ declare namespace UniApp {
     /**
      * 来源小程序传过来的数据，scene=1037或1038时支持
      */
-    extraData: Record<string, any>;
+    extraData: Record<string, unknown>;
   }
 
   /**
@@ -10413,7 +10413,7 @@ declare namespace UniApp {
     /**
      * 启动小程序的 query 参数
      */
-    query: Record<string, any>;
+    query: Record<string, unknown>;
     /**
      * 来源信息。从另一个小程序、公众号或 App 进入小程序时返回。否则返回 `{}`。(参见后文注意)
      */
@@ -11128,7 +11128,7 @@ declare namespace UniApp {
      *
      * 当 recursive 为 false 时，res.stats 是一个 Stats 对象。当 recursive 为 true 且 path 是一个目录的路径时，res.stats 是一个 Object，key 以 path 为根路径的相对路径，value 是该路径对应的 Stats 对象。
      */
-    stats: Record<string, any> | Stats;
+    stats: Record<string, unknown> | Stats;
     errMsg: string;
   }
 
@@ -11515,7 +11515,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.statSync.html](https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.statSync.html)
      */
-    statSync(path: string, recursive?: boolean): Record<string, any> | Stats;
+    statSync(path: string, recursive?: boolean): Record<string, unknown> | Stats;
     /**
      *
      * [FileSystemManager.saveFile](https://developers.weixin.qq.com/miniprogram/dev/api/file/FileSystemManager.saveFile.html) 的同步版本
@@ -11858,28 +11858,28 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/LogManager.debug.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/LogManager.debug.html)
      */
-    debug(args: any[]): void;
+    debug(args: unknown[]): void;
     /**
      *
      * 写 info 日志
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/LogManager.info.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/LogManager.info.html)
      */
-    info(args: any[]): void;
+    info(args: unknown[]): void;
     /**
      *
      * 写 log 日志
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/LogManager.log.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/LogManager.log.html)
      */
-    log(args: any[]): void;
+    log(args: unknown[]): void;
     /**
      *
      * 写 warn 日志
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/LogManager.warn.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/LogManager.warn.html)
      */
-    warn(args: any[]): void;
+    warn(args: unknown[]): void;
   }
 
   /**
@@ -12000,7 +12000,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/media-recorder/MediaRecorder.off.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/media-recorder/MediaRecorder.off.html)
      */
-    off(eventName: string, callback: (...args: any[]) => any): void;
+    off(eventName: string, callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 注册监听录制事件的回调函数。当对应事件触发时，回调函数会被执行。
@@ -12009,7 +12009,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/media-recorder/MediaRecorder.on.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/media-recorder/MediaRecorder.on.html)
      */
-    on(eventName: 'start' | 'stop', callback: (...args: any[]) => any): void;
+    on(eventName: 'start' | 'stop', callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 暂停录制
@@ -12027,7 +12027,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/media-recorder/MediaRecorder.requestFrame.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/media-recorder/MediaRecorder.requestFrame.html)
      */
-    requestFrame(callback: (...args: any[]) => any): void;
+    requestFrame(callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 恢复录制
@@ -12118,7 +12118,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/canvas/OffscreenCanvas.getContext.html](https://developers.weixin.qq.com/miniprogram/dev/api/canvas/OffscreenCanvas.getContext.html)
      */
-    getContext(contextType: string): any;
+    getContext(contextType: string): unknown;
   }
 
   interface RealtimeLogManager {
@@ -12139,7 +12139,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/RealtimeLogManager.error.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/RealtimeLogManager.error.html)
      */
-    error(args: any[]): void;
+    error(args: unknown[]): void;
     /**
      *
      * 设置实时日志page参数所在的页面
@@ -12148,7 +12148,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/RealtimeLogManager.in.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/RealtimeLogManager.in.html)
      */
-    in(pageInstance: any): void;
+    in(pageInstance: unknown): void;
     /**
      *
      * 写 info 日志
@@ -12157,7 +12157,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/RealtimeLogManager.info.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/RealtimeLogManager.info.html)
      */
-    info(args: any[]): void;
+    info(args: unknown[]): void;
     /**
      *
      * 设置过滤关键字
@@ -12175,7 +12175,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/RealtimeLogManager.warn.html](https://developers.weixin.qq.com/miniprogram/dev/api/base/debug/RealtimeLogManager.warn.html)
      */
-    warn(args: any[]): void;
+    warn(args: unknown[]): void;
   }
 
   type OffCloseCallback = (res: GeneralCallbackResult) => void;
@@ -12399,7 +12399,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/video-decoder/VideoDecoder.off.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/video-decoder/VideoDecoder.off.html)
      */
-    off(eventName: string, callback: (...args: any[]) => any): void;
+    off(eventName: string, callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 注册监听录制事件的回调函数。当对应事件触发时，回调函数会被执行
@@ -12408,7 +12408,7 @@ declare namespace UniApp {
      *
      * 文档: [https://developers.weixin.qq.com/miniprogram/dev/api/media/video-decoder/VideoDecoder.on.html](https://developers.weixin.qq.com/miniprogram/dev/api/media/video-decoder/VideoDecoder.on.html)
      */
-    on(eventName: 'start' | 'stop' | 'seek' | 'bufferchange' | 'ended', callback: (...args: any[]) => any): void;
+    on(eventName: 'start' | 'stop' | 'seek' | 'bufferchange' | 'ended', callback: (...args: unknown[]) => unknown): void;
     /**
      *
      * 移除解码器
@@ -14156,7 +14156,7 @@ declare namespace UniApp {
     /**
      * 小程序切前台的 query 参数
      */
-    query: Record<string, any>;
+    query: Record<string, unknown>;
     /**
      * 来源信息。从另一个小程序、公众号或 App 进入小程序时返回。否则返回 `{}`。(参见后文注意)
      */
@@ -14438,7 +14438,7 @@ declare namespace UniApp {
     /**
      * 打开不存在页面的 query 参数
      */
-    query: Record<string, any>;
+    query: Record<string, unknown>;
   }
 
   /**
@@ -14466,7 +14466,7 @@ declare namespace UniApp {
     /**
      * 被拒绝的 Promise 对象
      */
-    promise: Promise<any>;
+    promise: Promise<unknown>;
     /**
      * 拒绝原因，一般是一个 Error 对象
      */
@@ -14780,7 +14780,7 @@ declare namespace UniApp {
     /**
      * 当前显示的资源序号
      */
-    current?: any;
+    current?: unknown;
     /**
      * 接口调用失败的回调函数
      */
@@ -14832,7 +14832,7 @@ declare namespace UniApp {
     /**
      * 需要订阅的消息模板的id的集合，一次调用最多可订阅3条消息（注意：iOS客户端7.0.6版本、Android客户端7.0.7版本之后的一次性订阅/长期订阅才支持多个模板消息，iOS客户端7.0.5版本、Android客户端7.0.6版本之前的一次订阅只支持一个模板消息）消息模板id在[微信公众平台(mp.weixin.qq.com)-功能-订阅消息]中配置
      */
-    tmplIds: any[];
+    tmplIds: unknown[];
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */

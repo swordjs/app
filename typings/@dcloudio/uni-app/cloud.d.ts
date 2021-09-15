@@ -11,12 +11,12 @@ declare namespace UniCloud {
     /**
      * 正则表达式查询
      */
-    RegExp: any;
+    RegExp: unknown;
     /**
      * 创建一个服务端当前时间的标记
      */
-    serverDate: any;
-    config: any;
+    serverDate: unknown;
+    config: unknown;
     /**
      * 数据库集合引用
      *
@@ -34,28 +34,26 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/clientDB?id=variable](http://uniapp.dcloud.io/uniCloud/clientDB?id=variable)
      */
-    getCloudEnv(envStr: '$cloudEnv_uid' | '$cloudEnv_now' | '$cloudEnv_clientIP'): any;
+    getCloudEnv(envStr: '$cloudEnv_uid' | '$cloudEnv_now' | '$cloudEnv_clientIP'): unknown;
     /**
      * 同时执行多次数据库查询操作
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/clientdb?id=multi-send](http://uniapp.dcloud.io/uniCloud/clientdb?id=multi-send)
      */
     multiSend(
-      tempQuery1: GetTempQuery,
-      tempQuery2?: GetTempQuery,
-      tempQuery3?: GetTempQuery,
-      tempQuery4?: GetTempQuery,
-      tempQuery5?: GetTempQuery,
-      tempQuery6?: GetTempQuery,
-      tempQuery7?: GetTempQuery,
-      tempQuery8?: GetTempQuery
-    ): any;
+      tempQuery1: unknown,
+      tempQuery2?: unknown,
+      tempQuery3?: unknown,
+      tempQuery4?: unknown,
+      tempQuery5?: unknown,
+      tempQuery6?: unknown,
+      tempQuery7?: unknown,
+      tempQuery8?: unknown
+    ): unknown;
   }
 
-  interface GetTempQuery {}
-
   interface QueryCommand {
-    operator: QUERY_COMMANDS_LITERAL;
+    operator: unknown;
     /**
      * 聚合操作符
      */
@@ -108,61 +106,61 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=eq](http://uniapp.dcloud.io/uniCloud/cf-database?id=eq)
      */
-    eq(val: any): LogicCommand;
+    eq(val: unknown): LogicCommand;
     /**
      * 查询筛选条件，表示字段不等于某个值。eq 指令接受一个字面量 (literal)，可以是 number, boolean, string, object, array, Date。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=neq](http://uniapp.dcloud.io/uniCloud/cf-database?id=neq)
      */
-    neq(val: any): LogicCommand;
+    neq(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示需大于指定值。可以传入 Date 对象用于进行日期比较。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=gt](http://uniapp.dcloud.io/uniCloud/cf-database?id=gt)
      */
-    gt(val: any): LogicCommand;
+    gt(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示需大于或等于指定值。可以传入 Date 对象用于进行日期比较。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=gte](http://uniapp.dcloud.io/uniCloud/cf-database?id=gte)
      */
-    gte(val: any): LogicCommand;
+    gte(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示需小于指定值。可以传入 Date 对象用于进行日期比较。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=lt](http://uniapp.dcloud.io/uniCloud/cf-database?id=lt)
      */
-    lt(val: any): LogicCommand;
+    lt(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示需小于或等于指定值。可以传入 Date 对象用于进行日期比较。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=lte](http://uniapp.dcloud.io/uniCloud/cf-database?id=lte)
      */
-    lte(val: any): LogicCommand;
+    lte(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示要求值在给定的数组内。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=in](http://uniapp.dcloud.io/uniCloud/cf-database?id=in)
      */
-    in(list: any): LogicCommand;
+    in(list: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示要求值不在给定的数组内。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=nin](http://uniapp.dcloud.io/uniCloud/cf-database?id=nin)
      */
-    nin(list: any): LogicCommand;
+    nin(list: unknown): LogicCommand;
     /**
      * 查询操作符，用于表示逻辑 "或" 的关系，表示需同时满足多个查询筛选条件。或指令有两种用法，一是可以进行字段值的 “或” 操作，二是也可以进行跨字段的 “或” 操作。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=or-1](http://uniapp.dcloud.io/uniCloud/cf-database?id=or-1)
      */
-    or(val: any): LogicCommand;
+    or(val: unknown): LogicCommand;
     /**
      * 查询操作符，用于表示逻辑 "与" 的关系，表示需同时满足多个查询筛选条件。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=and-1](http://uniapp.dcloud.io/uniCloud/cf-database?id=and-1)
      */
-    and(val: any): LogicCommand;
+    and(val: unknown): LogicCommand;
     /**
      * 按从近到远的顺序，找出字段值在给定点的附近的记录。
      *
@@ -195,7 +193,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=add](http://uniapp.dcloud.io/uniCloud/cf-database?id=add)
      */
-    add(addOptions: any[]): number;
+    add(addOptions: unknown[]): number;
     /**
      * 向上取整，返回大于或等于给定数字的最小整数。
      *
@@ -207,7 +205,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=divide](http://uniapp.dcloud.io/uniCloud/cf-database?id=divide)
      */
-    divide(divideOptions: any[]): number;
+    divide(divideOptions: unknown[]): number;
     /**
      * 取 e（自然对数的底数，欧拉数） 的 n 次方
      *
@@ -231,7 +229,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=log](http://uniapp.dcloud.io/uniCloud/cf-database?id=log)
      */
-    log(logOptions: any[]): number;
+    log(logOptions: unknown[]): number;
     /**
      * 计算给定数字在对数底为 10 下的 log 值。
      *
@@ -243,31 +241,31 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=mod](http://uniapp.dcloud.io/uniCloud/cf-database?id=mod)
      */
-    mod(modOptions: any[]): number;
+    mod(modOptions: unknown[]): number;
     /**
      * 取传入的数字参数相乘的结果。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=multiply](http://uniapp.dcloud.io/uniCloud/cf-database?id=multiply)
      */
-    multiply(multiplyOptions: any[]): number;
+    multiply(multiplyOptions: unknown[]): number;
     /**
      * 求给定基数的指数次幂。参数形式为：[底数,指数]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=pow](http://uniapp.dcloud.io/uniCloud/cf-database?id=pow)
      */
-    pow(powOptions: any[]): number;
+    pow(powOptions: unknown[]): number;
     /**
      * 求平方根。参数形式为：[被开方数]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=sqrt](http://uniapp.dcloud.io/uniCloud/cf-database?id=sqrt)
      */
-    sqrt(sqrtOptions: any[]): number;
+    sqrt(sqrtOptions: unknown[]): number;
     /**
      * 将两个数字相减然后返回差值，或将两个日期相减然后返回相差的毫秒数，或将一个日期减去一个数字返回结果的日期。参数形式为：[被减数,减数]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=subtract](http://uniapp.dcloud.io/uniCloud/cf-database?id=subtract)
      */
-    subtract(subtractOptions: any[]): number;
+    subtract(subtractOptions: unknown[]): number;
     /**
      * 将数字截断为整形。
      *
@@ -279,25 +277,25 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=arrayelemat](http://uniapp.dcloud.io/uniCloud/cf-database?id=arrayelemat)
      */
-    arrayElemAt(arrayElemAtOptions: any[]): any;
+    arrayElemAt(arrayElemAtOptions: unknown[]): unknown;
     /**
      * 将一个数组转换为对象。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=arraytoobject](http://uniapp.dcloud.io/uniCloud/cf-database?id=arraytoobject)
      */
-    arrayToObject(arrayToObjectOptions: any[] | string): any;
+    arrayToObject(arrayToObjectOptions: unknown[] | string): unknown;
     /**
      * 将多个数组拼接成一个数组。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=concatarrays](http://uniapp.dcloud.io/uniCloud/cf-database?id=concatarrays)
      */
-    concatArrays(concatArraysOptions: any[]): any[];
+    concatArrays(concatArraysOptions: unknown[]): unknown[];
     /**
      * 根据给定条件返回满足条件的数组的子集。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=filter](http://uniapp.dcloud.io/uniCloud/cf-database?id=filter)
      */
-    filter(filterOptions: FilterOptions): any[];
+    filter(filterOptions: FilterOptions): unknown[];
     /**
      * 给定一个值和一个数组，如果值在数组中则返回 true，否则返回 false。
      *
@@ -309,55 +307,55 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofarray](http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofarray)
      */
-    indexOfArray(indexOfArrayOptions: any[]): number;
+    indexOfArray(indexOfArrayOptions: unknown[]): number;
     /**
      * 判断给定表达式是否是数组，返回布尔值。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=isarray](http://uniapp.dcloud.io/uniCloud/cf-database?id=isarray)
      */
-    isArray(isArrayOptions: any[]): boolean;
+    isArray(isArrayOptions: unknown[]): boolean;
     /**
      * 类似 JavaScript Array 上的 map 方法，将给定数组的每个元素按给定转换方法转换后得出新的数组。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=map](http://uniapp.dcloud.io/uniCloud/cf-database?id=map)
      */
-    map(mapOptions: MapOptions): any[];
+    map(mapOptions: MapOptions): unknown[];
     /**
      * 将一个对象转换为数组。方法把对象的每个键值对都变成输出数组的一个元素，元素形如 { k: <key>, v: <value> }。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=objecttoarray](http://uniapp.dcloud.io/uniCloud/cf-database?id=objecttoarray)
      */
-    objectToArray(objectToArrayOptions: any): any[];
+    objectToArray(objectToArrayOptions: unknown): unknown[];
     /**
      * 返回一组生成的序列数字。给定开始值、结束值、非零的步长，range 会返回从开始值开始逐步增长、步长为给定步长、但不包括结束值的序列。参数形式为：[起始值，结束值，步长]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=range](http://uniapp.dcloud.io/uniCloud/cf-database?id=range)
      */
-    range(rangeOptions: any[]): any[];
+    range(rangeOptions: unknown[]): unknown[];
     /**
      * 类似 JavaScript 的 reduce 方法，应用一个表达式于数组各个元素然后归一成一个元素。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=reduce](http://uniapp.dcloud.io/uniCloud/cf-database?id=reduce)
      */
-    reduce(reduceOptions: ReduceOptions): any;
+    reduce(reduceOptions: ReduceOptions): unknown;
     /**
      * 返回给定数组的倒序形式。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=reversearray](http://uniapp.dcloud.io/uniCloud/cf-database?id=reversearray)
      */
-    reverseArray(reverseArrayOptions: any[] | string): any[];
+    reverseArray(reverseArrayOptions: unknown[] | string): unknown[];
     /**
      * 返回数组长度。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=size](http://uniapp.dcloud.io/uniCloud/cf-database?id=size)
      */
-    size(sizeOptions: any[] | string): number;
+    size(sizeOptions: unknown[] | string): number;
     /**
      * 类似 JavaScritp 的 slice 方法。返回给定数组的指定子集。参数形式：[数组,下标]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=slice](http://uniapp.dcloud.io/uniCloud/cf-database?id=slice)
      */
-    slice(sliceOptions: any[]): any[];
+    slice(sliceOptions: unknown[]): unknown[];
     /**
      * 把二维数组的第二维数组中的相同序号的元素分别拼装成一个新的数组进而组装成一个新的二维数组。如可将 [ [ 1, 2, 3 ], [ "a", "b",
      *                     "c"
@@ -365,13 +363,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=zip](http://uniapp.dcloud.io/uniCloud/cf-database?id=zip)
      */
-    zip(zipOptions: ZipOptions): any[];
+    zip(zipOptions: ZipOptions): unknown[];
     /**
      * 给定多个表达式，and 仅在所有表达式都返回 true 时返回 true，否则返回 false 。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=and](http://uniapp.dcloud.io/uniCloud/cf-database?id=and)
      */
-    and(andOptions: any[]): boolean;
+    and(andOptions: unknown[]): boolean;
     /**
      * 给定一个表达式，如果表达式返回 true，则 not 返回 false，否则返回 true。注意表达式不能为逻辑表达式（and、or、nor、not）。
      *
@@ -383,61 +381,61 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=or](http://uniapp.dcloud.io/uniCloud/cf-database?id=or)
      */
-    or(orOptions: any[]): boolean;
+    or(orOptions: unknown[]): boolean;
     /**
      * 给定两个值，返回其比较值。如果第一个值小于第二个值，返回 -1 。如果第一个值大于第二个值，返回 1 。 如果两个值相等，返回 0 。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=cmp](http://uniapp.dcloud.io/uniCloud/cf-database?id=cmp)
      */
-    cmp(cmpOptions: any[]): number;
+    cmp(cmpOptions: unknown[]): number;
     /**
      * 匹配两个值，如果相等则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=eq](http://uniapp.dcloud.io/uniCloud/cf-database?id=eq)
      */
-    eq(eqOptions: any[]): boolean;
+    eq(eqOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果前者大于后者则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=gt](http://uniapp.dcloud.io/uniCloud/cf-database?id=gt)
      */
-    gt(gtOptions: any[]): boolean;
+    gt(gtOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果前者大于或等于后者则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=gte](http://uniapp.dcloud.io/uniCloud/cf-database?id=gte)
      */
-    gte(gteOptions: any[]): boolean;
+    gte(gteOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果前者小于后者则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=lt](http://uniapp.dcloud.io/uniCloud/cf-database?id=lt)
      */
-    lt(ltOptions: any[]): boolean;
+    lt(ltOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果前者小于或等于后者则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=lte](http://uniapp.dcloud.io/uniCloud/cf-database?id=lte)
      */
-    lte(lteOptions: any[]): boolean;
+    lte(lteOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果不相等则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=neq](http://uniapp.dcloud.io/uniCloud/cf-database?id=neq)
      */
-    neq(neqOptions: any[]): boolean;
+    neq(neqOptions: unknown[]): boolean;
     /**
      * 计算布尔表达式，返回指定的两个值其中之一。参数形式为：[布尔表达式,真值,假值]，效果类似于 javascript 里的 condition?a:b
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=cond](http://uniapp.dcloud.io/uniCloud/cf-database?id=cond)
      */
-    cond(condOptions: any[]): any;
+    cond(condOptions: unknown[]): unknown;
     /**
      * 计算给定的表达式，如果表达式结果为 null、undefined 或者不存在，那么返回一个替代值；否则返回原值。参数形式为：[表达式,替代值]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=ifnull](http://uniapp.dcloud.io/uniCloud/cf-database?id=ifnull)
      */
-    ifNull(ifNullOptions: any[]): any;
+    ifNull(ifNullOptions: unknown[]): unknown;
     /**
      * 根据给定的 switch-case-default 计算返回值。
      *
@@ -449,13 +447,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=datefromparts](http://uniapp.dcloud.io/uniCloud/cf-database?id=datefromparts)
      */
-    dateFromParts(dateFromPartsOptions: DateFromPartsOptions): DBDate;
+    dateFromParts(dateFromPartsOptions: DateFromPartsOptions): unknown;
     /**
      * 将一个日期/时间字符串转换为日期对象。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=datefromstring](http://uniapp.dcloud.io/uniCloud/cf-database?id=datefromstring)
      */
-    dateFromString(dateFromStringOptions: DateFromStringOptions): DBDate;
+    dateFromString(dateFromStringOptions: DateFromStringOptions): unknown;
     /**
      * 根据指定的表达式将日期对象格式化为符合要求的字符串。
      *
@@ -551,62 +549,63 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=objecttoarray](http://uniapp.dcloud.io/uniCloud/cf-database?id=objecttoarray)
      */
-    objectToArray(objectToArrayOptions: any): any[];
+    // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
+    objectToArray(objectToArrayOptions: unknown): unknown[];
     /**
      * 输入一个数组，或者数组字段的表达式。如果数组中所有元素均为真值，那么返回 true，否则返回 false。空数组永远返回 true。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=allelementstrue](http://uniapp.dcloud.io/uniCloud/cf-database?id=allelementstrue)
      */
-    allElementsTrue(allElementsTrueOptions: any[]): boolean;
+    allElementsTrue(allElementsTrueOptions: unknown[]): boolean;
     /**
      * 输入一个数组，或者数组字段的表达式。如果数组中任意一个元素为真值，那么返回 true，否则返回 false。空数组永远返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=anyelementtrue](http://uniapp.dcloud.io/uniCloud/cf-database?id=anyelementtrue)
      */
-    anyElementTrue(anyElementTrueOptions: any[]): boolean;
+    anyElementTrue(anyElementTrueOptions: unknown[]): boolean;
     /**
      * 输入两个集合，输出只存在于第一个集合中的元素。。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setdifference](http://uniapp.dcloud.io/uniCloud/cf-database?id=setdifference)
      */
-    setDifference(setDifferenceOptions: any[]): any;
+    setDifference(setDifferenceOptions: unknown[]): unknown;
     /**
      * 输入两个集合，判断两个集合中包含的元素是否相同（不考虑顺序、去重）。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setequals](http://uniapp.dcloud.io/uniCloud/cf-database?id=setequals)
      */
-    setEquals(setEqualsOptions: any[]): boolean;
+    setEquals(setEqualsOptions: unknown[]): boolean;
     /**
      * 输入两个集合，判断两个集合中包含的元素是否相同（不考虑顺序、去重）。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setintersection](http://uniapp.dcloud.io/uniCloud/cf-database?id=setintersection)
      */
-    setIntersection(setIntersectionOptions: any[]): any;
+    setIntersection(setIntersectionOptions: unknown[]): unknown;
     /**
      * 输入两个集合，判断第一个集合是否是第二个集合的子集。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setissubset](http://uniapp.dcloud.io/uniCloud/cf-database?id=setissubset)
      */
-    setIsSubset(setIsSubsetOptions: any[]): any;
+    setIsSubset(setIsSubsetOptions: unknown[]): unknown;
     /**
      * 输入两个集合，输出两个集合的并集。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setunion](http://uniapp.dcloud.io/uniCloud/cf-database?id=setunion)
      */
-    setUnion(setUnionOptions: any[]): any;
+    setUnion(setUnionOptions: unknown[]): unknown;
     /**
      * 连接字符串，返回拼接后的字符串。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=concat](http://uniapp.dcloud.io/uniCloud/cf-database?id=concat)
      */
-    concat(concatOptions: any[]): string;
+    concat(concatOptions: unknown[]): string;
     /**
      * 在目标字符串中查找子字符串，并返回第一次出现的 UTF-8 的字节索引（从0开始）。如果不存在子字符串，返回 -1。参数形式为：[目标字符串表达式, 子字符串表达式, 开始位置,
      *                     结束位置]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofbytes](http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofbytes)
      */
-    indexOfBytes(indexOfBytesOptions: any[]): number;
+    indexOfBytes(indexOfBytesOptions: unknown[]): number;
     /**
      * 在目标字符串中查找子字符串，并返回第一次出现的 UTF-8 的 code point 索引（从0开始）。如果不存在子字符串，返回 -1。参数形式为：[目标字符串表达式,
      *                     子字符串表达式, 开始位置,
@@ -614,13 +613,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofcp](http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofcp)
      */
-    indexOfCP(indexOfCPOptions: any[]): number;
+    indexOfCP(indexOfCPOptions: unknown[]): number;
     /**
      * 按照分隔符分隔字符串，并且删除分隔符，返回子字符串组成的数组。如果字符串无法找到分隔符进行分隔，返回原字符串作为数组的唯一元素。参数形式为：[字符串,分隔符]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=split](http://uniapp.dcloud.io/uniCloud/cf-database?id=split)
      */
-    split(splitOptions: string): any[];
+    split(splitOptions: string): unknown[];
     /**
      * 计算并返回指定字符串中 utf-8 编码的字节数量。
      *
@@ -638,26 +637,26 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=strcasecmp](http://uniapp.dcloud.io/uniCloud/cf-database?id=strcasecmp)
      */
-    strcasecmp(strcasecmpOptions: any[]): number;
+    strcasecmp(strcasecmpOptions: unknown[]): number;
     /**
      * 返回字符串从指定位置开始的指定长度的子字符串。它是 db.command.aggregate.substrBytes
      *                     的别名，更推荐使用后者。参数形式为：[字符串,起始位置,结束位置]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=substr](http://uniapp.dcloud.io/uniCloud/cf-database?id=substr)
      */
-    substr(substrOptions: any[]): string;
+    substr(substrOptions: unknown[]): string;
     /**
      * 返回字符串从指定位置开始的指定长度的子字符串。子字符串是由字符串中指定的 UTF-8 字节索引的字符开始，长度为指定的字节数。参数形式为：[字符串,起始位置,结束位置]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=substrbytes](http://uniapp.dcloud.io/uniCloud/cf-database?id=substrbytes)
      */
-    substrBytes(substrBytesOptions: any[]): string;
+    substrBytes(substrBytesOptions: unknown[]): string;
     /**
      * 返回字符串从指定位置开始的指定长度的子字符串。子字符串是由字符串中指定的 UTF-8 字节索引的字符开始，长度为指定的字节数。参数形式为：[字符串,起始位置,结束位置]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=substrcp](http://uniapp.dcloud.io/uniCloud/cf-database?id=substrcp)
      */
-    substrCP(substrCPOptions: any[]): string;
+    substrCP(substrCPOptions: unknown[]): string;
     /**
      * 将字符串转化为小写并返回。
      *
@@ -711,13 +710,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=mergeobjects](http://uniapp.dcloud.io/uniCloud/cf-database?id=mergeobjects)
      */
-    mergeObjects(mergeObjectsOptions: string | any[]): void;
+    mergeObjects(mergeObjectsOptions: string | unknown[]): void;
     /**
      * 在 group 阶段，返回一组中表达式指定列与对应的值，一起组成的数组。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=push-1](http://uniapp.dcloud.io/uniCloud/cf-database?id=push-1)
      */
-    push(pushOptions: any): void;
+    push(pushOptions: unknown): void;
     /**
      * 返回一组字段对应值的标准差。
      *
@@ -824,17 +823,17 @@ declare namespace UniCloud {
     isoDayOfWeek?: number;
   }
 
-  interface DBDate {}
+  // interface DBDate {}
 
   interface LetOptions {
     /**
      * 定义多个变量，变量的值由 变量表达式 计算而来，并且被定义的变量只有在 in 中的 结果表达式 才可以访问。
      */
-    vars: any;
+    vars: unknown;
     /**
      * 结果表达式中访问自定义变量时候，请在变量名前加上双美元符号( $$ )并用引号括起来，如：'$$price'
      */
-    in: any;
+    in: unknown;
   }
 
   interface SwitchOptions {
@@ -845,18 +844,18 @@ declare namespace UniCloud {
     /**
      * switch的默认操作
      */
-    default: any;
+    default: unknown;
   }
 
   interface BranchedOptions {
     /**
      * 判断条件
      */
-    case: any;
+    case: unknown;
     /**
      * 条件为真时执行的操作
      */
-    then: any;
+    then: unknown;
   }
 
   interface ZipOptions {
@@ -864,24 +863,24 @@ declare namespace UniCloud {
      * 一个二维数组（inputs 不可以是字段引用），其中每个元素的表达式（这个可以是字段引用）都可以解析为数组。如果其中任意一个表达式返回 null，inputs 也返回
      *                     null。如果其中任意一个表达式不是指向一个合法的字段 / 解析为数组 / 解析为 null，则返回错误。
      */
-    inputs: any;
+    inputs: unknown;
     /**
      * 决定输出数组的长度是否采用输入数组中的最长数组的长度。默认为 false，即输入数组中的最短的数组的长度即是输出数组的各个元素的长度。
      */
-    useLongestLength: any;
+    useLongestLength: unknown;
     /**
      * 一个数组，用于指定在输入数组长度不一的情况下时采用的数组各元素默认值。指定这个字段则必须指定 useLongestLength，否则返回错误。如果 useLongestLength
      *                     是 true 但是
      *                     defaults 是空或没有指定，则 zip 用 null 做数组元素的缺省默认值。指定各元素默认值时 defaults 数组的长度必须是输入数组最大的长度。
      */
-    defaults: any;
+    defaults: unknown;
   }
 
   interface ReduceOptions {
     /**
      * 输入数组，可以是任意解析为数组的表达式
      */
-    input: string | any[];
+    input: string | unknown[];
     /**
      * 初始值
      */
@@ -889,7 +888,7 @@ declare namespace UniCloud {
     /**
      * 用来作用于每个元素的表达式，在 in 中有两个可用变量，value 是表示累计值的变量，this 是表示当前数组元素的变量
      */
-    in: any;
+    in: unknown;
   }
 
   interface MapOptions {
@@ -904,7 +903,7 @@ declare namespace UniCloud {
     /**
      * 一个可以应用在给定数组的各个元素上的表达式，各个元素的名字由 as 参数决定（参数名需加 $$ 前缀，如 $$this）
      */
-    in: any;
+    in: unknown;
   }
 
   interface FilterOptions {
@@ -941,22 +940,22 @@ declare namespace UniCloud {
     /**
      * 地理信息结构，Polygon，MultiPolygon，或 { centerSphere }
      */
-    geometry: any;
+    geometry: unknown;
   }
 
   interface IGeoIntersectsOptions {
     /**
      * 地理信息结构，Point
      */
-    geometry: any;
+    geometry: unknown;
   }
 
-  interface LOGIC_COMMANDS_LITERAL {}
+  // interface LOGIC_COMMANDS_LITERAL {}
 
   interface LogicCommand {
-    fieldName: any;
-    operator: any;
-    operands: any;
+    fieldName: unknown;
+    operator: unknown;
+    operands: unknown;
     _internalType: InternalSymbol;
     _setFieldName(fieldName: string): LogicCommand;
     /**
@@ -964,25 +963,25 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=and](http://uniapp.dcloud.io/uniCloud/cf-database?id=and)
      */
-    and(__expressions__: any): LogicCommand;
+    and(__expressions__: unknown): LogicCommand;
     /**
      * 查询操作符，用于表示逻辑 "或" 的关系，表示需同时满足多个查询筛选条件。或指令有两种用法，一是可以进行字段值的 “或” 操作，二是也可以进行跨字段的 “或” 操作。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=or](http://uniapp.dcloud.io/uniCloud/cf-database?id=or)
      */
-    or(__expressions__: any): LogicCommand;
+    or(__expressions__: unknown): LogicCommand;
   }
 
   interface InternalSymbol {
-    for(target: any): InternalSymbol;
+    for(target: unknown): InternalSymbol;
   }
 
-  interface UPDATE_COMMANDS_LITERAL {}
+  // interface UPDATE_COMMANDS_LITERAL {}
 
   interface UpdateCommand {
-    fieldName: any;
-    operator: UPDATE_COMMANDS_LITERAL;
-    operands: any;
+    fieldName: unknown;
+    operator: unknown;
+    operands: unknown;
     _internalType: InternalSymbol;
     _setFieldName(fieldName: string): UpdateCommand;
   }
@@ -991,7 +990,7 @@ declare namespace UniCloud {
     /**
      * 数据库地理位置结构集
      */
-    Point: any;
+    Point: unknown;
   }
 
   interface Point {
@@ -1003,12 +1002,12 @@ declare namespace UniCloud {
      * 经度
      */
     longitude: number;
-    _internalType: any;
-    parse(key: any): any;
+    _internalType: unknown;
+    parse(key: unknown): unknown;
     /**
      * 返回相应的 GeoJSON 结构的对象
      */
-    toJSON(): any;
+    toJSON(): unknown;
     /**
      * 转换成可读字符串
      */
@@ -1018,32 +1017,32 @@ declare namespace UniCloud {
 
   interface ISerializedPoint {
     type: string;
-    coordinates: any;
+    coordinates: unknown;
   }
 
   interface ISerializedLineString {
     type: string;
-    coordinates: any;
+    coordinates: unknown;
   }
 
   interface ISerializedPolygon {
     type: string;
-    coordinates: any;
+    coordinates: unknown;
   }
 
   interface ISerializedMultiPoint {
     type: string;
-    coordinates: any;
+    coordinates: unknown;
   }
 
   interface ISerializedMultiLineString {
     type: string;
-    coordinates: any;
+    coordinates: unknown;
   }
 
   interface ISerializedMultiPolygon {
     type: string;
-    coordinates: any;
+    coordinates: unknown;
   }
 
   interface GetParam {
@@ -1100,25 +1099,25 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=add](http://uniapp.dcloud.io/uniCloud/cf-database?id=add)
      */
-    add(data: any): any;
+    add(data: unknown): unknown;
     /**
      * 获取记录数据，或获取根据查询条件筛选后的记录数据
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=query](http://uniapp.dcloud.io/uniCloud/cf-database?id=query)
      */
-    get(GetParam?: GetParam): any;
+    get(GetParam?: GetParam): unknown;
     /**
      * 延迟查询请求
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/clientdb?id=multi-send](http://uniapp.dcloud.io/uniCloud/clientdb?id=multi-send)
      */
-    getTemp(GetParam?: GetParam): GetTempQuery;
+    getTemp(GetParam?: GetParam): unknown;
     /**
      * 统计匹配查询条件的记录的条数
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=count](http://uniapp.dcloud.io/uniCloud/cf-database?id=count)
      */
-    count(): any;
+    count(): unknown;
     /**
      * 指定查询条件，返回带新查询条件的新的集合引用
      *
@@ -1148,7 +1147,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=update](http://uniapp.dcloud.io/uniCloud/cf-database?id=update)
      */
-    update(data: any): any;
+    update(data: unknown): unknown;
     /**
      * 指定返回结果中记录需返回的字段
      *
@@ -1184,7 +1183,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=remove](http://uniapp.dcloud.io/uniCloud/cf-database?id=remove)
      */
-    remove(): any;
+    remove(): unknown;
     /**
      * 获取数据库集合的聚合操作实例
      *
@@ -1201,37 +1200,37 @@ declare namespace UniCloud {
     /**
      * 返回结果中记录需返回的字段
      */
-    projection: any;
+    projection: unknown;
     /**
      * 替换更新一条记录
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=doc-set](http://uniapp.dcloud.io/uniCloud/cf-database?id=doc-set)
      */
-    set(data: any): any;
+    set(data: unknown): unknown;
     /**
      * 更新一条记录
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=where-update](http://uniapp.dcloud.io/uniCloud/cf-database?id=where-update)
      */
-    update(data: any): any;
+    update(data: unknown): unknown;
     /**
      * 删除一条记录
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=remove](http://uniapp.dcloud.io/uniCloud/cf-database?id=remove)
      */
-    remove(): any;
+    remove(): unknown;
     /**
      * 获取记录数据，或获取根据查询条件筛选后的记录数据
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=query](http://uniapp.dcloud.io/uniCloud/cf-database?id=query)
      */
-    get(GetParam?: GetParam): any;
+    get(GetParam?: GetParam): unknown;
     /**
      * 获取记录数据，或获取根据查询条件筛选后的记录数据
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/clientdb?id=multi-send](http://uniapp.dcloud.io/uniCloud/clientdb?id=multi-send)
      */
-    getTemp(GetParam?: GetParam): GetTempQuery;
+    getTemp(GetParam?: GetParam): unknown;
     /**
      * 指定返回结果中记录需返回的字段
      *
@@ -1269,7 +1268,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-add-fields](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-add-fields)
      */
-    addFields(addFieldsOptions: any): AggregateReference;
+    addFields(addFieldsOptions: unknown): AggregateReference;
     /**
      * 将输入记录根据给定的条件和边界划分成不同的组，每组即一个bucket
      *
@@ -1294,7 +1293,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-group](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-group)
      */
-    group(groupOptions: any): AggregateReference;
+    group(groupOptions: unknown): AggregateReference;
     /**
      * 限制输出到下一阶段的记录数。
      *
@@ -1313,13 +1312,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-match](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-match)
      */
-    match(matchOptions: any): AggregateReference;
+    match(matchOptions: unknown): AggregateReference;
     /**
      * 把指定的字段传递给下一个流水线，指定的字段可以是某个已经存在的字段，也可以是计算出来的新字段。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-project](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-project)
      */
-    project(projectOptions: any): AggregateReference;
+    project(projectOptions: unknown): AggregateReference;
     /**
      * 指定一个已有字段作为输出的根节点，也可以指定一个计算出的新字段作为根节点。
      *
@@ -1343,7 +1342,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-sort](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-sort)
      */
-    sort(sortOptions: any): AggregateReference;
+    sort(sortOptions: unknown): AggregateReference;
     /**
      * 根据指定的字段，对输入的文档进行排序。
      *
@@ -1361,7 +1360,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-end](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-end)
      */
-    end(): any;
+    end(): unknown;
   }
 
   interface UnwindOptions {
@@ -1390,7 +1389,7 @@ declare namespace UniCloud {
     /**
      * 新的根节点
      */
-    newRoot: any;
+    newRoot: unknown;
   }
 
   interface LookupOptions {
@@ -1422,13 +1421,13 @@ declare namespace UniCloud {
      *                     字段作为变量 userName
      *                     的值。在 pipeline 中无法直接访问输入记录的字段，必须通过 let 定义之后才能访问，访问的方式是在 expr 操作符中用 $$变量名 的方式访问，比如 $$userName。
      */
-    let: any;
+    let: unknown;
     /**
      * 指定要在被连接集合中运行的聚合操作。如果要返回整个集合，则该字段取值空数组 []。在 pipeline 中无法直接访问输入记录的字段，必须通过 let
      *                     定义之后才能访问，访问的方式是在 expr
      *                     操作符中用 $$变量名 的方式访问，比如 $$userName。
      */
-    pipeline: any;
+    pipeline: unknown;
     /**
      * 指定连接匹配出的记录列表要存放的字段名，这个数组包含的是匹配出的来自 from 集合的记录。如果输入记录中本来就已有该字段，则该字段会被覆写
      */
@@ -1445,7 +1444,7 @@ declare namespace UniCloud {
     /**
      * 一个数组，每个元素分别是每组的下界。必须至少指定两个边界值。数组值必须是同类型递增的值
      */
-    boundaries: any[];
+    boundaries: unknown[];
     /**
      * 可选，指定之后，没有进入任何分组的记录将都进入一个默认分组，这个分组记录的 _id 即由 default 决定。default 的值必须小于 boundaries
      *                     中的最小值或大于等于其中的最大值。default 的值可以与 boundaries 元素值类型不同。
@@ -1454,7 +1453,7 @@ declare namespace UniCloud {
     /**
      * 可选，用以决定输出记录除了 _id 外还要包含哪些字段，各个字段的值必须用累加器表达式指定。
      */
-    output: any;
+    output: unknown;
   }
 
   interface BucketAutoOptions {
@@ -1488,7 +1487,7 @@ declare namespace UniCloud {
     /**
      * 用以决定输出记录除了 _id 外还要包含哪些字段，各个字段的值必须用累加器表达式指定
      */
-    output: any;
+    output: unknown;
   }
 
   interface Query {
@@ -1497,19 +1496,19 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=query](http://uniapp.dcloud.io/uniCloud/cf-database?id=query)
      */
-    get(GetParam?: GetParam): any;
+    get(GetParam?: GetParam): unknown;
     /**
      * 延迟查询请求
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/clientdb?id=multi-send](http://uniapp.dcloud.io/uniCloud/clientdb?id=multi-send)
      */
-    getTemp(GetParam?: GetParam): GetTempQuery;
+    getTemp(GetParam?: GetParam): unknown;
     /**
      * 统计匹配查询条件的记录的条数
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=count](http://uniapp.dcloud.io/uniCloud/cf-database?id=count)
      */
-    count(): any;
+    count(): unknown;
     /**
      * 指定查询条件，返回带新查询条件的新的集合引用
      *
@@ -1539,7 +1538,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=update](http://uniapp.dcloud.io/uniCloud/cf-database?id=update)
      */
-    update(data: any): any;
+    update(data: unknown): unknown;
     /**
      * 指定返回结果中记录需返回的字段
      *
@@ -1569,13 +1568,11 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=remove](http://uniapp.dcloud.io/uniCloud/cf-database?id=remove)
      */
-    remove(): any;
+    remove(): unknown;
   }
 
-  interface QUERY_COMMANDS_LITERAL {}
-
   interface QueryCommand {
-    operator: QUERY_COMMANDS_LITERAL;
+    operator: unknown;
     /**
      * 聚合操作符
      */
@@ -1628,61 +1625,61 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=eq](http://uniapp.dcloud.io/uniCloud/cf-database?id=eq)
      */
-    eq(val: any): LogicCommand;
+    eq(val: unknown): LogicCommand;
     /**
      * 查询筛选条件，表示字段不等于某个值。eq 指令接受一个字面量 (literal)，可以是 number, boolean, string, object, array, Date。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=neq](http://uniapp.dcloud.io/uniCloud/cf-database?id=neq)
      */
-    neq(val: any): LogicCommand;
+    neq(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示需大于指定值。可以传入 Date 对象用于进行日期比较。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=gt](http://uniapp.dcloud.io/uniCloud/cf-database?id=gt)
      */
-    gt(val: any): LogicCommand;
+    gt(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示需大于或等于指定值。可以传入 Date 对象用于进行日期比较。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=gte](http://uniapp.dcloud.io/uniCloud/cf-database?id=gte)
      */
-    gte(val: any): LogicCommand;
+    gte(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示需小于指定值。可以传入 Date 对象用于进行日期比较。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=lt](http://uniapp.dcloud.io/uniCloud/cf-database?id=lt)
      */
-    lt(val: any): LogicCommand;
+    lt(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示需小于或等于指定值。可以传入 Date 对象用于进行日期比较。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=lte](http://uniapp.dcloud.io/uniCloud/cf-database?id=lte)
      */
-    lte(val: any): LogicCommand;
+    lte(val: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示要求值在给定的数组内。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=in](http://uniapp.dcloud.io/uniCloud/cf-database?id=in)
      */
-    in(list: any): LogicCommand;
+    in(list: unknown): LogicCommand;
     /**
      * 查询筛选操作符，表示要求值不在给定的数组内。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=nin](http://uniapp.dcloud.io/uniCloud/cf-database?id=nin)
      */
-    nin(list: any): LogicCommand;
+    nin(list: unknown): LogicCommand;
     /**
      * 查询操作符，用于表示逻辑 "或" 的关系，表示需同时满足多个查询筛选条件。或指令有两种用法，一是可以进行字段值的 “或” 操作，二是也可以进行跨字段的 “或” 操作。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=or-1](http://uniapp.dcloud.io/uniCloud/cf-database?id=or-1)
      */
-    or(val: any): LogicCommand;
+    or(val: unknown): LogicCommand;
     /**
      * 查询操作符，用于表示逻辑 "与" 的关系，表示需同时满足多个查询筛选条件。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=and-1](http://uniapp.dcloud.io/uniCloud/cf-database?id=and-1)
      */
-    and(val: any): LogicCommand;
+    and(val: unknown): LogicCommand;
     /**
      * 按从近到远的顺序，找出字段值在给定点的附近的记录。
      *
@@ -1715,7 +1712,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=add](http://uniapp.dcloud.io/uniCloud/cf-database?id=add)
      */
-    add(addOptions: any[]): number;
+    add(addOptions: unknown[]): number;
     /**
      * 向上取整，返回大于或等于给定数字的最小整数。
      *
@@ -1727,7 +1724,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=divide](http://uniapp.dcloud.io/uniCloud/cf-database?id=divide)
      */
-    divide(divideOptions: any[]): number;
+    divide(divideOptions: unknown[]): number;
     /**
      * 取 e（自然对数的底数，欧拉数） 的 n 次方
      *
@@ -1751,7 +1748,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=log](http://uniapp.dcloud.io/uniCloud/cf-database?id=log)
      */
-    log(logOptions: any[]): number;
+    log(logOptions: unknown[]): number;
     /**
      * 计算给定数字在对数底为 10 下的 log 值。
      *
@@ -1763,31 +1760,31 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=mod](http://uniapp.dcloud.io/uniCloud/cf-database?id=mod)
      */
-    mod(modOptions: any[]): number;
+    mod(modOptions: unknown[]): number;
     /**
      * 取传入的数字参数相乘的结果。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=multiply](http://uniapp.dcloud.io/uniCloud/cf-database?id=multiply)
      */
-    multiply(multiplyOptions: any[]): number;
+    multiply(multiplyOptions: unknown[]): number;
     /**
      * 求给定基数的指数次幂。参数形式为：[底数,指数]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=pow](http://uniapp.dcloud.io/uniCloud/cf-database?id=pow)
      */
-    pow(powOptions: any[]): number;
+    pow(powOptions: unknown[]): number;
     /**
      * 求平方根。参数形式为：[被开方数]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=sqrt](http://uniapp.dcloud.io/uniCloud/cf-database?id=sqrt)
      */
-    sqrt(sqrtOptions: any[]): number;
+    sqrt(sqrtOptions: unknown[]): number;
     /**
      * 将两个数字相减然后返回差值，或将两个日期相减然后返回相差的毫秒数，或将一个日期减去一个数字返回结果的日期。参数形式为：[被减数,减数]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=subtract](http://uniapp.dcloud.io/uniCloud/cf-database?id=subtract)
      */
-    subtract(subtractOptions: any[]): number;
+    subtract(subtractOptions: unknown[]): number;
     /**
      * 将数字截断为整形。
      *
@@ -1799,25 +1796,25 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=arrayelemat](http://uniapp.dcloud.io/uniCloud/cf-database?id=arrayelemat)
      */
-    arrayElemAt(arrayElemAtOptions: any[]): any;
+    arrayElemAt(arrayElemAtOptions: unknown[]): unknown;
     /**
      * 将一个数组转换为对象。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=arraytoobject](http://uniapp.dcloud.io/uniCloud/cf-database?id=arraytoobject)
      */
-    arrayToObject(arrayToObjectOptions: any[] | string): any;
+    arrayToObject(arrayToObjectOptions: unknown[] | string): unknown;
     /**
      * 将多个数组拼接成一个数组。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=concatarrays](http://uniapp.dcloud.io/uniCloud/cf-database?id=concatarrays)
      */
-    concatArrays(concatArraysOptions: any[]): any[];
+    concatArrays(concatArraysOptions: unknown[]): unknown[];
     /**
      * 根据给定条件返回满足条件的数组的子集。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=filter](http://uniapp.dcloud.io/uniCloud/cf-database?id=filter)
      */
-    filter(filterOptions: FilterOptions): any[];
+    filter(filterOptions: FilterOptions): unknown[];
     /**
      * 给定一个值和一个数组，如果值在数组中则返回 true，否则返回 false。
      *
@@ -1829,55 +1826,55 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofarray](http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofarray)
      */
-    indexOfArray(indexOfArrayOptions: any[]): number;
+    indexOfArray(indexOfArrayOptions: unknown[]): number;
     /**
      * 判断给定表达式是否是数组，返回布尔值。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=isarray](http://uniapp.dcloud.io/uniCloud/cf-database?id=isarray)
      */
-    isArray(isArrayOptions: any[]): boolean;
+    isArray(isArrayOptions: unknown[]): boolean;
     /**
      * 类似 JavaScript Array 上的 map 方法，将给定数组的每个元素按给定转换方法转换后得出新的数组。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=map](http://uniapp.dcloud.io/uniCloud/cf-database?id=map)
      */
-    map(mapOptions: MapOptions): any[];
+    map(mapOptions: MapOptions): unknown[];
     /**
      * 将一个对象转换为数组。方法把对象的每个键值对都变成输出数组的一个元素，元素形如 { k: <key>, v: <value> }。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=objecttoarray](http://uniapp.dcloud.io/uniCloud/cf-database?id=objecttoarray)
      */
-    objectToArray(objectToArrayOptions: any): any[];
+    objectToArray(objectToArrayOptions: unknown): unknown[];
     /**
      * 返回一组生成的序列数字。给定开始值、结束值、非零的步长，range 会返回从开始值开始逐步增长、步长为给定步长、但不包括结束值的序列。参数形式为：[起始值，结束值，步长]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=range](http://uniapp.dcloud.io/uniCloud/cf-database?id=range)
      */
-    range(rangeOptions: any[]): any[];
+    range(rangeOptions: unknown[]): unknown[];
     /**
      * 类似 JavaScript 的 reduce 方法，应用一个表达式于数组各个元素然后归一成一个元素。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=reduce](http://uniapp.dcloud.io/uniCloud/cf-database?id=reduce)
      */
-    reduce(reduceOptions: ReduceOptions): any;
+    reduce(reduceOptions: ReduceOptions): unknown;
     /**
      * 返回给定数组的倒序形式。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=reversearray](http://uniapp.dcloud.io/uniCloud/cf-database?id=reversearray)
      */
-    reverseArray(reverseArrayOptions: any[] | string): any[];
+    reverseArray(reverseArrayOptions: unknown[] | string): unknown[];
     /**
      * 返回数组长度。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=size](http://uniapp.dcloud.io/uniCloud/cf-database?id=size)
      */
-    size(sizeOptions: any[] | string): number;
+    size(sizeOptions: unknown[] | string): number;
     /**
      * 类似 JavaScritp 的 slice 方法。返回给定数组的指定子集。参数形式：[数组,下标]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=slice](http://uniapp.dcloud.io/uniCloud/cf-database?id=slice)
      */
-    slice(sliceOptions: any[]): any[];
+    slice(sliceOptions: unknown[]): unknown[];
     /**
      * 把二维数组的第二维数组中的相同序号的元素分别拼装成一个新的数组进而组装成一个新的二维数组。如可将 [ [ 1, 2, 3 ], [ "a", "b",
      *                     "c"
@@ -1885,13 +1882,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=zip](http://uniapp.dcloud.io/uniCloud/cf-database?id=zip)
      */
-    zip(zipOptions: ZipOptions): any[];
+    zip(zipOptions: ZipOptions): unknown[];
     /**
      * 给定多个表达式，and 仅在所有表达式都返回 true 时返回 true，否则返回 false 。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=and](http://uniapp.dcloud.io/uniCloud/cf-database?id=and)
      */
-    and(andOptions: any[]): boolean;
+    and(andOptions: unknown[]): boolean;
     /**
      * 给定一个表达式，如果表达式返回 true，则 not 返回 false，否则返回 true。注意表达式不能为逻辑表达式（and、or、nor、not）。
      *
@@ -1903,61 +1900,61 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=or](http://uniapp.dcloud.io/uniCloud/cf-database?id=or)
      */
-    or(orOptions: any[]): boolean;
+    or(orOptions: unknown[]): boolean;
     /**
      * 给定两个值，返回其比较值。如果第一个值小于第二个值，返回 -1 。如果第一个值大于第二个值，返回 1 。 如果两个值相等，返回 0 。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=cmp](http://uniapp.dcloud.io/uniCloud/cf-database?id=cmp)
      */
-    cmp(cmpOptions: any[]): number;
+    cmp(cmpOptions: unknown[]): number;
     /**
      * 匹配两个值，如果相等则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=eq](http://uniapp.dcloud.io/uniCloud/cf-database?id=eq)
      */
-    eq(eqOptions: any[]): boolean;
+    eq(eqOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果前者大于后者则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=gt](http://uniapp.dcloud.io/uniCloud/cf-database?id=gt)
      */
-    gt(gtOptions: any[]): boolean;
+    gt(gtOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果前者大于或等于后者则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=gte](http://uniapp.dcloud.io/uniCloud/cf-database?id=gte)
      */
-    gte(gteOptions: any[]): boolean;
+    gte(gteOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果前者小于后者则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=lt](http://uniapp.dcloud.io/uniCloud/cf-database?id=lt)
      */
-    lt(ltOptions: any[]): boolean;
+    lt(ltOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果前者小于或等于后者则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=lte](http://uniapp.dcloud.io/uniCloud/cf-database?id=lte)
      */
-    lte(lteOptions: any[]): boolean;
+    lte(lteOptions: unknown[]): boolean;
     /**
      * 匹配两个值，如果不相等则返回 true，否则返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=neq](http://uniapp.dcloud.io/uniCloud/cf-database?id=neq)
      */
-    neq(neqOptions: any[]): boolean;
+    neq(neqOptions: unknown[]): boolean;
     /**
      * 计算布尔表达式，返回指定的两个值其中之一。参数形式为：[布尔表达式,真值,假值]，效果类似于 javascript 里的 condition?a:b
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=cond](http://uniapp.dcloud.io/uniCloud/cf-database?id=cond)
      */
-    cond(condOptions: any[]): any;
+    cond(condOptions: unknown[]): unknown;
     /**
      * 计算给定的表达式，如果表达式结果为 null、undefined 或者不存在，那么返回一个替代值；否则返回原值。参数形式为：[表达式,替代值]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=ifnull](http://uniapp.dcloud.io/uniCloud/cf-database?id=ifnull)
      */
-    ifNull(ifNullOptions: any[]): any;
+    ifNull(ifNullOptions: unknown[]): unknown;
     /**
      * 根据给定的 switch-case-default 计算返回值。
      *
@@ -1969,13 +1966,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=datefromparts](http://uniapp.dcloud.io/uniCloud/cf-database?id=datefromparts)
      */
-    dateFromParts(dateFromPartsOptions: DateFromPartsOptions): DBDate;
+    dateFromParts(dateFromPartsOptions: DateFromPartsOptions): unknown;
     /**
      * 将一个日期/时间字符串转换为日期对象。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=datefromstring](http://uniapp.dcloud.io/uniCloud/cf-database?id=datefromstring)
      */
-    dateFromString(dateFromStringOptions: DateFromStringOptions): DBDate;
+    dateFromString(dateFromStringOptions: DateFromStringOptions): unknown;
     /**
      * 根据指定的表达式将日期对象格式化为符合要求的字符串。
      *
@@ -2071,62 +2068,62 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=objecttoarray](http://uniapp.dcloud.io/uniCloud/cf-database?id=objecttoarray)
      */
-    objectToArray(objectToArrayOptions: any): any[];
+    // objectToArray(objectToArrayOptions: unknown): unknown[];
     /**
      * 输入一个数组，或者数组字段的表达式。如果数组中所有元素均为真值，那么返回 true，否则返回 false。空数组永远返回 true。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=allelementstrue](http://uniapp.dcloud.io/uniCloud/cf-database?id=allelementstrue)
      */
-    allElementsTrue(allElementsTrueOptions: any[]): boolean;
+    allElementsTrue(allElementsTrueOptions: unknown[]): boolean;
     /**
      * 输入一个数组，或者数组字段的表达式。如果数组中任意一个元素为真值，那么返回 true，否则返回 false。空数组永远返回 false。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=anyelementtrue](http://uniapp.dcloud.io/uniCloud/cf-database?id=anyelementtrue)
      */
-    anyElementTrue(anyElementTrueOptions: any[]): boolean;
+    anyElementTrue(anyElementTrueOptions: unknown[]): boolean;
     /**
      * 输入两个集合，输出只存在于第一个集合中的元素。。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setdifference](http://uniapp.dcloud.io/uniCloud/cf-database?id=setdifference)
      */
-    setDifference(setDifferenceOptions: any[]): any;
+    setDifference(setDifferenceOptions: unknown[]): unknown;
     /**
      * 输入两个集合，判断两个集合中包含的元素是否相同（不考虑顺序、去重）。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setequals](http://uniapp.dcloud.io/uniCloud/cf-database?id=setequals)
      */
-    setEquals(setEqualsOptions: any[]): boolean;
+    setEquals(setEqualsOptions: unknown[]): boolean;
     /**
      * 输入两个集合，判断两个集合中包含的元素是否相同（不考虑顺序、去重）。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setintersection](http://uniapp.dcloud.io/uniCloud/cf-database?id=setintersection)
      */
-    setIntersection(setIntersectionOptions: any[]): any;
+    setIntersection(setIntersectionOptions: unknown[]): unknown;
     /**
      * 输入两个集合，判断第一个集合是否是第二个集合的子集。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setissubset](http://uniapp.dcloud.io/uniCloud/cf-database?id=setissubset)
      */
-    setIsSubset(setIsSubsetOptions: any[]): any;
+    setIsSubset(setIsSubsetOptions: unknown[]): unknown;
     /**
      * 输入两个集合，输出两个集合的并集。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=setunion](http://uniapp.dcloud.io/uniCloud/cf-database?id=setunion)
      */
-    setUnion(setUnionOptions: any[]): any;
+    setUnion(setUnionOptions: unknown[]): unknown;
     /**
      * 连接字符串，返回拼接后的字符串。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=concat](http://uniapp.dcloud.io/uniCloud/cf-database?id=concat)
      */
-    concat(concatOptions: any[]): string;
+    concat(concatOptions: unknown[]): string;
     /**
      * 在目标字符串中查找子字符串，并返回第一次出现的 UTF-8 的字节索引（从0开始）。如果不存在子字符串，返回 -1。参数形式为：[目标字符串表达式, 子字符串表达式, 开始位置,
      *                     结束位置]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofbytes](http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofbytes)
      */
-    indexOfBytes(indexOfBytesOptions: any[]): number;
+    indexOfBytes(indexOfBytesOptions: unknown[]): number;
     /**
      * 在目标字符串中查找子字符串，并返回第一次出现的 UTF-8 的 code point 索引（从0开始）。如果不存在子字符串，返回 -1。参数形式为：[目标字符串表达式,
      *                     子字符串表达式, 开始位置,
@@ -2134,13 +2131,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofcp](http://uniapp.dcloud.io/uniCloud/cf-database?id=indexofcp)
      */
-    indexOfCP(indexOfCPOptions: any[]): number;
+    indexOfCP(indexOfCPOptions: unknown[]): number;
     /**
      * 按照分隔符分隔字符串，并且删除分隔符，返回子字符串组成的数组。如果字符串无法找到分隔符进行分隔，返回原字符串作为数组的唯一元素。参数形式为：[字符串,分隔符]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=split](http://uniapp.dcloud.io/uniCloud/cf-database?id=split)
      */
-    split(splitOptions: string): any[];
+    split(splitOptions: string): unknown[];
     /**
      * 计算并返回指定字符串中 utf-8 编码的字节数量。
      *
@@ -2158,26 +2155,26 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=strcasecmp](http://uniapp.dcloud.io/uniCloud/cf-database?id=strcasecmp)
      */
-    strcasecmp(strcasecmpOptions: any[]): number;
+    strcasecmp(strcasecmpOptions: unknown[]): number;
     /**
      * 返回字符串从指定位置开始的指定长度的子字符串。它是 db.command.aggregate.substrBytes
      *                     的别名，更推荐使用后者。参数形式为：[字符串,起始位置,结束位置]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=substr](http://uniapp.dcloud.io/uniCloud/cf-database?id=substr)
      */
-    substr(substrOptions: any[]): string;
+    substr(substrOptions: unknown[]): string;
     /**
      * 返回字符串从指定位置开始的指定长度的子字符串。子字符串是由字符串中指定的 UTF-8 字节索引的字符开始，长度为指定的字节数。参数形式为：[字符串,起始位置,结束位置]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=substrbytes](http://uniapp.dcloud.io/uniCloud/cf-database?id=substrbytes)
      */
-    substrBytes(substrBytesOptions: any[]): string;
+    substrBytes(substrBytesOptions: unknown[]): string;
     /**
      * 返回字符串从指定位置开始的指定长度的子字符串。子字符串是由字符串中指定的 UTF-8 字节索引的字符开始，长度为指定的字节数。参数形式为：[字符串,起始位置,结束位置]
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=substrcp](http://uniapp.dcloud.io/uniCloud/cf-database?id=substrcp)
      */
-    substrCP(substrCPOptions: any[]): string;
+    substrCP(substrCPOptions: unknown[]): string;
     /**
      * 将字符串转化为小写并返回。
      *
@@ -2231,13 +2228,13 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=mergeobjects](http://uniapp.dcloud.io/uniCloud/cf-database?id=mergeobjects)
      */
-    mergeObjects(mergeObjectsOptions: string | any[]): void;
+    mergeObjects(mergeObjectsOptions: string | unknown[]): void;
     /**
      * 在 group 阶段，返回一组中表达式指定列与对应的值，一起组成的数组。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=push-1](http://uniapp.dcloud.io/uniCloud/cf-database?id=push-1)
      */
-    push(pushOptions: any): void;
+    push(pushOptions: unknown): void;
     /**
      * 返回一组字段对应值的标准差。
      *
@@ -2344,17 +2341,17 @@ declare namespace UniCloud {
     isoDayOfWeek?: number;
   }
 
-  interface DBDate {}
+  // interface DBDate {}
 
   interface LetOptions {
     /**
      * 定义多个变量，变量的值由 变量表达式 计算而来，并且被定义的变量只有在 in 中的 结果表达式 才可以访问。
      */
-    vars: any;
+    vars: unknown;
     /**
      * 结果表达式中访问自定义变量时候，请在变量名前加上双美元符号( $$ )并用引号括起来，如：'$$price'
      */
-    in: any;
+    in: unknown;
   }
 
   interface SwitchOptions {
@@ -2365,18 +2362,18 @@ declare namespace UniCloud {
     /**
      * switch的默认操作
      */
-    default: any;
+    default: unknown;
   }
 
   interface BranchedOptions {
     /**
      * 判断条件
      */
-    case: any;
+    case: unknown;
     /**
      * 条件为真时执行的操作
      */
-    then: any;
+    then: unknown;
   }
 
   interface ZipOptions {
@@ -2384,24 +2381,24 @@ declare namespace UniCloud {
      * 一个二维数组（inputs 不可以是字段引用），其中每个元素的表达式（这个可以是字段引用）都可以解析为数组。如果其中任意一个表达式返回 null，inputs 也返回
      *                     null。如果其中任意一个表达式不是指向一个合法的字段 / 解析为数组 / 解析为 null，则返回错误。
      */
-    inputs: any;
+    inputs: unknown;
     /**
      * 决定输出数组的长度是否采用输入数组中的最长数组的长度。默认为 false，即输入数组中的最短的数组的长度即是输出数组的各个元素的长度。
      */
-    useLongestLength: any;
+    useLongestLength: unknown;
     /**
      * 一个数组，用于指定在输入数组长度不一的情况下时采用的数组各元素默认值。指定这个字段则必须指定 useLongestLength，否则返回错误。如果 useLongestLength
      *                     是 true 但是
      *                     defaults 是空或没有指定，则 zip 用 null 做数组元素的缺省默认值。指定各元素默认值时 defaults 数组的长度必须是输入数组最大的长度。
      */
-    defaults: any;
+    defaults: unknown;
   }
 
   interface ReduceOptions {
     /**
      * 输入数组，可以是任意解析为数组的表达式
      */
-    input: string | any[];
+    input: string | unknown[];
     /**
      * 初始值
      */
@@ -2409,7 +2406,7 @@ declare namespace UniCloud {
     /**
      * 用来作用于每个元素的表达式，在 in 中有两个可用变量，value 是表示累计值的变量，this 是表示当前数组元素的变量
      */
-    in: any;
+    in: unknown;
   }
 
   interface MapOptions {
@@ -2424,7 +2421,7 @@ declare namespace UniCloud {
     /**
      * 一个可以应用在给定数组的各个元素上的表达式，各个元素的名字由 as 参数决定（参数名需加 $$ 前缀，如 $$this）
      */
-    in: any;
+    in: unknown;
   }
 
   interface FilterOptions {
@@ -2461,22 +2458,22 @@ declare namespace UniCloud {
     /**
      * 地理信息结构，Polygon，MultiPolygon，或 { centerSphere }
      */
-    geometry: any;
+    geometry: unknown;
   }
 
   interface IGeoIntersectsOptions {
     /**
      * 地理信息结构，Point
      */
-    geometry: any;
+    geometry: unknown;
   }
 
-  interface LOGIC_COMMANDS_LITERAL {}
+  // interface LOGIC_COMMANDS_LITERAL {}
 
   interface LogicCommand {
-    fieldName: any;
-    operator: any;
-    operands: any;
+    fieldName: unknown;
+    operator: unknown;
+    operands: unknown;
     _internalType: InternalSymbol;
     _setFieldName(fieldName: string): LogicCommand;
     /**
@@ -2484,25 +2481,25 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=and](http://uniapp.dcloud.io/uniCloud/cf-database?id=and)
      */
-    and(__expressions__: any): LogicCommand;
+    and(__expressions__: unknown): LogicCommand;
     /**
      * 查询操作符，用于表示逻辑 "或" 的关系，表示需同时满足多个查询筛选条件。或指令有两种用法，一是可以进行字段值的 “或” 操作，二是也可以进行跨字段的 “或” 操作。
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=or](http://uniapp.dcloud.io/uniCloud/cf-database?id=or)
      */
-    or(__expressions__: any): LogicCommand;
+    or(__expressions__: unknown): LogicCommand;
   }
 
   interface InternalSymbol {
-    for(target: any): InternalSymbol;
+    for(target: unknown): InternalSymbol;
   }
 
-  interface UPDATE_COMMANDS_LITERAL {}
+  // interface UPDATE_COMMANDS_LITERAL {}
 
   interface UpdateCommand {
-    fieldName: any;
-    operator: UPDATE_COMMANDS_LITERAL;
-    operands: any;
+    fieldName: unknown;
+    operator: unknown;
+    operands: unknown;
     _internalType: InternalSymbol;
     _setFieldName(fieldName: string): UpdateCommand;
   }
@@ -2511,7 +2508,7 @@ declare namespace UniCloud {
     /**
      * 用于快速开发datacom规范的组件
      */
-    mixinDatacom: any;
+    mixinDatacom: unknown;
     /**
      * 服务空间初始化，返回uniCloud实例
      *
@@ -2535,29 +2532,29 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-functions?id=clientcallfunction](http://uniapp.dcloud.io/uniCloud/cf-functions?id=clientcallfunction)
      */
-    callFunction(options: CallFunctionOptions): any;
+    callFunction(options: CallFunctionOptions): unknown;
     /**
      * 上传文件到云端
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/storage?id=uploadfile](http://uniapp.dcloud.io/uniCloud/storage?id=uploadfile)
      */
-    uploadFile(options: UploadFileOptions): any;
+    uploadFile(options: UploadFileOptions): unknown;
     /**
      * 选择并上传文件
      */
-    chooseAndUploadFile(options: ChooseAndUploadFileOptions): any;
+    chooseAndUploadFile(options: ChooseAndUploadFileOptions): unknown;
     /**
      * 删除云端文件
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/storage?id=deletefile](http://uniapp.dcloud.io/uniCloud/storage?id=deletefile)
      */
-    deleteFile(options: DeleteFileOptions): any;
+    deleteFile(options: DeleteFileOptions): unknown;
     /**
      * 获取文件临时链接
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/storage?id=gettempfileurl](http://uniapp.dcloud.io/uniCloud/storage?id=gettempfileurl)
      */
-    getTempFileURL(options: GetTempFileURLOptions): any;
+    getTempFileURL(options: GetTempFileURLOptions): unknown;
     /**
      * 获取数据库实例
      *
@@ -2573,16 +2570,16 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/clientdb?id=refreshtoken](http://uniapp.dcloud.io/uniCloud/clientdb?id=refreshtoken)
      */
-    on(eventName: string, callbaack: (result: any) => void): any;
-    addInterceptor(apiName: string, interceptor: (result: any) => void);
-    removeInterceptor(apiName: string, interceptor?: (result: any) => void);
+    on(eventName: string, callbaack: (result: unknown) => void): unknown;
+    addInterceptor(apiName: string, interceptor: (result: unknown) => void);
+    removeInterceptor(apiName: string, interceptor?: (result: unknown) => void);
   }
 
   interface InterceptorMap {
-    invoke?: (result: any) => void;
-    success?: (result: any) => void;
-    fail?: (result: any) => void;
-    complete?: (result: any) => void;
+    invoke?: (result: unknown) => void;
+    success?: (result: unknown) => void;
+    fail?: (result: unknown) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ChooseAndUploadFileOptions {
@@ -2600,7 +2597,7 @@ declare namespace UniCloud {
     /**
      * 允许的文件后缀数组
      */
-    extension?: any[];
+    extension?: unknown[];
     /**
      * original 原图，compressed 压缩图，默认二者都有
      */
@@ -2638,11 +2635,11 @@ declare namespace UniCloud {
     /**
      * 接口调用失败的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 接口调用结束的回调函数（调用成功、失败都会执行）
      */
-    complete?: (result: any) => void;
+    complete?: (result: unknown) => void;
   }
 
   interface ChooseAndUploadFileSuccessCallbackResult {
@@ -2653,11 +2650,11 @@ declare namespace UniCloud {
     /**
      * 临时文件路径列表
      */
-    tempFilePaths: any[];
+    tempFilePaths: unknown[];
     /**
      * 文件列表，每一项是一个 File 对象
      */
-    tempFiles: any[];
+    tempFiles: unknown[];
   }
 
   interface ChooseAndUploadFileOnUploadProgressCallbackResult {
@@ -2680,7 +2677,7 @@ declare namespace UniCloud {
     /**
      * 文件对象
      */
-    tempFile: any;
+    tempFile: unknown;
   }
 
   interface ChooseAndUploadFileOnChooseFileCallbackResult {
@@ -2691,11 +2688,11 @@ declare namespace UniCloud {
     /**
      * 临时文件路径列表
      */
-    tempFilePaths: any[];
+    tempFilePaths: unknown[];
     /**
      * 文件列表，每一项是一个 File 对象
      */
-    tempFiles: any[];
+    tempFiles: unknown[];
   }
 
   interface LocalUserInfo {
@@ -2706,11 +2703,11 @@ declare namespace UniCloud {
     /**
      * 当前用户角色列表
      */
-    role: any[];
+    role: unknown[];
     /**
      * 当前用户权限列表
      */
-    permission: any[];
+    permission: unknown[];
   }
 
   interface UniCloudOptions {
@@ -2803,7 +2800,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/authentication?id=authshouldrefreshaccesstoken](http://uniapp.dcloud.io/uniCloud/authentication?id=authshouldrefreshaccesstoken)
      */
-    shouldRefreshAccessToken(callback: (result: any) => void): void;
+    shouldRefreshAccessToken(callback: (result: unknown) => void): void;
   }
 
   interface CallFunctionOptions {
@@ -2814,7 +2811,7 @@ declare namespace UniCloud {
     /**
      * 传递给云函数的参数
      */
-    data?: any;
+    data?: unknown;
     /**
      * 成功返回的回调函数
      */
@@ -2822,7 +2819,7 @@ declare namespace UniCloud {
     /**
      * 失败返回的回调函数
      */
-    fail?: (result: any) => void;
+    fail?: (result: unknown) => void;
     /**
      * 结束的回调函数（调用成功、失败都会执行
      */
@@ -2844,7 +2841,7 @@ declare namespace UniCloud {
     /**
      * 云函数执行结果
      */
-    result: any;
+    result: unknown;
     /**
      * 请求序列号，用于错误排查
      */
@@ -2900,7 +2897,7 @@ declare namespace UniCloud {
     /**
      * 文件ID组成的数组
      */
-    fileList: any[];
+    fileList: unknown[];
     /**
      * 成功返回的回调函数
      */
@@ -2937,7 +2934,7 @@ declare namespace UniCloud {
     /**
      * 文件ID组成的数组
      */
-    fileList: any[];
+    fileList: unknown[];
     /**
      * 成功返回的回调函数
      */
@@ -2971,7 +2968,7 @@ declare namespace UniCloud {
     /**
      * 存储下载链接的数组
      */
-    fileList: any[];
+    fileList: unknown[];
   }
 }
 

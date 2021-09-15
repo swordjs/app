@@ -15,7 +15,7 @@ declare namespace App {
     /**
      * 来源小程序传过来的数据，scene=1037或1038时支持
      */
-    extraData?: any;
+    extraData?: unknown;
   }
 
   interface LaunchShowOption {
@@ -125,7 +125,7 @@ declare namespace App {
     isEntryPage: boolean;
   }
 
-  interface AppInstance<T extends AnyObject = {}> {
+  interface AppInstance<T extends AnyObject = Record<string, unknown>> {
     /**
      * 全局对象
      */
@@ -194,6 +194,6 @@ declare namespace App {
 
 declare const getApp: App.GetApp;
 
-declare const createApp: any;
-declare const createPage: any;
-declare const createComponent: any;
+declare const createApp: unknown;
+declare const createPage: unknown;
+declare const createComponent: unknown;
