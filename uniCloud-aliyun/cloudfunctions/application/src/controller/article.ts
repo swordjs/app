@@ -1,60 +1,40 @@
-import explain from 'explain';
+import * as explain from 'explain';
 import articleService from '../service/article';
+import * as IArticle from '../../proto/article';
 
-module.exports = class ArticleController extends explain.service {
+export class ArticleController extends explain.service {
   private service: articleService;
-  constructor() {
-    super();
+  constructor(e: ExplainController) {
+    super(e);
     this.service = new articleService(this.context);
   }
-  // 添加文章
-  async addArticle() {
-    return await this.service.addArticle();
+  /**
+   * @name 添加/发布文章
+   * @param IArticle.AddArticle
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/kif3lf#g13V0
+   * @memberof ArticleController
+   */
+  async addArticle(): Promise<unknown> {
+    return await this.service.addArticle(this.event.data as IArticle.AddArticle);
   }
-  // 修改文章
-  async updateArticle() {
-    return handleMustRequireParam(
-      [
-        {
-          key: 'id',
-          value: '文章id'
-        },
-        {
-          key: 'content',
-          value: '内容'
-        },
-        {
-          key: 'title',
-          value: '标题'
-        },
-        {
-          key: 'tagID',
-          value: '标签'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => await this.handler('updateArticle'))
-      .catch((err) => err);
+  /**
+   * @name 修改文章
+   * @param IArticle.UpdateArticle
+   * @return {*}  {Promise<unknown>}
+   * @memberof ArticleController
+   */
+  async updateArticle(): Promise<unknown> {
+    return await this.service.updateArticle(this.event.data as IArticle.UpdateArticle);
   }
-  // 审核文章
-  async auditArticle() {
-    return handleMustRequireParam(
-      [
-        {
-          key: 'id',
-          value: '文章id'
-        },
-        {
-          key: 'state',
-          value: '状态'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => await this.handler('auditArticle'))
-      .catch((err) => err);
+  /**
+   * @name 审核文章
+   * @param IArticle.AuditArticle
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/kif3lf#zJelt
+   * @memberof ArticleController
+   */
+  async auditArticle(): Promise<unknown> {
+    return await this.service.auditArticle(this.event.data as IArticle.AuditArticle);
   }
-};
-
-export {};
+}
