@@ -5,6 +5,5 @@
     "module": "CommonJS",
     "typeRoots": ["./typings", "./node_modules/@types"]
   },
-  "extends": "../../../tsconfig.json",
   "include": ["../../../typings", "./src/**/*.ts"]
 }

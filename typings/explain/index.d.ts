@@ -1,15 +1,15 @@
 declare module 'explain' {
-  class service {
+  export class service {
     public event: ExplainCloudEvent;
     public context: CloudContext;
     public explain: unknown;
     constructor(e: { event: ExplainCloudEvent; context: CloudContext; explain: unknown });
   }
-  class filter {
+  export class filter {
     constructor(e: { event: ExplainCloudEvent; context: CloudContext; explain: unknown });
   }
-  class dateTime {
+  export class dateTime {
     static now(formatString: string, timezone: string);
   }
-  function run(e: { event: ExplainCloudEvent; context: CloudContext; startup: (app) => void });
+  export function run(e: { event: ExplainCloudEvent; context: CloudContext; startup: (app) => void });
 }
