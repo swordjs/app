@@ -3,7 +3,7 @@
     "outDir": "./dist",
     "target": "es6",
     "module": "CommonJS",
-    "typeRoots": ["./typings", "./node_modules/@types"]
+    "typeRoots": ["../../../typings", "./typings", "./node_modules/@types"]
   },
-  "include": ["../../../typings", "./src/**/*.ts"]
+  "include": ["./src/**/*.ts"]
 }
