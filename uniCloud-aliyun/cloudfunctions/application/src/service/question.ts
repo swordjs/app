@@ -2,24 +2,18 @@ import * as IQuestion from '../../proto/question';
 const db = uniCloud.database();
 const dbCmd = db.command;
 const collection = db.collection('question');
-interface IQuestionData {
-  userID: string;
-  context: {
-    CLIENTIP: string;
-  };
-}
 
-module.exports = class Question {
+export default class Question {
   public userID: string;
   public nowDate: string;
   public clientIp: string;
-  constructor(data: IQuestionData) {
-    this.userID = data?.userID || '';
-    // 由于context如果是远程调用的此服务，那么context将会不传，所以这里进行了兼容
-    this.clientIp = data?.context?.CLIENTIP || ''; // context注入的IP段
-    this.nowDate = new Date().toISOString();
+  constructor(data) {
+    // this.userID = data?.userID || '';
+    // // 由于context如果是远程调用的此服务，那么context将会不传，所以这里进行了兼容
+    // this.clientIp = data?.context?.CLIENTIP || ''; // context注入的IP段
+    // this.nowDate = new Date().toISOString();
   }
-  async addQuestion(params: IQuestion.AddQuestion) {
+  async addQuestion(params: IQuestion.AddQuestion): Promise<unknown> {
     return await collection.add({
       title: params.title,
       areaID: params.areaID,
@@ -32,7 +26,7 @@ module.exports = class Question {
       deleteDate: ''
     });
   }
-  async updateQuestion(params: IQuestion.UpdateQuestion) {
+  async updateQuestion(params: IQuestion.UpdateQuestion): Promise<unknown> {
     return collection.doc(params._id).update({
       title: params.title,
       areaID: params.areaID,
@@ -41,12 +35,12 @@ module.exports = class Question {
       updateDate: this.nowDate
     });
   }
-  async deleteQuestion(params: IQuestion.DeleteQuestion) {
+  async deleteQuestion(params: IQuestion.DeleteQuestion): Promise<unknown> {
     return collection.doc(params._id).update({
       deleteDate: this.nowDate
     });
   }
-  async examineQuestion(params: IQuestion.ExamineQuestion) {
+  async examineQuestion(params: IQuestion.ExamineQuestion): Promise<unknown> {
     return collection
       .where({
         _id: dbCmd.in(params._id)
@@ -57,7 +51,7 @@ module.exports = class Question {
         updateDate: this.nowDate
       });
   }
-  async getQuestionList(params: IQuestion.GetQuestionList) {
+  async getQuestionList(params: IQuestion.GetQuestionList): Promise<unknown> {
     // 构建查询条件
     const whereParams = {
       state: params.state
@@ -98,7 +92,7 @@ module.exports = class Question {
       count: countResult.total
     };
   }
-  async addPageView(params: IQuestion.AddPageView) {
+  async addPageView(params: IQuestion.AddPageView): Promise<unknown> {
     // 当前题目中的浏览量信息
     const result = await collection.doc(params._id).get();
     // 判断结果集中是否有pageView，如果没有则默认为0
@@ -122,7 +116,7 @@ module.exports = class Question {
     }
   }
   // 根据UserID获取发布了多少道题目
-  async questionCountByUserID(userID: string) {
+  async questionCountByUserID(userID: string): Promise<unknown> {
     return await collection
       .where({
         publishUserID: userID,
@@ -132,7 +126,7 @@ module.exports = class Question {
       .count();
   }
   // 获取随机题目
-  async getSampleQuestionList(params: IQuestion.GetSampleQuestionList) {
+  async getSampleQuestionList(params: IQuestion.GetSampleQuestionList): Promise<unknown> {
     const whereParams: Record<string, unknown> = {
       state: 'pass'
     };
@@ -148,6 +142,4 @@ module.exports = class Question {
       .end();
     return res;
   }
-};
-
-export {};
+}

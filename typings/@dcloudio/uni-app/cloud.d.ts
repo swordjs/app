@@ -1225,7 +1225,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=query](http://uniapp.dcloud.io/uniCloud/cf-database?id=query)
      */
-    get(GetParam?: GetParam): unknown;
+    get(GetParam?: GetParam): { data: unknown };
     /**
      * 获取记录数据，或获取根据查询条件筛选后的记录数据
      *
