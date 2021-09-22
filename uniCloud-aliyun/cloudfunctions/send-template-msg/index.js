@@ -4,7 +4,7 @@ const { sendTemplate } = require('we-chat-api');
 
 // 这里是测试内容，具体OPEN-ID需要从数据库查询
 const TEMPLATE_ID = 'n2YpgvpUaCYtqR5qT-cK9pHDemmvGbc8_G-6jXHGpwc';
-const OPEN_ID = 'ownxY5riBI7p2OMLeN5o_nUw2lTw';
+const OPEN_ID = 'obBvS4jZKSh7WJSOTcLbPq2FYtz8';
 
 exports.main = async () => {
   // 组装模板数据

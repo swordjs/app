@@ -6,8 +6,8 @@ export default class ArticleService {
   public userID: string;
   public nowDate: string;
   constructor(data) {
-    this.userID = data.context.userID;
-    this.nowDate = new Date().toISOString();
+    // this.userID = data.context.userID;
+    // this.nowDate = new Date().toISOString();
   }
   async addArticle(params: IArticle.AddArticle) {
     // 调用钉钉通知函数

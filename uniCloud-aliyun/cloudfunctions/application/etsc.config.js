@@ -1,5 +1,5 @@
 module.exports = {
   esbuild: {
-    minify: true
+    minify: false
   }
 };

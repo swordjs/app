@@ -2,7 +2,7 @@ import * as explain from 'explain';
 import articleService from '../service/article';
 import * as IArticle from '../../proto/article';
 
-export class ArticleController extends explain.service {
+export = class ArticleController extends explain.service {
   private service: articleService;
   constructor(e: ExplainController) {
     super(e);
@@ -37,4 +37,4 @@ export class ArticleController extends explain.service {
   async auditArticle(): Promise<unknown> {
     return await this.service.auditArticle(this.event.data as IArticle.AuditArticle);
   }
-}
+};

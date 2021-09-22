@@ -3,15 +3,15 @@
 // 配置教程参考：https://uniapp.dcloud.net.cn/uniCloud/quickstart?id=runparam
 
 {
-  "service": "question",
-  "action": "addQuestion",
+  "service": "article",
+  "action": "addArticle",
   "data": {
     "title": "",
-    "areaID": "",
     "content": "",
-    "tagID": [1]
+    "tagID": ["1"],
+    "desc": ""
   },
   "headers": {
-    "uni-id-token": ""
+    "uni-id-token": "1"
   }
 }

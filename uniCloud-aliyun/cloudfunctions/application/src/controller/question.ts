@@ -2,7 +2,7 @@ const explain = require('explain');
 // 工具函数
 const { appErrorMessage, handleMustRequireParam } = require('app-tools');
 const QuestionService = require('./../service/question');
-module.exports = class QuestionController extends explain.service {
+export default class QuestionController extends explain.service {
   // 获取推荐的题目(version 1)
   // 核心处理服务方法
   async handler(methodName: string) {
@@ -138,6 +138,4 @@ module.exports = class QuestionController extends explain.service {
   async getSampleQuestionList() {
     return await this.handler('getSampleQuestionList');
   }
-};
-
-export {};
+}

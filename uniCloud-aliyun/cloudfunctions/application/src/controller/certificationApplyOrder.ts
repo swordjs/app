@@ -1,78 +1,50 @@
-const explain = require('explain');
-const certificationService = require('../service/certificationApplyOrder');
-const { handleMustRequireParam } = require('app-tools');
-module.exports = class CommonController extends explain.service {
-  // 核心处理服务方法
-  async handler(methodName: string) {
-    const service = new certificationService({
-      context: this.context
-    });
-    return await service[methodName](this.event.params);
+import * as explain from 'explain';
+import certificationService from '../service/certificationApplyOrder';
+import * as ICertificationApplyOrder from '../../proto/certificationApplyOrder';
+export = class CertificationApplyOrderController extends explain.service {
+  private service: certificationService;
+  constructor(e: ExplainController) {
+    super(e);
+    this.service = new certificationService(this.context);
   }
-  // 新增申请认证
-  async addCertificationApplyOrder() {
-    return handleMustRequireParam(
-      [
-        {
-          key: 'content',
-          value: 'content内容'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => await this.handler('addCertificationApplyOrder'))
-      .catch((err) => err);
+  //
+  /**
+   * @name 新增申请认证
+   * @param ICertificationApplyOrder.AddCertificationApplyOrder
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/qoght3#g13V0
+   * @memberof CertificationApplyOrderController
+   */
+  async addCertificationApplyOrder(): Promise<unknown> {
+    return await this.service.addArticle(this.event.data as ICertificationApplyOrder.AddCertificationApplyOrder);
   }
-  // 修改申请认证
-  async updateCertificationApplyOrder() {
-    return handleMustRequireParam(
-      [
-        {
-          key: '_id',
-          value: 'id'
-        },
-        {
-          key: 'content',
-          value: 'content内容'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => await this.handler('updateCertificationApplyOrder'))
-      .catch((err) => err);
+  /**
+   * @name 修改申请认证
+   * @param ICertificationApplyOrder.UpdateCertificationApplyOrder
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/qoght3#Ykwby
+   * @memberof CertificationApplyOrderController
+   */
+  async updateCertificationApplyOrder(): Promise<unknown> {
+    return await this.service.addArticle(this.event.data as ICertificationApplyOrder.UpdateCertificationApplyOrder);
   }
-  // 对认证单进行审核/拒绝等操作
-  async updateCertificationApplyOrderState() {
-    return handleMustRequireParam(
-      [
-        {
-          key: '_id',
-          value: 'id'
-        },
-        {
-          key: 'state',
-          value: '状态'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => await this.handler('updateCertificationApplyOrderState'))
-      .catch((err) => err);
+  /**
+   * @name 对认证单进行审核/拒绝等操作
+   * @param ICertificationApplyOrder.UpdateCertificationApplyOrderState
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/qoght3#HhUZH
+   * @memberof CertificationApplyOrderController
+   */
+  async updateCertificationApplyOrderState(): Promise<unknown> {
+    return await this.service.addArticle(this.event.data as ICertificationApplyOrder.UpdateCertificationApplyOrderState);
   }
-  // 申请单列表分页查询
-  async getCertificationApplyOrder() {
-    return handleMustRequireParam(
-      [
-        {
-          key: 'state',
-          value: '状态'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => await this.handler('getCertificationApplyOrder'))
-      .catch((err) => err);
+  /**
+   * @name 申请单列表分页查询
+   * @param ICertificationApplyOrder.GetCertificationApplyOrder
+   * @return {*}  {Promise<unknown>}
+   * @memberof CertificationApplyOrderController
+   */
+  async getCertificationApplyOrder(): Promise<unknown> {
+    return await this.service.addArticle(this.event.data as ICertificationApplyOrder.GetCertificationApplyOrder);
   }
 };
-
-export {};
