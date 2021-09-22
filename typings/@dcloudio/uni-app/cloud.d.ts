@@ -1105,7 +1105,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=query](http://uniapp.dcloud.io/uniCloud/cf-database?id=query)
      */
-    get(GetParam?: GetParam): unknown;
+    get(GetParam?: GetParam): { data: unknown };
     /**
      * 延迟查询请求
      *
@@ -1361,7 +1361,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-end](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-end)
      */
-    end(): unknown;
+    end(): { data: unknown };
   }
 
   interface UnwindOptions {

@@ -7,7 +7,6 @@ export = class CertificationApplyOrderController extends explain.service {
     super(e);
     this.service = new certificationService(this.context);
   }
-  //
   /**
    * @name 新增申请认证
    * @param ICertificationApplyOrder.AddCertificationApplyOrder
@@ -16,7 +15,7 @@ export = class CertificationApplyOrderController extends explain.service {
    * @memberof CertificationApplyOrderController
    */
   async addCertificationApplyOrder(): Promise<unknown> {
-    return await this.service.addArticle(this.event.data as ICertificationApplyOrder.AddCertificationApplyOrder);
+    return await this.service.addCertificationApplyOrder(this.event.data as ICertificationApplyOrder.AddCertificationApplyOrder);
   }
   /**
    * @name 修改申请认证
@@ -26,7 +25,7 @@ export = class CertificationApplyOrderController extends explain.service {
    * @memberof CertificationApplyOrderController
    */
   async updateCertificationApplyOrder(): Promise<unknown> {
-    return await this.service.addArticle(this.event.data as ICertificationApplyOrder.UpdateCertificationApplyOrder);
+    return await this.service.updateCertificationApplyOrder(this.event.data as ICertificationApplyOrder.UpdateCertificationApplyOrder);
   }
   /**
    * @name 对认证单进行审核/拒绝等操作
@@ -36,7 +35,7 @@ export = class CertificationApplyOrderController extends explain.service {
    * @memberof CertificationApplyOrderController
    */
   async updateCertificationApplyOrderState(): Promise<unknown> {
-    return await this.service.addArticle(this.event.data as ICertificationApplyOrder.UpdateCertificationApplyOrderState);
+    return await this.service.updateCertificationApplyOrderState(this.event.data as ICertificationApplyOrder.UpdateCertificationApplyOrderState);
   }
   /**
    * @name 申请单列表分页查询
@@ -45,6 +44,6 @@ export = class CertificationApplyOrderController extends explain.service {
    * @memberof CertificationApplyOrderController
    */
   async getCertificationApplyOrder(): Promise<unknown> {
-    return await this.service.addArticle(this.event.data as ICertificationApplyOrder.GetCertificationApplyOrder);
+    return await this.service.getCertificationApplyOrder(this.event.data as ICertificationApplyOrder.GetCertificationApplyOrder);
   }
 };

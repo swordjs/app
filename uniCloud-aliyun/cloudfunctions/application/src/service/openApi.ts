@@ -1,17 +1,18 @@
+import * as IOpenApi from '../../proto/openapi';
 const db = uniCloud.database();
 const collection = db.collection('openApi');
 const questionCollection = db.collection('question');
 const questionAreaCollection = db.collection('questionArea');
 const questionTag = db.collection('questionTag');
 
-module.exports = class OpenApiService {
+export default class OpenApiService {
   public userID: string;
   public nowDate: string;
   constructor(data) {
-    this.userID = data.context.userID;
-    this.nowDate = new Date().toISOString();
+    // this.userID = data.context.userID;
+    // this.nowDate = new Date().toISOString();
   }
-  async addOpenApi(params: { name: string; remark: string; info: string }) {
+  async addOpenApi(params: IOpenApi.AddOpenApi): Promise<unknown> {
     // 默认添加一个类型为关闭的openapi
     return await collection.add({
       name: params.name,
@@ -23,7 +24,7 @@ module.exports = class OpenApiService {
       deleteDate: ''
     });
   }
-  async updateOpenApi(params: { id: string; name: string; remark: string; info: string }) {
+  async updateOpenApi(params: IOpenApi.UpdateOpenApi): Promise<unknown> {
     return await collection.doc(params.id).update({
       name: params.name,
       remark: params.remark,
@@ -31,14 +32,14 @@ module.exports = class OpenApiService {
       updateDate: this.nowDate
     });
   }
-  async toggleOpenApiState(params: { id: string; state: 'close' | 'open' }) {
+  async toggleOpenApiState(params: IOpenApi.ToggleOpenApiState): Promise<unknown> {
     return await collection.doc(params.id).update({
       state: params.state,
       updateDate: this.nowDate
     });
   }
   // 题目列表
-  async getQuestionList(params: { page: number; areaID?: string }) {
+  async getQuestionList(params: IOpenApi.GetQuestionList): Promise<unknown> {
     const limit = 10;
     const page: number = params.page || 1;
 
@@ -84,14 +85,14 @@ module.exports = class OpenApiService {
     };
   }
   // 专区列表
-  async getQuestionAreaList() {
+  async getQuestionAreaList(): Promise<unknown> {
     const res = await questionAreaCollection.get();
     return {
       list: res.data
     };
   }
   // 标签列表
-  async getQuestionTag() {
+  async getQuestionTag(): Promise<unknown> {
     const res = await questionTag
       .aggregate()
       .lookup({
@@ -105,6 +106,4 @@ module.exports = class OpenApiService {
       list: res.data
     };
   }
-};
-
-export {};
+}
