@@ -1,7 +1,8 @@
-import './app.d.ts';
-import './common.d.ts';
-import './page.d.ts';
-import './uni.d.ts';
-import './cloud.d.ts';
-import './vue.d.ts';
-import '../html5plus/plus.d.ts';
+/* eslint-disable @typescript-eslint/triple-slash-reference */
+/// <reference path="./app.d.ts" />
+/// <reference path="./common.d.ts" />
+/// <reference path="./page.d.ts" />
+/// <reference path="./uni.d.ts" />
+/// <reference path="./cloud.d.ts" />
+/// <reference path="./vue.d.ts" />
+/// <reference path="../html5plus/plus.d.ts" />

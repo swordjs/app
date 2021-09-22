@@ -1142,6 +1142,7 @@ declare namespace UniCloud {
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=skip](http://uniapp.dcloud.io/uniCloud/cf-database?id=skip)
      */
     skip(offset: number): Query;
+
     /**
      * 更新多条记录
      *
@@ -1496,7 +1497,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=query](http://uniapp.dcloud.io/uniCloud/cf-database?id=query)
      */
-    get(GetParam?: GetParam): unknown;
+    get(GetParam?: GetParam): { data: unknown };
     /**
      * 延迟查询请求
      *
@@ -1508,7 +1509,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=count](http://uniapp.dcloud.io/uniCloud/cf-database?id=count)
      */
-    count(): unknown;
+    count(): { total: number };
     /**
      * 指定查询条件，返回带新查询条件的新的集合引用
      *
@@ -1533,6 +1534,13 @@ declare namespace UniCloud {
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=skip](http://uniapp.dcloud.io/uniCloud/cf-database?id=skip)
      */
     skip(offset: number): Query;
+    /**
+     * 根据指定的字段，对输入的文档进行排序。
+     *
+     * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-sort](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-sort)
+     */
+    sort(sortOptions: unknown): Query;
+    filed(filed: string | Record<string, unknown>): Query;
     /**
      * 更新多条记录
      *

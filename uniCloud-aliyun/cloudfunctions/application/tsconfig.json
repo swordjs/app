@@ -2,8 +2,8 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "es6",
-    "module": "CommonJS",
-    "typeRoots": ["../../../typings", "./typings", "./node_modules/@types"]
+    "module": "CommonJS"
+    // "typeRoots": ["./typings", "node_modules/@types/node"]
   },
   "include": ["./src/**/*.ts"]
 }
