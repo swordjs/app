@@ -2,23 +2,15 @@ const db = uniCloud.database();
 const collection = db.collection('questionExplanation');
 const collectService = db.collection('userCollect');
 const dbCmd = db.command;
-interface IQuestionExplanation {
-  userID: string;
-  nowDate: string;
-}
-
-type ParamsType = {
-  _id: string;
-  content: string;
-};
-module.exports = class QuestionExplanationService {
+import * as IQuestionExplanation from '../../proto/questionExplanation';
+export default class QuestionExplanationService {
   public userID: string;
   public nowDate: string;
-  constructor(data: IQuestionExplanation) {
-    this.userID = data?.userID;
-    this.nowDate = new Date().toISOString();
+  constructor(data) {
+    // this.userID = data?.userID;
+    // this.nowDate = new Date().toISOString();
   }
-  public async addQuestionExplanation(params: ParamsType) {
+  public async addQuestionExplanation(params: IQuestionExplanation.AddQuestionExplanation): Promise<unknown> {
     const { _id, content } = params;
     const explanationResult = await collection.add({
       questionID: _id,
@@ -34,14 +26,14 @@ module.exports = class QuestionExplanationService {
       _id: explanationResult.id
     };
   }
-  public async updateQuestionExplanation(params: ParamsType) {
+  public async updateQuestionExplanation(params: IQuestionExplanation.UpdateQuestionExplanation): Promise<unknown> {
     const { _id, content } = params;
     return await collection.doc(_id).update({
       content,
       updateDate: this.nowDate
     });
   }
-  public async adoptionQuestionExplanation(params: { _id: string }) {
+  public async adoptionQuestionExplanation(params: IQuestionExplanation.AdoptionQuestionExplanation): Promise<unknown> {
     // 判断当前题解中的采纳列表中是否存在此userID
     const explanationResult = await collection.doc(params._id).get();
     if (explanationResult.data) {
@@ -65,13 +57,14 @@ module.exports = class QuestionExplanationService {
       return res;
     }
   }
-  public async collectQuestionExplanation(params: { _id: string }) {
+  public async collectQuestionExplanation(params: IQuestionExplanation.CollectQuestionExplanation): Promise<unknown> {
     // 如果没有收藏，则默认建立一个收藏夹, 名为默认收藏夹
     const collectResult = await collectService
       .where({
         userID: this.userID
       })
-      .get();
+      .get<{ _id: string }>();
+
     const collectData = {
       type: 'explanation',
       id: params._id
@@ -88,7 +81,7 @@ module.exports = class QuestionExplanationService {
       // 判断题解ID是否存在于该收藏夹中
       const result = await db.collection('userCollect').doc(collectResult.data[0]._id).get();
       const collectData = result.data[0].collectData;
-      const collectIndex = collectData.findIndex((c: unknown) => {
+      const collectIndex = collectData.findIndex((c) => {
         return c.type === 'explanation' && c.id === params._id;
       });
       const collectAction = db.collection('userCollect').doc(collectResult.data[0]._id);
@@ -109,7 +102,7 @@ module.exports = class QuestionExplanationService {
     }
   }
   // 获取题解数量
-  public async getExplanationCountByUser(userID) {
+  public async getExplanationCountByUser(userID: IQuestionExplanation.GetExplanationCountByUser): Promise<unknown> {
     return await collection
       .where({
         userID,
@@ -118,7 +111,7 @@ module.exports = class QuestionExplanationService {
       .count();
   }
   // 查询题解共被采纳过多少次
-  public async getLikeCountByUser(userID) {
+  public async getLikeCountByUser(userID: IQuestionExplanation.GetLikeCountByUser): Promise<unknown> {
     // 获取所有的题解列表并且
     return await collection
       .aggregate()
@@ -129,6 +122,6 @@ module.exports = class QuestionExplanationService {
       .unwind('$userAgreed')
       .end();
   }
-};
+}
 
 export {};

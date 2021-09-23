@@ -1099,7 +1099,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=add](http://uniapp.dcloud.io/uniCloud/cf-database?id=add)
      */
-    add(data: unknown): unknown;
+    add(data: unknown): { id: string };
     /**
      * 获取记录数据，或获取根据查询条件筛选后的记录数据
      *
@@ -1355,7 +1355,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-unwind](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-unwind)
      */
-    unwind(unwindOptions: UnwindOptions | string): void;
+    unwind(unwindOptions: UnwindOptions | string): AggregateReference;
     /**
      * 标志聚合操作定义完成，发起实际聚合操作
      *
@@ -1497,7 +1497,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=query](http://uniapp.dcloud.io/uniCloud/cf-database?id=query)
      */
-    get(GetParam?: GetParam): { data: unknown };
+    get<T>(GetParam?: GetParam): { data: T[] };
     /**
      * 延迟查询请求
      *
@@ -1609,7 +1609,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=push](http://uniapp.dcloud.io/uniCloud/cf-database?id=push)
      */
-    push(): void;
+    push(value: unknown | unknown[]): void;
     /**
      * 删除数组尾部元素
      *

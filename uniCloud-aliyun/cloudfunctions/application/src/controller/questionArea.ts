@@ -9,41 +9,41 @@ export = class QuestionAreaController extends explain.service {
   }
   /**
    * @name 获取专区列表（HTTP调用）
-   * @param IQuestionArea.IGetAreaList
+   * @param IQuestionArea.GetAreaList
    * @return {*}  {Promise<unknown>}
    * @memberof QuestionAreaController
    */
   async getAreaList(): Promise<unknown> {
-    return await this.service.getAreaList(this.event.data as IQuestionArea.IGetAreaList);
+    return await this.service.getAreaList(this.event.data as IQuestionArea.GetAreaList);
   }
   /**
    * @name 添加题目专区
-   * @param IQuestionArea.IAddQuestionArea
+   * @param IQuestionArea.AddQuestionArea
    * @return {*}  {Promise<unknown>}
    * @link https://www.yuque.com/mlgrgm/lmm8g4/xdytvh#g13V0
    * @memberof QuestionAreaController
    */
   async addQuestionArea(): Promise<unknown> {
-    return await this.service.addQuestionArea(this.event.data as IQuestionArea.IAddQuestionArea);
+    return await this.service.addQuestionArea(this.event.data as IQuestionArea.AddQuestionArea);
   }
   /**
    * @name 修改题目专区
-   * @param IQuestionArea.IUpdateQuestionArea
+   * @param IQuestionArea.UpdateQuestionArea
    * @return {*}  {Promise<unknown>}
    * @link https://www.yuque.com/mlgrgm/lmm8g4/xdytvh#HDXsW
    * @memberof QuestionAreaController
    */
   async updateQuestionArea(): Promise<unknown> {
-    return await this.service.updateQuestionArea(this.event.data as IQuestionArea.IUpdateQuestionArea);
+    return await this.service.updateQuestionArea(this.event.data as IQuestionArea.UpdateQuestionArea);
   }
   /**
    * @name 删除题目专区
-   * @param IQuestionArea.IUpdateQuestionArea
+   * @param IQuestionArea.DeleteQuestionArea
    * @return {*}  {Promise<unknown>}
    * @link https://www.yuque.com/mlgrgm/lmm8g4/xdytvh#tOjkO
    * @memberof QuestionAreaController
    */
   async deleteQuestionArea(): Promise<unknown> {
-    return await this.service.deleteQuestionArea(this.event.data as IQuestionArea.IDeleteQuestionArea);
+    return await this.service.deleteQuestionArea(this.event.data as IQuestionArea.DeleteQuestionArea);
   }
 };

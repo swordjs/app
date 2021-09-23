@@ -1,85 +1,50 @@
-const explain = require('explain');
-const questionExplanation = require('../service/questionExplanation');
-const { handleMustRequireParam } = require('app-tools');
-module.exports = class QuestionExplanation extends explain.service {
-  async handler(methodName: string) {
-    const service = new questionExplanation({
-      userID: this.context.userID
-    });
-    return await service[methodName](this.event.params);
+import * as explain from 'explain';
+import questionExplanationService from '../service/questionExplanation';
+import * as IQuestionExplanation from '../../proto/questionExplanation';
+
+export = class QuestionExplanationController extends explain.service {
+  private service: questionExplanationService;
+  constructor(e: ExplainController) {
+    super(e);
+    this.service = new questionExplanationService(this.context);
   }
-  // 添加题解
-  async addQuestionExplanation() {
-    return handleMustRequireParam(
-      [
-        {
-          key: '_id',
-          value: '题目ID'
-        },
-        {
-          key: 'content',
-          value: '内容'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => {
-        return await this.handler('addQuestionExplanation');
-      })
-      .catch((err) => err);
+  /**
+   * @name 添加题解
+   * @param IQuestionExplanation.AddQuestionExplanation
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/xsd6wg#g13V0
+   * @memberof QuestionExplanationController
+   */
+  async addQuestionExplanation(): Promise<unknown> {
+    return await this.service.addQuestionExplanation(this.event.data as IQuestionExplanation.AddQuestionExplanation);
   }
-  // 修改题解
-  async updateQuestionExplanation() {
-    return handleMustRequireParam(
-      [
-        {
-          key: '_id',
-          value: '题解ID'
-        },
-        {
-          key: 'content',
-          value: '内容'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => {
-        return await this.handler('updateQuestionExplanation');
-      })
-      .catch((err) => err);
+  /**
+   * @name 修改题解
+   * @param IQuestionExplanation.UpdateQuestionExplanation
+   * @return {*}  {Promise<unknown>}
+   * @memberof QuestionExplanationController
+   */
+  async updateQuestionExplanation(): Promise<unknown> {
+    return await this.service.addQuestionExplanation(this.event.data as IQuestionExplanation.UpdateQuestionExplanation);
   }
-  // 采纳/取消采纳题解
-  async adoptionQuestionExplanation() {
-    return handleMustRequireParam(
-      [
-        {
-          key: '_id',
-          value: '题解ID'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => {
-        return await this.handler('adoptionQuestionExplanation');
-      })
-      .catch((err) => err);
+  /**
+   * @name 采纳/取消采纳题解
+   * @param IQuestionExplanation.AdoptionQuestionExplanation
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/xsd6wg#h2Ix9
+   * @memberof QuestionExplanationController
+   */
+  async adoptionQuestionExplanation(): Promise<unknown> {
+    return await this.service.adoptionQuestionExplanation(this.event.data as IQuestionExplanation.AdoptionQuestionExplanation);
   }
-  // 收藏/取消收藏题解
-  async collectQuestionExplanation() {
-    return handleMustRequireParam(
-      [
-        {
-          key: '_id',
-          value: '题解ID'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => {
-        return await this.handler('collectQuestionExplanation');
-      })
-      .catch((err) => err);
+  /**
+   * @name 收藏/取消收藏题解
+   * @param IQuestionExplanation.CollectQuestionExplanation
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/xsd6wg#z7Okn
+   * @memberof QuestionExplanationController
+   */
+  async collectQuestionExplanation(): Promise<unknown> {
+    return await this.service.collectQuestionExplanation(this.event.data as IQuestionExplanation.CollectQuestionExplanation);
   }
 };
-
-export {};
