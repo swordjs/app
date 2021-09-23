@@ -8,10 +8,9 @@ export = class QuestionController extends explain.service {
     super(e);
     this.service = new questionService(this.context);
   }
-
   /**
    * @name 添加题目
-   * @param IOpenApi.AddQuestion
+   * @param IQuestion.AddQuestion
    * @return {*}  {Promise<unknown>}
    * @link https://www.yuque.com/mlgrgm/lmm8g4/fssf4b#g13V0
    * @memberof QuestionController
@@ -21,7 +20,7 @@ export = class QuestionController extends explain.service {
   }
   /**
    * @name 修改题目
-   * @param IOpenApi.UpdateQuestion
+   * @param IQuestion.UpdateQuestion
    * @return {*}  {Promise<unknown>}
    * @link https://www.yuque.com/mlgrgm/lmm8g4/fssf4b#sl2QT
    * @memberof QuestionController
@@ -31,7 +30,7 @@ export = class QuestionController extends explain.service {
   }
   /**
    * @name 删除题目
-   * @param IOpenApi.DeleteQuestion
+   * @param IQuestion.DeleteQuestion
    * @return {*}  {Promise<unknown>}
    * @link https://www.yuque.com/mlgrgm/lmm8g4/fssf4b#iJ8Hr
    * @memberof QuestionController
@@ -41,7 +40,7 @@ export = class QuestionController extends explain.service {
   }
   /**
    * @name 审核题目
-   * @param IOpenApi.ExamineQuestion
+   * @param IQuestion.ExamineQuestion
    * @return {*}  {Promise<unknown>}
    * @link https://www.yuque.com/mlgrgm/lmm8g4/fssf4b#hIZhf
    * @memberof QuestionController
@@ -51,7 +50,7 @@ export = class QuestionController extends explain.service {
   }
   /**
    * @name 分页获取题目列表
-   * @param IOpenApi.GetQuestionList
+   * @param IQuestion.GetQuestionList
    * @return {*}  {Promise<unknown>}
    * @memberof QuestionController
    */
@@ -61,7 +60,7 @@ export = class QuestionController extends explain.service {
   /**
    * @name 浏览题目详情
    * @description（如果没有pageView就默认设置为1）
-   * @param IOpenApi.AddPageView
+   * @param IQuestion.AddPageView
    * @return {*}  {Promise<unknown>}
    * @memberof QuestionController
    */
@@ -70,7 +69,7 @@ export = class QuestionController extends explain.service {
   }
   /**
    * @name 随机获取题目
-   * @param IOpenApi.GetSampleQuestionList
+   * @param IQuestion.GetSampleQuestionList
    * @return {*}  {Promise<unknown>}
    * @memberof QuestionController
    */

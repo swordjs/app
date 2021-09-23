@@ -1,87 +1,49 @@
-const explain = require('explain');
-const questionAreaService = require('../service/questionArea');
-const { appErrorMessage, handleMustRequireParam } = require('app-tools');
-module.exports = class User extends explain.service {
-  async handler(methodName: string) {
-    const service = new questionAreaService({
-      userID: this.context.userID
-    });
-    return await service[methodName](this.event.params);
+import * as explain from 'explain';
+import questionAreaService from '../service/questionArea';
+import * as IQuestionArea from '../../proto/questionArea';
+export = class QuestionAreaController extends explain.service {
+  private service: questionAreaService;
+  constructor(e: ExplainController) {
+    super(e);
+    this.service = new questionAreaService(this.context);
   }
-  // 获取专区列表（HTTP调用）
-  async getAreaList() {
-    return await this.handler('getAreaList');
+  /**
+   * @name 获取专区列表（HTTP调用）
+   * @param IQuestionArea.IGetAreaList
+   * @return {*}  {Promise<unknown>}
+   * @memberof QuestionAreaController
+   */
+  async getAreaList(): Promise<unknown> {
+    return await this.service.getAreaList(this.event.data as IQuestionArea.IGetAreaList);
   }
-  // 添加题目专区
-  addQuestionArea() {
-    return handleMustRequireParam(
-      [
-        {
-          key: 'name',
-          value: '名称'
-        },
-        {
-          key: 'iconPath',
-          value: '图标地址'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => {
-        if (this.event.params.name === '') {
-          return appErrorMessage('名称为空');
-        } else if (this.event.params.iconPath === '') {
-          return appErrorMessage('图片地址为空');
-        } else {
-          return await this.handler('addQuestionArea');
-        }
-      })
-      .catch((err) => err);
+  /**
+   * @name 添加题目专区
+   * @param IQuestionArea.IAddQuestionArea
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/xdytvh#g13V0
+   * @memberof QuestionAreaController
+   */
+  async addQuestionArea(): Promise<unknown> {
+    return await this.service.addQuestionArea(this.event.data as IQuestionArea.IAddQuestionArea);
   }
-  updateQuestionArea() {
-    return handleMustRequireParam(
-      [
-        {
-          key: '_id',
-          value: '专区ID'
-        },
-        {
-          key: 'name',
-          value: '名称'
-        },
-        {
-          key: 'iconPath',
-          value: '图标地址'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => {
-        if (this.event.params.name === '') {
-          return appErrorMessage('名称为空');
-        } else if (this.event.params.iconPath === '') {
-          return appErrorMessage('图片地址为空');
-        } else {
-          return await this.handler('updateQuestionArea');
-        }
-      })
-      .catch((err) => err);
+  /**
+   * @name 修改题目专区
+   * @param IQuestionArea.IUpdateQuestionArea
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/xdytvh#HDXsW
+   * @memberof QuestionAreaController
+   */
+  async updateQuestionArea(): Promise<unknown> {
+    return await this.service.updateQuestionArea(this.event.data as IQuestionArea.IUpdateQuestionArea);
   }
-  deleteQuestionArea() {
-    return handleMustRequireParam(
-      [
-        {
-          key: '_id',
-          value: '专区ID'
-        }
-      ],
-      this.event.params
-    )
-      .then(async () => {
-        return await this.handler('deleteQuestionArea');
-      })
-      .catch((err) => err);
+  /**
+   * @name 删除题目专区
+   * @param IQuestionArea.IUpdateQuestionArea
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/xdytvh#tOjkO
+   * @memberof QuestionAreaController
+   */
+  async deleteQuestionArea(): Promise<unknown> {
+    return await this.service.deleteQuestionArea(this.event.data as IQuestionArea.IDeleteQuestionArea);
   }
 };
-
-export {};
