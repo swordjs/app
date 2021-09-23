@@ -98,6 +98,196 @@
       }
     ]
   },
+  "certificationApplyOrder/AddCertificationApplyOrder": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "certificationApplyOrder/UpdateCertificationApplyOrder": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "certificationApplyOrder/UpdateCertificationApplyOrderState": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "state",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "certificationApplyOrder/GetCertificationApplyOrder": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "state",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "limit",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 2,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      }
+    ]
+  },
+  "openapi/AddOpenApi": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "remark",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "info",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "openapi/UpdateOpenApi": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "remark",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "info",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "openapi/ToggleOpenApiState": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "state",
+        "type": {
+          "type": "Union",
+          "members": [
+            {
+              "id": 0,
+              "type": {
+                "type": "Literal",
+                "literal": "close"
+              }
+            },
+            {
+              "id": 1,
+              "type": {
+                "type": "Literal",
+                "literal": "open"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "openapi/GetQuestionList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 1,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      }
+    ]
+  },
   "question/AddQuestion": {
     "type": "Interface",
     "properties": [
@@ -301,6 +491,240 @@
           "type": "Number"
         },
         "optional": true
+      }
+    ]
+  },
+  "questionArea/AddQuestionArea": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "iconPath",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionArea/GetAreaList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "limit",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 1,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 2,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "iconPath",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionArea/UpdateQuestionArea": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "iconPath",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionArea/DeleteQuestionArea": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/AddQuestionExplanation": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/UpdateQuestionExplanation": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/AdoptionQuestionExplanation": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/CollectQuestionExplanation": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/GetExplanationCountByUser": {
+    "type": "String"
+  },
+  "questionExplanation/GetLikeCountByUser": {
+    "type": "String"
+  },
+  "questionTag/GetTagList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "limit",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 1,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      }
+    ]
+  },
+  "questionTag/AddQuestionTag": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionTag/UpdateQuestionTag": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionTag/DeleteQuestionTag": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
       }
     ]
   }

@@ -1,32 +1,17 @@
 const db = uniCloud.database();
 const collection = db.collection('questionTag');
+import * as IQuestionTag from '../../proto/questionTag';
 interface IQuestionTagData {
   userID: string;
 }
-interface IGetTagList {
-  limit: number;
-  page: number;
-}
-interface IAddQuestionTag {
-  areaID: string;
-  name: string;
-}
-interface IUpdateQuestionTag {
-  _id: string;
-  areaID: string;
-  name: string;
-}
-interface IDeleteQuestionTag {
-  _id: string;
-}
-module.exports = class QuestionTag {
+export default class QuestionTag {
   public userID: string;
   public nowDate: string;
-  constructor(data: IQuestionTagData) {
-    this.userID = data.userID;
-    this.nowDate = new Date().toISOString();
+  constructor(data) {
+    // this.userID = data.userID;
+    // this.nowDate = new Date().toISOString();
   }
-  public async getTagList(params: IGetTagList) {
+  public async getTagList(params: IQuestionTag.GetTagList): Promise<unknown> {
     const { limit, page } = params;
     const whereParams = {
       deleteDate: ''
@@ -53,7 +38,7 @@ module.exports = class QuestionTag {
       count: countResult.total
     };
   }
-  public async addQuestionTag(params: IAddQuestionTag) {
+  public async addQuestionTag(params: IQuestionTag.AddQuestionTag): Promise<unknown> {
     const { areaID, name } = params;
     return await collection.add({
       areaID,
@@ -63,7 +48,7 @@ module.exports = class QuestionTag {
       deleteDate: ''
     });
   }
-  public async updateQuestionTag(params: IUpdateQuestionTag) {
+  public async updateQuestionTag(params: IQuestionTag.UpdateQuestionTag): Promise<unknown> {
     const { _id, areaID, name } = params;
     return await collection.doc(_id).update({
       areaID,
@@ -72,12 +57,10 @@ module.exports = class QuestionTag {
       deleteDate: ''
     });
   }
-  public async deleteQuestionTag(params: IDeleteQuestionTag) {
+  public async deleteQuestionTag(params: IQuestionTag.DeleteQuestionTag): Promise<unknown> {
     return await collection.doc(params._id).update({
       updateDate: this.nowDate,
       deleteDate: this.nowDate
     });
   }
-};
-
-export {};
+}
