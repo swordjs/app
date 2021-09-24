@@ -1,14 +1,9 @@
-// 公告模块
 const uniID = require('uni-id');
 const questionService = require('./question');
 const explanationService = require('./questionExplanation');
 const db = uniCloud.database();
 const collection = db.collection('uni-id-users');
-
-interface ICheckFollowers {
-  uid: string;
-  follower: string;
-}
+import * as IUser from '../../proto/user';
 interface IUserData {
   userID: string;
   token: string;
@@ -16,18 +11,18 @@ interface IUserData {
     CLIENTIP: string;
   };
 }
-module.exports = class User {
+export default class UserService {
   public nowDate: string;
   public clientIp: string;
   public userID: string;
   public token: string;
-  constructor(data: IUserData) {
-    this.userID = data.userID;
-    this.nowDate = new Date().toISOString();
-    this.clientIp = data?.context?.CLIENTIP || '';
-    this.token = data.token;
+  constructor(data) {
+    // this.userID = data.userID;
+    // this.nowDate = new Date().toISOString();
+    // this.clientIp = data?.context?.CLIENTIP || '';
+    // this.token = data.token;
   }
-  public async loginByWechat(params, urlParams: { code: string }) {
+  public async loginByWechat(params: IUser.LoginByWechat, urlParams: { code: string }): Promise<unknown> {
     const { code } = urlParams;
     // 把用户信息也添加到库中, 设置角色为默认角色
     const res = await uniID.loginByWeixin({
@@ -44,20 +39,14 @@ module.exports = class User {
     });
     return res;
   }
-  public async bindWechat(params) {
+  public async bindWechat(params: IUser.BindWechat): Promise<unknown> {
     const { code, uid } = params;
     return await uniID.bindWeixin({
       uid,
       code
     });
   }
-  public async loginByQQ(
-    params,
-    urlParams: { code: string }
-  ): Promise<{
-    token: string;
-    uid: string;
-  }> {
+  public async loginByQQ(params: IUser.LoginByQQ, urlParams: { code: string }): Promise<unknown> {
     const { code } = urlParams;
     const { nickname, avatar, gender } = params;
     // 把用户信息也添加到库中, 设置角色为默认角色
@@ -74,14 +63,14 @@ module.exports = class User {
     });
     return res;
   }
-  public async bindQQ(params) {
+  public async bindQQ(params: IUser.BindQQ): Promise<unknown> {
     const { code, uid } = params;
     return await uniID.bindQQ({
       uid,
       code
     });
   }
-  public async loginBySms(params: { phone: string; code: string }) {
+  public async loginBySms(params: IUser.LoginBySms): Promise<unknown> {
     const { phone, code } = params;
     const result = await uniID.loginBySms({
       mobile: phone,
@@ -115,7 +104,7 @@ module.exports = class User {
       };
     }
   }
-  public async sendSms(params, urlParams) {
+  public async sendSms(params, urlParams): Promise<unknown> {
     const { type, phone } = urlParams;
     return await uniID.sendSmsCode({
       mobile: phone,
@@ -123,36 +112,36 @@ module.exports = class User {
       type
     });
   }
-  public async bindMobile(params: { uid: string; mobile: string; code: string }) {
+  public async bindMobile(params: IUser.BindMobile): Promise<unknown> {
     return await uniID.bindMobile({
       uid: params.uid,
       mobile: params.mobile,
       code: params.code
     });
   }
-  public async userLogout(params) {
+  public async userLogout(params: IUser.UserLogout): Promise<unknown> {
     const { token } = params;
     return await uniID.logout(token);
   }
-  public async checkToken({ urlParams }) {
+  public async checkToken({ urlParams }): Promise<unknown> {
     const { token } = urlParams;
     return await uniID.checkToken(token);
   }
-  public async updateUserInfo(params) {
+  public async updateUserInfo(params: IUser.UpdateUserInfo): Promise<unknown> {
     return await uniID.updateUser({
       ...params
     });
   }
-  public async getUserContentByToken() {
+  public async getUserContentByToken(): Promise<unknown> {
     return await uniID.getUserInfoByToken(this.token);
   }
-  public async resetPassword(params: { id: string; password: string }) {
+  public async resetPassword(params: IUser.ResetPassword): Promise<unknown> {
     return await uniID.resetPwd({
       uid: params.id,
       password: params.password
     });
   }
-  public async getUserContentByID({ userID }) {
+  public async getUserContentByID({ userID }): Promise<unknown> {
     // return await collection.doc(this.userID).get();
     const baseUserInfo = await uniID.getUserInfo({
       uid: userID
@@ -181,7 +170,7 @@ module.exports = class User {
       };
     }
   }
-  public async checkFollowers(params: ICheckFollowers) {
+  public async checkFollowers(params: IUser.CheckFollowers): Promise<unknown> {
     const { follower } = params;
     // 获取当前用户关注用户信息
     const result = await uniID.getUserInfo({
@@ -207,6 +196,4 @@ module.exports = class User {
       });
     }
   }
-};
-
-export {};
+}

@@ -1552,7 +1552,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=field](http://uniapp.dcloud.io/uniCloud/cf-database?id=field)
      */
-    field(projection: string | string): Query;
+    field(projection: Record<string, boolean>): Query;
     /**
      * 指定要使用的foreignKey
      *
