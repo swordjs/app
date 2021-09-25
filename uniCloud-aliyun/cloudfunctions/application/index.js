@@ -1,7 +1,7 @@
 // application -> index.js
 const explain = require('explain');
+const fs = require('fs');
 const path = require('path');
-const router = require('./src/router/router');
 const ParamsValidate = require('tsbuffer-params-validate');
 const schemas = require('./schemas/schemas.json');
 
@@ -33,7 +33,12 @@ exports.main = async (event, context) =>
           ]
         }
       ]);
-      app.route.add(router);
+
+      // 将dist/router所有内容进行加载
+      const routeList = fs.readdirSync(path.resolve(__dirname, 'dist/router'));
+      const allRoute = routeList.map((r) => require(path.resolve(__dirname, 'dist/router', r)));
+      app.route.add(allRoute);
+
       // 添加校验参数中间件
       app.use(async ({ explain: _explain, next }) => {
         const validateResult = await ParamsValidate({

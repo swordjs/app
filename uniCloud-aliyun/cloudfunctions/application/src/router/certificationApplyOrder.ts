@@ -16,4 +16,4 @@ const router: CloudRouter = {
   ]
 };
 
-export default router;
+export = router;
