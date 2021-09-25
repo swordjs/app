@@ -20,7 +20,6 @@
     "uni-id": "file:../common/uni-id"
   },
   "devDependencies": {
-    "@types/core": "file:../../../typings",
     "@types/node": "^16.9.2"
   }
 }

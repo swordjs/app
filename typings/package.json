@@ -1,7 +1,0 @@
-{
-  "name": "@types/core",
-  "version": "1.0.0",
-  "description": "",
-  "types": "index.d.ts",
-  "main": ""
-}
