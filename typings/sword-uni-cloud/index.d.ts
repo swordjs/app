@@ -18,3 +18,15 @@ declare interface ExplainCloudEvent {
 }
 
 declare type CloudData = { event: ExplainCloudEvent; context: CloudContext; explain: unknown };
+// 请求方法类型
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+declare type CloudRouter = {
+  route: string;
+  service: string;
+  routes: {
+    route?: string;
+    action: string;
+    httpMethod?: HttpMethod | HttpMethod[];
+  }[];
+};

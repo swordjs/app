@@ -1,7 +1,7 @@
 // application -> index.js
 const explain = require('explain');
 const path = require('path');
-const router = require('./router/router');
+const router = require('./src/router/router');
 const ParamsValidate = require('tsbuffer-params-validate');
 const schemas = require('./schemas/schemas.json');
 

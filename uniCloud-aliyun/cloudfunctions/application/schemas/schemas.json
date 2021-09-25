@@ -727,5 +727,216 @@
         }
       }
     ]
+  },
+  "search/AddSeachLog": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "device_id",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      },
+      {
+        "id": 2,
+        "name": "user_id",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      }
+    ]
+  },
+  "user/LoginByWechat": {
+    "type": "Reference",
+    "target": "user/_OtherLoginPlatformParams"
+  },
+  "user/_OtherLoginPlatformParams": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "nickname",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "avatar",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "gender",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/LoginByQQ": {
+    "type": "Reference",
+    "target": "user/_OtherLoginPlatformParams"
+  },
+  "user/BindWechat": {
+    "type": "Reference",
+    "target": "user/_OtherBindPlatformParams"
+  },
+  "user/_OtherBindPlatformParams": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "code",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "uid",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/BindQQ": {
+    "type": "Reference",
+    "target": "user/_OtherBindPlatformParams"
+  },
+  "user/BindMobile": {
+    "type": "Intersection",
+    "members": [
+      {
+        "id": 0,
+        "type": {
+          "type": "Reference",
+          "target": "user/_OtherBindPlatformParams"
+        }
+      },
+      {
+        "id": 1,
+        "type": {
+          "type": "Interface",
+          "properties": [
+            {
+              "id": 0,
+              "name": "mobile",
+              "type": {
+                "type": "String"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "user/LoginBySms": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "phone",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "code",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/UserLogout": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "token",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/UpdateUserInfo": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "nickname",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "avatar",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "gender",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/ResetPassword": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "password",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/CheckFollowers": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "uid",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "follower",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
   }
 }
