@@ -22,7 +22,7 @@ declare type CloudData = { event: ExplainCloudEvent; context: CloudContext; expl
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 declare type CloudRouter = {
-  route: string;
+  route: `api/${string}`;
   service: string;
   routes: {
     route?: string;
