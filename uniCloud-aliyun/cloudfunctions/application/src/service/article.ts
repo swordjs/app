@@ -5,11 +5,11 @@ const collection = db.collection('article');
 export default class ArticleService {
   public userID: string;
   public nowDate: string;
-  constructor(data) {
-    // this.userID = data.context.userID;
-    // this.nowDate = new Date().toISOString();
+  constructor(data: CloudData) {
+    this.userID = data.context.userID;
+    this.nowDate = new Date().toISOString();
   }
-  async addArticle(params: IArticle.AddArticle) {
+  async addArticle(params: IArticle.AddArticle): Promise<unknown> {
     // 调用钉钉通知函数
     uniCloud.callFunction({
       name: 'dingtalk-robot',
@@ -30,7 +30,7 @@ export default class ArticleService {
       deleteDate: ''
     });
   }
-  async updateArticle(params: IArticle.UpdateArticle) {
+  async updateArticle(params: IArticle.UpdateArticle): Promise<unknown> {
     return await collection.doc(params.id).update({
       title: params.title,
       content: params.content,
@@ -38,7 +38,7 @@ export default class ArticleService {
       updateDate: this.nowDate
     });
   }
-  async auditArticle(params: IArticle.AuditArticle) {
+  async auditArticle(params: IArticle.AuditArticle): Promise<unknown> {
     const updateParams: Omit<IArticle.AuditArticle, 'id'> = {
       state: params.state
     };

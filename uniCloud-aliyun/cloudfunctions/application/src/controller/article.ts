@@ -4,9 +4,9 @@ import * as IArticle from '../../proto/article';
 
 export = class ArticleController extends explain.service {
   private service: articleService;
-  constructor(e: ExplainController) {
+  constructor(e: CloudData) {
     super(e);
-    this.service = new articleService(this.context);
+    this.service = new articleService(this);
   }
   /**
    * @name 添加/发布文章

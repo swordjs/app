@@ -8,9 +8,9 @@ const questionTag = db.collection('questionTag');
 export default class OpenApiService {
   public userID: string;
   public nowDate: string;
-  constructor(data) {
-    // this.userID = data.context.userID;
-    // this.nowDate = new Date().toISOString();
+  constructor(data: CloudData) {
+    this.userID = data.context.userID;
+    this.nowDate = new Date().toISOString();
   }
   async addOpenApi(params: IOpenApi.AddOpenApi): Promise<unknown> {
     // 默认添加一个类型为关闭的openapi

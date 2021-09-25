@@ -1,15 +1,12 @@
 const db = uniCloud.database();
 const collection = db.collection('questionTag');
 import * as IQuestionTag from '../../proto/questionTag';
-interface IQuestionTagData {
-  userID: string;
-}
 export default class QuestionTag {
   public userID: string;
   public nowDate: string;
-  constructor(data) {
-    // this.userID = data.userID;
-    // this.nowDate = new Date().toISOString();
+  constructor(data: CloudData) {
+    this.userID = data.context.userID;
+    this.nowDate = new Date().toISOString();
   }
   public async getTagList(params: IQuestionTag.GetTagList): Promise<unknown> {
     const { limit, page } = params;

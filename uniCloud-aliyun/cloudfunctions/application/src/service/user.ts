@@ -1,6 +1,6 @@
 const uniID = require('uni-id');
-const questionService = require('./question');
-const explanationService = require('./questionExplanation');
+import questionService from './question';
+import explanationService from './questionExplanation';
 const db = uniCloud.database();
 const collection = db.collection('uni-id-users');
 import * as IUser from '../../proto/user';
@@ -12,15 +12,17 @@ interface IUserData {
   };
 }
 export default class UserService {
+  private data: CloudData;
   public nowDate: string;
   public clientIp: string;
   public userID: string;
   public token: string;
-  constructor(data) {
-    // this.userID = data.userID;
-    // this.nowDate = new Date().toISOString();
-    // this.clientIp = data?.context?.CLIENTIP || '';
-    // this.token = data.token;
+  constructor(data: CloudData) {
+    this.data = data;
+    this.userID = data.context.userID;
+    this.nowDate = new Date().toISOString();
+    this.clientIp = data?.context?.CLIENTIP || '';
+    this.token = data.context.token;
   }
   public async loginByWechat(params: IUser.LoginByWechat, urlParams: { code: string }): Promise<unknown> {
     const { code } = urlParams;
@@ -155,10 +157,10 @@ export default class UserService {
         .field({ _id: true })
         .count();
       // 出题数, 调用question模块下的方法
-      const question = new questionService();
+      const question = new questionService(this.data);
       const { total: questionCount } = await question.questionCountByUserID(userID);
       // 题解数, 调用题解模块下的方法
-      const questionExplanation = new explanationService();
+      const questionExplanation = new explanationService(this.data);
       const { total: explanationCount } = await questionExplanation.getExplanationCountByUser(userID);
       const { data: likeData } = await questionExplanation.getLikeCountByUser(userID);
       return {

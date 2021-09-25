@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "app-tools": "file:../common/app-tools",
     "explain": "file:../common/explain",
     "form-data-utils": "file:../common/form-data-utils",
     "ts-validate": "file:../common/tsbuffer-params-validate",

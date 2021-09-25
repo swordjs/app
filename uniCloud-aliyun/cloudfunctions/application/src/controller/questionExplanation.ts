@@ -4,9 +4,9 @@ import * as IQuestionExplanation from '../../proto/questionExplanation';
 
 export = class QuestionExplanationController extends explain.service {
   private service: questionExplanationService;
-  constructor(e: ExplainController) {
+  constructor(e: CloudData) {
     super(e);
-    this.service = new questionExplanationService(this.context);
+    this.service = new questionExplanationService(this);
   }
   /**
    * @name 添加题解

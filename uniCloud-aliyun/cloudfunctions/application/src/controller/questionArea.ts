@@ -3,9 +3,9 @@ import questionAreaService from '../service/questionArea';
 import * as IQuestionArea from '../../proto/questionArea';
 export = class QuestionAreaController extends explain.service {
   private service: questionAreaService;
-  constructor(e: ExplainController) {
+  constructor(e: CloudData) {
     super(e);
-    this.service = new questionAreaService(this.context);
+    this.service = new questionAreaService(this);
   }
   /**
    * @name 获取专区列表（HTTP调用）

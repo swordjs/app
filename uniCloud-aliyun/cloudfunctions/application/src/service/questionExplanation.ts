@@ -6,9 +6,9 @@ import * as IQuestionExplanation from '../../proto/questionExplanation';
 export default class QuestionExplanationService {
   public userID: string;
   public nowDate: string;
-  constructor(data) {
-    // this.userID = data?.userID;
-    // this.nowDate = new Date().toISOString();
+  constructor(data: CloudData) {
+    this.userID = data.context.userID;
+    this.nowDate = new Date().toISOString();
   }
   public async addQuestionExplanation(params: IQuestionExplanation.AddQuestionExplanation): Promise<unknown> {
     const { _id, content } = params;
@@ -102,7 +102,7 @@ export default class QuestionExplanationService {
     }
   }
   // 获取题解数量
-  public async getExplanationCountByUser(userID: IQuestionExplanation.GetExplanationCountByUser): Promise<unknown> {
+  public async getExplanationCountByUser(userID: IQuestionExplanation.GetExplanationCountByUser): Promise<{ total: number }> {
     return await collection
       .where({
         userID,
@@ -111,7 +111,7 @@ export default class QuestionExplanationService {
       .count();
   }
   // 查询题解共被采纳过多少次
-  public async getLikeCountByUser(userID: IQuestionExplanation.GetLikeCountByUser): Promise<unknown> {
+  public async getLikeCountByUser(userID: IQuestionExplanation.GetLikeCountByUser): Promise<{ data: unknown[] }> {
     // 获取所有的题解列表并且
     return await collection
       .aggregate()

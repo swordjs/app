@@ -5,6 +5,8 @@ declare interface CloudContext {
   CLIENTUA: string;
   // 当前环境信息 {spaceId:'xxx',provider:'tencent'}
   SPACEINFO: string;
+  userID?: string;
+  token?: string;
 }
 
 // 调用explain框架的event，普通云函数的event就是传递的参数
@@ -15,4 +17,4 @@ declare interface ExplainCloudEvent {
   headers: Record<string, string>;
 }
 
-declare type ExplainController = { event: ExplainCloudEvent; context: CloudContext; explain: unknown };
+declare type CloudData = { event: ExplainCloudEvent; context: CloudContext; explain: unknown };

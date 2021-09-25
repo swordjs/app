@@ -4,9 +4,9 @@ const collection = db.collection('opendb-search-log');
 export default class SearchService {
   public userID: string;
   public nowDate: string;
-  constructor(data) {
-    // this.userID = data.context.userID;
-    // this.nowDate = new Date().toISOString();
+  constructor(data: CloudData) {
+    this.userID = data.context.userID;
+    this.nowDate = new Date().toISOString();
   }
   async addSeachLog(params: ISearch.AddSeachLog): Promise<unknown> {
     return await collection.add({

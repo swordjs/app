@@ -1361,7 +1361,7 @@ declare namespace UniCloud {
      *
      * 文档: [http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-end](http://uniapp.dcloud.io/uniCloud/cf-database?id=aggregate-end)
      */
-    end(): { data: unknown };
+    end(): { data: unknown[] };
   }
 
   interface UnwindOptions {

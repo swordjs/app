@@ -4,9 +4,9 @@ const collection = db.collection('certificationApplyOrder');
 export default class CertificationApplyOrder {
   public userID: string;
   public nowDate: string;
-  constructor(data) {
-    // this.userID = data.context.userID;
-    // this.nowDate = new Date().toISOString();
+  constructor(data: CloudData) {
+    this.userID = data.context.userID;
+    this.nowDate = new Date().toISOString();
   }
   async getCertificationApplyOrder(params: ICertificationApplyOrder.GetCertificationApplyOrder): Promise<unknown> {
     const { limit, page, state } = params;

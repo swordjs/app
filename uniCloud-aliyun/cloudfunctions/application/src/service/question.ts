@@ -7,11 +7,10 @@ export default class Question {
   public userID: string;
   public nowDate: string;
   public clientIp: string;
-  constructor(data) {
-    // this.userID = data?.userID || '';
-    // // 由于context如果是远程调用的此服务，那么context将会不传，所以这里进行了兼容
-    // this.clientIp = data?.context?.CLIENTIP || ''; // context注入的IP段
-    // this.nowDate = new Date().toISOString();
+  constructor(data: CloudData) {
+    this.userID = data.context.userID || '';
+    this.clientIp = data?.context?.CLIENTIP || '';
+    this.nowDate = new Date().toISOString();
   }
   async addQuestion(params: IQuestion.AddQuestion): Promise<unknown> {
     return await collection.add({
@@ -116,7 +115,7 @@ export default class Question {
     }
   }
   // 根据UserID获取发布了多少道题目
-  async questionCountByUserID(userID: string): Promise<unknown> {
+  async questionCountByUserID(userID: string): Promise<{ total: number }> {
     return await collection
       .where({
         publishUserID: userID,

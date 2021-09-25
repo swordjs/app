@@ -3,9 +3,9 @@ import certificationService from '../service/certificationApplyOrder';
 import * as ICertificationApplyOrder from '../../proto/certificationApplyOrder';
 export = class CertificationApplyOrderController extends explain.service {
   private service: certificationService;
-  constructor(e: ExplainController) {
+  constructor(e: CloudData) {
     super(e);
-    this.service = new certificationService(this.context);
+    this.service = new certificationService(this);
   }
   /**
    * @name 新增申请认证

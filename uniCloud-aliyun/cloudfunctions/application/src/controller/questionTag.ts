@@ -4,9 +4,9 @@ import * as IQuestionTag from '../../proto/questionTag';
 
 export class QuestionTagController extends explain.service {
   private service: questionTagService;
-  constructor(e: ExplainController) {
+  constructor(e: CloudData) {
     super(e);
-    this.service = new questionTagService(this.context);
+    this.service = new questionTagService(this);
   }
   /**
    * @name 获取专区列表（HTTP调用）

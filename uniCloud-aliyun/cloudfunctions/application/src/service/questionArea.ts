@@ -4,11 +4,11 @@ import * as IQuestionArea from '../../proto/questionArea';
 export default class QuestionArea {
   public userID: string;
   public nowDate: string;
-  constructor(data) {
-    // this.userID = data.userID;
-    // this.nowDate = new Date().toISOString();
+  constructor(data: CloudData) {
+    this.userID = data.context.userID;
+    this.nowDate = new Date().toISOString();
   }
-  async getAreaList(params: IQuestionArea.IGetAreaList): Promise<unknown> {
+  async getAreaList(params: IQuestionArea.GetAreaList): Promise<unknown> {
     const { limit, page } = params;
     const whereParams = {
       deleteDate: ''
@@ -26,7 +26,7 @@ export default class QuestionArea {
       count: countResult.total
     };
   }
-  async addQuestionArea(params: IQuestionArea.IAddQuestionArea): Promise<unknown> {
+  async addQuestionArea(params: IQuestionArea.AddQuestionArea): Promise<unknown> {
     const { name, iconPath } = params;
     return await collection.add({
       name,
@@ -36,7 +36,7 @@ export default class QuestionArea {
       deleteDate: ''
     });
   }
-  async updateQuestionArea(params: IQuestionArea.IUpdateQuestionArea): Promise<unknown> {
+  async updateQuestionArea(params: IQuestionArea.UpdateQuestionArea): Promise<unknown> {
     const { name, iconPath } = params;
     return await collection.doc(params._id).update({
       name,
@@ -44,7 +44,7 @@ export default class QuestionArea {
       updateDate: this.nowDate
     });
   }
-  async deleteQuestionArea(params: IQuestionArea.IDeleteQuestionArea): Promise<unknown> {
+  async deleteQuestionArea(params: IQuestionArea.DeleteQuestionArea): Promise<unknown> {
     return await collection.doc(params._id).update({
       updateDate: this.nowDate,
       deleteDate: this.nowDate

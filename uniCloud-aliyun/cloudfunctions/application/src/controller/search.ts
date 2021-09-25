@@ -3,9 +3,9 @@ import searchService from '../service/search';
 import * as ISearch from '../../proto/search';
 export = class SearchController extends explain.service {
   private service: searchService;
-  constructor(e: ExplainController) {
+  constructor(e: CloudData) {
     super(e);
-    this.service = new searchService(this.context);
+    this.service = new searchService(this);
   }
   /**
    * @name 增加搜索记录

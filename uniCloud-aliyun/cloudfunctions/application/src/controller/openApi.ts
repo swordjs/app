@@ -3,9 +3,9 @@ import openApiService from '../service/openApi';
 import * as IOpenApi from '../../proto/openapi';
 export = class OpenApiController extends explain.service {
   private service: openApiService;
-  constructor(e: ExplainController) {
+  constructor(e: CloudData) {
     super(e);
-    this.service = new openApiService(this.context);
+    this.service = new openApiService(this);
   }
   /**
    * @name 添加openapi

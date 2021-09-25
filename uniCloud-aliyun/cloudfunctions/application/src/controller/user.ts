@@ -3,9 +3,9 @@ import userService from '../service/user';
 import * as IUser from '../../proto/user';
 export = class UserController extends explain.service {
   private service: userService;
-  constructor(e: ExplainController) {
+  constructor(e: CloudData) {
     super(e);
-    this.service = new userService(this.context);
+    this.service = new userService(this);
   }
   /**
    * @name 微信登录
