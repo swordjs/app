@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
     "lib": ["es2015", "es2017"],
-    "typeRoots": ["./typings", "./node_modules/@types"]
+    "typeRoots": ["./typings", "./node_modules/@types", "node_modules/sword-typescript-type-core"]
   }
 }
