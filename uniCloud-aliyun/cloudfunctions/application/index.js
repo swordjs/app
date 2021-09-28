@@ -39,6 +39,14 @@ exports.main = async (event, context) =>
       const allRoute = routeList.map((r) => require(path.resolve(__dirname, 'dist/router', r)));
       app.route.add(allRoute);
 
+      // 兼容云函数测试用例调用以及http外部调用的event处理中间件
+      app.use(async ({ context, next }) => {
+        // 如果云函数是http请求
+        if (context.SOURCE === 'http') {
+          event = JSON.parse(event.body);
+        }
+        await next();
+      });
       // 添加校验参数中间件
       app.use(async ({ explain: _explain, next }) => {
         const validateResult = await ParamsValidate({
