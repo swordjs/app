@@ -48,8 +48,24 @@ export default (params: RequestParams): Promise<ActionResult> => {
         }
       )
       .then((res) => {
-        console.log(res);
-        resolve(res);
+        let response: ActionResult = {
+          success: true,
+          data: res
+        };
+        if (res.code) {
+          // 判断code是否存在于errorMessage对象中
+          if (res.code !== 0) {
+            response = {
+              success: false
+            };
+            uni.hideLoading();
+            uni.showToast({
+              title: res.message,
+              icon: 'none'
+            });
+          }
+        }
+        resolve(response);
       });
   });
 };
