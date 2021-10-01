@@ -20,6 +20,10 @@ fly.interceptors.request.use((request) => {
     notLogin();
   }
   // uni-id-token
+  const token = uni.getStorageSync('uni_id_token');
+  if (token) request.headers['uni-id-token'] = token;
+  const id = uni.getStorageSync('uni_id');
+  if (id) request.headers['uni_id'] = id;
   return request;
 });
 
