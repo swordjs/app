@@ -33,14 +33,20 @@ fly.interceptors.response.use((response) => {
 });
 
 export default (params: RequestParams): Promise<ActionResult> => {
+  // 获取需要传递参数的route，如果params中的route是 api/user/loginByWechat/* ，我们需要将loginByWechat/*这一部分给后端传递
+  // console.log(params.data.route.substr(params.data.route.indexOf(params.data.route.split('/')[1])));
+  const service = params.data.route.split('/')[1];
+  const route = params.data.route.substr(params.data.route.indexOf(service) + service.length + 1);
   return new Promise((resolve, reject) => {
     fly
       .request(
         `https://c7e81452-9d28-4486-bedc-5dbf7c8386a5.bspapp.com/http/v1/${params.data.route}`,
         {
           ...params.data,
+          route,
+          service,
           // service注明服务名称，按照规范是action的/之后的内容
-          service: params.data.route.substr(params.data.route.indexOf('/') + 1)
+          action: params.data.action || params.data.route.split('/')[2]
         },
         {
           method: params?.data?.method || 'POST',
