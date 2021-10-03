@@ -1,4 +1,4 @@
-import callFunction from './../common/callFunction';
+import request from '../common/request';
 
 type UserInfo = {
   gender: number;
@@ -13,16 +13,14 @@ type UserInfo = {
  * @returns
  */
 export async function loginByWechat(userInfo: UserInfo, res: { code: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
+  return await request({
+    method: 'POST',
+    route: `api/user/loginByWechat`,
     data: {
-      route: `api/user/loginByWechat/${res.code}`,
-      method: 'POST',
-      params: {
-        gender: userInfo.gender,
-        avatar: userInfo.avatarUrl,
-        nickname: userInfo.nickName
-      }
+      code: res.code,
+      gender: userInfo.gender,
+      avatar: userInfo.avatarUrl,
+      nickname: userInfo.nickName
     }
   });
 }
@@ -34,16 +32,14 @@ export async function loginByWechat(userInfo: UserInfo, res: { code: string }): 
  * @returns
  */
 export async function loginByQQ(userInfo: UserInfo, res: { code: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
+  return await request({
+    route: `api/user/loginByQQ`,
+    method: 'POST',
     data: {
-      route: `api/user/loginByQQ/${res.code}`,
-      method: 'POST',
-      params: {
-        gender: userInfo.gender,
-        avatar: userInfo.avatarUrl,
-        nickname: userInfo.nickName
-      }
+      code: res.code,
+      gender: userInfo.gender,
+      avatar: userInfo.avatarUrl,
+      nickname: userInfo.nickName
     }
   });
 }
@@ -54,15 +50,12 @@ export async function loginByQQ(userInfo: UserInfo, res: { code: string }): Prom
  * @returns
  */
 export async function bindWechat(params: { code: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
+  return await request({
+    route: `api/user/bindWechat`,
+    method: 'POST',
     data: {
-      route: `api/user/bindWechat`,
-      method: 'POST',
-      params: {
-        code: params.code,
-        uid: uni.getStorageSync('uni_id')
-      }
+      code: params.code,
+      uid: uni.getStorageSync('uni_id')
     }
   });
 }
@@ -73,15 +66,12 @@ export async function bindWechat(params: { code: string }): Promise<ActionResult
  * @returns
  */
 export async function bindQQ(params: { code: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
+  return await request({
+    route: `api/user/bindQQ`,
+    method: 'POST',
     data: {
-      route: `api/user/bindQQ`,
-      method: 'POST',
-      params: {
-        code: params.code,
-        uid: uni.getStorageSync('uni_id')
-      }
+      code: params.code,
+      uid: uni.getStorageSync('uni_id')
     }
   });
 }
@@ -92,13 +82,10 @@ export async function bindQQ(params: { code: string }): Promise<ActionResult> {
  * @returns
  */
 export async function sendSms(params: { phone: string; type: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
-    data: {
-      route: `api/user/sendSms/${params.type}/${params.phone}`,
-      method: 'POST',
-      params: {}
-    }
+  return await request({
+    route: `api/user/sendSms`,
+    method: 'POST',
+    data: params
   });
 }
 
@@ -108,13 +95,10 @@ export async function sendSms(params: { phone: string; type: string }): Promise<
  * @returns
  */
 export async function bindMobile(params: { uid: string; mobile: string; code: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
-    data: {
-      route: `api/user/bindMobile`,
-      method: 'POST',
-      params
-    }
+  return await request({
+    route: `api/user/bindMobile`,
+    method: 'POST',
+    data: params
   });
 }
 
@@ -124,22 +108,19 @@ export async function bindMobile(params: { uid: string; mobile: string; code: st
  * @returns
  */
 export async function loginBySms(params: { phone: string; code: string }): Promise<unknown> {
-  return await callFunction({
-    name: 'application',
-    data: {
-      route: `api/user/loginBySms`,
-      method: 'POST',
-      params
-    }
+  return await request({
+    route: `api/user/loginBySms`,
+    method: 'POST',
+    data: params
   });
 }
 
 export async function logout(params: { token: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
+  return await request({
+    route: `api/user/userLogout`,
+    method: 'GET',
     data: {
-      route: `api/user/userLogout/${params.token}`,
-      method: 'GET'
+      token: params.token
     }
   });
 }

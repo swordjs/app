@@ -765,23 +765,30 @@
     "properties": [
       {
         "id": 0,
-        "name": "nickname",
+        "name": "code",
         "type": {
           "type": "String"
         }
       },
       {
         "id": 1,
-        "name": "avatar",
+        "name": "nickname",
         "type": {
           "type": "String"
         }
       },
       {
         "id": 2,
-        "name": "gender",
+        "name": "avatar",
         "type": {
           "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "gender",
+        "type": {
+          "type": "Number"
         }
       }
     ]
@@ -933,6 +940,49 @@
       {
         "id": 1,
         "name": "follower",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/SendSms": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "type",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "phone",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/CheckToken": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "token",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/GetUserContentByID": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
         "type": {
           "type": "String"
         }

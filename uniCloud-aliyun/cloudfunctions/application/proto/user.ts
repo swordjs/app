@@ -1,7 +1,8 @@
 type _OtherLoginPlatformParams = {
+  code: string;
   nickname: string;
   avatar: string;
-  gender: string;
+  gender: number;
 };
 
 export type LoginByWechat = _OtherLoginPlatformParams;
@@ -41,4 +42,17 @@ export interface ResetPassword {
 export interface CheckFollowers {
   uid: string;
   follower: string;
+}
+
+export interface SendSms {
+  type: string;
+  phone: string;
+}
+
+export interface CheckToken {
+  token: string;
+}
+
+export interface GetUserContentByID {
+  id: string;
 }

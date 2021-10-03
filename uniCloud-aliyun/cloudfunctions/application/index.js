@@ -43,14 +43,20 @@ exports.main = async (event, context) =>
       app.use(async ({ context, next }) => {
         // 如果云函数是http请求
         if (context.SOURCE === 'http') {
-          event = JSON.parse(event.body);
+          // 根据url解析service以及route
+          const paths = context.body.path.split('/'); // 根据请求的url解析service和action
+          // 赋值成功之后，交由下一个中间件去处理event
+          event.service = paths[2];
+          event.action = paths[3];
+          event.data = JSON.parse(event.body) || {};
         }
         await next();
       });
       // 添加校验参数中间件
       app.use(async ({ explain: _explain, next }) => {
         const validateResult = await ParamsValidate({
-          ...event,
+          service: event.service,
+          action: event.action,
           params: event.data,
           schemas
         });
