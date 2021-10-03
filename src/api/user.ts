@@ -1,4 +1,3 @@
-import callFunction from './../common/callFunction';
 import request from '../common/request';
 const db = uniCloud.database();
 
@@ -38,27 +37,17 @@ export async function getUserContentByID(params: { userID: string }): Promise<Ac
  * @param params
  */
 export async function getUserBaseContentByUserID(params: { userID: string }): Promise<ActionResult> {
-  return new Promise((resolve) => {
-    db.collection('uni-id-users')
-      .where({
-        _id: params.userID
-      })
-      .field('nickname,avatar,followers,sign,gender,wx_openid,qq_openid,mobile,mobile_confirmed')
-      .get()
-      .then((res) => {
-        const { success, result } = res;
-        resolve({
-          success,
-          data: result.data
-        });
-      })
-      .catch((err: { message: string }) => {
-        uni.showToast({
-          title: err.message,
-          icon: 'none'
-        });
-      });
-  });
+  const res = await db
+    .collection('uni-id-users')
+    .where({
+      _id: params.userID
+    })
+    .field('nickname,avatar,followers,sign,gender,wx_openid,qq_openid,mobile,mobile_confirmed')
+    .get();
+  return {
+    ...res,
+    data: res.result.data
+  };
 }
 
 /**

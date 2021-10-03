@@ -8,29 +8,19 @@ import request from '../common/request';
  * @docLink https://www.yuque.com/u509950/lmm8g4/wmvcz3
  */
 export async function getQuestionListData(params: { limit: number; page: number; areaID: string }): Promise<ActionResult> {
-  return new Promise((resolve) => {
-    const { limit, page, areaID } = params;
-    db.collection('question,uni-id-users')
-      .where(`areaID == '${areaID}' && deleteDate == '' && state == 'pass'`)
-      .field(`publishUserID{avatar,nickname,_id},title,content,createDate`)
-      .orderBy('createDate desc')
-      .skip(limit * (page - 1))
-      .limit(limit)
-      .get()
-      .then((res) => {
-        const { success, result } = res;
-        resolve({
-          success,
-          data: result.data
-        });
-      })
-      .catch((err: { message: string }) => {
-        uni.showToast({
-          title: err.message,
-          icon: 'none'
-        });
-      });
-  });
+  const { limit, page, areaID } = params;
+  const res = await db
+    .collection('question,uni-id-users')
+    .where(`areaID == '${areaID}' && deleteDate == '' && state == 'pass'`)
+    .field(`publishUserID{avatar,nickname,_id},title,content,createDate`)
+    .orderBy('createDate', 'desc')
+    .skip(limit * (page - 1))
+    .limit(limit)
+    .get();
+  return {
+    ...res,
+    data: res.result.data
+  };
 }
 
 /**
@@ -38,25 +28,11 @@ export async function getQuestionListData(params: { limit: number; page: number;
  * @param params
  */
 export async function getQuestionDetailByID(params: { id: string }): Promise<ActionResult> {
-  return new Promise((resolve) => {
-    db.collection('question,questionTag')
-      .where(`_id == '${params.id}'`)
-      .field('tagID{name},title,content,pageView')
-      .get()
-      .then((res) => {
-        const { success, result } = res;
-        resolve({
-          success,
-          data: result.data
-        });
-      })
-      .catch((err: { message: string }) => {
-        uni.showToast({
-          title: err.message,
-          icon: 'none'
-        });
-      });
-  });
+  const res = await db.collection('question,questionTag').where(`_id == '${params.id}'`).field('tagID{name},title,content,pageView').get();
+  return {
+    ...res,
+    data: res.result.data
+  };
 }
 
 /**
@@ -80,26 +56,16 @@ export async function postAddPageView(params: { _id: string }): Promise<ActionRe
  * @returns
  */
 export async function getQuestionListByUser(params: { userID: string; limit: number; page: number }): Promise<ActionResult> {
-  return new Promise((resolve) => {
-    const { limit, page } = params;
-    db.collection('question')
-      .where(`publishUserID == '${params.userID}' && state == 'pass' && deleteDate == ''`)
-      .orderBy('createDate desc')
-      .skip(limit * (page - 1))
-      .limit(limit)
-      .get()
-      .then((res) => {
-        const { success, result } = res;
-        resolve({
-          success,
-          data: result.data
-        });
-      })
-      .catch((err: { message: string }) => {
-        uni.showToast({
-          title: err.message,
-          icon: 'none'
-        });
-      });
-  });
+  const { limit, page } = params;
+  const res = await db
+    .collection('question')
+    .where(`publishUserID == '${params.userID}' && state == 'pass' && deleteDate == ''`)
+    .orderBy('createDate', 'desc')
+    .skip(limit * (page - 1))
+    .limit(limit)
+    .get();
+  return {
+    ...res,
+    data: res.result.data
+  };
 }
