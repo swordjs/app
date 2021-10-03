@@ -1,4 +1,4 @@
-const uniID = require('uni-id');
+import uniID from 'uni-id';
 import questionService from './question';
 import explanationService from './questionExplanation';
 const db = uniCloud.database();
@@ -6,6 +6,7 @@ const collection = db.collection('uni-id-users');
 import * as IUser from '../../proto/user';
 export default class UserService {
   private data: CloudData;
+  private uniID: uniID;
   public nowDate: string;
   public clientIp: string;
   public userID: string;
@@ -16,16 +17,19 @@ export default class UserService {
     this.nowDate = new Date().toISOString();
     this.clientIp = data?.context?.CLIENTIP || '';
     this.token = data.context.token;
+    this.uniID = uniID.createInstance({
+      context: data.context
+    });
   }
   public async loginByWechat(params: IUser.LoginByWechat): Promise<unknown> {
     // 把用户信息也添加到库中, 设置角色为默认角色
-    const res = await uniID.loginByWeixin({
+    const res = await this.uniID.loginByWeixin({
       code: params.code,
       role: ['normal'],
       needPermission: true // 返回权限
     });
     // 更新用户信息（昵称，头像，性别等）
-    await uniID.updateUser({
+    await this.uniID.updateUser({
       uid: res.uid,
       nickname: params.nickname,
       avatar: params.avatar,
@@ -35,7 +39,7 @@ export default class UserService {
   }
   public async bindWechat(params: IUser.BindWechat): Promise<unknown> {
     const { code, uid } = params;
-    return await uniID.bindWeixin({
+    return await this.uniID.bindWeixin({
       uid,
       code
     });
@@ -58,14 +62,14 @@ export default class UserService {
   }
   public async bindQQ(params: IUser.BindQQ): Promise<unknown> {
     const { code, uid } = params;
-    return await uniID.bindQQ({
+    return await this.uniID.bindQQ({
       uid,
       code
     });
   }
   public async loginBySms(params: IUser.LoginBySms): Promise<unknown> {
     const { phone, code } = params;
-    const result = await uniID.loginBySms({
+    const result = await this.uniID.loginBySms({
       mobile: phone,
       code,
       needPermission: true,
@@ -82,7 +86,7 @@ export default class UserService {
           sign: '感谢支持剑指题解'
         };
         // 执行更新
-        await uniID.updateUser({
+        await this.uniID.updateUser({
           uid: result.uid,
           ...userBaseInfo
         });
@@ -99,14 +103,14 @@ export default class UserService {
   }
   public async sendSms(params: IUser.SendSms): Promise<unknown> {
     const { type, phone } = params;
-    return await uniID.sendSmsCode({
+    return await this.uniID.sendSmsCode({
       mobile: phone,
       templateId: '11846',
       type
     });
   }
   public async bindMobile(params: IUser.BindMobile): Promise<unknown> {
-    return await uniID.bindMobile({
+    return await this.uniID.bindMobile({
       uid: params.uid,
       mobile: params.mobile,
       code: params.code
@@ -114,21 +118,21 @@ export default class UserService {
   }
   public async userLogout(params: IUser.UserLogout): Promise<unknown> {
     const { token } = params;
-    return await uniID.logout(token);
+    return await this.uniID.logout(token);
   }
   public async checkToken(params: IUser.CheckToken): Promise<unknown> {
-    return await uniID.checkToken(params.token);
+    return await this.uniID.checkToken(params.token);
   }
   public async updateUserInfo(params: IUser.UpdateUserInfo): Promise<unknown> {
-    return await uniID.updateUser({
+    return await this.uniID.updateUser({
       ...params
     });
   }
   public async getUserContentByToken(): Promise<unknown> {
-    return await uniID.getUserInfoByToken(this.token);
+    return await this.uniID.getUserInfoByToken(this.token);
   }
   public async resetPassword(params: IUser.ResetPassword): Promise<unknown> {
-    return await uniID.resetPwd({
+    return await this.uniID.resetPwd({
       uid: params.id,
       password: params.password
     });
@@ -136,7 +140,7 @@ export default class UserService {
   public async getUserContentByID(params: IUser.GetUserContentByID): Promise<unknown> {
     const { id } = params;
     // return await collection.doc(this.userID).get();
-    const baseUserInfo = await uniID.getUserInfo({
+    const baseUserInfo = await this.uniID.getUserInfo({
       uid: id
     });
     if (baseUserInfo.code === 0) {
@@ -166,7 +170,7 @@ export default class UserService {
   public async checkFollowers(params: IUser.CheckFollowers): Promise<unknown> {
     const { follower } = params;
     // 获取当前用户关注用户信息
-    const result = await uniID.getUserInfo({
+    const result = await this.uniID.getUserInfo({
       uid: this.userID
     });
     if (result.code === 0) {
@@ -183,7 +187,7 @@ export default class UserService {
         followers.splice(index, 1);
       }
       // 更新数据库
-      return await uniID.updateUser({
+      return await this.uniID.updateUser({
         uid: this.userID,
         followers: followers
       });

@@ -18,9 +18,20 @@ fly.interceptors.request.use((request) => {
   }
   // uni-id-token
   const token = uni.getStorageSync('uni_id_token');
-  if (token) request.headers['uni-id-token'] = token;
   const id = uni.getStorageSync('uni_id');
-  if (id) request.headers['uni_id'] = id;
+  if (token) {
+    request.headers['uni-id-token'] = token;
+    request.headers['uni_id'] = id;
+  }
+  // 获取客户端宿主环境，微信/qq
+  let platform = 'unknown';
+  // #ifdef MP-WEIXIN
+  platform = 'mp-weixin';
+  // #endif
+  // #ifdef MP-QQ
+  platform = 'mp-qq';
+  // #endif
+  request.headers['sword-platform'] = platform;
   return request;
 });
 
