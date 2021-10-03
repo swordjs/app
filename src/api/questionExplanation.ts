@@ -1,5 +1,5 @@
 const db = uniCloud.database();
-import callFunction from './../common/callFunction';
+import request from '../common/request';
 
 /**
  * @name 新增题解
@@ -7,13 +7,10 @@ import callFunction from './../common/callFunction';
  * @returns
  */
 export async function addQuestionExplanation(params: { _id: string; content: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
-    data: {
-      route: `api/questionExplanation`,
-      method: 'POST',
-      params
-    },
+  return await request({
+    route: `api/questionExplanation`,
+    method: 'POST',
+    data: params,
     checkLogin: true
   });
 }
@@ -24,13 +21,10 @@ export async function addQuestionExplanation(params: { _id: string; content: str
  * @returns
  */
 export async function updateQuestionExplanation(params: { _id: string; content: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
-    data: {
-      route: `api/questionExplanation`,
-      method: 'PUT',
-      params
-    },
+  return await request({
+    route: `api/questionExplanation`,
+    method: 'PUT',
+    data: params,
     checkLogin: true
   });
 }
@@ -41,13 +35,10 @@ export async function updateQuestionExplanation(params: { _id: string; content: 
  * @returns
  */
 export async function adoptionQuestionExplanation(params: { _id: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
-    data: {
-      route: `api/questionExplanation/adoptionQuestionExplanation`,
-      method: 'POST',
-      params
-    },
+  return await request({
+    route: `api/questionExplanation/adoptionQuestionExplanation`,
+    method: 'POST',
+    data: params,
     checkLogin: true
   });
 }
@@ -58,13 +49,10 @@ export async function adoptionQuestionExplanation(params: { _id: string }): Prom
  * @returns
  */
 export async function collectQuestionExplanation(params: { _id: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
-    data: {
-      route: `api/questionExplanation/collectQuestionExplanation`,
-      method: 'POST',
-      params
-    },
+  return await request({
+    route: `api/questionExplanation/collectQuestionExplanation`,
+    method: 'POST',
+    data: params,
     checkLogin: true
   });
 }

@@ -1,5 +1,5 @@
 const db = uniCloud.database();
-import callFunction from './../common/callFunction';
+import request from '../common/request';
 
 /**
  * @name 获取题目列表
@@ -65,14 +65,11 @@ export async function getQuestionDetailByID(params: { id: string }): Promise<Act
  * @returns
  */
 export async function postAddPageView(params: { _id: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
+  return await request({
+    route: `api/question/addPageView`,
+    method: 'POST',
     data: {
-      route: `api/question/addPageView`,
-      method: 'POST',
-      params: {
-        _id: params._id
-      }
+      _id: params._id
     }
   });
 }

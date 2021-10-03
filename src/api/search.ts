@@ -1,4 +1,4 @@
-import callFunction from '../common/callFunction';
+import request from '../common/request';
 import { arrObjectUnique } from '../util/common';
 const db = uniCloud.database();
 
@@ -46,13 +46,10 @@ export async function search(params: { searchText: string; limit: number; page: 
  * @returns
  */
 export async function addSearchLog(params: { content: string; user_id?: string; device_id?: string }): Promise<ActionResult> {
-  return await callFunction({
-    name: 'application',
-    data: {
-      route: `api/search/addSeachLog`,
-      method: 'POST',
-      params
-    }
+  return await request({
+    route: `api/search/addSeachLog`,
+    method: 'POST',
+    data: params
   });
 }
 
