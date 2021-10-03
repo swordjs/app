@@ -8,12 +8,12 @@ const router: CloudRouter = {
       action: 'loginBySms'
     },
     {
-      route: 'sendSms/{type}/{phone}',
+      route: 'sendSms',
       httpMethod: 'POST',
       action: 'sendSms'
     },
     {
-      route: 'loginByWechat/{code}',
+      route: 'loginByWechat',
       httpMethod: 'POST',
       action: 'loginByWechat'
     },
@@ -23,7 +23,7 @@ const router: CloudRouter = {
       action: 'bindWechat'
     },
     {
-      route: 'loginByQQ/{code}',
+      route: 'loginByQQ',
       httpMethod: 'POST',
       action: 'loginByQQ'
     },
@@ -38,7 +38,7 @@ const router: CloudRouter = {
       action: 'bindMobile'
     },
     {
-      route: 'userLogout/{token}',
+      route: 'userLogout',
       httpMethod: 'GET',
       action: 'userLogout'
     },
@@ -48,19 +48,9 @@ const router: CloudRouter = {
       action: 'resetPassword'
     },
     {
-      route: 'checkToken/{token}',
+      route: 'checkToken',
       httpMethod: 'GET',
       action: 'checkToken'
-    },
-    {
-      route: 'addFollowers/{id}',
-      httpMethod: 'POST',
-      action: 'addFollowers'
-    },
-    {
-      route: 'deleteFollowers/{id}',
-      httpMethod: 'POST',
-      action: 'deleteFollowers'
     },
     {
       route: 'getUserContentByToken',
@@ -68,7 +58,7 @@ const router: CloudRouter = {
       action: 'getUserContentByToken'
     },
     {
-      route: 'getUserContentByID/{userID}',
+      route: 'getUserContentByID',
       httpMethod: 'GET',
       action: 'getUserContentByID'
     },

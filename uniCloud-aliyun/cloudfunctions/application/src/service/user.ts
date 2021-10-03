@@ -4,13 +4,6 @@ import explanationService from './questionExplanation';
 const db = uniCloud.database();
 const collection = db.collection('uni-id-users');
 import * as IUser from '../../proto/user';
-interface IUserData {
-  userID: string;
-  token: string;
-  context: {
-    CLIENTIP: string;
-  };
-}
 export default class UserService {
   private data: CloudData;
   public nowDate: string;
@@ -24,11 +17,10 @@ export default class UserService {
     this.clientIp = data?.context?.CLIENTIP || '';
     this.token = data.context.token;
   }
-  public async loginByWechat(params: IUser.LoginByWechat, urlParams: { code: string }): Promise<unknown> {
-    const { code } = urlParams;
+  public async loginByWechat(params: IUser.LoginByWechat): Promise<unknown> {
     // 把用户信息也添加到库中, 设置角色为默认角色
     const res = await uniID.loginByWeixin({
-      code,
+      code: params.code,
       role: ['normal'],
       needPermission: true // 返回权限
     });
@@ -48,9 +40,8 @@ export default class UserService {
       code
     });
   }
-  public async loginByQQ(params: IUser.LoginByQQ, urlParams: { code: string }): Promise<unknown> {
-    const { code } = urlParams;
-    const { nickname, avatar, gender } = params;
+  public async loginByQQ(params: IUser.LoginByQQ): Promise<unknown> {
+    const { nickname, avatar, gender, code } = params;
     // 把用户信息也添加到库中, 设置角色为默认角色
     const res = await uniID.loginByQQ({
       code,
@@ -106,8 +97,8 @@ export default class UserService {
       };
     }
   }
-  public async sendSms(params, urlParams): Promise<unknown> {
-    const { type, phone } = urlParams;
+  public async sendSms(params: IUser.SendSms): Promise<unknown> {
+    const { type, phone } = params;
     return await uniID.sendSmsCode({
       mobile: phone,
       templateId: '11846',
@@ -125,9 +116,8 @@ export default class UserService {
     const { token } = params;
     return await uniID.logout(token);
   }
-  public async checkToken({ urlParams }): Promise<unknown> {
-    const { token } = urlParams;
-    return await uniID.checkToken(token);
+  public async checkToken(params: IUser.CheckToken): Promise<unknown> {
+    return await uniID.checkToken(params.token);
   }
   public async updateUserInfo(params: IUser.UpdateUserInfo): Promise<unknown> {
     return await uniID.updateUser({
@@ -143,26 +133,27 @@ export default class UserService {
       password: params.password
     });
   }
-  public async getUserContentByID({ userID }): Promise<unknown> {
+  public async getUserContentByID(params: IUser.GetUserContentByID): Promise<unknown> {
+    const { id } = params;
     // return await collection.doc(this.userID).get();
     const baseUserInfo = await uniID.getUserInfo({
-      uid: userID
+      uid: id
     });
     if (baseUserInfo.code === 0) {
       // 获取基础用户信息
       const { total: fansCount } = await collection
         .where({
-          followers: userID
+          followers: id
         })
         .field({ _id: true })
         .count();
       // 出题数, 调用question模块下的方法
       const question = new questionService(this.data);
-      const { total: questionCount } = await question.questionCountByUserID(userID);
+      const { total: questionCount } = await question.questionCountByUserID(id);
       // 题解数, 调用题解模块下的方法
       const questionExplanation = new explanationService(this.data);
-      const { total: explanationCount } = await questionExplanation.getExplanationCountByUser(userID);
-      const { data: likeData } = await questionExplanation.getLikeCountByUser(userID);
+      const { total: explanationCount } = await questionExplanation.getExplanationCountByUser(id);
+      const { data: likeData } = await questionExplanation.getLikeCountByUser(id);
       return {
         ...baseUserInfo,
         fansCount,

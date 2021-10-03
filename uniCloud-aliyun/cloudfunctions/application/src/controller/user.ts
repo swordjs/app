@@ -14,8 +14,8 @@ export = class UserController extends explain.service {
    * @link https://www.yuque.com/mlgrgm/lmm8g4/gkg5mv#g13V0
    * @memberof UserController
    */
-  async loginByWechat(urlParams): Promise<unknown> {
-    return await this.service.loginByWechat(this.event.data as IUser.LoginByWechat, urlParams);
+  async loginByWechat(): Promise<unknown> {
+    return await this.service.loginByWechat(this.event.data as IUser.LoginByWechat);
   }
   /**
    * @name 微信绑定
@@ -34,8 +34,8 @@ export = class UserController extends explain.service {
    * @link https://www.yuque.com/mlgrgm/lmm8g4/gkg5mv#nLSrd
    * @memberof UserController
    */
-  async loginByQQ(urlParams): Promise<unknown> {
-    return await this.service.loginByQQ(this.event.data as IUser.LoginByQQ, urlParams);
+  async loginByQQ(): Promise<unknown> {
+    return await this.service.loginByQQ(this.event.data as IUser.LoginByQQ);
   }
   /**
    * @name QQ绑定
@@ -63,8 +63,8 @@ export = class UserController extends explain.service {
    * @link https://www.yuque.com/mlgrgm/lmm8g4/gkg5mv#IJ4Rm
    * @memberof UserController
    */
-  async sendSms(urlParams): Promise<unknown> {
-    return await this.service.sendSms(null, urlParams);
+  async sendSms(): Promise<unknown> {
+    return await this.service.sendSms(this.event.data as IUser.SendSms);
   }
   /**
    * @name 绑定手机号
@@ -119,8 +119,8 @@ export = class UserController extends explain.service {
    * @link https://www.yuque.com/mlgrgm/lmm8g4/gkg5mv#jjVuV
    * @memberof UserController
    */
-  async getUserContentByID(urlParams): Promise<unknown> {
-    return await this.service.getUserContentByID(urlParams);
+  async getUserContentByID(): Promise<unknown> {
+    return await this.service.getUserContentByID(this.event.data as IUser.GetUserContentByID);
   }
   /**
    * @name 添加/取消关注
