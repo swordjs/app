@@ -24,10 +24,10 @@ export async function postFollow(params: { targetID: string }): Promise<ActionRe
  */
 export async function getUserContentByID(params: { userID: string }): Promise<ActionResult> {
   return await request({
-    route: `api/user/getUserContentByID/${params.userID}`,
+    route: `api/user/getUserContentByID`,
     method: 'GET',
     data: {
-      userID: params.userID
+      id: params.userID
     }
   });
 }
