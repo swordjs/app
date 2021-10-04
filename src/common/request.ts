@@ -23,15 +23,7 @@ fly.interceptors.request.use((request) => {
     request.headers['uni-id-token'] = token;
     request.headers['uni_id'] = id;
   }
-  // 获取客户端宿主环境，微信/qq
-  let platform = 'unknown';
-  // #ifdef MP-WEIXIN
-  platform = 'mp-weixin';
-  // #endif
-  // #ifdef MP-QQ
-  platform = 'mp-qq';
-  // #endif
-  request.headers['sword-platform'] = platform;
+  request.headers['sword-platform'] = process.env.UNI_PLATFORM;
   return request;
 });
 
