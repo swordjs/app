@@ -88,7 +88,6 @@ exports.main = async (event, context) =>
           params: event.data,
           schemas
         });
-        console.log(JSON.stringify(validateResult));
         if (!validateResult.isSucc) {
           // 将响应信息改为异常信息
           _explain.response.body = {
