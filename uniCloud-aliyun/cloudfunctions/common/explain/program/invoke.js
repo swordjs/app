@@ -307,14 +307,6 @@ module.exports = async ({ event, context, explain }) => {
 
   // 实例化service
   let serviceObj = require(`${explain.config.baseDir}${explain.config.serviceDir}${service}`);
-  let serviceInstance = new serviceObj({
-    event,
-    context,
-    explain
-  });
-  if (!serviceInstance[action]) {
-    throw new Error(`找不到action: "${action}"。`);
-  }
 
   // action执行前
   await filter.onActionExecuting({
@@ -326,6 +318,15 @@ module.exports = async ({ event, context, explain }) => {
   if (explain.response.body) {
     // body存在响应信息，直接跳出到响应
     return;
+  }
+  let serviceInstance = new serviceObj({
+    event,
+    context,
+    explain
+  });
+
+  if (!serviceInstance[action]) {
+    throw new Error(`找不到action: "${action}"。`);
   }
 
   // 执行action方法
