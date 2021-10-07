@@ -17,14 +17,14 @@
         <i-field label="昵称">
           <i-input
             type="text"
-            v-model="form.nickname"
+            :value="form.nickname"
             placeholder="请输入昵称"
           ></i-input>
         </i-field>
         <i-field label="签名">
           <i-input
             type="text"
-            v-model="form.sign"
+            :value="form.sign"
             placeholder="请输入签名"
           ></i-input>
         </i-field>
@@ -36,20 +36,19 @@
         </i-field>
       </i-form>
     </view>
-    <kps-image-cutter
+    <kpsImageCutter
       @ok="handleCutterOk"
       @cancel="handleCutterCancel"
       :url="imageCutterUrl"
       :fixed="true"
       :width="100"
       :height="100"
-    ></kps-image-cutter>
+    ></kpsImageCutter>
     <view class="save" @click="handleSubmit">确定</view>
   </view>
 </template>
 
 <script lang="ts">
-import kpsImageCutter from "@/components/ksp-image-cutter/ksp-image-cutter.vue";
 import { ref, reactive, computed } from "vue";
 // api
 import { getUserBaseContentByUserID, updateUserProfile } from "../../api/user";
@@ -67,12 +66,9 @@ export default {
   onLoad(){
     this.getUserProfile();
   },
-  components: {
-    kpsImageCutter,
-  },
   setup() {
-    const imageCutterUrl = ref("");
-    const form = reactive<ProfileForm>({
+    const imageCutterUrl = ref("http://tmp/koQnNmJQVm1d8632e4c3e52991392a713dbfbadb5fff.jpeg");
+    const form = ref<ProfileForm>({
       gender: -1,
       sign: "",
       nickname: "",
@@ -89,6 +85,7 @@ export default {
                 count: 1,
                 success: async (e) => {
                   imageCutterUrl.value = e.tempFilePaths[0];
+                  console.log(imageCutterUrl.value)
                 },
               });
               break;
@@ -97,7 +94,7 @@ export default {
       });
     };
     const handleSexChange = (e) => {
-      form.gender = Number(e.target.value);
+      form.value.gender = Number(e.target.value);
     };
     const userID = uni.getStorageSync("uni_id");
     const getUserProfile = async () => {
@@ -109,10 +106,13 @@ export default {
       });
       uni.hideLoading();
       if (userInfo.success) {
-        form.avatar = userInfo.data[0].avatar;
-        form.nickname = userInfo.data[0].nickname;
-        form.sign = userInfo.data[0].sign;
-        form.gender = userInfo.data[0].gender;
+        const {avatar,nickname,sign,gender} = userInfo.data[0];
+        form.value = {
+          avatar,
+          nickname,
+          sign,
+          gender
+        }
       }
     };
     const submitActive = computed(() => {
@@ -187,6 +187,7 @@ export default {
       imageCutterUrl.value = "";
     };
     const handleCutterOk = () => {
+      console.log(imageCutterUrl.value)
       uploadFileToCloudStorage({
         filePath: imageCutterUrl.value,
         cloudPath: "avatar",
