@@ -4,15 +4,10 @@
       <i-form>
         <i-field label="头像">
           <image
-            @click="handleUploadAvatar"
             :src="form.avatar"
             class="avatar"
             mode="scaleToFill"
           ></image>
-          <i-icon
-            @click="handleUploadAvatar"
-            name="arrow-drop-right-line"
-          ></i-icon>
         </i-field>
         <i-field label="昵称">
           <i-input
@@ -36,26 +31,19 @@
         </i-field>
       </i-form>
     </view>
-    <kpsImageCutter
-      @ok="handleCutterOk"
-      @cancel="handleCutterCancel"
-      :url="imageCutterUrl"
-      :fixed="true"
-      :width="100"
-      :height="100"
-    ></kpsImageCutter>
+
     <view class="save" @click="handleSubmit">确定</view>
   </view>
 </template>
 
 <script lang="ts">
-import { ref, reactive, computed } from "vue";
+import { ref, computed } from "vue";
 // api
 import { getUserBaseContentByUserID, updateUserProfile } from "../../api/user";
 import {
-  uploadFileToCloudStorage,
   checkContentSecurity,
 } from "../../api/common";
+
 type ProfileForm = {
   gender: number,
   sign: string,
@@ -67,7 +55,6 @@ export default {
     this.getUserProfile();
   },
   setup() {
-    const imageCutterUrl = ref("http://tmp/koQnNmJQVm1d8632e4c3e52991392a713dbfbadb5fff.jpeg");
     const form = ref<ProfileForm>({
       gender: -1,
       sign: "",
@@ -75,24 +62,6 @@ export default {
       avatar: "",
     });
     const showPicker = ref(false);
-    const handleUploadAvatar = () => {
-      uni.showActionSheet({
-        itemList: ["上传图片"],
-        success: async ({ tapIndex }) => {
-          switch (tapIndex) {
-            case 0:
-              uni.chooseImage({
-                count: 1,
-                success: async (e) => {
-                  imageCutterUrl.value = e.tempFilePaths[0];
-                  console.log(imageCutterUrl.value)
-                },
-              });
-              break;
-          }
-        },
-      });
-    };
     const handleSexChange = (e) => {
       form.value.gender = Number(e.target.value);
     };
@@ -183,28 +152,11 @@ export default {
         });
       }
     };
-    const handleCutterCancel = () => {
-      imageCutterUrl.value = "";
-    };
-    const handleCutterOk = () => {
-      console.log(imageCutterUrl.value)
-      uploadFileToCloudStorage({
-        filePath: imageCutterUrl.value,
-        cloudPath: "avatar",
-      }).then((res) => {
-        form.avatar = res.data.fileID;
-        imageCutterUrl.value = "";
-      });
-    };
     return {
-      imageCutterUrl,
       showPicker,
       form,
       handleSubmit,
-      handleUploadAvatar,
       handleSexChange,
-      handleCutterCancel,
-      handleCutterOk,
       getUserProfile,
     };
   },
@@ -219,6 +171,7 @@ page {
 <style lang="scss" scoped>
 .profile {
   .form {
+    position: relative;
     width: 690rpx;
     background-color: #fff;
     margin: 16rpx auto;
@@ -228,7 +181,7 @@ page {
       position: absolute;
       width: 80rpx;
       height: 80rpx;
-      right: 88rpx;
+      right: 25rpx;
       border-radius: 50%;
       overflow: hidden;
     }
