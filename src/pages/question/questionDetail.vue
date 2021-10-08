@@ -73,7 +73,7 @@
                 ></image>
               </view> -->
                 <view class="itemMain">
-                  {{ removeHtmlTag(explanation.content) }}
+                  {{ explanation.content }}
                 </view>
               </view>
             </view>
@@ -205,8 +205,15 @@ export default {
         page: pageConfig.value.page,
       });
       uni.hideLoading();
-      if (explanationData.success) {
-        explanations.value = explanations.value.concat(explanationData.data);
+      if (explanationData.success && explanationData.data) {
+        if(Array.isArray(explanationData.data)){
+          explanations.value = explanations.value.concat(explanationData.data.map(e => {
+            return {
+              ...e,
+              content: removeHtmlTag(e.content)
+            }
+          }));
+        }
       }
     };
     // 题解列表触底加载
@@ -263,7 +270,6 @@ export default {
       swiperHeight,
       tabCurrent,
       tabs,
-      removeHtmlTag,
       getExplanationIDBySelf,
       handleSwiperChange,
       handleGetDetailData,
