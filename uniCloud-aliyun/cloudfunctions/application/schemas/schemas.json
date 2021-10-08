@@ -105,7 +105,37 @@
         "id": 0,
         "name": "content",
         "type": {
-          "type": "String"
+          "type": "Interface",
+          "properties": [
+            {
+              "id": 0,
+              "name": "contactDetails",
+              "type": {
+                "type": "String"
+              }
+            },
+            {
+              "id": 1,
+              "name": "filed",
+              "type": {
+                "type": "String"
+              }
+            },
+            {
+              "id": 2,
+              "name": "identity",
+              "type": {
+                "type": "String"
+              }
+            },
+            {
+              "id": 3,
+              "name": "socialHomepage",
+              "type": {
+                "type": "String"
+              }
+            }
+          ]
         }
       }
     ]

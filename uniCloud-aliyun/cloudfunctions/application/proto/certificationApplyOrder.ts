@@ -1,5 +1,10 @@
 export interface AddCertificationApplyOrder {
-  content: string;
+  content: {
+    contactDetails: string;
+    filed: string;
+    identity: string;
+    socialHomepage: string;
+  };
 }
 
 export interface UpdateCertificationApplyOrder {
