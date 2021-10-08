@@ -31,7 +31,9 @@ export interface UserLogout {
 export interface UpdateUserInfo {
   nickname: string;
   avatar: string;
-  gender: string;
+  gender: number;
+  uid: string;
+  sign: string;
 }
 
 export interface ResetPassword {

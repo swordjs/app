@@ -903,6 +903,20 @@
         "id": 2,
         "name": "gender",
         "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 3,
+        "name": "uid",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 4,
+        "name": "sign",
+        "type": {
           "type": "String"
         }
       }

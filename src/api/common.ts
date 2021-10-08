@@ -43,6 +43,7 @@ export async function checkContentSecurity(params: { content: string }): Promise
   // #ifdef MP-QQ
   platform = 'mp-qq';
   // #endif
+  console.log(params.content);
   return await uniCloud.callFunction({
     name: 'content-security',
     data: {

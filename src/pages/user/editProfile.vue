@@ -12,14 +12,14 @@
         <i-field label="昵称">
           <i-input
             type="text"
-            :value="form.nickname"
+            v-model="form.nickname"
             placeholder="请输入昵称"
           ></i-input>
         </i-field>
         <i-field label="签名">
           <i-input
             type="text"
-            :value="form.sign"
+            v-model="form.sign"
             placeholder="请输入签名"
           ></i-input>
         </i-field>
@@ -96,10 +96,11 @@ export default {
           icon: "none",
         });
       };
+      console.log(form.value)
       // 指定一个检查字典，字典循环完就代表检查完毕
       const checkList = {
-        签名: form.sign,
-        昵称: form.nickname,
+        签名: form.value.sign,
+        昵称: form.value.nickname,
       };
       for (let key in checkList) {
         const result = await checkContentSecurity({
@@ -121,16 +122,16 @@ export default {
         // 检查敏感词汇
         if (await check()) {
           const updateData = await updateUserProfile({
-            sign: form.sign,
-            avatar: form.avatar,
-            gender: form.gender,
-            nickname: form.nickname,
+            sign: form.value.sign,
+            avatar: form.value.avatar,
+            gender: form.value.gender,
+            nickname: form.value.nickname,
           });
           if (updateData.success) {
             uni.hideLoading();
             uni.setStorageSync("userInfo", {
-              avatarUrl: form.avatar,
-              nickName: form.nickname,
+              avatarUrl: form.value.avatar,
+              nickName: form.value.nickname,
             });
             uni.showModal({
               title: "提示",

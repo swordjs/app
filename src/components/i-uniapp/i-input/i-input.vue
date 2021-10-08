@@ -14,21 +14,16 @@
 </template>
 
 <script>
-import { watch, ref } from "vue";
+import { watch, ref, computed } from "vue";
 export default {
-  props: ["value", "placeholder", "type", "name", "maxlength"],
+  props: ["modelValue", "placeholder", "type", "name", "maxlength"],
   setup(props, { emit }) {
-    const defaultValue = ref(props.value);
-    watch(
-      () => props.value,
-      (val) => {
-        defaultValue.value = val;
-      }
-    );
+    const defaultValue = computed(() => {
+      return props.modelValue
+    });
     const handleInput = (e) => {
       const value = e.target.value;
       emit("input", value);
-      defaultValue.value = value;
     };
     return {
       defaultValue,
@@ -43,8 +38,8 @@ export default {
   text-align: end;
   color: #333333;
   font-size: 28rpx;
-  input{
-    &:focus{
+  input {
+    &:focus {
       text-align: end;
     }
   }
