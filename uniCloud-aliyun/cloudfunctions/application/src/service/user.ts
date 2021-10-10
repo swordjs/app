@@ -47,12 +47,12 @@ export default class UserService {
   public async loginByQQ(params: IUser.LoginByQQ): Promise<unknown> {
     const { nickname, avatar, gender, code } = params;
     // 把用户信息也添加到库中, 设置角色为默认角色
-    const res = await uniID.loginByQQ({
+    const res = await this.uniID.loginByQQ({
       code,
       role: ['normal'],
       needPermission: true // 返回权限
     });
-    await uniID.updateUser({
+    await this.uniID.updateUser({
       uid: res.uid,
       nickname: nickname,
       avatar: avatar,
