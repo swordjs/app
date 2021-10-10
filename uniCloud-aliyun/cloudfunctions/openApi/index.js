@@ -6,7 +6,7 @@ const dbCmd = db.command;
 const userCollection = db.collection('uni-id-users');
 const apiCollection = db.collection('openApi');
 
-exports.main = async (event) => {
+exports.main = async (event, context) => {
   // 判断请求类型，如果非post就不处理
   if (event.httpMethod !== 'POST') {
     return error({

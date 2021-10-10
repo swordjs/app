@@ -20,4 +20,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
-uniCloud-aliyun/cloudfunctions/common/uni-config-center/**/*
+uniCloud-aliyun/cloudfunctions/common/uni-config-center/*
