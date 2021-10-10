@@ -149,7 +149,7 @@
                         color="#666666"
                       ></i-icon>
                       <text>{{
-                        dayjs(item.createDate).format("YYYY-MM-DD HH:mm")
+                        item.createDate
                       }}</text>
                     </view>
                   </view>
@@ -205,7 +205,7 @@
                   <view class="main">
                     <view class="mainTitle">{{ item.title }}</view>
                     <view class="mainContent">{{
-                      removeHtmlTag(item.content)
+                      item.content
                     }}</view>
                   </view>
                 </view>
@@ -400,7 +400,11 @@ export default {
       uni.hideLoading();
       if (result.success) {
         listInfo.value[keyName].data = listInfo.value[keyName].data.concat(
-            result.data
+            result.data.map(l => {
+              l.createDate = dayjs(l.createDate).format("YYYY-MM-DD HH:mm")
+              l.content = removeHtmlTag(l.content);
+              return l;
+            })
           );
       }
     };
@@ -477,8 +481,6 @@ export default {
       }
     };
     return {
-      dayjs,
-      removeHtmlTag,
       scrollOpen,
       navigationBarSticky,
       navigationBarAndTabHeight,

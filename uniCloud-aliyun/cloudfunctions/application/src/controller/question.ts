@@ -1,144 +1,79 @@
-namespace Question {
-  const explain = require("explain");
-  // 工具函数
-  const { appErrorMessage, handleMustRequireParam } = require("app-tools");
-  const QuestionService = require("./../service/question");
-  module.exports = class QuestionController extends explain.service {
-    // 获取推荐的题目(version 1)
-    // 核心处理服务方法
-    async handler(methodName: string) {
-      const service = new QuestionService({
-        userID: this.context.userID,
-        context: this.context,
-      });
-      return await service[methodName](this.event.params);
-    }
-    // 添加题目
-    async addQuestion() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "title",
-            value: "标题",
-          },
-          {
-            key: "areaID",
-            value: "专区ID",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => {
-          return await this.handler("addQuestion");
-        })
-        .catch((err) => err);
-    }
-    async updateQuestion() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "_id",
-            value: "题目ID",
-          },
-          {
-            key: "title",
-            value: "题目标题",
-          },
-          {
-            key: "content",
-            value: "题目内容",
-          },
-          {
-            key: "areaID",
-            value: "题目ID",
-          },
-          {
-            key: "tagID",
-            value: "标签ID",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => {
-          return await this.handler("updateQuestion");
-        })
-        .catch((err) => err);
-    }
-    async deleteQuestion() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "_id",
-            value: "题目ID",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => {
-          return await this.handler("deleteQuestion");
-        })
-        .catch((err) => err);
-    }
-    // 审核题目
-    async examineQuestion() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "_id",
-            value: "题目ID",
-          },
-          {
-            key: "state",
-            value: "审核状态",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => {
-          // 判断传递进来的状态是否是reject
-          if (
-            this.event.params.state === "reject" &&
-            !this.event.params.hasOwnProperty("examineInfo")
-          ) {
-            return appErrorMessage(
-              "拒绝审核需要传递examineInfo对象，注明拒绝原因"
-            );
-          }
-          return await this.handler("examineQuestion");
-        })
-        .catch((err) => err);
-    }
-    // 分页获取题目列表, 筛选了题目的状态
-    async getQuestionList() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "state",
-            value: "题目状态",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => {
-          return await this.handler("getQuestionList");
-        })
-        .catch((err) => err);
-    }
-    // 浏览题目详情（如果没有pageView就默认设置为1）
-    async addPageView() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "_id",
-            value: "题目",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => {
-          return await this.handler("addPageView");
-        })
-        .catch((err) => err);
-    }
-  };
-}
+import * as explain from 'explain';
+import questionService from './../service/question';
+import * as IQuestion from '../../proto/question';
+
+export = class QuestionController extends explain.service {
+  private service: questionService;
+  constructor(e: CloudData) {
+    super(e);
+    this.service = new questionService(this);
+  }
+  /**
+   * @name 添加题目
+   * @param IQuestion.AddQuestion
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/fssf4b#g13V0
+   * @memberof QuestionController
+   */
+  async addQuestion(): Promise<unknown> {
+    return await this.service.addQuestion(this.event.data as IQuestion.AddQuestion);
+  }
+  /**
+   * @name 修改题目
+   * @param IQuestion.UpdateQuestion
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/fssf4b#sl2QT
+   * @memberof QuestionController
+   */
+  async updateQuestion(): Promise<unknown> {
+    return await this.service.updateQuestion(this.event.data as IQuestion.UpdateQuestion);
+  }
+  /**
+   * @name 删除题目
+   * @param IQuestion.DeleteQuestion
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/fssf4b#iJ8Hr
+   * @memberof QuestionController
+   */
+  async deleteQuestion(): Promise<unknown> {
+    return await this.service.deleteQuestion(this.event.data as IQuestion.DeleteQuestion);
+  }
+  /**
+   * @name 审核题目
+   * @param IQuestion.ExamineQuestion
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/fssf4b#hIZhf
+   * @memberof QuestionController
+   */
+  async examineQuestion(): Promise<unknown> {
+    return await this.service.examineQuestion(this.event.data as IQuestion.ExamineQuestion);
+  }
+  /**
+   * @name 分页获取题目列表
+   * @param IQuestion.GetQuestionList
+   * @return {*}  {Promise<unknown>}
+   * @memberof QuestionController
+   */
+  async getQuestionList(): Promise<unknown> {
+    return await this.service.getQuestionList(this.event.data as IQuestion.GetQuestionList);
+  }
+  /**
+   * @name 浏览题目详情
+   * @description（如果没有pageView就默认设置为1）
+   * @param IQuestion.AddPageView
+   * @return {*}  {Promise<unknown>}
+   * @memberof QuestionController
+   */
+  async addPageView(): Promise<unknown> {
+    return await this.service.addPageView(this.event.data as IQuestion.AddPageView);
+  }
+  /**
+   * @name 随机获取题目
+   * @param IQuestion.GetSampleQuestionList
+   * @return {*}  {Promise<unknown>}
+   * @memberof QuestionController
+   */
+  async getSampleQuestionList(): Promise<unknown> {
+    return await this.service.getSampleQuestionList(this.event.data as IQuestion.GetSampleQuestionList);
+  }
+};

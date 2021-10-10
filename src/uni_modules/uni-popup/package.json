@@ -8,7 +8,7 @@
     "uni-ui",
     "弹出层",
     "uni-popup"
-],
+  ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
     "HBuilderX": ""

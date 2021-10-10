@@ -15,7 +15,7 @@
       </view>
       <view class="content">
         <robin-editor
-          v-model="data.content"
+          :value="data.content"
           :header="false"
           previewMode
         ></robin-editor>
@@ -159,6 +159,7 @@ export default {
       uni.hideLoading();
       if (result.success) {
         data.value = result.data[0];
+        console.log(data.value)
         // 查询题解赞同列表中是否有自己
         isAdoption.value = data.value.userAgreed.some(
           (u) => u === uni.getStorageSync("uni_id")

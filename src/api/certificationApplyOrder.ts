@@ -1,14 +1,11 @@
-import callFunction from "../common/callFunction";
+import request from '../common/request';
 
-export async function addCertificationApplyOrder(params: { content: object }): Promise<ActionResult> {
-  return await callFunction({
-    name: "application",
+export async function addCertificationApplyOrder(params: { content: Record<string, unknown> }): Promise<ActionResult> {
+  return await request({
+    route: `api/certificationApplyOrder`,
+    method: 'POST',
     data: {
-      route: `api/certificationApplyOrder`,
-      method: "POST",
-      params: {
-        content: params.content
-      },
-    },
+      content: params.content
+    }
   });
 }

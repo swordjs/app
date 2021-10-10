@@ -53,7 +53,7 @@
 			</view>
 		</view>
 		<!-- 蒙层 -->
-		<view class="mask" @click="handleToggle" v-if="show"> </view>
+		<view class="mask" @click.stop="handleToggle" v-if="show"> </view>
 	</view>
 </template>
 <script lang='ts'>

@@ -8,7 +8,7 @@
     "uniui",
     "搜索框",
     "搜索栏"
-],
+  ],
   "repository": "https://github.com/dcloudio/uni-ui",
   "engines": {
     "HBuilderX": ""
@@ -41,8 +41,8 @@
   },
   "uni_modules": {
     "dependencies": [
-			"uni-icons"
-		],
+      "uni-icons"
+    ],
     "encrypt": [],
     "platforms": {
       "cloud": {

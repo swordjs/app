@@ -7,7 +7,7 @@ export default {
       default: false
     }
   },
-  mounted () {
+  mounted() {
     const keyNames = {
       esc: ['Esc', 'Escape'],
       tab: 'Tab',
@@ -18,28 +18,28 @@ export default {
       right: ['Right', 'ArrowRight'],
       down: ['Down', 'ArrowDown'],
       delete: ['Backspace', 'Delete', 'Del']
-    }
+    };
     const listener = ($event) => {
       if (this.disable) {
-        return
+        return;
       }
-      const keyName = Object.keys(keyNames).find(key => {
-        const keyName = $event.key
-        const value = keyNames[key]
-        return value === keyName || (Array.isArray(value) && value.includes(keyName))
-      })
+      const keyName = Object.keys(keyNames).find((key) => {
+        const keyName = $event.key;
+        const value = keyNames[key];
+        return value === keyName || (Array.isArray(value) && value.includes(keyName));
+      });
       if (keyName) {
         // 避免和其他按键事件冲突
         setTimeout(() => {
-          this.$emit(keyName, {})
-        }, 0)
+          this.$emit(keyName, {});
+        }, 0);
       }
-    }
-    document.addEventListener('keyup', listener)
+    };
+    document.addEventListener('keyup', listener);
     this.$once('hook:beforeDestroy', () => {
-      document.removeEventListener('keyup', listener)
-    })
+      document.removeEventListener('keyup', listener);
+    });
   },
-	render: () => {}
-}
+  render: () => {}
+};
 // #endif

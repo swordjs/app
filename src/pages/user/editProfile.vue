@@ -4,15 +4,10 @@
       <i-form>
         <i-field label="头像">
           <image
-            @click="handleUploadAvatar"
             :src="form.avatar"
             class="avatar"
             mode="scaleToFill"
           ></image>
-          <i-icon
-            @click="handleUploadAvatar"
-            name="arrow-drop-right-line"
-          ></i-icon>
         </i-field>
         <i-field label="昵称">
           <i-input
@@ -36,27 +31,19 @@
         </i-field>
       </i-form>
     </view>
-    <kps-image-cutter
-      @ok="handleCutterOk"
-      @cancel="handleCutterCancel"
-      :url="imageCutterUrl"
-      :fixed="true"
-      :width="100"
-      :height="100"
-    ></kps-image-cutter>
+
     <view class="save" @click="handleSubmit">确定</view>
   </view>
 </template>
 
 <script lang="ts">
-import kpsImageCutter from "@/components/ksp-image-cutter/ksp-image-cutter.vue";
-import { ref, reactive, computed } from "vue";
+import { ref, computed } from "vue";
 // api
 import { getUserBaseContentByUserID, updateUserProfile } from "../../api/user";
 import {
-  uploadFileToCloudStorage,
   checkContentSecurity,
 } from "../../api/common";
+
 type ProfileForm = {
   gender: number,
   sign: string,
@@ -67,37 +54,16 @@ export default {
   onLoad(){
     this.getUserProfile();
   },
-  components: {
-    kpsImageCutter,
-  },
   setup() {
-    const imageCutterUrl = ref("");
-    const form = reactive<ProfileForm>({
+    const form = ref<ProfileForm>({
       gender: -1,
       sign: "",
       nickname: "",
       avatar: "",
     });
     const showPicker = ref(false);
-    const handleUploadAvatar = () => {
-      uni.showActionSheet({
-        itemList: ["上传图片"],
-        success: async ({ tapIndex }) => {
-          switch (tapIndex) {
-            case 0:
-              uni.chooseImage({
-                count: 1,
-                success: async (e) => {
-                  imageCutterUrl.value = e.tempFilePaths[0];
-                },
-              });
-              break;
-          }
-        },
-      });
-    };
     const handleSexChange = (e) => {
-      form.gender = Number(e.target.value);
+      form.value.gender = Number(e.target.value);
     };
     const userID = uni.getStorageSync("uni_id");
     const getUserProfile = async () => {
@@ -109,10 +75,13 @@ export default {
       });
       uni.hideLoading();
       if (userInfo.success) {
-        form.avatar = userInfo.data[0].avatar;
-        form.nickname = userInfo.data[0].nickname;
-        form.sign = userInfo.data[0].sign;
-        form.gender = userInfo.data[0].gender;
+        const {avatar,nickname,sign,gender} = userInfo.data[0];
+        form.value = {
+          avatar,
+          nickname,
+          sign,
+          gender
+        }
       }
     };
     const submitActive = computed(() => {
@@ -127,10 +96,11 @@ export default {
           icon: "none",
         });
       };
+      console.log(form.value)
       // 指定一个检查字典，字典循环完就代表检查完毕
       const checkList = {
-        签名: form.sign,
-        昵称: form.nickname,
+        签名: form.value.sign,
+        昵称: form.value.nickname,
       };
       for (let key in checkList) {
         const result = await checkContentSecurity({
@@ -152,16 +122,16 @@ export default {
         // 检查敏感词汇
         if (await check()) {
           const updateData = await updateUserProfile({
-            sign: form.sign,
-            avatar: form.avatar,
-            gender: form.gender,
-            nickname: form.nickname,
+            sign: form.value.sign,
+            avatar: form.value.avatar,
+            gender: form.value.gender,
+            nickname: form.value.nickname,
           });
           if (updateData.success) {
             uni.hideLoading();
             uni.setStorageSync("userInfo", {
-              avatarUrl: form.avatar,
-              nickName: form.nickname,
+              avatarUrl: form.value.avatar,
+              nickName: form.value.nickname,
             });
             uni.showModal({
               title: "提示",
@@ -183,27 +153,11 @@ export default {
         });
       }
     };
-    const handleCutterCancel = () => {
-      imageCutterUrl.value = "";
-    };
-    const handleCutterOk = () => {
-      uploadFileToCloudStorage({
-        filePath: imageCutterUrl.value,
-        cloudPath: "avatar",
-      }).then((res) => {
-        form.avatar = res.data.fileID;
-        imageCutterUrl.value = "";
-      });
-    };
     return {
-      imageCutterUrl,
       showPicker,
       form,
       handleSubmit,
-      handleUploadAvatar,
       handleSexChange,
-      handleCutterCancel,
-      handleCutterOk,
       getUserProfile,
     };
   },
@@ -218,6 +172,7 @@ page {
 <style lang="scss" scoped>
 .profile {
   .form {
+    position: relative;
     width: 690rpx;
     background-color: #fff;
     margin: 16rpx auto;
@@ -227,7 +182,7 @@ page {
       position: absolute;
       width: 80rpx;
       height: 80rpx;
-      right: 88rpx;
+      right: 25rpx;
       border-radius: 50%;
       overflow: hidden;
     }

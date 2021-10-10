@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="532px" preserveAspectRatio="none" style="width:963px;height:532px;background:#FFFFFF;" version="1.1" viewBox="0 0 963 532" width="963px" zoomAndPan="magnify"><defs><filter height="300%" id="fafuit8xhqt65" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[19f6b0921eacf747c60c2d400f0f8d51]
+entity coreDB--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="100" x="353" y="389"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="75" x="365.5" y="410.6016">«DynamoDB»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="80" x="363" y="428.6016">文档数据库</text><image height="64" width="64" x="371" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAADYUlEQVR42u2aMYsVMRSF30+2tbC0sbSxs7Kys7G0sLWwFcVCUBQEixULQdADHxwuSSabZCczq2YJy3uZzMw5Nzf3npu8y7377//qdlkEFoFFYBFYBBaBPdqdu2+32i0lEPE9ePhB7dHjj0+efolNPerPx59MABAC9+z51zfvflx9//X7ur9Pn3++en2l8fDZkcZlALpwCJDBiYC+iokgvnj5TVdp+qwe9cfB+lOPJucEAkKvF9vewiGUmofGNaCRseW3zCUAeqDLrvKE9hdrDIuk3qbPALYXjS6Dgb5lncguA/NwaQShScdtet+h8ULGOtbtedNVFskRBGRInKfL/NxYWScw1CumEwAKMaTFkQxOy70y2AxnrYE4A47rMagXI09i/npsGPOfbgJ6jT7IcWMS0FfCP6mXhqdda37187Qx/xkhgIGFr56G4dDiG8UVMpcAWdaJWUBle6de8nGj+fEfHDK2uQRsY/t63pLgs/VYUS1OYHus605kSE5moCX41J/J7NE0GPT1h49LCb8AWFv+avMzA7GRxYuyXB9IZ7jfXC0EMtlYPcVIqk6hidDNvEjA6AeC6YgWkpFi8EEjOJIW7wVf7tkJ+ulhFC3EW4XVMiaSySHiUbpUtD15QP8PysRRSBtrrCe3fC9x7hz9EYlsSwtVclAx1+6FflwL6YMsWiyscjKs4+SZ1tg3LJG7E5m8hXdHLUTB7p0ItyQD7o5+XAtR2te3JFjxYHUGiPVNV2kxVwuxgqMcQrc6+Hrpox0cDIZL4RsRsKaoaCFaEnwT9Lqax9bpRT3O3SIYrT5IwDn6sSJ7Bylh/6lrd11yAoaJ0MeV3aU69xRzcYOtUlU6AfvGBP1NCrE9tZAjqfcViTnMmEcaPVt6sDrIhYpaSD1CXIykKKJYOjuMxs3dYoKbnokxZJJuoxbyhqmJJWUAd3l+DiWQFzRbO7te8TGFeW24kjxhBhq1EDE+bqRSPVqG8KijCeRaKB5eJFrIuTk5IoA8O74nEKgXNPVDmjhp5yxiCCB4trSQm0NqcggS4/LRBAij7Vqonq2PI5AkskYtVD/eJBCdpoW6jpgS//H2cO9pw/mHfGLuRX9oQTPpmHWX0+ITDrr3Pa//L39q8I/82GP9XmgRWAQWgUVgEbgF7Q858PF1osXFWgAAAABJRU5ErkJggg==" y="431.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="56" x="375" y="507.5781">[线上环境]</text><!--MD5=[4a65e84059005d12693a083370a06717]
+entity client--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="159" x="133.5" y="198"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="44" x="191" y="219.6016">«Client»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="48" x="189" y="237.6016">客户端</text><image height="64" width="64" x="181" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABt0lEQVR42u2aoU4DQRCG79XQCCwYHEFhSFAIBK7BVJ6pazAoBAKDalJRR0KCbZr6lgeALxkyvbsecHchuX8vMxnVTZP/y87M7t5M9pm4ZYMCmM0X9w+P4o7IGoDN9uP69u7g8DgJRyqCSwCjcZ6KenME7wCgOTo549fT88vXt/flai3ryEMkUhFsm1ACIML0sxaRfwPkkylxJuVIagrANmnGPcLaARBtIt4RoFJx+zJkdASwP/RuFT0BEAABEAABEAABEAABEAABEAABEAABEAABEABDB7i4ulH4Lo2MjgCpfp22fpnOp2lz74s1anCk2qEh2rz7p2nIs5QoAWDeY1WLnJ+aHQg25d8Ay9Xa1/QdqQguAdjuEF5qvb19R2Qxzoc1K2H7oNzo3q8xOwCWR+Oc7BZ3RHoCDCiJvYxSZfPJVHPQBmF+L6of9mBZP2trDrK+rhKz+aK5e8yo3IWIh1Zxj0JjUAHoMCDW9DodAI3MzpyEAVADwz8PPHlxVTabT6y+B7y4Pj2/KN+FkFc5sjIvyWmNXfowVlZ8a7bNql4ckcVcLV2nbY+U544twn97DyT/oEnOvgASxTCkBm3uwAAAAABJRU5ErkJggg==" y="240.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="139" x="143.5" y="316.5781">[browser / qq / wechat]</text><!--MD5=[e2e02fbf9e601af9c8046d2e5b3d57ce]
+entity v1--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="85" x="13.5" y="198"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="33.5" y="219.6016">«Cloud»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="65" x="23.5" y="237.6016">core-v1</text><image height="64" width="64" x="24" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACNUlEQVR42u2ZoU4EMRCG55nwCPQJLBgcQWFIUAgEjmCQZ3AEg0IgMCgSBI6EBEsIHngA+JI/aTZL2O1OtyyXm01FF+7a+aYzf6c9W5ttLHSzAAiAAAiAAAiAAAiAAAiAAJgcYH1ze2tnb3f/kEaH18UAwNCDo5Prm9uX17evxvP+8Xl3/3B8Oq9NUgSA6Y9Pz8loGHil0QEg/ZGP/UeA+dl5MpF+K2x4xf0JjyWqtBROgIvLK1mG6d2WgaHVIKJqMHgAsEnW08n5PGmtDIFhegBiQx7NtL71LVZsYgCiWTHtyHipEzA0SBiEVqhUNtT9Ch46jskIIb5LZieNKlcqcyiPw/0pGZLR2iVoouLhv9UBNFmJrjMC7m/ljzSNdXDEkg3adCUmvvhpVhy/jexwzbAVwHm0GnKegnNldVYLgBitB6D0YB2GipJlio/U0x2p+RuFpJasyJzFMh2vccEoSYBehqYo4amcuSzT+qqm/5xUVWAOg3UrhgZyC3+JWGkpessn6938KwV9DoMWv1tbrbfsGVS0VdJWJ4A2F98OP662OgG0gpPET4oiqd+yApRXPuU7Q1EIScgmTGLJYLeSWu/Zl61gKgB5sPsUajn18+gH2aFHUH8poVH+noF5M68O+ou5dIlCLDFuVVFicLQ/1XPUpOOU09idrj5xjO4Pa7TmLJniYfm+0VVh60Jh9Icpem/7iu6FdKj1NV2+dzTHnhM/cARAAARAAARAAARAAARAACwvwDepwzuNbneJDQAAAABJRU5ErkJggg==" y="240.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="56" x="28" y="316.5781">[核心接口]</text><!--MD5=[1c17e9ac507393069bc3b2a6278c680e]
+entity contentSecurity--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="98" x="7" y="389"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="33.5" y="410.6016">«Cloud»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="64" x="24" y="428.6016">内容安全</text><image height="64" width="64" x="24" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACNUlEQVR42u2ZoU4EMRCG55nwCPQJLBgcQWFIUAgEjmCQZ3AEg0IgMCgSBI6EBEsIHngA+JI/aTZL2O1OtyyXm01FF+7a+aYzf6c9W5ttLHSzAAiAAAiAAAiAAAiAAAiAAJgcYH1ze2tnb3f/kEaH18UAwNCDo5Prm9uX17evxvP+8Xl3/3B8Oq9NUgSA6Y9Pz8loGHil0QEg/ZGP/UeA+dl5MpF+K2x4xf0JjyWqtBROgIvLK1mG6d2WgaHVIKJqMHgAsEnW08n5PGmtDIFhegBiQx7NtL71LVZsYgCiWTHtyHipEzA0SBiEVqhUNtT9Ch46jskIIb5LZieNKlcqcyiPw/0pGZLR2iVoouLhv9UBNFmJrjMC7m/ljzSNdXDEkg3adCUmvvhpVhy/jexwzbAVwHm0GnKegnNldVYLgBitB6D0YB2GipJlio/U0x2p+RuFpJasyJzFMh2vccEoSYBehqYo4amcuSzT+qqm/5xUVWAOg3UrhgZyC3+JWGkpessn6938KwV9DoMWv1tbrbfsGVS0VdJWJ4A2F98OP662OgG0gpPET4oiqd+yApRXPuU7Q1EIScgmTGLJYLeSWu/Zl61gKgB5sPsUajn18+gH2aFHUH8poVH+noF5M68O+ou5dIlCLDFuVVFicLQ/1XPUpOOU09idrj5xjO4Pa7TmLJniYfm+0VVh60Jh9Icpem/7iu6FdKj1NV2+dzTHnhM/cARAAARAAARAAARAAARAACwvwDepwzuNbneJDQAAAABJRU5ErkJggg==" y="431.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="78" x="17" y="507.5781">[wechat / qq]</text><!--MD5=[a6352068383086570c27132526ed9177]
+entity pull--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="100" x="534" y="198"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="561.5" y="219.6016">«Cloud»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="64" x="552" y="237.6016">拉取服务</text><image height="64" width="64" x="552" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACNUlEQVR42u2ZoU4EMRCG55nwCPQJLBgcQWFIUAgEjmCQZ3AEg0IgMCgSBI6EBEsIHngA+JI/aTZL2O1OtyyXm01FF+7a+aYzf6c9W5ttLHSzAAiAAAiAAAiAAAiAAAiAAJgcYH1ze2tnb3f/kEaH18UAwNCDo5Prm9uX17evxvP+8Xl3/3B8Oq9NUgSA6Y9Pz8loGHil0QEg/ZGP/UeA+dl5MpF+K2x4xf0JjyWqtBROgIvLK1mG6d2WgaHVIKJqMHgAsEnW08n5PGmtDIFhegBiQx7NtL71LVZsYgCiWTHtyHipEzA0SBiEVqhUNtT9Ch46jskIIb5LZieNKlcqcyiPw/0pGZLR2iVoouLhv9UBNFmJrjMC7m/ljzSNdXDEkg3adCUmvvhpVhy/jexwzbAVwHm0GnKegnNldVYLgBitB6D0YB2GipJlio/U0x2p+RuFpJasyJzFMh2vccEoSYBehqYo4amcuSzT+qqm/5xUVWAOg3UrhgZyC3+JWGkpessn6938KwV9DoMWv1tbrbfsGVS0VdJWJ4A2F98OP662OgG0gpPET4oiqd+yApRXPuU7Q1EIScgmTGLJYLeSWu/Zl61gKgB5sPsUajn18+gH2aFHUH8poVH+noF5M68O+ou5dIlCLDFuVVFicLQ/1XPUpOOU09idrj5xjO4Pa7TmLJniYfm+0VVh60Jh9Icpem/7iu6FdKj1NV2+dzTHnhM/cARAAARAAARAAARAAARAACwvwDepwzuNbneJDQAAAABJRU5ErkJggg==" y="240.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="80" x="544" y="316.5781">[主要数据来源]</text><!--MD5=[2fc4185b70196b76a500250b317d9f0c]
+entity searchHot--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="84" x="242" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="261.5" y="28.6016">«Cloud»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="32" x="268" y="46.6016">热搜</text><image height="64" width="64" x="252" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACNUlEQVR42u2ZoU4EMRCG55nwCPQJLBgcQWFIUAgEjmCQZ3AEg0IgMCgSBI6EBEsIHngA+JI/aTZL2O1OtyyXm01FF+7a+aYzf6c9W5ttLHSzAAiAAAiAAAiAAAiAAAiAAJgcYH1ze2tnb3f/kEaH18UAwNCDo5Prm9uX17evxvP+8Xl3/3B8Oq9NUgSA6Y9Pz8loGHil0QEg/ZGP/UeA+dl5MpF+K2x4xf0JjyWqtBROgIvLK1mG6d2WgaHVIKJqMHgAsEnW08n5PGmtDIFhegBiQx7NtL71LVZsYgCiWTHtyHipEzA0SBiEVqhUNtT9Ch46jskIIb5LZieNKlcqcyiPw/0pGZLR2iVoouLhv9UBNFmJrjMC7m/ljzSNdXDEkg3adCUmvvhpVhy/jexwzbAVwHm0GnKegnNldVYLgBitB6D0YB2GipJlio/U0x2p+RuFpJasyJzFMh2vccEoSYBehqYo4amcuSzT+qqm/5xUVWAOg3UrhgZyC3+JWGkpessn6938KwV9DoMWv1tbrbfsGVS0VdJWJ4A2F98OP662OgG0gpPET4oiqd+yApRXPuU7Q1EIScgmTGLJYLeSWu/Zl61gKgB5sPsUajn18+gH2aFHUH8poVH+noF5M68O+ou5dIlCLDFuVVFicLQ/1XPUpOOU09idrj5xjO4Pa7TmLJniYfm+0VVh60Jh9Icpem/7iu6FdKj1NV2+dzTHnhM/cARAAARAAARAAARAAARAACwvwDepwzuNbneJDQAAAABJRU5ErkJggg==" y="49.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="56" x="256" y="125.5781">[产生热搜]</text><!--MD5=[6440b207bfc37237b936b9001dfd5bac]
+entity openApi--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="100" x="92" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="119.5" y="28.6016">«Cloud»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="59" x="112.5" y="46.6016">开放API</text><image height="64" width="64" x="110" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACNUlEQVR42u2ZoU4EMRCG55nwCPQJLBgcQWFIUAgEjmCQZ3AEg0IgMCgSBI6EBEsIHngA+JI/aTZL2O1OtyyXm01FF+7a+aYzf6c9W5ttLHSzAAiAAAiAAAiAAAiAAAiAAJgcYH1ze2tnb3f/kEaH18UAwNCDo5Prm9uX17evxvP+8Xl3/3B8Oq9NUgSA6Y9Pz8loGHil0QEg/ZGP/UeA+dl5MpF+K2x4xf0JjyWqtBROgIvLK1mG6d2WgaHVIKJqMHgAsEnW08n5PGmtDIFhegBiQx7NtL71LVZsYgCiWTHtyHipEzA0SBiEVqhUNtT9Ch46jskIIb5LZieNKlcqcyiPw/0pGZLR2iVoouLhv9UBNFmJrjMC7m/ljzSNdXDEkg3adCUmvvhpVhy/jexwzbAVwHm0GnKegnNldVYLgBitB6D0YB2GipJlio/U0x2p+RuFpJasyJzFMh2vccEoSYBehqYo4amcuSzT+qqm/5xUVWAOg3UrhgZyC3+JWGkpessn6938KwV9DoMWv1tbrbfsGVS0VdJWJ4A2F98OP662OgG0gpPET4oiqd+yApRXPuU7Q1EIScgmTGLJYLeSWu/Zl61gKgB5sPsUajn18+gH2aFHUH8poVH+noF5M68O+ou5dIlCLDFuVVFicLQ/1XPUpOOU09idrj5xjO4Pa7TmLJniYfm+0VVh60Jh9Icpem/7iu6FdKj1NV2+dzTHnhM/cARAAARAAARAAARAAARAACwvwDepwzuNbneJDQAAAABJRU5ErkJggg==" y="49.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="80" x="102" y="125.5781">[免费对外服务]</text><!--MD5=[84ec67ff5481479aff668f0c3ec20425]
+entity qqrobotApi--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="170" x="729" y="389"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="791.5" y="410.6016">«Cloud»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="74" x="777" y="428.6016">QQ机器人</text><image height="64" width="64" x="782" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACNUlEQVR42u2ZoU4EMRCG55nwCPQJLBgcQWFIUAgEjmCQZ3AEg0IgMCgSBI6EBEsIHngA+JI/aTZL2O1OtyyXm01FF+7a+aYzf6c9W5ttLHSzAAiAAAiAAAiAAAiAAAiAAJgcYH1ze2tnb3f/kEaH18UAwNCDo5Prm9uX17evxvP+8Xl3/3B8Oq9NUgSA6Y9Pz8loGHil0QEg/ZGP/UeA+dl5MpF+K2x4xf0JjyWqtBROgIvLK1mG6d2WgaHVIKJqMHgAsEnW08n5PGmtDIFhegBiQx7NtL71LVZsYgCiWTHtyHipEzA0SBiEVqhUNtT9Ch46jskIIb5LZieNKlcqcyiPw/0pGZLR2iVoouLhv9UBNFmJrjMC7m/ljzSNdXDEkg3adCUmvvhpVhy/jexwzbAVwHm0GnKegnNldVYLgBitB6D0YB2GipJlio/U0x2p+RuFpJasyJzFMh2vccEoSYBehqYo4amcuSzT+qqm/5xUVWAOg3UrhgZyC3+JWGkpessn6938KwV9DoMWv1tbrbfsGVS0VdJWJ4A2F98OP662OgG0gpPET4oiqd+yApRXPuU7Q1EIScgmTGLJYLeSWu/Zl61gKgB5sPsUajn18+gH2aFHUH8poVH+noF5M68O+ou5dIlCLDFuVVFicLQ/1XPUpOOU09idrj5xjO4Pa7TmLJniYfm+0VVh60Jh9Icpem/7iu6FdKj1NV2+dzTHnhM/cARAAARAAARAAARAAARAACwvwDepwzuNbneJDQAAAABJRU5ErkJggg==" y="431.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="150" x="739" y="507.5781">[作用于qq机器人的api服务]</text><!--MD5=[a27deb44862bbf34f26fd47419a6def7]
+entity dingrobot--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="100" x="328" y="198"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="45" x="355.5" y="219.6016">«Cloud»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="80" x="338" y="237.6016">钉钉机器人</text><image height="64" width="64" x="346" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACNUlEQVR42u2ZoU4EMRCG55nwCPQJLBgcQWFIUAgEjmCQZ3AEg0IgMCgSBI6EBEsIHngA+JI/aTZL2O1OtyyXm01FF+7a+aYzf6c9W5ttLHSzAAiAAAiAAAiAAAiAAAiAAJgcYH1ze2tnb3f/kEaH18UAwNCDo5Prm9uX17evxvP+8Xl3/3B8Oq9NUgSA6Y9Pz8loGHil0QEg/ZGP/UeA+dl5MpF+K2x4xf0JjyWqtBROgIvLK1mG6d2WgaHVIKJqMHgAsEnW08n5PGmtDIFhegBiQx7NtL71LVZsYgCiWTHtyHipEzA0SBiEVqhUNtT9Ch46jskIIb5LZieNKlcqcyiPw/0pGZLR2iVoouLhv9UBNFmJrjMC7m/ljzSNdXDEkg3adCUmvvhpVhy/jexwzbAVwHm0GnKegnNldVYLgBitB6D0YB2GipJlio/U0x2p+RuFpJasyJzFMh2vccEoSYBehqYo4amcuSzT+qqm/5xUVWAOg3UrhgZyC3+JWGkpessn6938KwV9DoMWv1tbrbfsGVS0VdJWJ4A2F98OP662OgG0gpPET4oiqd+yApRXPuU7Q1EIScgmTGLJYLeSWu/Zl61gKgB5sPsUajn18+gH2aFHUH8poVH+noF5M68O+ou5dIlCLDFuVVFicLQ/1XPUpOOU09idrj5xjO4Pa7TmLJniYfm+0VVh60Jh9Icpem/7iu6FdKj1NV2+dzTHnhM/cARAAARAAARAAARAAARAACwvwDepwzuNbneJDQAAAABJRU5ErkJggg==" y="240.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="32" x="362" y="316.5781">[运营]</text><!--MD5=[38bfa9dc6018363cafe15f923a4b8db9]
+entity service--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="100" x="716" y="198"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="80" x="726" y="219.6016">«Bottlerocket»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="48" x="742" y="237.6016">服务器</text><image height="64" width="64" x="734" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACsElEQVR42u2az0rEMBDG99l9Ax/BFxC8edWzB29e9SyCCAsiiH7w4ccwU7ttMtsmkBKWbpq280vnX6Y9vN1edt0O3QO8Xl/02wbAABgA5wfAPXoFwNW/Xp+/j++fL49dAkDun7/t+HTXGQAkhtyY/vf7K/xi/+PhphsACM2Jx0782zoALhqnHPt8ILk2nQ9Aw51UepoEjiYy5ANIysmjZEt0SskAJ/VE2pXllDIBFlqqhqU4pTSAScOdf1ApTikNYK1yK0pUGnQOAKWhe8GkYoLRAxj02IYe9OMoxmDkvLlvByB9WLtR5SoNuhYA51uZ3DRzptn41z4ce2KxQScAUGjKuvZcnAUeXKHYmtOMmLO+SvEacqNUJOj08lMwOCUvGgCnAGjBvQJAyyloVPfWAeBVnKN0rqZdAIVYCW1hcIhCE6AVL0SJKZCkd/FV/cyXspLqBAAmQhFATwAGYNXJAtQn1bUANhGyAPiViIIhqgOoTKqrAOzSxAFQJmWptjYhAHqnyqS6HMCuYKwRWwDKJ0WPAPULg0IAt7SNAOy3APJODqCyWlEI4NZfFkBWwZIoARjRrNXaOKBKTEG1ogRA4mrCXCCzocBuCgIxkGldUZCTFwLYpeBkKmHjV8z4YyTmI2oIYD7vbxRg4e3pAxzwzgCrbh+vsDOA/NLC29uA0NYTWJjYTAbg3QAk/UIzsONt8NoHQNJAH5RUszTk/CYrKEry7HitELYGsNLH+OXilE0/XXLBkVsD0A9GW8TRqOLym7H+JYayRWYhwMmyppvOSccVF2vbAZwsyrIc7XpmcjUxbAHA+/0nPdeQM+2/9RdNvJWXfDNb7mcH+QCYY1uYUFNP7vv6c72pj+l+ViFo0zf1co762823Eoy4rp3jo5vxxdYAGAADYH+A8fX6ng2p4S9j7Fp6T7XdAQAAAABJRU5ErkJggg==" y="240.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="77" x="727.5" y="316.5781">[aws / aliyun]</text><!--MD5=[69bd9fd88b066882da0ace0e303a6424]
+entity otherService--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="141" x="513.5" y="389"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="80" x="544" y="410.6016">«Bottlerocket»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="121" x="523.5" y="428.6016">第三方服务器/源</text><image height="64" width="64" x="552" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACsElEQVR42u2az0rEMBDG99l9Ax/BFxC8edWzB29e9SyCCAsiiH7w4ccwU7ttMtsmkBKWbpq280vnX6Y9vN1edt0O3QO8Xl/02wbAABgA5wfAPXoFwNW/Xp+/j++fL49dAkDun7/t+HTXGQAkhtyY/vf7K/xi/+PhphsACM2Jx0782zoALhqnHPt8ILk2nQ9Aw51UepoEjiYy5ANIysmjZEt0SskAJ/VE2pXllDIBFlqqhqU4pTSAScOdf1ApTikNYK1yK0pUGnQOAKWhe8GkYoLRAxj02IYe9OMoxmDkvLlvByB9WLtR5SoNuhYA51uZ3DRzptn41z4ce2KxQScAUGjKuvZcnAUeXKHYmtOMmLO+SvEacqNUJOj08lMwOCUvGgCnAGjBvQJAyyloVPfWAeBVnKN0rqZdAIVYCW1hcIhCE6AVL0SJKZCkd/FV/cyXspLqBAAmQhFATwAGYNXJAtQn1bUANhGyAPiViIIhqgOoTKqrAOzSxAFQJmWptjYhAHqnyqS6HMCuYKwRWwDKJ0WPAPULg0IAt7SNAOy3APJODqCyWlEI4NZfFkBWwZIoARjRrNXaOKBKTEG1ogRA4mrCXCCzocBuCgIxkGldUZCTFwLYpeBkKmHjV8z4YyTmI2oIYD7vbxRg4e3pAxzwzgCrbh+vsDOA/NLC29uA0NYTWJjYTAbg3QAk/UIzsONt8NoHQNJAH5RUszTk/CYrKEry7HitELYGsNLH+OXilE0/XXLBkVsD0A9GW8TRqOLym7H+JYayRWYhwMmyppvOSccVF2vbAZwsyrIc7XpmcjUxbAHA+/0nPdeQM+2/9RdNvJWXfDNb7mcH+QCYY1uYUFNP7vv6c72pj+l+ViFo0zf1co762823Eoy4rp3jo5vxxdYAGAADYH+A8fX6ng2p4S9j7Fp6T7XdAQAAAABJRU5ErkJggg==" y="431.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="59" x="554.5" y="507.5781">[unknown]</text><!--MD5=[4bcf017f76e73ed54f3f39e4a1d2356c]
+entity HangUp--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="102" x="849" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="80" x="860" y="28.6016">«Bottlerocket»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="64" x="868" y="46.6016">挂机服务</text><image height="64" width="64" x="868" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAACsElEQVR42u2az0rEMBDG99l9Ax/BFxC8edWzB29e9SyCCAsiiH7w4ccwU7ttMtsmkBKWbpq280vnX6Y9vN1edt0O3QO8Xl/02wbAABgA5wfAPXoFwNW/Xp+/j++fL49dAkDun7/t+HTXGQAkhtyY/vf7K/xi/+PhphsACM2Jx0782zoALhqnHPt8ILk2nQ9Aw51UepoEjiYy5ANIysmjZEt0SskAJ/VE2pXllDIBFlqqhqU4pTSAScOdf1ApTikNYK1yK0pUGnQOAKWhe8GkYoLRAxj02IYe9OMoxmDkvLlvByB9WLtR5SoNuhYA51uZ3DRzptn41z4ce2KxQScAUGjKuvZcnAUeXKHYmtOMmLO+SvEacqNUJOj08lMwOCUvGgCnAGjBvQJAyyloVPfWAeBVnKN0rqZdAIVYCW1hcIhCE6AVL0SJKZCkd/FV/cyXspLqBAAmQhFATwAGYNXJAtQn1bUANhGyAPiViIIhqgOoTKqrAOzSxAFQJmWptjYhAHqnyqS6HMCuYKwRWwDKJ0WPAPULg0IAt7SNAOy3APJODqCyWlEI4NZfFkBWwZIoARjRrNXaOKBKTEG1ogRA4mrCXCCzocBuCgIxkGldUZCTFwLYpeBkKmHjV8z4YyTmI2oIYD7vbxRg4e3pAxzwzgCrbh+vsDOA/NLC29uA0NYTWJjYTAbg3QAk/UIzsONt8NoHQNJAH5RUszTk/CYrKEry7HitELYGsNLH+OXilE0/XXLBkVsD0A9GW8TRqOLym7H+JYayRWYhwMmyppvOSccVF2vbAZwsyrIc7XpmcjUxbAHA+/0nPdeQM+2/9RdNvJWXfDNb7mcH+QCYY1uYUFNP7vv6c72pj+l+ViFo0zf1co762823Eoy4rp3jo5vxxdYAGAADYH+A8fX6ng2p4S9j7Fp6T7XdAQAAAABJRU5ErkJggg==" y="49.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="82" x="859" y="125.5781">[other service]</text><!--MD5=[a3bbe02bb9e5d90fd3e923845422d3b6]
+entity qqrobot--><rect fill="#FFFFFF" filter="url(#fafuit8xhqt65)" height="131.1094" style="stroke:#FF9900;stroke-width:1.5;" width="98" x="851" y="198"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="78" x="861" y="219.6016">«RoboMaker»</text><text fill="#000000" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="74" x="863" y="237.6016">QQ机器人</text><image height="64" width="64" x="868" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAADAklEQVR42u2azYoUQRCE6009efTk1YtnD549eBe8Cz6A+AL6AP6AIIKsIMKCaMAHQVLV01ZXZ8/OSDXF0NM/0xGVEZlZvVs+P3h41aNMApPAJDAJTAKTwCTwvxH48ujx1ydPv794+ePVaw3t6KsOXgEBAf355u3vm5s/zaaDOqULLpSAJlj4jPXXu/fMPXGIrLSfGI2SNfHg06cQ68iHe/fjBXz99uz57cdPXJYVihwCmmOmNgpJWAVUQztRPARKt1yWhMAnbUg8UffRDzqFeBSKSzSxwAFXUy4hWeja0VeLJzcdJWch/Dp29qwENIudE3lQ+t9FwOly3Yg6iwdy8+YIARlU/iP6UjMqR+7YEYlHa5KXED32vUsCQgNi8qMA0Sk4CDoriBEluElN2De9Bm8gQHIEK7idHx0BXRAjQPqnhJnzXXogihhAgrjoAV0pJu4aqGjaj4n13ASMmDbhVG5Z6eRiLUusYl0EsKNhoQR9Rhy4vOrkdIGOc6WYR26V448lADK7FiXgARvAsP6pE91iqilFrTcCzpssTUzA6Dc1Z7oxK72WzhRUoUQbzkgDetDPYu6dHMpw7yAC0RVj/Qgc9rTWpTPi0qseEzk4Oe5swnfOQul/RrQdmT6lQagWQ/kEEDo2kNyr1JS4ihgrc9siwJTrSeSlrGJEoRxT44gH0E/lPJZdrVXaUq1RZS1+cExFm9cDas5QbQUCT7uitRzcILHF+d4T0rIpY/CmrW2P7RP3FK0enLVgEhfHrox+k3cIAa9R2sTHKT1Y8TklMCASQ8jEKMUW0Kkik4CVsxgBT6rfPrS1mcjggVYw0PNyL39BwwIX3IsLFC+UT9nRb+8W38xBwCm1/y1q6W+82MhIi0WA7mjlwax1FjvWikB/g1j6KyW4VwjsGZEAbu7UUi8B4fbO0QTIwp2tyiQwCZyJwBWbuD+NZhFITqPuNNcLWS6BzEJ2qpXgzQ9/xts/jm0lFpu547ZDmrnYTh89jmqn5/9KTAKTwCQwCUwCk8AkUI+/97CB6Cik32QAAAAASUVORK5CYII=" y="240.9766"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="32" x="884" y="316.5781">[运营]</text><!--MD5=[6813299373e3c4d102cb812aff42af0f]
+link client to v1--><path d="M133.47,263.5 C123.58,263.5 113.69,263.5 103.8,263.5 " fill="none" id="client-to-v1" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="98.62,263.5,107.62,267.5,103.62,263.5,107.62,259.5,98.62,263.5" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="106.4043" y="259.6895">https</text><!--MD5=[67fcf5c9e5debeed4247210012b81256]
+link v1 to coreDB--><path d="M98.59,314.65 C104.15,319.85 110.01,324.76 116,329 C189.22,380.77 287.38,417.55 347.85,437.14 " fill="none" id="v1-to-coreDB" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="352.85,438.75,345.4994,432.1949,348.0884,437.2246,343.0587,439.8135,352.85,438.75" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="19" x="325.8345" y="433.2961">call</text><!--MD5=[96ab5905d61fd479fb9cfa0356134ca9]
+link v1 to contentSecurity--><path d="M56,329.01 C56,346.71 56,365.96 56,383.93 " fill="none" id="v1-to-contentSecurity" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="56,388.96,60,379.96,56,383.96,52,379.96,56,388.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="25.4141" y="378.6288">https</text><!--MD5=[02beceb4fe0213085e6325025efa5bb0]
+link openApi to v1--><path d="M112.64,138.01 C104.52,155.86 95.68,175.29 87.45,193.39 " fill="none" id="openApi-to-v1" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="85.37,197.96,92.7434,191.4306,87.4444,193.4106,85.4644,188.1116,85.37,197.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="57.9964" y="187.6288">https</text><!--MD5=[48d1924d027eb6833ace1460e8b9446e]
+link openApi to client--><path d="M166.24,138.01 C172.88,155.71 180.12,174.96 186.86,192.93 " fill="none" id="openApi-to-client" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="188.75,197.96,189.3253,188.128,186.9897,193.2801,181.8375,190.9445,188.75,197.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="25" x="159.7305" y="187.6288">view</text><!--MD5=[95d19f83ef7ca069ac997b6450e46f18]
+link searchHot to coreDB--><path d="M326.27,92.42 C365.19,112.43 420.48,148.04 445,198 C473.74,256.56 456.4,330.83 435.99,384.19 " fill="none" id="searchHot-to-coreDB" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="434.13,388.96,441.117,382.0186,435.9402,384.2992,433.6596,379.1224,434.13,388.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="19" x="417.4958" y="378.6288">call</text><!--MD5=[f38100d4542fa0267a6598bfc49aac0a]
+link searchHot to client--><path d="M259.76,138.01 C253.12,155.71 245.88,174.96 239.14,192.93 " fill="none" id="searchHot-to-client" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="237.25,197.96,244.1625,190.9445,239.0103,193.2801,236.6747,188.128,237.25,197.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="25" x="213.5352" y="187.6288">view</text><!--MD5=[80ee56a2a3516ece68dfcb90b041aae5]
+link dingrobot to coreDB--><path d="M386.53,329.01 C388.87,346.71 391.42,365.96 393.8,383.93 " fill="none" id="dingrobot-to-coreDB" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="394.46,388.96,397.2426,379.5124,393.8029,384.0034,389.312,380.5637,394.46,388.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="19" x="373.4869" y="378.6288">call</text><!--MD5=[39b91a88337b3c91ac510ab6ba7a5c0b]
+link HangUp to qqrobot--><path d="M900,138.01 C900,155.71 900,174.96 900,192.93 " fill="none" id="HangUp-to-qqrobot" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="900,197.96,904,188.96,900,192.96,896,188.96,900,197.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="24" x="874.6875" y="187.6288">托管</text><!--MD5=[d13ec7d7980b13836b2e577e09258181]
+link qqrobot to qqrobotApi--><path d="M868.57,333.58 C861.04,350.12 853,367.78 845.48,384.32 " fill="none" id="qqrobot-qqrobotApi" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="843.37,388.96,850.7434,382.4306,845.4444,384.4106,843.4644,379.1116,843.37,388.96" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="870.64,329.01,863.2743,335.5481,868.571,333.5618,870.5572,338.8585,870.64,329.01" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="19" x="847.3897" y="348.5436">call</text><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="47" x="849.1527" y="378.6288">callback</text><!--MD5=[c9c875cb621bb26e966a0f84a30d620d]
+link service to qqrobotApi--><path d="M782.38,329.01 C786.88,346.71 791.77,365.96 796.33,383.93 " fill="none" id="service-to-qqrobotApi" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="797.61,388.96,799.2741,379.2527,796.3805,384.1135,791.5197,381.2199,797.61,388.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="765.2314" y="378.6288">https</text><!--MD5=[f2ec442f9274a9bee3f34a7e52a63139]
+link pull to otherService--><path d="M584,329.01 C584,346.71 584,365.96 584,383.93 " fill="none" id="pull-to-otherService" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="584,388.96,588,379.96,584,383.96,580,379.96,584,388.96" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="29" x="553.4141" y="378.6288">https</text><!--MD5=[2985333b3a36cb1eeb7ccfaaf827217d]
+link pull to coreDB--><path d="M533.82,316.9 C509.89,341.89 481.23,371.81 456.84,397.28 " fill="none" id="pull-to-coreDB" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="453.28,401,462.3916,397.2611,456.7361,397.3868,456.6104,391.7313,453.28,401" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="19" x="460.9393" y="390.8515">call</text><!--MD5=[a517d6418bc1664788c2763d72783cbd]
+@startuml
+'Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+'SPDX-License-Identifier: MIT (For details, see https://github.com/awslabs/aws-icons-for-plantuml/blob/master/LICENSE)
+
+!include <awslib/AWSCommon>
+
+' Uncomment the following line to create simplified view
+' !include <awslib/AWSSimplified>
+
+!include <awslib/GroupIcons/Cloud>
+!include <awslib/Database/DynamoDB>
+!include <awslib/Compute/Bottlerocket>
+!include <awslib/Robotics/RoboMaker>
+!include <awslib/General/Client>
+
+
+top to bottom direction
+
+DynamoDB(coreDB, "文档数据库", "线上环境")
+
+Client(client, "客户端", "browser / qq / wechat")
+
+Cloud(v1, "core-v1", "核心接口")
+Cloud(contentSecurity, "内容安全", "wechat / qq")
+Cloud(pull, "拉取服务", "主要数据来源")
+Cloud(searchHot, "热搜", "产生热搜")
+Cloud(openApi, "开放API", "免费对外服务")
+Cloud(qqrobotApi, "QQ机器人", "作用于qq机器人的api服务")
+Cloud(dingrobot, "钉钉机器人", '运营')
+
+Bottlerocket(service, '服务器', "aws / aliyun")
+Bottlerocket(otherService, '第三方服务器/源', "unknown")
+Bottlerocket(HangUp, '挂机服务', "other service")
+RoboMaker(qqrobot, "QQ机器人", '运营')
+
+' 客户端调用
+client -> "https" v1
+
+' 核心api指向核心数据库
+v1 - -> "call" coreDB
+v1 - -> "https" contentSecurity
+' 开放api调用v1
+openApi - -> "https" v1
+' 开放api返回给客户端
+openApi - -> "view" client
+' 热搜指向核心数据库，从而产生热搜
+searchHot - -> "call" coreDB
+' 产生之后返回给客户端
+searchHot - -> "view" client
+
+' 钉钉机器人内部运营，直接从库中获取数据并且展示
+dingrobot - -> "call" coreDB
+
+' 挂机服务托管了qq运营机器人
+HangUp - -> "托管" qqrobot
+' qq api 和 机器人互相作用，用于回调/主动调用
+qqrobot "call" <- -> "callback" qqrobotApi
+' 第三方服务器定时执行http请求，作用于qq运营机器人（发布题目等等）
+service - -> "https" qqrobotApi
+
+' 拉取服务从第三方服务器进行拉取
+pull - -> "https" otherService
+' 拉取之后入库
+pull - -> "call" coreDB
+
+@enduml
+
+@startuml
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam rectangle {
+    StereotypeFontSize 12
+}
+
+skinparam Arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+
+
+
+
+
+
+
+
+
+
+sprite $Cloud [64x64/16] {
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDCBAABCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDC9520000148CDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDD93000233210029DDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDD70027BCDDDB83005CDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDD6007CDDDDDDDDD8104CDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDD8008DDDDDDDDDDDDA204DDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDB108DDDDDDDDDDDDDDB107DDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDD505DDDDDDDDDDDDDDDD901BB7558CDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDB00BDDDDDDDDDDDDDDDDD4031000029DDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDD705DDDDDDDDDDDDDDDDDDA000488400ADDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDD409DDDDDDDDDDDDDDDDDDD418DDDD602CDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDC20BDDDDDDDDDDDDDDDDDDDCBDDDDDC209DDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDD11CDDDDDDDDDDDDDDDDDDDDDDDDDDD705EDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDA11CDDDDDDDDDDDDDDDDDDDDDDDDDDDA028CDDDDDDDDDDDDDD
+DDDDDDDDDDDDB5002CDDDDDDDDDDDDDDDDDDDDDDDDDDDB10016CDDDDDDDDDDDD
+DDDDDDDDDDDA1015BDDDDDDDDDDDDDDDDDDDDDDDDDDDDDB84002BDDDDDDDDDDD
+DDDDDDDDDDA105BDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDA302BDDDDDDDDDD
+DDDDDDDDDC305DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDC404DDDDDDDDDD
+DDDDDDDDD902CDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDC109DDDDDDDDD
+DDDDDDDDD508DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD705DDDDDDDDD
+DDDDDDDDD20ADDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDA02DDDDDDDDD
+DDDDDDDDD10CDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDC01DDDDDDDDD
+DDDDDDDDD10CDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDC01DDDDDDDDD
+DDDDDDDDD20BDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDB02DDDDDDDDD
+DDDDDDDDD408DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD904DDDDDDDDD
+DDDDDDDDD803DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD407DDDDDDDDD
+DDDDDDDDDC207DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD901BDDDDDDDDD
+DDDDDDDDDD9007DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD9108DDDDDDDDDD
+DDDDDDDDDDD80039CDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDCA4006DDDDDDDDDDD
+DDDDDDDDDDDD9200133333333333333333333333333333320018DDDDDDDDDDDD
+DDDDDDDDDDDDDC831000000000000000000000000000000037CDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDCBBBBBBBBBBBBBBBBBBBAAAAAAAAAAABDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+}
+
+skinparam rectangle<<Cloud>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+skinparam participant<<Cloud>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+sprite $DynamoDB [64x64/16] {
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAABBBA9987777789AABBBAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAABA8631000000000002469ABAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAABA62000123456665432000037AAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAB7100368AABBBBBBBBBAA88888ABBBBBAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAB70049BBBAAAAAAAAAAAB999999999999AAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA107BBAAAAAAAAAAAAAB91000000000004BAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB803BAAAAAAAAAAAAAAAB40233333334204BAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB8019BAAAAAAAAAAAAAB901ABBBBBBBB408BAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB80017ABBAAAAAAAAAAB406BAAAAAAAA01AAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB80100269ABBBBBBBAB901AAAAAAAAB704BAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB80483000135678889B406BAAAAAAAB308BAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804BB963100000008901AAAAAAAAAA01ABBBBAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804B65ABA9765445B406BAAAAAAAB70266666AAAAAAAAAAAAAA
+AAAAAAAAAAAAB804B008BABBBBBBB901ABAAAAAAAB500000009BAAAAAAAAAAAA
+AAAAAAAAAAAAAA10875AAAAAAAAAB406AAAAAAAAAA97776005AAAAAAAAAAAAAA
+AAAAAAAAAAAAAB6006ABBBAAAAAB900111117BAAAAABBA205BAAAAAAAAAAAAAA
+AAAAAAAAAAAAAB70001479ABBBBB921111006BAAAAABA204BAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA1075100023567AAAAAAA209BAAAABA204AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB803BBA74200002BAAAAB902AAAAABA303AAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB8019BBBBAA9877AAAAAB705BAAABA303ABAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB80017ABBAABBBBAAAAAB308BAABA303ABAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB80100158ABBBBBBBBBAA11AAAAA402ABAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804940001346778888B804BAAA402ABAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804BBA631000000003B407BAB4029BAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804B65ABA987654448A109BB5019B9AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804B108BABBBBBBBBB803BB5019B82AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA10886AAAAAAAAAAAB606B5019B803BAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAB7005ABBBAAAAAAAAB2096018B8009BAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAB60000379ABBBBBBB9026008B80008BAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA107510001345667B701008B836603BAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB803BBA8531000002B30007BA9ABA11AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB8018BBBBBA987768A1007BAAABB701AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB80006ABBAABBBBBB7007BABBB95001AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB80100158ABBBBBBB827BBA97400101AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804940000246778887653200015911AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804BBA7420000000000000258ABA11AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB804B54ABA987655556678AABBAAA11AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAB803B108BABBBBBBBBBBBBAAAAAAA11AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA10786AAAAAAAAAAAAAAAAAAABB503BAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAB70059BBBAAAAAAAAAAAAABBA83019BAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAB7100368AABBBBBBBBBAA8520029BAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAABA62000123456665432000037ABAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAABA8631000000000002469BBAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAABBBA9987777789AABBBAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+}
+
+skinparam rectangle<<DynamoDB>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+skinparam participant<<DynamoDB>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+sprite $Bottlerocket [64x64/16] {
+7777777777777777777777777777777777777777777777777777777777777777
+7777777777777777777777777777777777777777777777777777777777777777
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888878888888888888888888888888888887
+8888888888888888888888888888887213888888888888888888888888888887
+8888888888888888888888888888883000488888888888888888888888888887
+8888888888888888888888888888840161058888888888888888888888888887
+8888888888888888888888888888600686006888888888888888888888888887
+8888888888888888888888888887105888501788888888888888888888888887
+8888888888888888888888888872048888830278888888888888888888888887
+8888888888888888888888888830288888882038888888888888888888888887
+8888888888888888888888888501788888887104888888888888888888888887
+8888888888888888888888886006888888888600588888888888888888888887
+8888888888888888888888871058888888888850068888888888888888888887
+8888888888888888888888820388888888888884017888888888888888888887
+8888888888888888888888402765432222234567302888888888888888888887
+8888888888888888888885000000000000000000100488888888888888888887
+8888888888888888888870000234566777665432000058888888888888888887
+8888888888888888888872367888888888888888764268888888888888888887
+8888888888888888888888845888888888888885588888888888888888888887
+8888888888888888888888701888888888888881178888888888888888888887
+8888888888888888888888701888888888888881178888888888888888888887
+8888888888888888888888701888888778888881178888888888888888888887
+8888888888888888888888701888885115888881178888888888888888888887
+8888888888888888888888701888620000268881178888888888888888888887
+8888888888888888888888701873002662003781188888888888888888888887
+8888888888888888888888301830048888300381048888888888888888888887
+8888888888888888888884001830002652000381005888888888888888888887
+8888888888888888888850001830310000240381000688888888888888888887
+8888888888888888888600501830684026860381150178888888888888888887
+8888888888888888887105701830685048860381184017888888888888888887
+8888888888888888871048701830485048730381188302788888888888888887
+8888888888888888820388701850013045100581178720388888888888888887
+8888888888888888701788701887300000037881178870078888888888888887
+8888888888888888702888701888862002688881178881078888888888888887
+8888888888888888702888701888888558888881178881078888888888888887
+8888888888888888702888701788888888888871188881078888888888888887
+8888888888888888702888710788888888888870288881078888888888888887
+8888888888888888702888820788888888888860388881078888888888888887
+8888888888888888702888710588888888888850178881078888888888888887
+8888888888888888702887100178888888888710027881078888888888888887
+8888888888888888702871033013468888643103301781078888888888888887
+8888888888888888702710387300017887100048730171078888888888888887
+8888888888888888701103888875017887116788883011178888888888888887
+8888888888888888710048888888107887028888888300178888888888888887
+8888888888888888700488888888228888238888888830078888888888888887
+8888888888888888834888888865555555555688888884388888888888888887
+8888888888888888888888888830000000000388888888888888888888888887
+8888888888888888888888888853004444004588888888888888888888888887
+8888888888888888888888888888117887118888888888888888888888888887
+8888888888888888888888888887101111018888888888888888888888888887
+8888888888888888888888888888311111138888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+8888888888888888888888888888888888888888888888888888888888888887
+7777777777777777777777777777777777777777777777777777777777777777
+7777777777777777777777777777777777777777777777777777777777777776
+}
+
+skinparam rectangle<<Bottlerocket>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+skinparam participant<<Bottlerocket>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+sprite $RoboMaker [64x64/16] {
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAA98655689AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAA841000000148AAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAA9400135665410049AAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAA81016ABAAAABA72018AAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAA504AA84211248AA405AAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAA8A930001100039A7AAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAA910269AA962019AAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAA54AAAAAAAA54AAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAA99AAAAAAAAAAAA9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAA4005AAAAAAAAA51149AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA834A602107A627AAA500103AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA5218408605A233AAA108A208AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA935A601107A637AAA12AB408AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAA9AAA4015AAAAAA9700442069AAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA4016AA9AAAAAA84100000000037AAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAA501008A87AAA830013578876410027AAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAA3086069117A600269AAAAAAAAA73004AAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAA50210891176005AAAAAAAAAAAAAA7103AAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAA93005AA886017AAAAAAAAAAAAAAAA9203AAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAA99AAAA8008AAAAAAAAAAAAAAAAAA9205AAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA7459AAA206AAAAAAAAAAAAAAAAAAAA8008AAAAAAAAAAAAAAAAAA
+AAAAAAAAAAA80004AA703AAAAAAAAAAAAAAAAAAAAAA504AAAAAAAAAAAAAAAAAA
+AAAAAAAAAAA60301AA308AAAAAAAAAAAAAAAAAAAAAA9109AAAAAAAAAAAAAAAAA
+AAAAAAAAAAA80003A902AAAAAAAAAAAAAAAAAAAAAAAA406AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA7459A705AAAA96459AAAAAAA8447AAAA704AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAB507AAAA200029AAAAA700006AAA902AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAA855208AAA6038306AAAAA2067019AA911556AAAAAAAAAAAAAA
+AAAAAAAAAAAAAA500008AAA506B705AAAA911AB209AAA10001AAAAAAAAAAAAAA
+AAAAAAAAAAAAAB505208AAA7016207AAAAA304402AAAA11602AAAAAAAAAAAAAA
+AAAAAAAAAAAA95108408AAAA40004AAAAAA810018AAAA1191048AAAAAAAAAAAA
+AAAAAAAAAAA710007408AAAAA868AAAAAAAA9769AAAAA11910005AAAAAAAAAAA
+AAAAAAAAAAA504407408AAAAAAAAAAAAAAAAAAAAAAAAA11911502AAAAAAAAAAA
+AAAAAAAAAAA507507408AAAAAAAAAAAAAAAAAAAAAAAAA11912903AAAAAAAAAAA
+AAAAAAAAAAA507507408AAAAAAAAAAAAAAAAAAAAAAAAA11912903AAAAAAAAAAA
+AAAAAAAAAAA507507408AAAAAAAAAAAAAAAAAAAAAAAAA11912903AAAAAAAAAAA
+AAAAAAAAAAA507507408AAAAAAAAAAAAAAAAAAAAAAAAA11912903AAAAAAAAAAA
+AAAAAAAAAAA504407408AAAAAAAAAAAAAAAAAAAAAAAAA11911502AAAAAAAAAAA
+AAAAAAAAAAA710007408AAAAAAAAAAAAAAAAAAAAAAAAA11910005AAAAAAAAAAA
+AAAAAAAAAAAA96108408AAAAAAAAAAAAAAAAAAAAAAAAA1191048AAAAAAAAAAAA
+AAAAAAAAAAAAAB505205766666666666666666666666611602AAAAAAAAAAAAAA
+AAAAAAAAAAAAAA500000000000000000000000000000000001AAAAAAAAAAAAAA
+AAAAAAAAAAAAAA855555555555555555555555555555555556AAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+}
+
+skinparam rectangle<<RoboMaker>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+skinparam participant<<RoboMaker>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+sprite $Client [64x64/16] {
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+0000466666666666666666666666666666666666666666666666666666640000
+0019DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD9100
+008DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD800
+01CDB322222222222222222222222222222222222222222222222222223BDC10
+01CD60000000000000000000000000000000000000000000000000000006DC10
+01CD60079999999999999999999999999999999999999999999999997006DC10
+01CD603DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD306DC10
+01CD603DDBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBDD306DC10
+01CD603DD4000000000000000000000000000000000000000000004DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DD3000000000000000000000000000000000000000000003DD306DC10
+01CD603DDA99999999999999999999999999999999999999999999ADD306DC10
+01CD603DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD306DC10
+01CD6019BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB9106DC10
+01CD60000000000000000000000000000000000000000000000000000006DC10
+01CDA100000000000000000000000000000000000000000000000000001ADC10
+009DDBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBDD900
+002BDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDB200
+0001699999999999999999999999999999999999999999999999999999961000
+0000000000000000000000000000000000000000000000000000000000000000
+0000012222222222222222222222222222222222222222222222222222100000
+00028CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC82000
+002BDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDB200
+009DDA7666666666666666666666666666666666666666666666666667ADD800
+01CDA000000000000000000000000000000000000000000000000000000ADC10
+01CD60000000000000000000000000000000000004444444444444442006DC10
+01CD6000000000000000000000000000000000007DDDDDDDDDDDDDDDC206DC10
+01CD6000000000000000000000000000000000009DDDDDDDDDDDDDDDD306DC10
+01CD6000000000000000000000000000000000009DDDDDDDDDDDDDDDD306DC10
+01CD6000000000000000000000000000000000008CDDDDDDDDDDDDDDD306DC10
+01CD60000000000000000000000000000000000038999999999999997006DC10
+01CD80000000000000000000000000000000000000000000000000000008DC10
+00ADC522222222222222222222222222222222222222222222222222225CDA00
+004DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD400
+0006CDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDC6000
+0000256666666666666666666666666666666666666666666666666666520000
+0000000000000000000000000000000000000000000000000000000000000000
+0000000000000000000000000000000000000000000000000000000000000000
+}
+
+skinparam rectangle<<Client>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+skinparam participant<<Client>> {
+    BackgroundColor #FFFFFF
+    BorderColor #FF9900
+}
+
+
+top to bottom direction
+
+rectangle "==文档数据库\n<color:#3B48CC><$DynamoDB></color>\n//<size:12>[线上环境]</size>//" <<DynamoDB>> as coreDB
+
+rectangle "==客户端\n<color:#232F3E><$Client></color>\n//<size:12>[browser / qq / wechat]</size>//" <<Client>> as client
+
+rectangle "==core-v1\n<color:#232F3E><$Cloud></color>\n//<size:12>[核心接口]</size>//" <<Cloud>> as v1
+rectangle "==内容安全\n<color:#232F3E><$Cloud></color>\n//<size:12>[wechat / qq]</size>//" <<Cloud>> as contentSecurity
+rectangle "==拉取服务\n<color:#232F3E><$Cloud></color>\n//<size:12>[主要数据来源]</size>//" <<Cloud>> as pull
+rectangle "==热搜\n<color:#232F3E><$Cloud></color>\n//<size:12>[产生热搜]</size>//" <<Cloud>> as searchHot
+rectangle "==开放API\n<color:#232F3E><$Cloud></color>\n//<size:12>[免费对外服务]</size>//" <<Cloud>> as openApi
+rectangle "==QQ机器人\n<color:#232F3E><$Cloud></color>\n//<size:12>[作用于qq机器人的api服务]</size>//" <<Cloud>> as qqrobotApi
+rectangle "==钉钉机器人\n<color:#232F3E><$Cloud></color>\n//<size:12>[运营]</size>//" <<Cloud>> as dingrobot
+
+rectangle "==服务器\n<color:#D86613><$Bottlerocket></color>\n//<size:12>[aws / aliyun]</size>//" <<Bottlerocket>> as service
+rectangle "==第三方服务器/源\n<color:#D86613><$Bottlerocket></color>\n//<size:12>[unknown]</size>//" <<Bottlerocket>> as otherService
+rectangle "==挂机服务\n<color:#D86613><$Bottlerocket></color>\n//<size:12>[other service]</size>//" <<Bottlerocket>> as HangUp
+rectangle "==QQ机器人\n<color:#D6242D><$RoboMaker></color>\n//<size:12>[运营]</size>//" <<RoboMaker>> as qqrobot
+
+client -> "https" v1
+
+v1 - -> "call" coreDB
+v1 - -> "https" contentSecurity
+openApi - -> "https" v1
+openApi - -> "view" client
+searchHot - -> "call" coreDB
+searchHot - -> "view" client
+
+dingrobot - -> "call" coreDB
+
+HangUp - -> "托管" qqrobot
+qqrobot "call" <- -> "callback" qqrobotApi
+service - -> "https" qqrobotApi
+
+pull - -> "https" otherService
+pull - -> "call" coreDB
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 20:40:07 CST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: zh
+Country: CN
+--></g></svg>

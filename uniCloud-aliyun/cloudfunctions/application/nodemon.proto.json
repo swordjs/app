@@ -1,0 +1,6 @@
+{
+  "watch": ["proto"],
+  "ext": "ts",
+  "exec": "node schemas/genSchemas.js",
+  "legacyWatch": true
+}

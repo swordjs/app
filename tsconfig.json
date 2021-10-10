@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "lib": [ "es2015", "es2017" ],
-    "types": [
-      "miniprogram-api-typings",
-      "mini-types"
-    ]
+    "lib": ["es2015", "es2017"],
+    "typeRoots": ["./typings", "./node_modules/@types", "node_modules/sword-typescript-type-core"]
   }
 }
-// "@dcloudio/types",

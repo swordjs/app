@@ -1,0 +1,1036 @@
+{
+  "article/AddArticle": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "title",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "tagID",
+        "type": {
+          "type": "Array",
+          "elementType": {
+            "type": "String"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "name": "desc",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "article/UpdateArticle": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "title",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "tagID",
+        "type": {
+          "type": "Array",
+          "elementType": {
+            "type": "String"
+          }
+        }
+      }
+    ]
+  },
+  "article/AuditArticle": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "state",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "rejectReason",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      }
+    ]
+  },
+  "certificationApplyOrder/AddCertificationApplyOrder": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "content",
+        "type": {
+          "type": "Interface",
+          "properties": [
+            {
+              "id": 0,
+              "name": "contactDetails",
+              "type": {
+                "type": "String"
+              }
+            },
+            {
+              "id": 1,
+              "name": "filed",
+              "type": {
+                "type": "String"
+              }
+            },
+            {
+              "id": 2,
+              "name": "identity",
+              "type": {
+                "type": "String"
+              }
+            },
+            {
+              "id": 3,
+              "name": "socialHomepage",
+              "type": {
+                "type": "String"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "certificationApplyOrder/UpdateCertificationApplyOrder": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "certificationApplyOrder/UpdateCertificationApplyOrderState": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "state",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "certificationApplyOrder/GetCertificationApplyOrder": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "state",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "limit",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 2,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      }
+    ]
+  },
+  "openapi/AddOpenApi": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "remark",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "info",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "openapi/UpdateOpenApi": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "remark",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "info",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "openapi/ToggleOpenApiState": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "state",
+        "type": {
+          "type": "Union",
+          "members": [
+            {
+              "id": 0,
+              "type": {
+                "type": "Literal",
+                "literal": "close"
+              }
+            },
+            {
+              "id": 1,
+              "type": {
+                "type": "Literal",
+                "literal": "open"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "openapi/GetQuestionList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 1,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      }
+    ]
+  },
+  "question/AddQuestion": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "title",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "tagID",
+        "type": {
+          "type": "Array",
+          "elementType": {
+            "type": "String"
+          }
+        }
+      }
+    ]
+  },
+  "question/UpdateQuestion": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "title",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "content",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      },
+      {
+        "id": 4,
+        "name": "tagID",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      }
+    ]
+  },
+  "question/DeleteQuestion": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "question/ExamineQuestion": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "state",
+        "type": {
+          "type": "Reference",
+          "target": "question/_state"
+        }
+      },
+      {
+        "id": 2,
+        "name": "examineInfo",
+        "type": {
+          "type": "Interface",
+          "properties": [
+            {
+              "id": 0,
+              "name": "reason",
+              "type": {
+                "type": "String"
+              }
+            }
+          ]
+        },
+        "optional": true
+      }
+    ]
+  },
+  "question/_state": {
+    "type": "Union",
+    "members": [
+      {
+        "id": 0,
+        "type": {
+          "type": "Literal",
+          "literal": "pass"
+        }
+      },
+      {
+        "id": 1,
+        "type": {
+          "type": "Literal",
+          "literal": "reject"
+        }
+      }
+    ]
+  },
+  "question/GetQuestionList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "state",
+        "type": {
+          "type": "Reference",
+          "target": "question/_state"
+        }
+      },
+      {
+        "id": 1,
+        "name": "limit",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 2,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      }
+    ]
+  },
+  "question/AddPageView": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "question/GetSampleQuestionList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      },
+      {
+        "id": 1,
+        "name": "size",
+        "type": {
+          "type": "Number"
+        },
+        "optional": true
+      }
+    ]
+  },
+  "questionArea/AddQuestionArea": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "iconPath",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionArea/GetAreaList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "limit",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 1,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 2,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "iconPath",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionArea/UpdateQuestionArea": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "iconPath",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionArea/DeleteQuestionArea": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/AddQuestionExplanation": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/UpdateQuestionExplanation": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/AdoptionQuestionExplanation": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/CollectQuestionExplanation": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionExplanation/GetExplanationCountByUser": {
+    "type": "String"
+  },
+  "questionExplanation/GetLikeCountByUser": {
+    "type": "String"
+  },
+  "questionTag/GetTagList": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "limit",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 1,
+        "name": "page",
+        "type": {
+          "type": "Number"
+        }
+      }
+    ]
+  },
+  "questionTag/AddQuestionTag": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionTag/UpdateQuestionTag": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "areaID",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "name",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "questionTag/DeleteQuestionTag": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "_id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "search/AddSeachLog": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "content",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "device_id",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      },
+      {
+        "id": 2,
+        "name": "user_id",
+        "type": {
+          "type": "String"
+        },
+        "optional": true
+      }
+    ]
+  },
+  "user/LoginByWechat": {
+    "type": "Reference",
+    "target": "user/_OtherLoginPlatformParams"
+  },
+  "user/_OtherLoginPlatformParams": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "code",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "nickname",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "avatar",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 3,
+        "name": "gender",
+        "type": {
+          "type": "Number"
+        }
+      }
+    ]
+  },
+  "user/LoginByQQ": {
+    "type": "Reference",
+    "target": "user/_OtherLoginPlatformParams"
+  },
+  "user/BindWechat": {
+    "type": "Reference",
+    "target": "user/_OtherBindPlatformParams"
+  },
+  "user/_OtherBindPlatformParams": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "code",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "uid",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/BindQQ": {
+    "type": "Reference",
+    "target": "user/_OtherBindPlatformParams"
+  },
+  "user/BindMobile": {
+    "type": "Intersection",
+    "members": [
+      {
+        "id": 0,
+        "type": {
+          "type": "Reference",
+          "target": "user/_OtherBindPlatformParams"
+        }
+      },
+      {
+        "id": 1,
+        "type": {
+          "type": "Interface",
+          "properties": [
+            {
+              "id": 0,
+              "name": "mobile",
+              "type": {
+                "type": "String"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "user/LoginBySms": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "phone",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "code",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/UserLogout": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "token",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/UpdateUserInfo": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "nickname",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "avatar",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 2,
+        "name": "gender",
+        "type": {
+          "type": "Number"
+        }
+      },
+      {
+        "id": 3,
+        "name": "uid",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 4,
+        "name": "sign",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/ResetPassword": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "password",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/CheckFollowers": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "uid",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "follower",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/SendSms": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "type",
+        "type": {
+          "type": "String"
+        }
+      },
+      {
+        "id": 1,
+        "name": "phone",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/CheckToken": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "token",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  },
+  "user/GetUserContentByID": {
+    "type": "Interface",
+    "properties": [
+      {
+        "id": 0,
+        "name": "id",
+        "type": {
+          "type": "String"
+        }
+      }
+    ]
+  }
+}

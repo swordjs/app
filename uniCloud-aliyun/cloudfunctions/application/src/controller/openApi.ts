@@ -1,76 +1,62 @@
-namespace OpenApi {
-  const explain = require("explain");
-  const openApiService = require("../service/openApi");
-  const { appErrorMessage, handleMustRequireParam } = require("app-tools");
-  module.exports = class OpenApiController extends explain.service {
-    async handler(methodName: string) {
-      const service = new openApiService({
-        context: this.context,
-      });
-      return await service[methodName](this.event.params);
-    }
-    addOpenApi() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "name",
-            value: "api名称",
-          },
-          {
-            key: "remark",
-            value: "备注",
-          },
-          {
-            key: "info",
-            value: "内容",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => await this.handler("addOpenApi"))
-        .catch((err) => err);
-    }
-    updateOpenApi() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "id",
-            value: "api id",
-          },
-          {
-            key: "name",
-            value: "api名称",
-          },
-          {
-            key: "remark",
-            value: "备注",
-          },
-          {
-            key: "info",
-            value: "内容",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => await this.handler("updateOpenApi"))
-        .catch((err) => err);
-    }
-    toggleOpenApiState() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "id",
-            value: "api id",
-          },
-          {
-            key: "state",
-            value: "状态",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => await this.handler("toggleOpenApiState"))
-        .catch((err) => err);
-    }
-  };
-}
+import * as explain from 'explain';
+import openApiService from '../service/openApi';
+import * as IOpenApi from '../../proto/openapi';
+export = class OpenApiController extends explain.service {
+  private service: openApiService;
+  constructor(e: CloudData) {
+    super(e);
+    this.service = new openApiService(this);
+  }
+  /**
+   * @name 添加openapi
+   * @param IOpenApi.AddOpenApi
+   * @return {*} {Promise<unknown>}
+   * @memberof OpenApiController
+   */
+  async addOpenApi(): Promise<unknown> {
+    return await this.service.addOpenApi(this.event.data as IOpenApi.AddOpenApi);
+  }
+  /**
+   * @name 修改openapi
+   * @param IOpenApi.AddOpenApi
+   * @return {*} {Promise<unknown>}
+   * @memberof OpenApiController
+   */
+  async updateOpenApi(): Promise<unknown> {
+    return await this.service.updateOpenApi(this.event.data as IOpenApi.UpdateOpenApi);
+  }
+  /**
+   * @name 开启/关闭openapi的状态
+   * @param IOpenApi.ToggleOpenApiState
+   * @return {*} {Promise<unknown>}
+   * @memberof OpenApiController
+   */
+  async toggleOpenApiState(): Promise<unknown> {
+    return await this.service.toggleOpenApiState(this.event.data as IOpenApi.ToggleOpenApiState);
+  }
+  /**
+   * @name 获取题目列表
+   * @param IOpenApi.GetQuestionList
+   * @return {*} {Promise<unknown>}
+   * @memberof OpenApiController
+   */
+  async getQuestionList(): Promise<unknown> {
+    return await this.service.getQuestionList(this.event.data as IOpenApi.GetQuestionList);
+  }
+  /**
+   * @name 获取专区列表
+   * @return {*} {Promise<unknown>}
+   * @memberof OpenApiController
+   */
+  async getQuestionAreaList(): Promise<unknown> {
+    return await this.service.getQuestionAreaList();
+  }
+  /**
+   * @name 获取标签列表
+   * @return {*} {Promise<unknown>}
+   * @memberof OpenApiController
+   */
+  async getQuestionTag(): Promise<unknown> {
+    return await this.service.getQuestionTag();
+  }
+};

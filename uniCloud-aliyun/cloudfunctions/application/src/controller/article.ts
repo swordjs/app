@@ -1,85 +1,40 @@
-namespace Article {
-  const explain = require("explain");
-  const articleService = require("../service/article");
-  const { appErrorMessage, handleMustRequireParam } = require("app-tools");
+import * as explain from 'explain';
+import articleService from '../service/article';
+import * as IArticle from '../../proto/article';
 
-  module.exports = class ArticleController extends explain.service {
-    // 核心处理服务方法
-    async handler(methodName: string) {
-      const service = new articleService({
-        context: this.context,
-      });
-      return await service[methodName](this.event.params);
-    }
-    // 添加文章
-    async addArticle() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "title",
-            value: "文章标题",
-          },
-          {
-            key: "content",
-            value: "content内容",
-          },
-          {
-            key: "tagID",
-            value: "标签内容",
-          },
-          {
-            key: "desc",
-            value: "描述",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => await this.handler("addArticle"))
-        .catch((err) => err);
-    }
-    // 修改文章
-    async updateArticle() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "id",
-            value: "文章id",
-          },
-          {
-            key: "content",
-            value: "内容",
-          },
-          {
-            key: "title",
-            value: "标题",
-          },
-          {
-            key: "tagID",
-            value: "标签",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => await this.handler("updateArticle"))
-        .catch((err) => err);
-    }
-    // 审核文章
-    async auditArticle() {
-      return handleMustRequireParam(
-        [
-          {
-            key: "id",
-            value: "文章id",
-          },
-          {
-            key: "state",
-            value: "状态",
-          },
-        ],
-        this.event.params
-      )
-        .then(async () => await this.handler("auditArticle"))
-        .catch((err) => err);
-    }
-  };
-}
+export = class ArticleController extends explain.service {
+  private service: articleService;
+  constructor(e: CloudData) {
+    super(e);
+    this.service = new articleService(this);
+  }
+  /**
+   * @name 添加/发布文章
+   * @param IArticle.AddArticle
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/kif3lf#g13V0
+   * @memberof ArticleController
+   */
+  async addArticle(): Promise<unknown> {
+    return await this.service.addArticle(this.event.data as IArticle.AddArticle);
+  }
+  /**
+   * @name 修改文章
+   * @param IArticle.UpdateArticle
+   * @return {*}  {Promise<unknown>}
+   * @memberof ArticleController
+   */
+  async updateArticle(): Promise<unknown> {
+    return await this.service.updateArticle(this.event.data as IArticle.UpdateArticle);
+  }
+  /**
+   * @name 审核文章
+   * @param IArticle.AuditArticle
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/kif3lf#zJelt
+   * @memberof ArticleController
+   */
+  async auditArticle(): Promise<unknown> {
+    return await this.service.auditArticle(this.event.data as IArticle.AuditArticle);
+  }
+};

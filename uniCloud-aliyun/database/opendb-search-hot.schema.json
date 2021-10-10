@@ -1,27 +1,27 @@
 {
-	"bsonType": "object",
-	"required": ["content", "count"],
-	"permission": {
-		"read": true,
-		"create": false,
-		"update": false,
-		"delete": false
-	},
-	"properties": {
-		"_id": {
-			"description": "ID，系统自动生成"
-		},
-		"content": {
-			"bsonType": "string",
-			"description": "搜索内容"
-		},
-		"count": {
-			"bsonType": "long",
-			"description": "搜索次数"
-		},
-		"create_date": {
-			"bsonType": "timestamp",
-			"description": "统计时间"
-		}
-	}
+  "bsonType": "object",
+  "required": ["content", "count"],
+  "permission": {
+    "read": true,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "content": {
+      "bsonType": "string",
+      "description": "搜索内容"
+    },
+    "count": {
+      "bsonType": "long",
+      "description": "搜索次数"
+    },
+    "create_date": {
+      "bsonType": "timestamp",
+      "description": "统计时间"
+    }
+  }
 }

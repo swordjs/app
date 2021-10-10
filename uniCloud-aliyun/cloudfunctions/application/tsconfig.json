@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "target": "es6",
+    "module": "CommonJS",
+    "typeRoots": ["./typings", "./node_modules/@types", "../../../node_modules/sword-typescript-type-core"]
+  },
+  "include": ["./src/**/*.ts"]
+}

@@ -1,0 +1,7 @@
+src/uni_modules/**/*
+# explain框架核心模块
+uniCloud-aliyun/cloudfunctions/common/explain/**/*
+
+# uni-config-center 核心模块
+# uni-id 核心模块
+uniCloud-aliyun/cloudfunctions/common/uni-*/**/*

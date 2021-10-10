@@ -99,7 +99,7 @@
           <view class="top">
             <view class="topTitle">{{ article.title }}</view>
             <view class="topContent">
-              {{ removeHtmlTag(article.content) }}
+              {{ article.content }}
             </view>
           </view>
           <view class="bottom">
@@ -186,7 +186,10 @@ export default {
     const getArticle = async () => {
       const res = await getArticleList();
       if (res.success) {
-        articleList.value = res.data;
+        articleList.value = res.data.slice(0, 10).map(r => {
+          r.content = removeHtmlTag(r.content);
+          return r;
+        });
       }
     };
     getArticle();

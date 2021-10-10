@@ -1,43 +1,43 @@
 {
-	"bsonType": "object",
-	"required": [],
-	"permission": {
-		"read": true,
-		"create": false,
-		"update": false,
-		"delete": false
-	},
-	"properties": {
-		"_id": {
-			"description": "ID，系统自动生成"
-		},
-		"name": {
-			"bsonType": "string",
-			"description": "api名称"
-		},
-		"remark": {
-			"bsonType": "string",
-			"description": "备注"
-		},
-		"state": {
-			"bsonType": "string",
-			"description": "类型，close不开放，open开放"
-		},
-		"info": {
-			"bsonType": "object",
-			"description": "openapi的信息，其中包括url等等"
-		},
-		"createDate": {
-			"bsonType": "timestamp",
-			"description": "创建时间"
-		},
-		"updateDate": {
-			"bsonType": "timestamp",
-			"description": "修改时间"
-		},
-		"deleteDate": {
-			"bsonType": "timestamp",
-			"description": "删除时间"
-		}
-	}
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "name": {
+      "bsonType": "string",
+      "description": "api名称"
+    },
+    "remark": {
+      "bsonType": "string",
+      "description": "备注"
+    },
+    "state": {
+      "bsonType": "string",
+      "description": "类型，close不开放，open开放"
+    },
+    "info": {
+      "bsonType": "object",
+      "description": "openapi的信息，其中包括url等等"
+    },
+    "createDate": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updateDate": {
+      "bsonType": "timestamp",
+      "description": "修改时间"
+    },
+    "deleteDate": {
+      "bsonType": "timestamp",
+      "description": "删除时间"
+    }
+  }
 }

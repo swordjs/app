@@ -1,20 +1,20 @@
 {
-	"bsonType": "object",
-	"required": [],
-	"permission": {
-		"read": true,
-		"create": false,
-		"update": false,
-		"delete": false
-	},
-	"properties": {
-		"_id": {
-			"description": "ID，系统自动生成"
-		},
-		"areaID": {
-			"bsonType": "object",
-			"description": "专区id",
-			"foreignKey": "questionArea._id"
-		}
-	}
+  "bsonType": "object",
+  "required": [],
+  "permission": {
+    "read": true,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "areaID": {
+      "bsonType": "object",
+      "description": "专区id",
+      "foreignKey": "questionArea._id"
+    }
+  }
 }

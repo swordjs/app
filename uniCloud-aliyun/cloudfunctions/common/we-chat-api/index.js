@@ -9,16 +9,15 @@ let APPSECRET = 'c6f17c25e4b6ff3d92e8af902c4f2f8d';
  * https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Get_access_token.html
  */
 async function getAccessToken() {
+  let url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${APPID}&secret=${APPSECRET}`;
 
-	let url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${APPID}&secret=${APPSECRET}`;
+  const response = await httpclient.request(url, {
+    method: 'GET',
+    dataType: 'json'
+  });
+  const data = response.data;
 
-	const response = await httpclient.request(url, {
-		method: 'GET',
-		dataType: 'json'
-	})
-	const data = response.data;
-
-	return data.access_token;
+  return data.access_token;
 }
 
 /**
@@ -35,20 +34,19 @@ async function getAccessToken() {
  * 
  */
 async function sendTemplate(data) {
+  let access_token = await getAccessToken();
+  let url = `https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=${access_token}`;
 
-	let access_token = await getAccessToken();
-	let url = `https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=${access_token}`;
-
-	const response = await httpclient.request(url, {
-		method: 'POST',
-		dataType: 'json',
-		contentType: 'json',
-		data: data,
-	})
-	return response.data;
+  const response = await httpclient.request(url, {
+    method: 'POST',
+    dataType: 'json',
+    contentType: 'json',
+    data: data
+  });
+  return response.data;
 }
 
 module.exports = {
-	getAccessToken,
-	sendTemplate
-}
+  getAccessToken,
+  sendTemplate
+};
