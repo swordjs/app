@@ -152,61 +152,45 @@ import { getTestList } from "../../api/test";
 const data = getTestList();
 ```
 
-我们写入操作将通过云函数直接调用，唯一设计不同的地方在于，我们将云函数这个概念改变了，一个云函数可能要做一个版本的接口。
+我们写入操作将通过HTTP调用云函数，唯一设计不同的地方在于，我们将云函数这个概念改变了，一个云函数是一个版本的接口。
 
-在我们的初步技术调研过程中，由于 Uni 官方并没有提供给用户云函数开发框架，但是我们在插件市场中找到了一款名为 explain 的开发框架，它可以迅速的帮助我们实现 restapi 风格的单路由云函数，这款框架我们不多做介绍，文档在这里：[explain.js 快速开发 uni 云函数的框架](https://ext.dcloud.net.cn/plugin?id=3312)
+在我们的初步技术调研过程中，由于 Uni 官方并没有提供给用户云函数开发框架，但是我们在插件市场中找到了一款名为 `explain` 的开发框架，它可以迅速的帮助我们实现 restapi 风格的单路由云函数 [explain.js 快速开发 uni 云函数的框架](https://ext.dcloud.net.cn/plugin?id=3312)
+
+在v1.1.0版本之后，后端进行了v1版本接口的重构，使用ts运行时校验来代替我们参数检查的工作
 
 ```js
-// 注册用户根据手机号
-  addUserByPhone() {
-    return handleMustRequireParam(
-        [{
-            key: "username",
-            value: "用户名",
-          },
-          {
-            key: "password",
-            value: "密码",
-          },
-        ],
-        this.event.params
-      )
-      .then(async () => {
-        const {
-          username,
-          password
-        } = this.event.params;
-        if (!/^1[3456789]\d{9}$/.test(username)) {
-          return appErrorMessage("用户名格式不正确");
-        } else if (password === "" || password.length < 6) {
-          return appErrorMessage("密码格式不正确");
-        } else {
-          // 校验手机号
-          return await uniID.register({
-            username,
-            password,
-          });
-        }
-      })
-      .catch((err) => {
-        return err;
-      });
+import * as explain from 'explain';
+import articleService from '../service/article';
+import * as IArticle from '../../proto/article';
+
+export = class ArticleController extends explain.service {
+  private service: articleService;
+  constructor(e: CloudData) {
+    super(e);
+    this.service = new articleService(this);
   }
+  /**
+   * @name 添加/发布文章
+   * @param IArticle.AddArticle
+   * @return {*}  {Promise<unknown>}
+   * @link https://www.yuque.com/mlgrgm/lmm8g4/kif3lf#g13V0
+   * @memberof ArticleController
+   */
+  async addArticle(): Promise<unknown> {
+    return await this.service.addArticle(this.event.data as IArticle.AddArticle);
+  }
+};
+
 ```
 
-那么我们如果要调用 testPrint 这个模块中的增加操作
+在客户端调用这个云函数
 
 ```js
-uniCloud.callFunction({
-  name: "application",
-  data: {
-    route: "api/user",
-    method: "POST",
-    params: {
-      username: "",
-      password: "",
-    },
-  },
+await request({
+  route: `api/article`,
+  method: 'POST',
+  data: params,
+  checkLogin: true
 });
 ```
 想要了解更多API相关内容，请移步我们的[API文档](https://www.yuque.com/mlgrgm/lmm8g4/bgxcw3)
