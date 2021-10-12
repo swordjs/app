@@ -1,4 +1,4 @@
-name: MP CI
+name: MP-WEIXIN CI
 
 on:
   push:

@@ -1,0 +1,27 @@
+name: MP-QQ CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-qq-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        uses: docker://qqminiapp/build:latest
+        env:
+          PLUGIN_VERSION: 1.0.0
+          PLUGIN_DESC: CI自动构建上传
+          PLUGIN_APPTOKEN: ${{ secrets.QQ_UPLOAD_TOKEN }}
+          PLUGIN_BUILDUSER: ${{ github.actor }}
+          PLUGIN_EXPERIENCE: true
