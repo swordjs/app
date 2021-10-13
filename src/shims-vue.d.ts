@@ -4,7 +4,7 @@ declare module '*.vue' {
   export default component;
 }
 
-interface ActionResult {
+interface ActionResult<T = unknown> {
   success: boolean;
-  data?: unknown;
+  data?: T;
 }

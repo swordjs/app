@@ -63,6 +63,7 @@ import {
 import { removeHtmlTag } from "../../util/common";
 import { checkContentSecurity } from "../../api/common";
 import * as marked from "marked";
+import { isObject } from "@vue/shared";
 interface IPageParams {
   id: string;
   questionID: string;
@@ -126,7 +127,7 @@ export default defineComponent({
         filePath: img,
         cloudPath: "img",
       });
-      if (res.success) {
+      if (res.success && isObject(res.data)) {
         callback(res.data.fileID);
       }
     };
@@ -191,7 +192,7 @@ export default defineComponent({
             const checkResult = await checkContentSecurity({
               content: html
             })
-            if(checkResult.success && !checkResult.result){
+            if(checkResult.success && !checkResult.data){
               // 如果校验失败，则提示
               uni.hideLoading();
               uni.showToast({

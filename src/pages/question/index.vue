@@ -22,7 +22,7 @@ export default defineComponent({
       });
       const result = await getQuestionAreaList();
       uni.hideLoading();
-      if (result.success) {
+      if (result.success && Array.isArray(result.data)) {
         areaList.value = result.data;
       }
     };

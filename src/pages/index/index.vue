@@ -150,8 +150,12 @@ export default {
       clientX: 0,
       clientY: 0,
     });
+    type User = {
+      nickName: string;
+      avatarUrl: string;
+    }
     // 首页展示的信息，头像/昵称等
-    const user = ref({
+    const user = ref<User>({
       nickName: "",
       avatarUrl: "",
     });
@@ -161,7 +165,7 @@ export default {
       // 判断是否登陆
       isLogin.value = uni.getStorageSync("uni_id_token") !== "";
       if (isLogin.value) {
-        user.value = uni.getStorageSync("userInfo");
+        user.value = uni.getStorageSync("userInfo") as User;
       }
     };
     const handleUrl = (path: string) => {
@@ -185,7 +189,7 @@ export default {
     // 获取文章列表功能
     const getArticle = async () => {
       const res = await getArticleList();
-      if (res.success) {
+      if (res.success && Array.isArray(res.data)) {
         articleList.value = res.data.slice(0, 10).map(r => {
           r.content = removeHtmlTag(r.content);
           return r;

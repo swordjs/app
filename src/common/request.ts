@@ -32,7 +32,7 @@ fly.interceptors.response.use((response) => {
   return response.data;
 });
 
-export default (params: RequestParams): Promise<ActionResult> => {
+export default <T = unknown>(params: RequestParams): Promise<ActionResult<T>> => {
   return new Promise((resolve, reject) => {
     fly
       .request(`https://c7e81452-9d28-4486-bedc-5dbf7c8386a5.bspapp.com/http/v1/${params.route}`, params.data, {
@@ -40,7 +40,7 @@ export default (params: RequestParams): Promise<ActionResult> => {
         timeout: 5000
       })
       .then((res) => {
-        let response: ActionResult = {
+        let response: ActionResult<T> = {
           success: true,
           data: res
         };

@@ -88,7 +88,7 @@ export default {
             });
             // 退出调用logout方法，取消token
             const logOutResult = await logout({
-              token: uni.getStorageSync("uni_id_token"),
+              token: uni.getStorageSync("uni_id_token") as string,
             });
             uni.hideLoading();
             if (logOutResult.success) {

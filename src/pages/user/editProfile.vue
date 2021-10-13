@@ -65,7 +65,7 @@ export default {
     const handleSexChange = (e) => {
       form.value.gender = Number(e.target.value);
     };
-    const userID = uni.getStorageSync("uni_id");
+    const userID = uni.getStorageSync("uni_id") as string;
     const getUserProfile = async () => {
       uni.showLoading({
         title: "获取资料中...",
@@ -106,7 +106,7 @@ export default {
         const result = await checkContentSecurity({
           content: checkList[key],
         });
-        if (result.success && !result.result) {
+        if (result.success && !result.data) {
           toast(key);
           return false;
         }
