@@ -192,11 +192,11 @@ export default defineComponent({
             const checkResult = await checkContentSecurity({
               content: html
             })
-            if(checkResult.success && !checkResult.data){
+            if(checkResult.success && checkResult.data.errCode !== 0){
               // 如果校验失败，则提示
               uni.hideLoading();
               uni.showToast({
-                title: "您提交的内容中有敏感字符",
+                title: `您提交的内容中有敏感字符${JSON.stringify(checkResult.data.errMsg)}`,
                 icon: "none"
               });
               return;

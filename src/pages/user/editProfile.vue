@@ -99,14 +99,15 @@ export default {
       console.log(form.value)
       // 指定一个检查字典，字典循环完就代表检查完毕
       const checkList = {
-        签名: form.value.sign,
         昵称: form.value.nickname,
+        签名: form.value.sign,
       };
       for (let key in checkList) {
         const result = await checkContentSecurity({
           content: checkList[key],
         });
-        if (result.success && !result.data) {
+        console.log(result)
+        if (result.success && result.data.errCode !== 0) {
           toast(key);
           return false;
         }
