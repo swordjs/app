@@ -10,7 +10,7 @@ const handleCheck = async (url, data) => {
     dataType: 'json'
   });
   if (result.status === 200) {
-    return result.data.errCode === 0;
+    return result.data;
   }
 };
 exports.main = async (event) => {
