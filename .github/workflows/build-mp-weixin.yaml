@@ -61,7 +61,7 @@ jobs:
           url: ${{ secrets.DINGTALK_WEBHOOK }}
           type: markdown
           content: |
-            # 👨‍💻 微信小程序: 构建&发布成功 🎉🎉🎉
+            # 👨‍💻 [mp-ci]微信小程序: 构建&发布成功 🎉🎉🎉
             > Build of [# ${{ env.PR_TITLE }}](${{ env.PR_URL }}) by ${{ env.PR_USER }} success
             > ^_^ from github action message
 
