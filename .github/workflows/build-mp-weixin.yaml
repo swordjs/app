@@ -38,10 +38,6 @@ jobs:
     needs: build-weixin-ci
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x]
-
     steps:
       - name: Ding-Notice
         if: ${{ success() }}
