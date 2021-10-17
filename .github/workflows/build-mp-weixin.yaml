@@ -55,7 +55,7 @@ jobs:
           type: markdown
           content: |
             # 👨‍💻 [mp-ci]微信小程序: 构建&发布成功 🎉🎉🎉
-            > Build of [# $GITHUB_REPOSITORY] success
+            > Build of [# {{$GITHUB_REPOSITORY}}] success
             > ^_^ from github action message
 
 # 参考
