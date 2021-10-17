@@ -47,13 +47,6 @@ jobs:
         node-version: [10.x]
 
     steps:
-      - name: PR_INFO
-        run: |
-          echo PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }') >> $GITHUB_ENV
-          echo PR_TITLE=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
-          echo PR_URL=$(jq --raw-output .pull_request._links.html.href "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
-          echo PR_USER=$(jq --raw-output .pull_request.user.login "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
-
       - name: Ding-Notice
         if: ${{ success() }}
         uses: fifsky/dingtalk-action@master
@@ -62,7 +55,7 @@ jobs:
           type: markdown
           content: |
             # 👨‍💻 [mp-ci]微信小程序: 构建&发布成功 🎉🎉🎉
-            > Build of [# ${{ env.PR_TITLE }}](${{ env.PR_URL }}) by ${{ env.PR_USER }} success
+            > Build of [# ${{ GITHUB_REPOSITORY }}] success
             > ^_^ from github action message
 
 # 参考
