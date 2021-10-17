@@ -36,7 +36,7 @@ jobs:
           UPLOAD_PRIVATE_KEY: ${{ secrets.WEIXIN_UPLOAD_PRIVATE_KEY }}
       # 上传代码
       - name: Upload to WeChat
-        run: npx mp-ci upload ./ --pkp=./private.key --no-test
+        run: npx mp-ci upload ./ --pkp=./private.key
 
   ding-notice:
     needs: build-weixin-ci
