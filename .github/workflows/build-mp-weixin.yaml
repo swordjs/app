@@ -53,3 +53,5 @@ jobs:
             # 👨‍💻 微信小程序: 构建&发布成功 🎉🎉🎉
             > Build of [# ${{ env.PR_TITLE }}](${{ env.PR_URL }}) by ${{ env.PR_USER }} success
             > ^_^ from github action message
+# 参考
+# 1. https://segmentfault.com/a/1190000039125224

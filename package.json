@@ -111,7 +111,7 @@
     "nodemon": "^2.0.13",
     "postcss-comment": "^2.0.0",
     "prettier": "^2.4.1",
-    "sword-typescript-type-core": "^1.0.2",
+    "sword-typescript-type-core": "^1.0.3",
     "tsbuffer-proto-generator": "^1.4.6",
     "typescript": "^4.4.3"
   },
