@@ -30,6 +30,10 @@ jobs:
         run: echo "$WEIXIN_UPLOAD_PRIVATE_KEY" > private.key
         env:
           UPLOAD_PRIVATE_KEY: ${{ secrets.WEIXIN_UPLOAD_PRIVATE_KEY }}
+          
+      - name: Set PackageJson
+        run: cp ./package.json ./dist/build/mp-weixin/package.json
+        
       # 上传代码
       - name: Upload to WeChat
         run: npx mp-ci upload ./dist/build/mp-weixin --pkp=./private.key
