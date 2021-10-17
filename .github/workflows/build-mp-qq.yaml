@@ -29,8 +29,16 @@ jobs:
           PLUGIN_APPTOKEN: ${{ secrets.QQ_UPLOAD_TOKEN }}
           PLUGIN_BUILDUSER: ${{ github.actor }}
           PLUGIN_EXPERIENCE: true
-        run: npm run build:mp-qq
+        run: npm run build:mp-weixin
 
+  ding-notice:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
       - name: PR_INFO
         run: |
           echo PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }') >> $GITHUB_ENV
@@ -45,7 +53,7 @@ jobs:
           url: ${{ secrets.DINGTALK_WEBHOOK }}
           type: markdown
           content: |
-            # 👨‍💻 qq小程序: 构建&发布成功 🎉🎉🎉
+            # 👨‍💻 QQ小程序: 构建&发布成功 🎉🎉🎉
             > Build of [# ${{ env.PR_TITLE }}](${{ env.PR_URL }}) by ${{ env.PR_USER }} success
             > ^_^ from github action message
 
