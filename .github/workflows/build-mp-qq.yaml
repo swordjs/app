@@ -34,6 +34,7 @@ jobs:
         run: npm run build:mp-weixin
 
   ding-notice:
+    needs: build-qq-ci
     runs-on: ubuntu-latest
 
     strategy:
