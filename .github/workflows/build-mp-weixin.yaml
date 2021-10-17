@@ -39,6 +39,7 @@ jobs:
         run: npx mp-ci upload ./ --pkp=./private.key --no-test
 
   ding-notice:
+    needs: build-weixin-ci
     runs-on: ubuntu-latest
 
     strategy:
