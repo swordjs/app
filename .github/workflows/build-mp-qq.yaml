@@ -10,6 +10,10 @@ jobs:
   build-qq-ci:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [10.x]
+
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -25,3 +29,25 @@ jobs:
           PLUGIN_APPTOKEN: ${{ secrets.QQ_UPLOAD_TOKEN }}
           PLUGIN_BUILDUSER: ${{ github.actor }}
           PLUGIN_EXPERIENCE: true
+        run: npm run build:mp-qq
+
+      - name: PR_INFO
+        run: |
+          echo PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }') >> $GITHUB_ENV
+          echo PR_TITLE=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
+          echo PR_URL=$(jq --raw-output .pull_request._links.html.href "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
+          echo PR_USER=$(jq --raw-output .pull_request.user.login "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
+
+      - name: Ding-Notice
+        if: ${{ success() }}
+        uses: fifsky/dingtalk-action@master
+        with:
+          url: ${{ secrets.DINGTALK_WEBHOOK }}
+          type: markdown
+          content: |
+            # 👨‍💻 qq小程序: 构建&发布成功 🎉🎉🎉
+            > Build of [# ${{ env.PR_TITLE }}](${{ env.PR_URL }}) by ${{ env.PR_USER }} success
+            > ^_^ from github action message
+
+# 参考
+# 1. https://segmentfault.com/a/1190000039125224
