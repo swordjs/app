@@ -55,7 +55,7 @@ interface IDataList {
   _id: string;
   title: string;
   content: string;
-  publishUserID: object[];
+  publishUserID: Record<string, string>[];
 }
 export default defineComponent({
   onLoad(params: IPageParams) {
@@ -115,7 +115,7 @@ export default defineComponent({
           title: "加载成功",
           icon: "none",
         });
-        dataList.value = dataList.value.concat(result.data);
+        dataList.value = dataList.value.concat(result.data as never[]);
       }
     };
 

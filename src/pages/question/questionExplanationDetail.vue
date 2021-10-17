@@ -109,7 +109,7 @@ export default {
     const userID = ref<string>("");
     // 获取最新的userID
     const getUserID = () => {
-      userID.value = uni.getStorageSync("uni_id");
+      userID.value = uni.getStorageSync("uni_id") as string;
     };
     // 查询自身是否解答过这道题了
     const getExplanationIDBySelf = async () => {
@@ -119,7 +119,7 @@ export default {
         _id: questionID.value,
       });
       if (result.success) {
-        explanationIDBySelf.value = result.data === null ? false : result.data;
+        explanationIDBySelf.value = result.data === null ? false : result.data as string;
       }
     };
     const data = ref<{
@@ -130,11 +130,16 @@ export default {
       userID?: {
         _id: string;
         collect: string[];
+        avatar: string;
+        nickname: string;
+        sign: string;
       }[];
       _id?: string;
+      content: string;
     }>({
       userID: [],
       userAgreed: [],
+      content: ""
     });
     const isSelf = computed(() => {
       return userID.value === data.value.userID[0]?._id;
@@ -168,7 +173,7 @@ export default {
         const isCollectResult = await checkIDInCollect({
           id: data.value._id,
         });
-        if (isCollectResult.success) {
+        if (isCollectResult.success && typeof isCollectResult.data === "boolean") {
           isCollect.value = isCollectResult.data;
         }
       }

@@ -121,6 +121,7 @@ import {
 } from "../../api/questionExplanation";
 import { removeHtmlTag } from "../../util/common";
 import notLogin from "../../util/notLogin";
+import { isString } from "@vue/shared";
 interface IPageParams {
   id: string;
 }
@@ -152,9 +153,12 @@ export default {
     });
     const detailData = ref<{
       title: string;
-    }>({
-      title: "",
-    });
+      tagID: {
+        _id: string;
+        name: string;
+      }[];
+      pageView: number
+    }>();
     const explanations = ref([]);
     const id = ref<string>("");
     const explanationIDBySelf = ref<string | boolean>("");
@@ -167,7 +171,7 @@ export default {
         _id: id.value,
       });
       if (result.success) {
-        explanationIDBySelf.value = result.data === null ? false : result.data;
+        explanationIDBySelf.value = result.data === null ? false : result.data as string;
       }
     };
     // 解答页面的滚动视图高度，需要初始化减掉49，这个49是底部操作的高度，之后会经过动态计算，算出距离顶部的高度，然后动态减去
@@ -237,10 +241,12 @@ export default {
       });
     };
     // 跳转到题解详情页面
-    const handleExplanationCard = (target: { _id: string }) => {
-      uni.navigateTo({
-        url: `/pages/question/questionExplanationDetail?id=${target._id}&questionID=${id.value}`,
-      });
+    const handleExplanationCard = (target: { _id: string | boolean }) => {
+      if(isString(target._id)){
+        uni.navigateTo({
+          url: `/pages/question/questionExplanationDetail?id=${target._id}&questionID=${id.value}`,
+        });
+      }
     };
     // 点击写题解按钮
     const handleWrite = () => {

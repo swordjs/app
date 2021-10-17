@@ -398,7 +398,7 @@ export default {
         page: listInfo.value[keyName].page,
       });
       uni.hideLoading();
-      if (result.success) {
+      if (result.success && Array.isArray(result.data)) {
         listInfo.value[keyName].data = listInfo.value[keyName].data.concat(
             result.data.map(l => {
               l.createDate = dayjs(l.createDate).format("YYYY-MM-DD HH:mm")
@@ -428,7 +428,7 @@ export default {
           fansCount,
           questionCount,
           likeCount,
-        } = result.data;
+        } = result.data as any;
         userInfo.value = user;
         userInfo.value.fansCount = fansCount; // 粉丝
         userInfo.value.publishCount = questionCount; // 发布题目数量
@@ -437,7 +437,7 @@ export default {
         // 判断此信息是否是本人，如果不是本人，则查询本人和此人的粉丝关联，如果是本人，则就不需要查询
         if (!isSelf.value) {
           const selfResult = await getUserBaseContentByUserID({
-            userID: uni.getStorageSync("uni_id"),
+            userID: uni.getStorageSync("uni_id") as string,
           });
           // 查询自己用户中的关注者是否关注了此用户
           if (selfResult.success && selfResult.data[0].followers) {

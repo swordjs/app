@@ -242,7 +242,7 @@ export default defineComponent({
             mask: true,
           });
           const bindResult = await bindMobile({
-            uid: uni.getStorageSync("uni_id"),
+            uid: uni.getStorageSync("uni_id") as string,
             mobile: loginData.phone.trim(),
             code: loginData.code,
           });
@@ -268,7 +268,7 @@ export default defineComponent({
     };
     // 微信登录
     const handleWechat = () => {
-      wx.getUserProfile({
+      uni.getUserProfile({
         desc: "用于完善用户资料",
         success: ({ userInfo }) => {
           uni.login({

@@ -33,6 +33,8 @@ import { bindQQ, bindWechat } from "../../api/login";
 type UserInfo = {
   mobile: string,
   mobile_confirmed: number
+  wx_openid?: string;
+  qq_openid?: string;
 }
 export default {
   onShow() {
@@ -50,7 +52,7 @@ export default {
         mask: true,
       });
       const userData = await getUserBaseContentByUserID({
-        userID: uni.getStorageSync("uni_id"),
+        userID: uni.getStorageSync("uni_id") as string,
       });
       uni.hideLoading();
       if (userData.success) {

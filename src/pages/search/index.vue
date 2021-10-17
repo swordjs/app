@@ -6,7 +6,7 @@
         <uni-search-bar
           ref="searchBar"
           style="flex: 1; border: none"
-          bgColor="#fff"
+          bgcolor="#fff"
           radius="100"
           v-model="searchText"
           :focus="true"
@@ -20,7 +20,7 @@
     </view>
     <view class="search-body" v-if="!associativeShow">
       <!-- 搜索历史 -->
-      <view class="word-container" v-if=  "localSearchList.length">
+      <view class="word-container" v-if="localSearchList.length">
         <view class="word-container_header">
           <text class="word-container_header-text">搜索历史</text>
           <i-icon
@@ -44,8 +44,7 @@
                 padding-right: 20rpx;
               "
               @click="handleClearLocalSearchList"
-              >全部删除</text
-            >
+            >全部删除</text>
             <text
               style="
                 font-size: 22rpx;
@@ -55,8 +54,7 @@
                 padding-left: 20rpx;
               "
               @click="localSearchListDel = false"
-              >完成</text
-            >
+            >完成</text>
           </view>
         </view>
 
@@ -68,12 +66,7 @@
             @click="handleClickLocalSearchItem(word, index)"
           >
             <text class="word-display" :key="word">{{ word }}</text>
-            <i-icon
-              v-if="localSearchListDel"
-              color="#999999"
-              size="35rpx"
-              name="close-line"
-            />
+            <i-icon v-if="localSearchListDel" color="#999999" size="35rpx" name="close-line" />
           </view>
         </view>
       </view>
@@ -99,8 +92,7 @@
                 class="word-container_body-text"
                 :key="index"
                 @click="handleClickLocalSearchItem(word.content)"
-                >{{ word.content }}</text
-              >
+              >{{ word.content }}</text>
             </template>
           </template>
         </view>
@@ -180,7 +172,7 @@ export default {
       }
       const wordResult = await getHotSearchWordList();
       uni.hideLoading();
-      if (wordResult.success) {
+      if (wordResult.success && Array.isArray(wordResult.data)) {
         netHotList.value = wordResult.data;
         if (netHotList.value.length === 0 && initiative) {
           uni.showToast({
@@ -192,8 +184,8 @@ export default {
     };
     getNetHotList(); // 获取热搜词
     // 本地搜索记录
-    const localSearchList = ref<Array<any>>(
-      uni.getStorageSync(localSearchListKey)
+    const localSearchList = ref<string[]>(
+      uni.getStorageSync(localSearchListKey) as string[]
     );
     const localSearchListDel = ref<boolean>(false);
     // 是否显示词法关联结果内容
@@ -226,7 +218,7 @@ export default {
         page: associativeConfig.value.page,
       });
       uni.hideLoading();
-      if (res.success) {
+      if (res.success && Array.isArray(res.data)) {
         associativeList.value = params?.pagination
           ? associativeList.value.concat(res.data)
           : res.data;
@@ -281,8 +273,7 @@ export default {
     // 处理本地搜索记录的函数
     const localSearchListManage = (word: string) => {
       let list = uni.getStorageSync(localSearchListKey);
-      if (list.length) {
-        //
+      if (Array.isArray(list) && list.length) {
         localSearchList.value.unshift(word);
         // 去重复
         arrUnique(localSearchList.value);
@@ -319,7 +310,7 @@ export default {
       }
     };
     // 点击本地的搜索历史item项
-    const handleClickLocalSearchItem = (word: string, index: number) => {
+    const handleClickLocalSearchItem = (word: string, index?: number) => {
       // 判断是否是可编辑状态，如果是编辑状态，则就删除
       if (localSearchListDel.value) {
         handleDeleteLocalSearchListItem(index);

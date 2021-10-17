@@ -35,7 +35,12 @@ export function uploadFileToCloudStorage(params: { filePath: string; cloudPath: 
  * @param params
  * @returns
  */
-export async function checkContentSecurity(params: { content: string }): Promise<unknown> {
+export async function checkContentSecurity(params: { content: string }): Promise<
+  ActionResult<{
+    errCode: number;
+    errMsg: string;
+  }>
+> {
   let platform = '';
   // #ifdef MP-WEIXIN
   platform = 'mp-weixin';
@@ -43,12 +48,18 @@ export async function checkContentSecurity(params: { content: string }): Promise
   // #ifdef MP-QQ
   platform = 'mp-qq';
   // #endif
-  console.log(params.content);
-  return await uniCloud.callFunction({
+  const res = await uniCloud.callFunction<{
+    errCode: number;
+    errMsg: string;
+  }>({
     name: 'content-security',
     data: {
       content: params.content,
       platform
     }
   });
+  return {
+    ...res,
+    data: res.result
+  };
 }

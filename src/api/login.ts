@@ -12,7 +12,14 @@ type UserInfo = {
  * @param res
  * @returns
  */
-export async function loginByWechat(userInfo: UserInfo, res: { code: string }): Promise<ActionResult> {
+export async function loginByWechat(
+  userInfo: UserInfo,
+  res: { code: string }
+): Promise<
+  ActionResult<{
+    code: number;
+  }>
+> {
   return await request({
     method: 'POST',
     route: `api/user/loginByWechat`,
@@ -107,7 +114,14 @@ export async function bindMobile(params: { uid: string; mobile: string; code: st
  * @param params
  * @returns
  */
-export async function loginBySms(params: { phone: string; code: string }): Promise<unknown> {
+export async function loginBySms(params: { phone: string; code: string }): Promise<
+  ActionResult<{
+    userInfo: {
+      nickname: string;
+      avatar: string;
+    };
+  }>
+> {
   return await request({
     route: `api/user/loginBySms`,
     method: 'POST',
