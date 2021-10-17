@@ -108,6 +108,7 @@
     "lint-staged": "^11.2.2",
     "mini-types": "^0.1.7",
     "miniprogram-api-typings": "^3.4.3",
+    "mp-ci": "^1.2.0",
     "nodemon": "^2.0.13",
     "postcss-comment": "^2.0.0",
     "prettier": "^2.4.1",
