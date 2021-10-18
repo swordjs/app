@@ -12,13 +12,14 @@ jobs:
   build-qq-ci:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x]
-
     steps:
       - name: Checkout
         uses: actions/checkout@master
+        
+      - name: Node ENV
+        uses: actions/setup-node@master
+        with:
+          node-version: 12.13.0
 
       - name: Install Dependencies
         run: npm install
