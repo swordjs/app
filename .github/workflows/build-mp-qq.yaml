@@ -25,7 +25,7 @@ jobs:
         run: npm install
         
       - name: PreBuild
-        run: npm run build:mp-qq && cd dist/build/mp-qq
+        run: npm run build:mp-qq
 
       - name: Build
         uses: docker://qqminiapp/build:latest
@@ -35,6 +35,7 @@ jobs:
           PLUGIN_APPTOKEN: ${{ secrets.QQ_UPLOAD_TOKEN }}
           PLUGIN_BUILDUSER: ${{ github.actor }}
           PLUGIN_EXPERIENCE: true
+          PLUGIN_SOURCECODEPATH: ./dist/build/mp-qq
 
   ding-notice:
     needs: build-qq-ci
