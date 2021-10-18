@@ -27,7 +27,7 @@ jobs:
 
       # see Project/Settings/Secrets
       - name: Generate private key for upload
-        run: echo "$WEIXIN_UPLOAD_PRIVATE_KEY" > private.key
+        run: echo "$UPLOAD_PRIVATE_KEY" > private.key
         env:
           UPLOAD_PRIVATE_KEY: ${{ secrets.WEIXIN_UPLOAD_PRIVATE_KEY }}
           
