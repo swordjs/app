@@ -40,10 +40,6 @@ jobs:
     needs: build-qq-ci
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x]
-
     steps:
       - name: Ding-Notice
         if: ${{ success() }}
@@ -53,7 +49,7 @@ jobs:
           type: markdown
           content: |
             # 👨‍💻 [mp-ci]QQ小程序: 构建&发布成功 🎉🎉🎉
-            > Build of [# ${{ GITHUB_REPOSITORY }}] success
+            > Build of sword-app success
             > ^_^ from github action message
 
 # 参考
