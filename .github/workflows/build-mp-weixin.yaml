@@ -12,16 +12,14 @@ jobs:
   build-weixin-ci:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x]
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@master
+        
+      - name: Node ENV
+        uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.15.0
 
       - name: Install Dependencies
         run: npm i
@@ -31,28 +29,22 @@ jobs:
 
       # see Project/Settings/Secrets
       - name: Generate private key for upload
-        run: echo "$WEIXIN_UPLOAD_PRIVATE_KEY" > private.key
+        run: echo "$UPLOAD_PRIVATE_KEY" > private.key
         env:
           UPLOAD_PRIVATE_KEY: ${{ secrets.WEIXIN_UPLOAD_PRIVATE_KEY }}
+          
+      - name: Set PackageJson
+        run: cp ./package.json ./dist/build/mp-weixin/package.json
+        
       # 上传代码
       - name: Upload to WeChat
-        run: npx mp-ci upload ./ --pkp=./private.key --no-test
+        run: npx mp-ci upload ./dist/build/mp-weixin --pkp=./private.key
 
   ding-notice:
+    needs: build-weixin-ci
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x]
-
     steps:
-      - name: PR_INFO
-        run: |
-          echo PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }') >> $GITHUB_ENV
-          echo PR_TITLE=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
-          echo PR_URL=$(jq --raw-output .pull_request._links.html.href "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
-          echo PR_USER=$(jq --raw-output .pull_request.user.login "$GITHUB_EVENT_PATH") >> $GITHUB_ENV
-
       - name: Ding-Notice
         if: ${{ success() }}
         uses: fifsky/dingtalk-action@master
@@ -60,8 +52,8 @@ jobs:
           url: ${{ secrets.DINGTALK_WEBHOOK }}
           type: markdown
           content: |
-            # 👨‍💻 微信小程序: 构建&发布成功 🎉🎉🎉
-            > Build of [# ${{ env.PR_TITLE }}](${{ env.PR_URL }}) by ${{ env.PR_USER }} success
+            # 👨‍💻 [mp-ci]微信小程序: 构建&发布成功 🎉🎉🎉
+            > Build of sword-app success
             > ^_^ from github action message
 
 # 参考
