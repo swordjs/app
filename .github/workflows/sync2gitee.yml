@@ -5,12 +5,16 @@ name: sync2gitee
 # template: [sync2gitee.yml](https://github.com/yi-Xu-0100/hub-mirror/blob/main/template/sync2gitee.yml)
 # lastmod: 2021-02-02 10:21:55
 
-push:
+on:
+  push:
     branches:
-    - [master, dev]
+    - master
+    - dev
   pull_request:
     branches:
-    - [master, dev]
+    - master
+    - dev
+    
 jobs:
   run:
     name: Sync GitHub to Gitee
