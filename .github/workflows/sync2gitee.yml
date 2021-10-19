@@ -32,8 +32,8 @@ jobs:
       - name: Mirror the GitHub repos to Gitee
         uses: Yikun/hub-mirror-action@master
         with:
-          src: swordCodePractice/app
-          dst: sword-code-practice/sword-app
+          src: github/swordCodePractice
+          dst: gitee/sword-code-practice
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
           static_list: '${{ steps.info.outputs.result }}'
