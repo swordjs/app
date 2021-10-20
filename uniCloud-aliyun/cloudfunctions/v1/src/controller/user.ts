@@ -142,4 +142,12 @@ export = class UserController extends explain.service {
   async resetPassword(): Promise<unknown> {
     return await this.service.resetPassword(this.event.data as IUser.ResetPassword);
   }
+  /**
+   * @name 重置请求次数（openapi请求次数）
+   * @return {*} {Promise<unknown>}
+   * @memberof UserController
+   */
+  async resetRequestNumber(): Promise<unknown> {
+    return await this.service.resetRequestNumber();
+  }
 };
