@@ -6,21 +6,15 @@ name: sync2gitee
 # lastmod: 2021-02-02 10:21:55
 
 on:
-  push:
-    branches:
-    - master
-    - dev
-  pull_request:
-    branches:
-    - master
-    - dev
-    
+  workflow_dispatch:
+  schedule:
+    - cron: '30 17 * * *'
+
 jobs:
   run:
     name: Sync GitHub to Gitee
     runs-on: ubuntu-latest
     steps:
-
       - name: Get current repository name
         id: info
         uses: actions/github-script@v3.1
@@ -39,4 +33,4 @@ jobs:
           static_list: '${{ steps.info.outputs.result }}'
           account_type: org
           force_update: true
-          white_list: "app"
+          white_list: 'app'
