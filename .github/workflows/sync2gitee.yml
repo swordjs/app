@@ -1,12 +1,7 @@
+# 同步仓库信息到gitee
 name: sync2gitee
-# version: 1.0.3
-# author: [yiXu](https://github.com/yi-Xu-0100)
-# guide: [yi-Xu-0100/hub-mirror](https://github.com/yi-Xu-0100/hub-mirror)
-# template: [sync2gitee.yml](https://github.com/yi-Xu-0100/hub-mirror/blob/main/template/sync2gitee.yml)
-# lastmod: 2021-02-02 10:21:55
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: '30 17 * * *'
 

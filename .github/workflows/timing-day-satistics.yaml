@@ -1,0 +1,20 @@
+# 定时任务-请求每日统计数据API
+name: timing-day-satistics
+on:
+  schedule:
+    - cron: '0 8 * * *'
+
+jobs:
+  run:
+    name: call api
+    runs-on: ubuntu-latest
+    steps:
+      - name: step 1
+        uses: actionsflow/axios@v1
+        id: api
+        with:
+          url: ${{ secrets.V1_API_RELEASE_HTTP_URL }}/http/day-satistics
+          method: 'GET'
+      - run: echo ${{ steps.api.outputs.status }}
+      - run: echo ${{ steps.api.outputs.data }}
+      - run: echo ${{ steps.api.outputs.headers }}
