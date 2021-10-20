@@ -1,4 +1,4 @@
-// application -> index.js
+// v1 -> index.js
 const explain = require('explain');
 const fs = require('fs');
 const path = require('path');
