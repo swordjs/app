@@ -17,4 +17,3 @@ jobs:
           method: 'GET'
       - run: echo ${{ steps.api.outputs.status }}
       - run: echo ${{ steps.api.outputs.data }}
-      - run: echo ${{ steps.api.outputs.headers }}
