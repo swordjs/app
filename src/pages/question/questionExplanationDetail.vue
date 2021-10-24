@@ -164,7 +164,6 @@ export default {
       uni.hideLoading();
       if (result.success) {
         data.value = result.data[0];
-        console.log(data.value)
         // 查询题解赞同列表中是否有自己
         isAdoption.value = data.value.userAgreed.some(
           (u) => u === uni.getStorageSync("uni_id")
@@ -219,7 +218,7 @@ export default {
     // 修改回答
     const handleEdit = () => {
       uni.navigateTo({
-        url: `/pages/question/writeQuestion?explanationID=${data.value._id}&title=${data.value.questionID[0].title}`,
+        url: `/pages/question/writeQuestion?explanationID=${data.value._id}&title=${data.value.questionID[0].title}&questionID=${questionID.value}`,
       });
     };
     const handleUser = (_id: string) => {

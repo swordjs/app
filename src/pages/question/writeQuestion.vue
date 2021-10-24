@@ -2,9 +2,7 @@
   <view class="writeBox">
     <view class="card">
       <view class="vertical"></view>
-      <view class="content">
-        {{ questionInfo.title }}
-      </view>
+      <view class="content">{{ questionInfo.title }}</view>
     </view>
     <view class="editor" v-show="writeType === 'RichText'">
       <!-- 撰写答案 -->
@@ -26,26 +24,15 @@
         class="editor"
         width="690"
         :autoHideToolbar="true"
-      >
-      </robin-editor>
+      ></robin-editor>
     </view>
     <view class="controlMenu">
       <!-- 切换撰写状态 -->
       <view class="changeWriteType" @click="changeWriteType">
-        <i-icon
-          @click="changeWriteType"
-          name="arrow-left-right-line"
-          color="#0069fa"
-          size="38rpx"
-        ></i-icon>
+        <i-icon @click="changeWriteType" name="arrow-left-right-line" color="#0069fa" size="38rpx"></i-icon>
       </view>
       <view class="submit" @click="handleSaveEditor">
-        <i-icon
-          @click="handleSaveEditor"
-          name="check-line"
-          color="#fff"
-          size="50rpx"
-        ></i-icon>
+        <i-icon @click="handleSaveEditor" name="check-line" color="#fff" size="50rpx"></i-icon>
       </view>
     </view>
   </view>
@@ -192,7 +179,7 @@ export default defineComponent({
             const checkResult = await checkContentSecurity({
               content: html
             })
-            if(checkResult.success && checkResult.data.errCode !== 0){
+            if (checkResult.success && checkResult.data.errCode !== 0) {
               // 如果校验失败，则提示
               uni.hideLoading();
               uni.showToast({

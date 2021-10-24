@@ -25,7 +25,7 @@ export = class QuestionExplanationController extends explain.service {
    * @memberof QuestionExplanationController
    */
   async updateQuestionExplanation(): Promise<unknown> {
-    return await this.service.addQuestionExplanation(this.event.data as IQuestionExplanation.UpdateQuestionExplanation);
+    return await this.service.updateQuestionExplanation(this.event.data as IQuestionExplanation.UpdateQuestionExplanation);
   }
   /**
    * @name 采纳/取消采纳题解
