@@ -1,0 +1,31 @@
+# 同步仓库信息到gitee
+name: sync2gitee
+
+on:
+  schedule:
+    - cron: '30 17 * * *'
+
+jobs:
+  run:
+    name: Sync GitHub to Gitee
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current repository name
+        id: info
+        uses: actions/github-script@v3.1
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          result-encoding: string
+          script: |
+            return context.repo.repo;
+      - name: Mirror the GitHub repos to Gitee
+        uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/swordCodePractice
+          dst: gitee/sword-code-practice
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          static_list: '${{ steps.info.outputs.result }}'
+          account_type: org
+          force_update: true
+          white_list: 'app'

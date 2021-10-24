@@ -69,6 +69,11 @@ const router: CloudRouter = {
       route: 'checkFollowers',
       action: 'checkFollowers',
       httpMethod: 'PUT'
+    },
+    {
+      route: 'resetRequestNumber',
+      action: 'resetRequestNumber',
+      httpMethod: 'POST'
     }
   ]
 };

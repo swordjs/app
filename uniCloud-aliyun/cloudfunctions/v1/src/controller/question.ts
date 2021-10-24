@@ -1,5 +1,5 @@
 import * as explain from 'explain';
-import questionService from './../service/question';
+import questionService from '../service/question';
 import * as IQuestion from '../../proto/question';
 
 export = class QuestionController extends explain.service {

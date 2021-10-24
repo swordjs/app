@@ -1,4 +1,4 @@
-// application -> index.js
+// v1 -> index.js
 const explain = require('explain');
 const fs = require('fs');
 const path = require('path');
@@ -39,13 +39,12 @@ exports.main = async (event, context) =>
       const allRoute = routeList.map((r) => require(path.resolve(__dirname, 'dist/router', r)));
       app.route.add(allRoute);
 
-      // 根据url解析service以及route
-      const paths = context.body.path.split('/'); // 根据请求的url解析service和action
-
       // 兼容云函数测试用例调用以及http外部调用的数据处理中间件
       app.use(async ({ context, next }) => {
         // 如果云函数是http请求
         if (context.SOURCE === 'http') {
+          // 根据url解析service以及route
+          const paths = context.body.path.split('/');
           // 赋值成功之后，交由下一个中间件去处理event
           event.service = paths[2];
           // 处理action

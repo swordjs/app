@@ -23,7 +23,7 @@
 
 ##### 开源免费不易，请关注我们的公众号以及开源仓库
 
-[![沈昊Seho/InternetQuestionBank](https://gitee.com/yinzhuoei/InternetQuestionBank/widgets/widget_card.svg?colors=393222,ebdfc1,fffae5,d8ca9f,393222,a28b40)](https://gitee.com/yinzhuoei/InternetQuestionBank)<br/>
+[![沈昊Seho/InternetQuestionBank](https://gitee.com/sword-code-practice/app/widgets/widget_card.svg?colors=4183c4,ffffff,ffffff,e3e9ed,666666,9b9b9b)](https://gitee.com/sword-code-practice/app)<br/>
 [Github 点 star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)
 [Dcloud 插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)
 

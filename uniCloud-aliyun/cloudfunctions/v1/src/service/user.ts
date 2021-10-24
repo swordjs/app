@@ -193,4 +193,14 @@ export default class UserService {
       });
     }
   }
+  // 重置请求次数
+  public async resetRequestNumber(): Promise<unknown> {
+    return await collection
+      .where({
+        mobile_confirmed: 1
+      })
+      .update({
+        openApiRequestNumber: 200
+      });
+  }
 }

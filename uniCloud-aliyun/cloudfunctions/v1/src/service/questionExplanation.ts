@@ -28,6 +28,7 @@ export default class QuestionExplanationService {
   }
   public async updateQuestionExplanation(params: IQuestionExplanation.UpdateQuestionExplanation): Promise<unknown> {
     const { _id, content } = params;
+    console.log('进入');
     return await collection.doc(_id).update({
       content,
       updateDate: this.nowDate
