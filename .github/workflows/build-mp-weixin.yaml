@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-        
+
       - name: Node ENV
         uses: actions/setup-node@master
         with:
@@ -23,6 +23,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm i
+
+      - name: Set env
+        run: echo "VUE_APP_V1_API_HTTP_URL=$V1_API_RELEASE_HTTP_URL/http/v1/" >> .env
 
       - name: Build
         run: npm run build:mp-weixin
@@ -32,10 +35,10 @@ jobs:
         run: echo "$UPLOAD_PRIVATE_KEY" > private.key
         env:
           UPLOAD_PRIVATE_KEY: ${{ secrets.WEIXIN_UPLOAD_PRIVATE_KEY }}
-          
+
       - name: Set PackageJson
         run: cp ./package.json ./dist/build/mp-weixin/package.json
-        
+
       # 上传代码
       - name: Upload to WeChat
         run: npx mp-ci upload ./dist/build/mp-weixin --pkp=./private.key

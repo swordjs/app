@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-        
+
       - name: Node ENV
         uses: actions/setup-node@master
         with:
@@ -23,7 +23,10 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        
+
+      - name: Set env
+        run: echo "VUE_APP_V1_API_HTTP_URL=$V1_API_RELEASE_HTTP_URL/http/v1/" >> .env
+
       - name: PreBuild
         run: npm run build:mp-qq
 
