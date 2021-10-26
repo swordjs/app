@@ -3,10 +3,10 @@ name: MP-WEIXIN CI
 on:
   push:
     branches:
-    - master
+      - master
   pull_request:
     branches:
-    - master
+      - master
 
 jobs:
   build-weixin-ci:
@@ -48,6 +48,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Version
+        id: version
+        uses: ashley-taylor/read-json-property-action@v1.0
+        with:
+          path: ./package.json
+          property: version
+
       - name: Ding-Notice
         if: ${{ success() }}
         uses: fifsky/dingtalk-action@master
@@ -56,6 +63,7 @@ jobs:
           type: markdown
           content: |
             # 👨‍💻 [mp-ci]微信小程序: 构建&发布成功 🎉🎉🎉
+            版本号: ${{steps.version.outputs.value}}
             > Build of sword-app success
             > ^_^ from github action message
 
