@@ -30,10 +30,17 @@ jobs:
       - name: PreBuild
         run: npm run build:mp-qq
 
+      - name: Version
+        id: version
+        uses: ashley-taylor/read-json-property-action@v1.0
+        with:
+          path: ./package.json
+          property: version
+
       - name: Build
         uses: docker://qqminiapp/build:latest
         env:
-          PLUGIN_VERSION: 1.0.0
+          PLUGIN_VERSION: ${{steps.version.outputs.value}}
           PLUGIN_DESC: CI自动构建上传
           PLUGIN_APPTOKEN: ${{ secrets.QQ_UPLOAD_TOKEN }}
           PLUGIN_BUILDUSER: ${{ github.actor }}
