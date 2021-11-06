@@ -35,7 +35,7 @@ fly.interceptors.response.use((response) => {
 export default <T = unknown>(params: RequestParams): Promise<ActionResult<T>> => {
   return new Promise((resolve, reject) => {
     fly
-      .request(`${process.env.VUE_APP_V1_API_HTTP_URL}${params.route}`, params.data, {
+      .request(`${process.env.NODE_ENV ? process.env.VUE_APP_V1_RELEASE_API_HTTP_URL : process.env.VUE_APP_V1_API_HTTP_URL}${params.route}`, params.data, {
         method: params?.method || 'POST',
         timeout: 5000
       })

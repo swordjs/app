@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run etsc & npm run proto",
     "test": "echo \"Error: no test specified\" && exit 1",
     "proto": "nodemon --config nodemon.proto.json",
     "etsc": "nodemon --config nodemon.etsc.json"
@@ -21,5 +22,11 @@
   },
   "devDependencies": {
     "@types/node": "^16.9.2"
+  },
+  "cloudfunction-config": {
+    "memorySize": 128,
+    "timeout": 5,
+    "triggers": [],
+    "path": "/http/v1"
   }
 }
