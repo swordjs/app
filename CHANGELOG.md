@@ -1,7 +1,7 @@
 ## 1.1.1
 - 完善api环境变量的配置
 - 修复上线release环境出现的问题
-- 详情访问issue，获得更多信息 (#23)(https://github.com/swordCodePractice/app/issues/23)
+- 详情访问issue，获得更多信息 [#23](https://github.com/swordCodePractice/app/issues/23)
 ## 1.1.0
 - npm包 新增typescript-type核心包，重构了unicloud/explain/sword-core等所有类型提示
 - 新增 CI 持续集成小程序实现自动发布
