@@ -29,9 +29,9 @@
 
 ##### 欢迎加入我们的QQ群，每天都会推送业务题/编程题目，帮助大家一点一点地成长
 
-<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-86dc45ba-28e8-4734-a880-bbf700b08cf9/137d6ab6-8d99-475a-9a95-8d500c74b6c7.jpg">
+<img src="https://static.yinzhuoei.com/typecho/2021/11/07/700573165076030/1636269222791.jpg">
 
-<a hfef="https://github.com/swordCodePractice/app#qq%E7%BE%A4%E5%92%8C%E9%92%89%E9%92%89%E7%BE%A4">点击加入qq群/钉钉群 (也可以滑动到底部扫描二维码)</a>
+<a href="https://github.com/swordCodePractice/app#qq%E7%BE%A4%E5%92%8C%E9%92%89%E9%92%89%E7%BE%A4">点击加入qq群/钉钉群 (也可以滑动到底部扫描二维码)</a>
 
 # 目录
 
