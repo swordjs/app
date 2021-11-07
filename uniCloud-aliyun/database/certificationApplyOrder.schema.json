@@ -2,7 +2,7 @@
   "bsonType": "object",
   "required": [],
   "permission": {
-    "read": false,
+    "read": true,
     "create": false,
     "update": false,
     "delete": false
@@ -10,6 +10,30 @@
   "properties": {
     "_id": {
       "description": "ID，系统自动生成"
+    },
+    "state": {
+      "bsonType": "string",
+      "description": "状态"
+    },
+    "userID": {
+      "bsonType": "string",
+      "foreignKey": "uni-id-users._id"
+    },
+    "content": {
+      "bsonType": "object",
+      "description": "审核递交的内容"
+    },
+    "createDate": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updateDate": {
+      "bsonType": "timestamp",
+      "description": "修改时间"
+    },
+    "deleteDate": {
+      "bsonType": "timestamp",
+      "description": "删除时间"
     }
   }
 }

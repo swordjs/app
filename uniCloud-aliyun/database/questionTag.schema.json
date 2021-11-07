@@ -11,10 +11,26 @@
     "_id": {
       "description": "ID，系统自动生成"
     },
+    "name": {
+      "bsonType": "string",
+      "description": "标签名称"
+    },
     "areaID": {
       "bsonType": "object",
       "description": "专区id",
       "foreignKey": "questionArea._id"
+    },
+    "createDate": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updateDate": {
+      "bsonType": "timestamp",
+      "description": "修改时间"
+    },
+    "deleteDate": {
+      "bsonType": "timestamp",
+      "description": "删除时间"
     }
   }
 }
