@@ -1,3 +1,8 @@
+## 1.1.2
+- 完善数据库所有的schema
+- 完善certificationApplyOrder表的createDate等字段
+- 修复内容安全api的问题（完善get-accesstoken公共模块)
+- qq机器人正式服开启，欢迎大家进群玩耍，随时学习，快速提高
 ## 1.1.1
 - 完善api环境变量的配置
 - 修复上线release环境出现的问题
