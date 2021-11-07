@@ -13,5 +13,11 @@
     "explain": "file:../common/explain",
     "uni-config-center": "file:../common/uni-config-center"
   },
-  "devDependencies": {}
+  "devDependencies": [],
+  "cloudfunction-config": {
+    "memorySize": 128,
+    "timeout": 5,
+    "triggers": [],
+    "path": "/http/qqrobot"
+  }
 }
