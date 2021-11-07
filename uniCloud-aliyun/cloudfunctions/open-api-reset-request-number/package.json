@@ -1,0 +1,14 @@
+{
+  "cloudfunction-config": {
+    "memorySize": 128,
+    "timeout": 5,
+    "triggers": [
+      {
+        "name": "myTrigger",
+        "type": "timer",
+        "config": "0 0 0 1 * * *"
+      }
+    ],
+    "path": ""
+  }
+}
