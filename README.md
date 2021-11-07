@@ -27,9 +27,11 @@
 [Github 点 star, 拉取代码时请选择最新分支](https://github.com/swordCodePractice/InternetQuestionBank)
 [Dcloud 插件市场支持我们](https://ext.dcloud.net.cn/plugin?id=4637)
 
-<a href="https://t.1yb.co/pfaP">
-<img width="50%" src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-86dc45ba-28e8-4734-a880-bbf700b08cf9/78978813-0347-4d90-a0d8-14df925572da.png"></img>
-</a>
+##### 欢迎加入我们的QQ群，每天都会推送业务题/编程题目，帮助大家一点一点地成长
+
+<img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-86dc45ba-28e8-4734-a880-bbf700b08cf9/137d6ab6-8d99-475a-9a95-8d500c74b6c7.jpg">
+
+<a hfef="https://github.com/swordCodePractice/app#qq%E7%BE%A4%E5%92%8C%E9%92%89%E9%92%89%E7%BE%A4">点击加入qq群/钉钉群 (也可以滑动到底部扫描二维码)</a>
 
 # 目录
 
@@ -71,10 +73,10 @@
 
 <div>
 <a href="https://www.mockplus.cn/">
-    <img class="imgIcon" src="http://static.yinzhuoei.com/typecho/2021/01/17/69752764374919.png" width="10%">
+    <img class="imgIcon" src="https://static.yinzhuoei.com/typecho/2021/01/17/69752764374919.png" width="10%">
 </a>
 <a href="https://www.yuque.com/">
-    <img class="imgIcon" src="http://static.yinzhuoei.com/typecho/2021/01/17/697832282748067.jpg" width="20%"></img>
+    <img class="imgIcon" src="https://static.yinzhuoei.com/typecho/2021/01/17/697832282748067.jpg" width="20%"></img>
 </a>
 </div>
 
@@ -92,7 +94,7 @@
 ## 拉取任务
 
 <div align=center>
-<img src="https://github.com/swordCodePractice/InternetQuestionBank/blob/v1.0.0-dev/out/doc/db/pull/pull.png?raw=true"></img>
+<img src="https://cdn.nlark.com/yuque/0/2021/png/710380/1610187202567-d49ddd8e-a5eb-463c-a1eb-da7eeaf7ce0d.png"></img>
 </div>
 
 ## 更多

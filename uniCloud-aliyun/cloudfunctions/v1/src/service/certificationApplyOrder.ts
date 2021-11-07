@@ -18,9 +18,9 @@ export default class CertificationApplyOrder {
       .skip(limit * (page - 1))
       .limit(limit)
       .sort({
-        createTime: -1
+        createDate: -1
       })
-      .filed(`state, userID, content, createTime`)
+      .filed(`state, userID, content, createDate`)
       .get();
     const countResult = await collection.where(whereParams).count();
     return {
@@ -40,21 +40,21 @@ export default class CertificationApplyOrder {
       state: 'pending',
       userID: this.userID,
       content: params.content,
-      createTime: this.nowDate,
-      updateTime: this.nowDate,
-      deleteTime: ''
+      createDate: this.nowDate,
+      updateDate: this.nowDate,
+      deleteDate: ''
     });
   }
   async updateCertificationApplyOrder(params: ICertificationApplyOrder.UpdateCertificationApplyOrder): Promise<unknown> {
     return await collection.doc(params._id).update({
       content: params.content,
-      updateTime: this.nowDate
+      updateDate: this.nowDate
     });
   }
   async updateCertificationApplyOrderState(params: ICertificationApplyOrder.UpdateCertificationApplyOrderState): Promise<unknown> {
     return await collection.doc(params._id).update({
       state: params.state,
-      updateTime: this.nowDate
+      updateDate: this.nowDate
     });
   }
 }

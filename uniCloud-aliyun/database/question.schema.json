@@ -22,6 +22,34 @@
     "areaID": {
       "bsonType": "array",
       "foreignKey": "questionArea._id"
+    },
+    "title": {
+      "bsonType": "string",
+      "description": "标题"
+    },
+    "content": {
+      "bsonType": "string",
+      "description": "内容"
+    },
+    "state": {
+      "bsonType": "string",
+      "description": "状态"
+    },
+    "pageView": {
+      "bsonType": "number",
+      "description": "预览次数"
+    },
+    "createDate": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updateDate": {
+      "bsonType": "timestamp",
+      "description": "修改时间"
+    },
+    "deleteDate": {
+      "bsonType": "timestamp",
+      "description": "删除时间"
     }
   }
 }

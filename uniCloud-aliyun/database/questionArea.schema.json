@@ -10,6 +10,30 @@
   "properties": {
     "_id": {
       "description": "ID，系统自动生成"
+    },
+    "name": {
+      "bsonType": "string",
+      "description": "专区名称"
+    },
+    "iconPath": {
+      "bsonType": "string",
+      "description": "图标url"
+    },
+    "state": {
+      "bsonType": "string",
+      "description": "状态"
+    },
+    "createDate": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updateDate": {
+      "bsonType": "timestamp",
+      "description": "修改时间"
+    },
+    "deleteDate": {
+      "bsonType": "timestamp",
+      "description": "删除时间"
     }
   }
 }

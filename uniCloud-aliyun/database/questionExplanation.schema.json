@@ -22,6 +22,30 @@
     "userID": {
       "bsonType": "object",
       "foreignKey": "uni-id-users._id"
+    },
+    "content": {
+      "bsonType": "string",
+      "description": "解答内容"
+    },
+    "userAgreed": {
+      "bsonType": "array",
+      "description": "用户赞同"
+    },
+    "userDisagreed": {
+      "bsonType": "array",
+      "description": "用户不赞同"
+    },
+    "createDate": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updateDate": {
+      "bsonType": "timestamp",
+      "description": "修改时间"
+    },
+    "deleteDate": {
+      "bsonType": "timestamp",
+      "description": "删除时间"
     }
   }
 }
