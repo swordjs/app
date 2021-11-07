@@ -59,7 +59,6 @@ module.exports = class group extends explain.service {
         for (const key in data) {
           str += `${Number(key) + 1}: ${data[key].title} \n`;
         }
-        str += `数据来源于测试环境，仅供测试，尽情期待v1.1.0版本`;
         await this.postMessage(str);
       }
     }
