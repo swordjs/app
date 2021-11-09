@@ -35,7 +35,7 @@ export class QuestionTagController extends explain.service {
    * @memberof QuestionTagController
    */
   async updateQuestionTag(): Promise<unknown> {
-    return await this.service.addQuestionTag(this.event.data as IQuestionTag.UpdateQuestionTag);
+    return await this.service.updateQuestionTag(this.event.data as IQuestionTag.UpdateQuestionTag);
   }
   /**
    * @name 删除tag

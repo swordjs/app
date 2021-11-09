@@ -26,7 +26,7 @@ export default class Question {
     });
   }
   async updateQuestion(params: IQuestion.UpdateQuestion): Promise<unknown> {
-    return collection.doc(params._id).update({
+    return await collection.doc(params._id).update({
       title: params.title,
       areaID: params.areaID,
       content: params.content || '',
@@ -35,12 +35,12 @@ export default class Question {
     });
   }
   async deleteQuestion(params: IQuestion.DeleteQuestion): Promise<unknown> {
-    return collection.doc(params._id).update({
+    return await collection.doc(params._id).update({
       deleteDate: this.nowDate
     });
   }
   async examineQuestion(params: IQuestion.ExamineQuestion): Promise<unknown> {
-    return collection
+    return await collection
       .where({
         _id: dbCmd.in(params._id)
       })

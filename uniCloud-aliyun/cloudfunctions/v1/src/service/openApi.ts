@@ -1,4 +1,4 @@
-import * as IOpenApi from '../../proto/openapi';
+import * as IOpenApi from '../../proto/openApi';
 const db = uniCloud.database();
 const collection = db.collection('openApi');
 const questionCollection = db.collection('question');
