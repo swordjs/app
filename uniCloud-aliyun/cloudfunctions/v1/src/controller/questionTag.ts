@@ -2,7 +2,7 @@ import * as explain from 'explain';
 import questionTagService from '../service/questionTag';
 import * as IQuestionTag from '../../proto/questionTag';
 
-export class QuestionTagController extends explain.service {
+export = class QuestionTagController extends explain.service {
   private service: questionTagService;
   constructor(e: CloudData) {
     super(e);
@@ -47,4 +47,4 @@ export class QuestionTagController extends explain.service {
   async deleteQuestionTag(): Promise<unknown> {
     return await this.service.deleteQuestionTag(this.event.data as IQuestionTag.DeleteQuestionTag);
   }
-}
+};
