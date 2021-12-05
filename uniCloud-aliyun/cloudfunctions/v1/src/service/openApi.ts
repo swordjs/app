@@ -1,4 +1,4 @@
-import * as IOpenApi from '../../proto/openapi';
+import * as IOpenApi from '../../proto/openApi';
 const db = uniCloud.database();
 const collection = db.collection('openApi');
 const questionCollection = db.collection('question');
@@ -25,7 +25,7 @@ export default class OpenApiService {
     });
   }
   async updateOpenApi(params: IOpenApi.UpdateOpenApi): Promise<unknown> {
-    return await collection.doc(params.id).update({
+    return await collection.doc(params._id).update({
       name: params.name,
       remark: params.remark,
       info: params.info,

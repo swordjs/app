@@ -11,7 +11,7 @@ export interface UpdateQuestion {
   title: string;
   areaID: string;
   content?: string;
-  tagID?: string;
+  tagID?: string[];
 }
 
 export interface DeleteQuestion {

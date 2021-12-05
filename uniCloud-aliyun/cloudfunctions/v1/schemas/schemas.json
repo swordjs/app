@@ -204,7 +204,7 @@
       }
     ]
   },
-  "openapi/AddOpenApi": {
+  "openApi/AddOpenApi": {
     "type": "Interface",
     "properties": [
       {
@@ -230,12 +230,12 @@
       }
     ]
   },
-  "openapi/UpdateOpenApi": {
+  "openApi/UpdateOpenApi": {
     "type": "Interface",
     "properties": [
       {
         "id": 0,
-        "name": "id",
+        "name": "_id",
         "type": {
           "type": "String"
         }
@@ -258,12 +258,12 @@
         "id": 3,
         "name": "info",
         "type": {
-          "type": "String"
+          "type": "Any"
         }
       }
     ]
   },
-  "openapi/ToggleOpenApiState": {
+  "openApi/ToggleOpenApiState": {
     "type": "Interface",
     "properties": [
       {
@@ -298,7 +298,7 @@
       }
     ]
   },
-  "openapi/GetQuestionList": {
+  "openApi/GetQuestionList": {
     "type": "Interface",
     "properties": [
       {
@@ -390,7 +390,10 @@
         "id": 4,
         "name": "tagID",
         "type": {
-          "type": "String"
+          "type": "Array",
+          "elementType": {
+            "type": "String"
+          }
         },
         "optional": true
       }

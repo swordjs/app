@@ -21,7 +21,7 @@ fly.interceptors.request.use((request) => {
   const id = uni.getStorageSync('uni_id');
   if (token) {
     request.headers['uni-id-token'] = token;
-    request.headers['uni_id'] = id;
+    request.headers['uni-id'] = id;
   }
   request.headers['sword-platform'] = process.env.UNI_PLATFORM;
   return request;
