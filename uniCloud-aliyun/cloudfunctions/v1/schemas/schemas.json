@@ -390,7 +390,10 @@
         "id": 4,
         "name": "tagID",
         "type": {
-          "type": "String"
+          "type": "Array",
+          "elementType": {
+            "type": "String"
+          }
         },
         "optional": true
       }
