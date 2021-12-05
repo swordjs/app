@@ -235,7 +235,7 @@
     "properties": [
       {
         "id": 0,
-        "name": "id",
+        "name": "_id",
         "type": {
           "type": "String"
         }
@@ -258,7 +258,7 @@
         "id": 3,
         "name": "info",
         "type": {
-          "type": "String"
+          "type": "Any"
         }
       }
     ]

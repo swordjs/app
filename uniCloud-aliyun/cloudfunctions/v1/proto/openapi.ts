@@ -5,10 +5,10 @@ export interface AddOpenApi {
 }
 
 export interface UpdateOpenApi {
-  id: string;
+  _id: string;
   name: string;
   remark: string;
-  info: string;
+  info: any;
 }
 
 export interface ToggleOpenApiState {
