@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "uni-captcha": "file:../common/uni-captcha",
     "uni-config-center": "file:../common/uni-config-center",
-    "uni-id": "file:../common/uni-id",
-    "uni-captcha": "file:../../../uni_modules/uni-captcha/uniCloud/cloudfunctions/common/uni-captcha"
+    "uni-id": "file:../common/uni-id"
   }
 }
