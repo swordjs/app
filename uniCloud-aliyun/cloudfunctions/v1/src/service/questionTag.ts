@@ -1,5 +1,5 @@
 const db = uniCloud.database();
-const collection = db.collection('questionTag');
+const collection = db.collection('sword-question-tag');
 import * as IQuestionTag from '../../proto/questionTag';
 export default class QuestionTag {
   public userID: string;

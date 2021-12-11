@@ -1,6 +1,6 @@
 const db = uniCloud.database();
-const collection = db.collection('questionExplanation');
-const collectService = db.collection('userCollect');
+const collection = db.collection('sword-question-explanation');
+const collectService = db.collection('sword-user-collect');
 const dbCmd = db.command;
 import * as IQuestionExplanation from '../../proto/questionExplanation';
 export default class QuestionExplanationService {
@@ -71,7 +71,7 @@ export default class QuestionExplanationService {
       id: params._id
     };
     if (collectResult.data.length === 0) {
-      const result = await db.collection('userCollect').add({
+      const result = await db.collection('sword-user-collect').add({
         name: '默认收藏夹',
         userID: this.userID,
         collectData: [collectData]
@@ -80,12 +80,12 @@ export default class QuestionExplanationService {
     } else {
       // 如果存在收藏夹，目前就往第0个，也就是默认收藏夹去添加数据
       // 判断题解ID是否存在于该收藏夹中
-      const result = await db.collection('userCollect').doc(collectResult.data[0]._id).get();
+      const result = await db.collection('sword-user-collect').doc(collectResult.data[0]._id).get();
       const collectData = result.data[0].collectData;
       const collectIndex = collectData.findIndex((c) => {
         return c.type === 'explanation' && c.id === params._id;
       });
-      const collectAction = db.collection('userCollect').doc(collectResult.data[0]._id);
+      const collectAction = db.collection('sword-user-collect').doc(collectResult.data[0]._id);
       if (collectIndex >= 0) {
         collectData.splice(collectIndex, 1);
         // 更新collectData

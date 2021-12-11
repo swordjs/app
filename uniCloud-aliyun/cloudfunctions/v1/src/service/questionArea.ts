@@ -1,5 +1,5 @@
 const db = uniCloud.database();
-const collection = db.collection('questionArea');
+const collection = db.collection('sword-question-area');
 import * as IQuestionArea from '../../proto/questionArea';
 export default class QuestionArea {
   public userID: string;

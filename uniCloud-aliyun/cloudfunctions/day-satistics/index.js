@@ -1,9 +1,9 @@
 'use strict';
 const db = uniCloud.database();
 const userCollection = db.collection('uni-id-users');
-const questionCollection = db.collection('question');
-const explanationCollection = db.collection('questionExplanation');
-const areaCollection = db.collection('questionArea');
+const questionCollection = db.collection('sword-question');
+const explanationCollection = db.collection('sword-question-explanation');
+const areaCollection = db.collection('sword-question-area');
 const hotCollection = db.collection('opendb-search-hot');
 const certificationApplyOrderCollection = db.collection('certificationApplyOrder');
 const $ = db.command.aggregate;

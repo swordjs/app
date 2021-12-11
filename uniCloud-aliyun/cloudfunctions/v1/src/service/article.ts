@@ -1,6 +1,6 @@
 import * as IArticle from '../../proto/article';
 const db = uniCloud.database();
-const collection = db.collection('article');
+const collection = db.collection('sword-article');
 
 export default class ArticleService {
   public userID: string;

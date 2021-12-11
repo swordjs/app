@@ -7,7 +7,7 @@ const http = require('http');
 const createConfig = require('uni-config-center');
 // 云函数获取数据库的引用
 const db = uniCloud.database();
-const collection = db.collection('question');
+const collection = db.collection('sword-question');
 
 const pullConfig = createConfig({
   pluginId: 'pull'

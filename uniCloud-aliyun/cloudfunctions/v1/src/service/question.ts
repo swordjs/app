@@ -1,7 +1,7 @@
 import * as IQuestion from '../../proto/question';
 const db = uniCloud.database();
 const dbCmd = db.command;
-const collection = db.collection('question');
+const collection = db.collection('sword-question');
 
 export default class Question {
   public userID: string;

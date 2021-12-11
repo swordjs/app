@@ -1,6 +1,6 @@
 import * as ICertificationApplyOrder from '../../proto/certificationApplyOrder';
 const db = uniCloud.database();
-const collection = db.collection('certificationApplyOrder');
+const collection = db.collection('sword-certification-order');
 export default class CertificationApplyOrder {
   public userID: string;
   public nowDate: string;

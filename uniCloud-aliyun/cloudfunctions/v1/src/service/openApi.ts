@@ -1,9 +1,9 @@
 import * as IOpenApi from '../../proto/openApi';
 const db = uniCloud.database();
-const collection = db.collection('openApi');
-const questionCollection = db.collection('question');
-const questionAreaCollection = db.collection('questionArea');
-const questionTag = db.collection('questionTag');
+const collection = db.collection('sword-open-api');
+const questionCollection = db.collection('sword-question');
+const questionAreaCollection = db.collection('sword-question-area');
+const questionTag = db.collection('sword-question-tag');
 
 export default class OpenApiService {
   public userID: string;
