@@ -11,14 +11,29 @@
     "_id": {
       "description": "ID，系统自动生成"
     },
-    "name": {
-      "bsonType": "string",
-      "description": "标签名称"
-    },
-    "areaID": {
+    "questionID": {
       "bsonType": "object",
-      "description": "专区id",
-      "foreignKey": "questionArea._id"
+      "foreignKey": "sword-question._id"
+    },
+    "questionID.publishUserID": {
+      "bsonType": "object",
+      "foreignKey": "uni-id-users._id"
+    },
+    "userID": {
+      "bsonType": "object",
+      "foreignKey": "uni-id-users._id"
+    },
+    "content": {
+      "bsonType": "string",
+      "description": "解答内容"
+    },
+    "userAgreed": {
+      "bsonType": "array",
+      "description": "用户赞同"
+    },
+    "userDisagreed": {
+      "bsonType": "array",
+      "description": "用户不赞同"
     },
     "createDate": {
       "bsonType": "timestamp",

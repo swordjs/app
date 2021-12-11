@@ -204,7 +204,7 @@
       }
     ]
   },
-  "openApi/AddOpenApi": {
+  "openapi/AddOpenApi": {
     "type": "Interface",
     "properties": [
       {
@@ -230,7 +230,7 @@
       }
     ]
   },
-  "openApi/UpdateOpenApi": {
+  "openapi/UpdateOpenApi": {
     "type": "Interface",
     "properties": [
       {
@@ -263,7 +263,7 @@
       }
     ]
   },
-  "openApi/ToggleOpenApiState": {
+  "openapi/ToggleOpenApiState": {
     "type": "Interface",
     "properties": [
       {
@@ -298,7 +298,7 @@
       }
     ]
   },
-  "openApi/GetQuestionList": {
+  "openapi/GetQuestionList": {
     "type": "Interface",
     "properties": [
       {

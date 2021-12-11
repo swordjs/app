@@ -17,11 +17,11 @@
     },
     "tagID": {
       "bsonType": "array",
-      "foreignKey": "questionTag._id"
+      "foreignKey": "sword-question-tag._id"
     },
     "areaID": {
       "bsonType": "array",
-      "foreignKey": "questionArea._id"
+      "foreignKey": "sword-question-area._id"
     },
     "title": {
       "bsonType": "string",

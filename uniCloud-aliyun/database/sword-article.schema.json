@@ -11,29 +11,36 @@
     "_id": {
       "description": "ID，系统自动生成"
     },
-    "questionID": {
-      "bsonType": "object",
-      "foreignKey": "question._id"
-    },
-    "questionID.publishUserID": {
-      "bsonType": "object",
-      "foreignKey": "uni-id-users._id"
-    },
-    "userID": {
-      "bsonType": "object",
-      "foreignKey": "uni-id-users._id"
+    "title": {
+      "bsonType": "string",
+      "description": "文章标题"
     },
     "content": {
       "bsonType": "string",
-      "description": "解答内容"
+      "description": "文章内容"
     },
-    "userAgreed": {
+    "tagID": {
       "bsonType": "array",
-      "description": "用户赞同"
+      "description": "标签",
+      "foreignKey": "sword-question-tag._id"
     },
-    "userDisagreed": {
-      "bsonType": "array",
-      "description": "用户不赞同"
+    "desc": {
+      "bsonType": "string",
+      "description": "描述",
+      "foreignKey": "uni-id-users._id"
+    },
+    "userID": {
+      "bsonType": "string",
+      "description": "发布者用户",
+      "foreignKey": "uni-id-users._id"
+    },
+    "state": {
+      "bsonType": "string",
+      "description": "状态"
+    },
+    "rejectReason": {
+      "bsonType": "string",
+      "description": "拒绝原因"
     },
     "createDate": {
       "bsonType": "timestamp",
