@@ -18,7 +18,8 @@
     "ts-validate": "file:../common/tsbuffer-params-validate",
     "tsbuffer-params-validate": "file:../common/tsbuffer-params-validate",
     "uni-config-center": "file:../common/uni-config-center",
-    "uni-id": "file:../common/uni-id"
+    "uni-id": "file:../common/uni-id",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/node": "^16.9.2"

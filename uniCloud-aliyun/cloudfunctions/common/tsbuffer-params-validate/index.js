@@ -7,6 +7,6 @@ module.exports = function (event) {
   // action 具体的方法
   const { schemas, params, service, action } = event;
   const validator = new TSBufferValidator(schemas);
-  let vRes = validator.validate(params, `${service}/${action.replace(/^\S/, (s) => s.toUpperCase())}`);
+  let vRes = validator.validate(params, `${service}/${action}`);
   return vRes;
 };

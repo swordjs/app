@@ -11,6 +11,9 @@
     "_id": {
       "description": "ID，系统自动生成"
     },
+    "accesskey": {
+      "description": "相对唯一的ak"
+    },
     "user_id": {
       "description": "用户id",
       "foreignKey": "uni-id-users._id"

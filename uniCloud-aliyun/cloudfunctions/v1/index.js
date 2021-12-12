@@ -79,22 +79,29 @@ exports.main = async (event, context) =>
         }
         await next();
       });
-      // 添加校验参数中间件
-      app.use(async ({ explain: _explain, next }) => {
-        const validateResult = await ParamsValidate({
-          service: event.service,
-          action: event.action,
-          params: event.data,
-          schemas
+      // 判断schemas中是否有对应的协议实现，如果没有，则不经过校验参数中间件
+      // 将action转换为合适的格式用于匹配
+      const _action = event.action.replace(/^\S/, (s) => s.toUpperCase());
+      if (`${event.service}/${_action}` in schemas) {
+        // 添加校验参数中间件
+        app.use(async ({ explain: _explain, next }) => {
+          const validateResult = await ParamsValidate({
+            service: event.service,
+            action: _action,
+            params: event.data,
+            schemas: {
+              ...schemas[`${event.service}/${_action}`]
+            }
+          });
+          if (!validateResult.isSucc) {
+            // 将响应信息改为异常信息
+            _explain.response.body = {
+              message: validateResult.error
+            };
+          } else {
+            await next();
+          }
         });
-        if (!validateResult.isSucc) {
-          // 将响应信息改为异常信息
-          _explain.response.body = {
-            message: validateResult.error
-          };
-        } else {
-          await next();
-        }
-      });
+      }
     }
   });
