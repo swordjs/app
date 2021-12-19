@@ -19,14 +19,16 @@ export default class Accesskey {
       .get<{ _id: string }>();
     if (res.data.length === 0) {
       // 调用新增
-      return await collection.add({
+      await collection.add({
         user_id: this.userID,
         accesskey: ak
       });
+      return ak;
     } else {
-      return await collection.doc(res.data[0]._id).update({
+      await collection.doc(res.data[0]._id).update({
         accesskey: ak
       });
+      return ak;
     }
   }
 }

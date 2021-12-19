@@ -44,7 +44,7 @@ exports.main = async (event, context) =>
         // 如果云函数是http请求
         if (context.SOURCE === 'http') {
           // 根据url解析service以及route
-          const paths = context.body.path.split('/');
+          const paths = event.path.split('/');
           // 赋值成功之后，交由下一个中间件去处理event
           event.service = paths[2];
           // 处理action
@@ -75,16 +75,16 @@ exports.main = async (event, context) =>
             event.data = JSON.parse(event.body) || {};
           }
           // 提取自定义请求头中的platform，赋值给context
-          context.PLATFORM = context.body.headers['sword-platform'];
+          context.PLATFORM = event.headers['sword-platform'];
         }
         await next();
       });
-      // 判断schemas中是否有对应的协议实现，如果没有，则不经过校验参数中间件
-      // 将action转换为合适的格式用于匹配
-      const _action = event.action.replace(/^\S/, (s) => s.toUpperCase());
-      if (`${event.service}/${_action}` in schemas) {
-        // 添加校验参数中间件
-        app.use(async ({ explain: _explain, next }) => {
+      // 添加校验参数中间件
+      app.use(async ({ explain: _explain, next }) => {
+        // 判断schemas中是否有对应的协议实现，如果没有，则不经过校验参数中间件
+        // 将action转换为合适的格式用于匹配
+        const _action = event.action.replace(/^\S/, (s) => s.toUpperCase());
+        if (`${event.service}/${_action}` in schemas) {
           const validateResult = await ParamsValidate({
             service: event.service,
             action: _action,
@@ -98,10 +98,9 @@ exports.main = async (event, context) =>
             _explain.response.body = {
               message: validateResult.error
             };
-          } else {
-            await next();
           }
-        });
-      }
+        }
+        await next();
+      });
     }
   });
