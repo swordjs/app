@@ -21,7 +21,10 @@ export default class Accesskey {
       // 调用新增
       await collection.add({
         user_id: this.userID,
-        accesskey: ak
+        accesskey: ak,
+        createDate: this.nowDate,
+        updateDate: this.nowDate,
+        deleteDate: ''
       });
       return ak;
     } else {
