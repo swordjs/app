@@ -187,7 +187,7 @@
 		/* #endif */
 		flex-direction: row;
 		position: relative;
-		padding: $uni-spacing-col-base;
+		// padding: $uni-spacing-col-base;
 		// background-color: $uni-bg-color;
 	}
 
@@ -206,7 +206,7 @@
 		padding: 5px 8px 5px 0px;
 		border-width: 0.5px;
 		border-style: solid;
-		border-color: $uni-border-color;
+		border-color: #ccc;
 	}
 
 	.uni-searchbar__box-icon-search {
@@ -218,13 +218,13 @@
 		padding: 0 8px;
 		justify-content: center;
 		align-items: center;
-		color: $uni-text-color-placeholder;
+		color: #ccc;
 	}
 
 	.uni-searchbar__box-search-input {
 		flex: 1;
-		font-size: $uni-font-size-base;
-		color: $uni-text-color;
+		font-size: 15px;
+		// color: $uni-text-color;
 	}
 
 	.uni-searchbar__box-icon-clear {
@@ -237,8 +237,8 @@
 	}
 
 	.uni-searchbar__text-placeholder {
-		font-size: $uni-font-size-base;
-		color: $uni-text-color-placeholder;
+		font-size: 15px;
+		color: #ccc;
 		margin-left: 5px;
 	}
 
@@ -246,7 +246,7 @@
 		padding-left: 10px;
 		line-height: $uni-searchbar-height;
 		font-size: 14px;
-		color: $uni-text-color;
+		// color: $uni-text-color;
 		/* #ifdef H5 */
 		cursor: pointer;
 		/* #endif */
