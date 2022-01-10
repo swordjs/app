@@ -67,7 +67,7 @@
     "@dcloudio/types": "^2.5.15",
     "@dcloudio/uni-automator": "^3.0.0-alpha-3030420211227002",
     "@dcloudio/uni-cli-shared": "^3.0.0-alpha-3030420211227002",
-    "@dcloudio/vite-plugin-uni": "^3.0.0-alpha-3030420211227002",
+    "@dcloudio/vite-plugin-uni": "^3.0.0-alpha-3030520211229004",
     "@types/node": "^16.10.3",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
