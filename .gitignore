@@ -20,6 +20,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+tsconfig.lint.json
 uniCloud-aliyun/cloudfunctions/common/uni-config-center/*
 # 屏蔽所有云函数的本地开发测试json
 uniCloud-aliyun/cloudfunctions/*/*.param.json
