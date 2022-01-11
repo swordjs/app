@@ -1,4 +1,4 @@
-const Fly = require('flyio/dist/npm/wx');
+import Fly from 'flyio/dist/npm/wx';
 import notLogin from '../util/notLogin';
 
 const fly = new Fly();
