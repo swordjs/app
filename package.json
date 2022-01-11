@@ -35,13 +35,6 @@
     "prettier": "prettier --write '**/*.{ts,js,json,markdown}'",
     "lint-staged": "lint-staged"
   },
-  "lint-staged": {
-    "*.{ts,js,json,markdown}": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ]
-  },
   "dependencies": {
     "@dcloudio/uni-app": "^3.0.0-alpha-3030420211227002",
     "@dcloudio/uni-app-plus": "^3.0.0-alpha-3030420211227002",
