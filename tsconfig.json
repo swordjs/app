@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "lib": ["es2015", "es2017"],
-    "typeRoots": ["./typings", "./node_modules/@types", "node_modules/sword-typescript-type-core"]
-  }
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "typeRoots": ["./typings", "./node_modules/@types", "./node_modules/@sword-code-practice/types"]
+  },
+  "exclude": ["dist", "node_modules"]
 }
