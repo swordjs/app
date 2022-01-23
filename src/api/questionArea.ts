@@ -1,3 +1,5 @@
+import { ActionResult } from '../../typings';
+
 const db = uniCloud.database();
 
 /**
@@ -6,7 +8,7 @@ const db = uniCloud.database();
  */
 export async function getQuestionAreaList(): Promise<ActionResult> {
   // 获取题目专区列表
-  const res = await db.collection('questionArea').where("deleteDate == ''").get();
+  const res = await db.collection('sword-question-area').where("deleteDate == ''").get();
   return {
     ...res,
     data: res.result.data

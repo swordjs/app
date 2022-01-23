@@ -1,3 +1,5 @@
+import { ActionResult } from '../../typings';
+
 const db = uniCloud.database();
 
 /**
@@ -7,7 +9,7 @@ const db = uniCloud.database();
  */
 export async function checkIDInCollect(params: { id: string }): Promise<ActionResult> {
   const res = await db
-    .collection('userCollect')
+    .collection('sword-user-collect')
     .where({
       userID: uni.getStorageSync('uni_id')
     })

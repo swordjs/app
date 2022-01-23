@@ -1,4 +1,5 @@
 const db = uniCloud.database();
+import { ActionResult } from '../../typings';
 import request from '../common/request';
 
 /**
@@ -64,7 +65,7 @@ export async function collectQuestionExplanation(params: { _id: string }): Promi
 export async function getExplanationsByQuestionID(params: { questionID: string; page: number; limit: number }): Promise<ActionResult> {
   const { limit, page } = params;
   const res = await db
-    .collection('questionExplanation,uni-id-users')
+    .collection('sword-question-explanation,uni-id-users')
     .where(`questionID == '${params.questionID}'`)
     .field(`userID{avatar,nickname},content,createDate`)
     .skip(limit * (page - 1))
@@ -84,7 +85,7 @@ export async function getExplanationsByQuestionID(params: { questionID: string; 
  */
 export async function getExplanationsByID(params: { id: string }): Promise<ActionResult> {
   const res = await db
-    .collection('questionExplanation,question,uni-id-users')
+    .collection('sword-question-explanation,sword-question,uni-id-users')
     .doc(params.id)
     .field(`questionID{title,_id},content,userID,userAgreed,userDisagreed,userID{avatar,nickname,sign}`)
     .get();
@@ -101,7 +102,7 @@ export async function getExplanationsByID(params: { id: string }): Promise<Actio
  */
 export async function checkExplanationByUser(params: { _id: string; userID?: string }): Promise<ActionResult> {
   const res = await db
-    .collection('questionExplanation')
+    .collection('sword-question-explanation')
     .where({
       questionID: params._id,
       userID: params.userID || uni.getStorageSync('uni_id')
@@ -121,7 +122,7 @@ export async function checkExplanationByUser(params: { _id: string; userID?: str
 export async function getExplanationsByUserID(params: { userID: string; limit: number; page: number }): Promise<ActionResult> {
   const { limit, page } = params;
   const res = await db
-    .collection('questionExplanation,question,uni-id-users')
+    .collection('sword-question-explanation,sword-question,uni-id-users')
     .where({
       userID: params.userID
     })

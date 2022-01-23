@@ -1,5 +1,7 @@
+import { ActionResult } from '../../typings';
+
 const db = uniCloud.database();
-const collection = db.collection('article,uni-id-users');
+const collection = db.collection('sword-article,uni-id-users');
 
 /**
  * @name 获取文章列表

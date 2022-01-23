@@ -1,4 +1,5 @@
 const db = uniCloud.database();
+import { ActionResult } from '../../typings';
 import request from '../common/request';
 
 /**
@@ -10,7 +11,7 @@ import request from '../common/request';
 export async function getQuestionListData(params: { limit: number; page: number; areaID: string }): Promise<ActionResult> {
   const { limit, page, areaID } = params;
   const res = await db
-    .collection('question,uni-id-users')
+    .collection('sword-question,uni-id-users')
     .where(`areaID == '${areaID}' && deleteDate == '' && state == 'pass'`)
     .field(`publishUserID{avatar,nickname,_id},title,content,createDate`)
     .orderBy('createDate', 'desc')
@@ -28,7 +29,7 @@ export async function getQuestionListData(params: { limit: number; page: number;
  * @param params
  */
 export async function getQuestionDetailByID(params: { id: string }): Promise<ActionResult> {
-  const res = await db.collection('question,questionTag').where(`_id == '${params.id}'`).field('tagID{name},title,content,pageView').get();
+  const res = await db.collection('sword-question,sword-question-tag').where(`_id == '${params.id}'`).field('tagID{name},title,content,pageView').get();
   return {
     ...res,
     data: res.result.data
@@ -58,7 +59,7 @@ export async function postAddPageView(params: { _id: string }): Promise<ActionRe
 export async function getQuestionListByUser(params: { userID: string; limit: number; page: number }): Promise<ActionResult> {
   const { limit, page } = params;
   const res = await db
-    .collection('question')
+    .collection('sword-question')
     .where(`publishUserID == '${params.userID}' && state == 'pass' && deleteDate == ''`)
     .orderBy('createDate', 'desc')
     .skip(limit * (page - 1))

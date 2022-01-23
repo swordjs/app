@@ -1,4 +1,5 @@
 import Fly from 'flyio/dist/npm/wx';
+import { ActionResult } from '../../typings';
 import notLogin from '../util/notLogin';
 
 const fly = new Fly();

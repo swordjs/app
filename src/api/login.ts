@@ -1,3 +1,4 @@
+import { ActionResult } from '../../typings';
 import request from '../common/request';
 
 type UserInfo = {

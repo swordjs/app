@@ -1,3 +1,4 @@
+import { ActionResult } from '../../typings';
 import request from '../common/request';
 import { arrObjectUnique } from '../util/common';
 const db = uniCloud.database();
@@ -10,7 +11,7 @@ const db = uniCloud.database();
 export async function search(params: { searchText: string; limit: number; page: number }): Promise<ActionResult> {
   const { limit, page } = params;
   const res = await db
-    .collection('question')
+    .collection('sword-question')
     .aggregate()
     .match({
       title: new RegExp(params.searchText, 'gi')

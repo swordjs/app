@@ -1,10 +1,11 @@
 const fs = require('fs');
 const generateTSConfig = (stagedFilenames) => {
   return (type) => {
-    const tsconfig = JSON.parse(fs.readFileSync('tsconfig.json', 'utf8'));
+    const tsconfig = JSON.parse(fs.readFileSync(`tsconfig.json`, 'utf8'));
     tsconfig.include = stagedFilenames;
-    fs.writeFileSync('tsconfig.lint.json', JSON.stringify(tsconfig));
-    return `${type} --noEmit --project tsconfig.lint.json`;
+    console.log(tsconfig);
+    fs.writeFileSync(`tsconfig.${type}.lint.json`, JSON.stringify(tsconfig));
+    return `${type} --noEmit --project tsconfig.${type}.lint.json --skipLibCheck`;
   };
 };
 

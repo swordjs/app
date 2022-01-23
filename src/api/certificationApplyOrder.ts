@@ -1,3 +1,4 @@
+import { ActionResult } from '../../typings';
 import request from '../common/request';
 
 export async function addCertificationApplyOrder(params: { content: Record<string, unknown> }): Promise<ActionResult> {

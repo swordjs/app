@@ -1,3 +1,5 @@
+import { ActionResult } from '../../typings';
+
 /**
  * @name 客户端直传云存储(阿里云)
  * @param params
