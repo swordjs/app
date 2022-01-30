@@ -1,252 +1,198 @@
 <template>
-  <view
-    class="indexBox"
-    @touchstart="handleTouchStart"
-    @touchend="handleTouchEnd"
-  >
+  <div class="indexBox" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
     <!-- 顶部背景 -->
-    <view class="topBox">
+    <div class="topBox">
       <!-- 头像 -->
-      <image
-        @click="handleClickUser"
-        v-if="isLogin"
-        class="headPicture"
-        :src="user.avatarUrl"
-        mode="scaleToFill"
-      ></image>
-      <image
-        @click="handleClickUser"
-        v-else
-        class="headPicture"
-        src="../../static/index/user.png"
-      ></image>
+      <img v-if="isLogin" class="headPicture" :src="user.avatarUrl" mode="scaleToFill" @click="handleClickUser" />
+      <img v-else class="headPicture" src="../../static/index/user.png" @click="handleClickUser" />
       <!-- 欢迎语和昵称 -->
-      <view
+      <div
         class="hello"
         :style="{
-          opacity: isLogin ? 1 : 0,
+          opacity: isLogin ? 1 : 0
         }"
-        >Hello,</view
       >
+        Hello,
+      </div>
       <!-- 如果未登录显示未登录 -->
-      <button
-        hover-class="none"
-        v-if="!isLogin"
-        class="getUserButton"
-        @click="handleClickUser"
-      >
-        <view class="nickname">未登录</view>
+      <button v-if="!isLogin" hover-class="none" class="getUserButton" @click="handleClickUser">
+        <div class="nickname">未登录</div>
       </button>
-      <view v-else class="nickname">{{ user.nickName }}!</view>
+      <div v-else class="nickname">{{ user.nickName }}!</div>
       <!-- 搜索框 -->
-      <view class="search" @click="handleUrl('/pages/search/index')">
-        <view class="main">快来看看今天有哪些技术热点吧～</view>
-        <image class="icon" src="../../static/index/search.png"></image>
-      </view>
-    </view>
+      <div class="search" @click="handleUrl('/pages/search/index')">
+        <div class="main">快来看看今天有哪些技术热点吧～</div>
+        <img class="icon" src="../../static/index/search.png" />
+      </div>
+    </div>
     <!-- banner -->
-    <view class="banner">
-      <image
-        src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/d9120b07-0203-4b86-93ba-72fdcd2df843.png"
-      />
-    </view>
+    <div class="banner">
+      <img src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-c7e81452-9d28-4486-bedc-5dbf7c8386a5/d9120b07-0203-4b86-93ba-72fdcd2df843.png" />
+    </div>
     <!-- 专区和动态 -->
-    <view class="menu">
+    <div class="menu">
       <!-- 专区 -->
-      <view
-        class="menumain question"
-        @click="handleUrl('/pages/question/index')"
-      >
-        <view class="title">题库专区</view>
-        <view class="content"> 最近的[前端练习题]有更新 </view>
-      </view>
+      <div class="menumain question" @click="handleUrl('/pages/question/index')">
+        <div class="title">题库专区</div>
+        <div class="content">最近的[前端练习题]有更新</div>
+      </div>
       <!-- 动态 -->
-      <!-- <view
+      <!-- <div
         class="menumain dynamic"
         @click="handleUrl('/pages/common/noRelease')"
       >
-        <view class="title">动态</view>
-        <view class="content"> 您的等级暂未解锁此功能 </view>
+        <div class="title">动态</div>
+        <div class="content"> 您的等级暂未解锁此功能 </div>
         头像组
-        <view class="headPictureList">
-          <image
+        <div class="headPictureList">
+          <img
             :style="{ zIndex: index, left: index * 15 + 'px' }"
             :key="index"
             v-for="(i, index) in 3"
             class="headPicture"
             src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
             mode="scaleToFill"
-          ></image>
-        </view>
-      </view> -->
-    </view>
+          ></img>
+        </div>
+      </div>-->
+    </div>
     <!-- 社区 -->
-    <!-- <view class="community" @click="handleUrl('/pages/common/noRelease')">
-      <view class="title">社区</view>
-      <view class="content">您的等级暂未解锁此功能</view>
-    </view> -->
+    <!-- <div class="community" @click="handleUrl('/pages/common/noRelease')">
+      <div class="title">社区</div>
+      <div class="content">您的等级暂未解锁此功能</div>
+    </div>-->
     <!-- 推荐文章 -->
-    <view class="article" @click="handleUrl('/pages/common/noRelease')">
-      <view class="title">推荐文章</view>
-      <view class="articleList">
-        <view
-          class="articleListItem"
-          v-for="article in articleList"
-          :key="article._id"
-          @click="handleClickArticle(article._id)"
-        >
+    <div class="article" @click="handleUrl('/pages/common/noRelease')">
+      <div class="title">推荐文章</div>
+      <div class="articleList">
+        <div v-for="article in articleList" :key="article._id" class="articleListItem" @click="handleClickArticle(article._id)">
           <!-- 文章主体 -->
-          <view class="top">
-            <view class="topTitle">{{ article.title }}</view>
-            <view class="topContent">
-              {{ article.content }}
-            </view>
-          </view>
-          <view class="bottom">
-            <image
-              class="headPicture"
-              :src="article.userID[0].avatar"
-              mode="scaleToFill"
-            ></image>
-            <view class="right">
-              <view class="nickname">{{ article.userID[0].nickname }}</view>
-              <view class="date">{{ article.userID[0].sign }}</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <menu-drawer
-      :show="drawerShow"
-      @change="drawerShow = !drawerShow"
-      :user="user"
-      :isLogin="isLogin"
-    />
-  </view>
+          <div class="top">
+            <div class="topTitle">{{ article.title }}</div>
+            <div class="topContent">{{ article.content }}</div>
+          </div>
+          <div class="bottom">
+            <img class="headPicture" :src="article.userID[0].avatar" mode="scaleToFill" />
+            <div class="right">
+              <div class="nickname">{{ article.userID[0].nickname }}</div>
+              <div class="date">{{ article.userID[0].sign }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <menu-drawer :show="drawerShow" :user="user" :is-login="isLogin" @change="drawerShow = !drawerShow" />
+  </div>
 </template>
 
-<script lang="ts">
-import { reactive, ref } from "vue";
-import { getArticleList } from "../../api/article";
-import { removeHtmlTag } from "../../util/common";
+<script lang="ts" setup>
+import { onShow, onShareAppMessage } from '@dcloudio/uni-app';
+import { reactive, ref } from 'vue';
+import { getArticleList } from '../../api/article';
+import { removeHtmlTag } from '../../util/common';
 
-export default {
-  onShareAppMessage() {
-    return {
-      title: `${this.user.nickName}邀请你使用剑指题解，一起快乐刷题吧~`,
-    };
-  },
-  onShow() {
-    this.handleLoadUserInfo();
-  },
-  setup() {
-    const drawerShow = ref<boolean>(false);
-    const articleList = ref<any[]>([]);
-    // 触摸坐标
-    const startData = reactive<{
-      clientX: number;
-      clientY: number;
-    }>({
-      clientX: 0,
-      clientY: 0,
+const drawerShow = ref<boolean>(false);
+const articleList = ref<any[]>([]);
+// 触摸坐标
+const startData = reactive<{
+  clientX: number;
+  clientY: number;
+}>({
+  clientX: 0,
+  clientY: 0
+});
+type User = {
+  nickName: string;
+  avatarUrl: string;
+};
+// 首页展示的信息，头像/昵称等
+const user = ref<User>({
+  nickName: '',
+  avatarUrl: ''
+});
+// 是否登录
+const isLogin = ref<boolean>(false);
+
+onShareAppMessage(() => {
+  return {
+    title: `${user.value.nickName}邀请你使用剑指题解，一起快乐刷题吧~`
+  };
+});
+
+onShow(() => {
+  handleLoadUserInfo();
+});
+
+const handleLoadUserInfo = () => {
+  // 判断是否登陆
+  isLogin.value = uni.getStorageSync('uni_id_token') !== '';
+  if (isLogin.value) {
+    user.value = uni.getStorageSync('userInfo') as User;
+  }
+};
+const handleUrl = (path: string) => {
+  uni.navigateTo({
+    url: path
+  });
+};
+// 点击user和头像
+const handleClickUser = () => {
+  // 判断是否登录
+  if (isLogin.value) {
+    // 打开首页用户弹窗
+    drawerShow.value = true;
+  } else {
+    // 未登录进入登录页面
+    uni.navigateTo({
+      url: '/pages/user/login'
     });
-    type User = {
-      nickName: string;
-      avatarUrl: string;
+  }
+};
+// 获取文章列表功能
+const getArticle = async () => {
+  const res = await getArticleList();
+  if (res.success && Array.isArray(res.data)) {
+    articleList.value = res.data.slice(0, 10).map((r) => {
+      r.content = removeHtmlTag(r.content);
+      return r;
+    });
+  }
+};
+getArticle();
+const handleTouchStart = (e) => {
+  startData.clientX = e.changedTouches[0].clientX;
+  startData.clientY = e.changedTouches[0].clientY;
+};
+const handleTouchEnd = (e) => {
+  const subX = e.changedTouches[0].clientX - startData.clientX;
+  const subY = e.changedTouches[0].clientY - startData.clientY;
+  if (Math.abs(subX) > Math.abs(subY)) {
+    if (subX > 50) {
+      // 右滑
+      drawerShow.value = true;
+    } else if (subX < -50) {
+      // 左滑
+      drawerShow.value = false;
     }
-    // 首页展示的信息，头像/昵称等
-    const user = ref<User>({
-      nickName: "",
-      avatarUrl: "",
-    });
-    // 是否登录
-    const isLogin = ref<boolean>(false);
-    const handleLoadUserInfo = () => {
-      // 判断是否登陆
-      isLogin.value = uni.getStorageSync("uni_id_token") !== "";
-      if (isLogin.value) {
-        user.value = uni.getStorageSync("userInfo") as User;
-      }
-    };
-    const handleUrl = (path: string) => {
-      uni.navigateTo({
-        url: path,
-      });
-    };
-    // 点击user和头像
-    const handleClickUser = () => {
-      // 判断是否登录
-      if (isLogin.value) {
-        // 打开首页用户弹窗
-        drawerShow.value = true;
-      } else {
-        // 未登录进入登录页面
-        uni.navigateTo({
-          url: "/pages/user/login",
-        });
-      }
-    };
-    // 获取文章列表功能
-    const getArticle = async () => {
-      const res = await getArticleList();
-      if (res.success && Array.isArray(res.data)) {
-        articleList.value = res.data.slice(0, 10).map(r => {
-          r.content = removeHtmlTag(r.content);
-          return r;
-        });
-      }
-    };
-    getArticle();
-    const handleTouchStart = (e) => {
-      startData.clientX = e.changedTouches[0].clientX;
-      startData.clientY = e.changedTouches[0].clientY;
-    };
-    const handleTouchEnd = (e) => {
-      const subX = e.changedTouches[0].clientX - startData.clientX;
-      const subY = e.changedTouches[0].clientY - startData.clientY;
-      if (Math.abs(subX) > Math.abs(subY)) {
-        if (subX > 50) {
-          // 右滑
-          drawerShow.value = true;
-        } else if (subX < -50) {
-          // 左滑
-          drawerShow.value = false;
-        }
-      }
-    };
-    // 点击文章详情
-    const handleClickArticle = (id: string) => {
-      uni.navigateTo({
-        url: `/pages/article/articleDetail?id=${id}`,
-      });
-    };
-    return {
-      drawerShow,
-      isLogin,
-      user,
-      articleList,
-      removeHtmlTag,
-      handleUrl,
-      handleLoadUserInfo,
-      handleClickUser,
-      handleTouchStart,
-      handleTouchEnd,
-      handleClickArticle,
-    };
-  },
+  }
+};
+// 点击文章详情
+const handleClickArticle = (id: string) => {
+  uni.navigateTo({
+    url: `/pages/article/articleDetail?id=${id}`
+  });
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../util/common.scss";
+@import '../../util/common.scss';
 
 .indexBox {
   .topBox {
     position: relative;
     width: 100%;
     height: 524rpx;
-    background: url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-0vdryl5tm4n61d8ce3/4bff3ee0-3d02-11eb-b997-9918a5dda011.png)
-      no-repeat center / 100%;
+    background: url(https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-0vdryl5tm4n61d8ce3/4bff3ee0-3d02-11eb-b997-9918a5dda011.png) no-repeat center / 100%;
 
     .headPicture {
       width: 70rpx;
@@ -341,7 +287,7 @@ export default {
     color: #fff;
     margin: 80rpx auto 16rpx auto;
     box-shadow: 0px 4px 10px 0px rgba(76, 83, 119, 0.25);
-    image {
+    img {
       width: 100%;
       height: 100%;
     }
