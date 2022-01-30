@@ -7,5 +7,5 @@
     },
     "typeRoots": ["./typings", "./node_modules/@types", "./node_modules/@sword-code-practice/types"]
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "src/uni_modules"]
 }

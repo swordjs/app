@@ -1,23 +1,18 @@
 <template>
-  <view class="webview">
-      <web-view :src="url"></web-view>
-  </view>
+  <div class="webview">
+    <web-view :src="url"></web-view>
+  </div>
 </template>
-<script lang='ts'>
-import { defineComponent, ref } from "vue";
-export default defineComponent({
-  onLoad(e) {
-    if (e.url) {
-      this.url = e.url;
-    }
-  },
-  setup() {
-    const url = ref<string>("");
-    return {
-      url,
-    };
-  },
+<script lang="ts" setup>
+import { onLoad } from '@dcloudio/uni-app';
+import { ref } from 'vue';
+
+const url = ref<string>('');
+
+onLoad((e) => {
+  if (e.url) {
+    url.value = e.url;
+  }
 });
 </script>
-<style scoped>
-</style>
+<style scoped></style>

@@ -1,78 +1,61 @@
 <template>
-  <view class="explanationBox">
-    <view class="top">
+  <div class="explanationBox">
+    <div class="top">
       <i-navigation-bar />
-      <view class="title">{{ data.title }}</view>
-    </view>
-    <view class="card">
+      <div class="title">{{ data?.title }}</div>
+    </div>
+    <div class="card">
       <!-- 用户信息 -->
-      <view class="user" @click="handleUser(data.userID[0]._id)">
-        <image :src="data.userID[0].avatar" class="headPicture" mode=""></image>
-        <view class="uerContent">
-          <view class="nickName">{{ data.userID[0].nickname }}</view>
-          <view class="authentication">{{ data.userID[0].sign }}</view>
-        </view>
-      </view>
-      <view class="content">
-        <robin-editor
-          v-model="data.content"
-          :header="false"
-          previewMode
-        ></robin-editor>
-      </view>
-    </view>
-  </view>
+      <div class="user" @click="handleUser(data?.userID[0]._id)">
+        <img :src="data ? data.userID[0].avatar : ''" class="headPicture" mode />
+        <div class="userContent">
+          <div class="nickName">{{ data ? data.userID[0].nickname : '' }}</div>
+          <div class="authentication">{{ data ? data.userID[0].sign : '' }}</div>
+        </div>
+      </div>
+      <div class="content">
+        <robin-editor :value="data ? data.content : ''" :header="false" prediv-mode></robin-editor>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script lang="ts">
-import { ref } from "vue";
-import { getArticleByID } from "../../api/article";
+<script lang="ts" setup>
+import { onLoad } from '@dcloudio/uni-app';
+import { ref } from 'vue';
+import { getArticleByID, ResGetArticleByID } from '../../api/article';
 
-type IPageParams = {
+type PageParams = {
   id: string;
 };
-export default {
-  onLoad(target: IPageParams) {
-    if (target.id) {
-      this.id = target.id;
-      this.getData();
-    }
-  },
-  onShareAppMessage() {
-    return {
-      title: ``,
-    };
-  },
-  setup() {
-    const id = ref("");
-    const data = ref<{}>({});
-    const getData = async () => {
-      uni.showLoading({
-        title: "获取文章中...",
-        mask: true,
-      });
-      const result = await getArticleByID({
-        id: id.value,
-      });
-      uni.hideLoading();
-      if (result.success) {
-        data.value = result.data[0];
-      }
-    };
 
-    const handleUser = (_id: string) => {
-      uni.navigateTo({
-        url: `/pages/user/index?userID=${_id}`,
-      });
-    };
+const id = ref('');
+const data = ref<ResGetArticleByID>();
 
-    return {
-      id,
-      data,
-      getData,
-      handleUser,
-    };
-  },
+onLoad((e: PageParams) => {
+  if (e.id) {
+    id.value = e.id;
+    getData();
+  }
+});
+
+const getData = async () => {
+  uni.showLoading({
+    title: '获取文章中...',
+    mask: true
+  });
+  const result = await getArticleByID({
+    id: id.value
+  });
+  uni.hideLoading();
+  if (result.success) {
+    data.value = result.data;
+  }
+};
+const handleUser = (_id: string) => {
+  uni.navigateTo({
+    url: `/pages/user/index?userID=${_id}`
+  });
 };
 </script>
 
@@ -82,15 +65,14 @@ page {
 }
 </style>
 <style lang="scss" scoped>
-@import "../../util/common.scss";
+@import '../../util/common.scss';
 
 .explanationBox {
   .top {
     display: inline-block;
     width: 100%;
     height: 416rpx;
-    background: url(../../static/question/explanationTop.png) no-repeat center /
-      100%;
+    background: url(../../static/question/explanationTop.png) no-repeat center / 100%;
 
     .navigationBar {
       width: calc(100% - 80rpx);
@@ -144,7 +126,7 @@ page {
         border-radius: 50%;
       }
 
-      .uerContent {
+      .userContent {
         margin-left: 24rpx;
 
         .nickName {

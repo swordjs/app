@@ -122,7 +122,7 @@
       "root": "pages/article",
       "pages": [
         {
-          "path": "articleDetail",
+          "path": "detail",
           "style": {
             "navigationStyle": "custom"
           }
