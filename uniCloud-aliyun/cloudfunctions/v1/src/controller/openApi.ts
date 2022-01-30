@@ -1,6 +1,6 @@
 import * as explain from 'explain';
 import openApiService from '../service/openApi';
-import * as IOpenApi from '../../proto/openApi';
+import * as IOpenApi from '../../typings/proto/request/openapi';
 export = class OpenApiController extends explain.service {
   private service: openApiService;
   constructor(e: CloudData) {

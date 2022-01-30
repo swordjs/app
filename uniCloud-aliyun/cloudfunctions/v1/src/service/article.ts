@@ -1,4 +1,4 @@
-import * as IArticle from '../../proto/article';
+import * as IArticle from '../../typings/proto/request/article';
 const db = uniCloud.database();
 const collection = db.collection('sword-article');
 

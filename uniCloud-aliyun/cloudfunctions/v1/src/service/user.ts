@@ -3,7 +3,7 @@ import questionService from './question';
 import explanationService from './questionExplanation';
 const db = uniCloud.database();
 const collection = db.collection('uni-id-users');
-import * as IUser from '../../proto/user';
+import * as IUser from '../../typings/proto/request/user';
 export default class UserService {
   private data: CloudData;
   private uniID: uniID;

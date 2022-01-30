@@ -1,6 +1,6 @@
 import * as explain from 'explain';
 import certificationService from '../service/certificationApplyOrder';
-import * as ICertificationApplyOrder from '../../proto/certificationApplyOrder';
+import * as ICertificationApplyOrder from '../../typings/proto/request/certificationApplyOrder';
 export = class CertificationApplyOrderController extends explain.service {
   private service: certificationService;
   constructor(e: CloudData) {

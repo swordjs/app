@@ -1,6 +1,6 @@
 import * as explain from 'explain';
 import questionAreaService from '../service/questionArea';
-import * as IQuestionArea from '../../proto/questionArea';
+import * as IQuestionArea from '../../typings/proto/request/questionArea';
 export = class QuestionAreaController extends explain.service {
   private service: questionAreaService;
   constructor(e: CloudData) {

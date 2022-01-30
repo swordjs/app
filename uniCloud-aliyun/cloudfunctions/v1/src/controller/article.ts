@@ -1,6 +1,6 @@
 import * as explain from 'explain';
 import articleService from '../service/article';
-import * as IArticle from '../../proto/article';
+import * as IArticle from '../../typings/proto/request/article';
 
 export = class ArticleController extends explain.service {
   private service: articleService;

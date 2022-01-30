@@ -4,3 +4,4 @@ interface ActionResult<T = unknown> {
 }
 
 import './database';
+import './cloudfunctions';

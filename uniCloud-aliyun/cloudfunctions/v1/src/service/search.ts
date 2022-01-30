@@ -1,4 +1,4 @@
-import * as ISearch from '../../proto/search';
+import * as ISearch from '../../typings/proto/request/search';
 const db = uniCloud.database();
 const collection = db.collection('opendb-search-log');
 export default class SearchService {

@@ -1,6 +1,6 @@
 const db = uniCloud.database();
 const collection = db.collection('sword-question-area');
-import * as IQuestionArea from '../../proto/questionArea';
+import * as IQuestionArea from '../../typings/proto/request/questionArea';
 export default class QuestionArea {
   public userID: string;
   public nowDate: string;

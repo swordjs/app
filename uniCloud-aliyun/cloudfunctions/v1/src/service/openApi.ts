@@ -1,4 +1,4 @@
-import * as IOpenApi from '../../proto/openApi';
+import * as IOpenApi from '../../typings/proto/request/openapi';
 const db = uniCloud.database();
 const collection = db.collection('sword-open-api');
 const questionCollection = db.collection('sword-question');

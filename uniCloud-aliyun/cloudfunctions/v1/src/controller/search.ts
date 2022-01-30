@@ -1,6 +1,6 @@
 import * as explain from 'explain';
 import searchService from '../service/search';
-import * as ISearch from '../../proto/search';
+import * as ISearch from '../../typings/proto/request/search';
 export = class SearchController extends explain.service {
   private service: searchService;
   constructor(e: CloudData) {

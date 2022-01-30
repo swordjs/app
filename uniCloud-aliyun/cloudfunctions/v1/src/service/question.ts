@@ -1,4 +1,4 @@
-import * as IQuestion from '../../proto/question';
+import * as IQuestion from '../../typings/proto/request/question';
 const db = uniCloud.database();
 const dbCmd = db.command;
 const collection = db.collection('sword-question');

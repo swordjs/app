@@ -1,4 +1,4 @@
-import * as ICertificationApplyOrder from '../../proto/certificationApplyOrder';
+import * as ICertificationApplyOrder from '../../typings/proto/request/certificationApplyOrder';
 const db = uniCloud.database();
 const collection = db.collection('sword-certification-order');
 export default class CertificationApplyOrder {

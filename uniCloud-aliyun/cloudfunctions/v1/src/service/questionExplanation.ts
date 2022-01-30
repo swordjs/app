@@ -2,7 +2,7 @@ const db = uniCloud.database();
 const collection = db.collection('sword-question-explanation');
 const collectService = db.collection('sword-user-collect');
 const dbCmd = db.command;
-import * as IQuestionExplanation from '../../proto/questionExplanation';
+import * as IQuestionExplanation from '../../typings/proto/request/questionExplanation';
 export default class QuestionExplanationService {
   public userID: string;
   public nowDate: string;

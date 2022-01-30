@@ -1,6 +1,6 @@
 import * as explain from 'explain';
 import userService from '../service/user';
-import * as IUser from '../../proto/user';
+import * as IUser from '../../typings/proto/request/user';
 export = class UserController extends explain.service {
   private service: userService;
   constructor(e: CloudData) {

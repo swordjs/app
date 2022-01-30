@@ -3,7 +3,7 @@
     "outDir": "./dist",
     "target": "es6",
     "module": "CommonJS",
-    "typeRoots": ["./typings", "./node_modules/@types", "../../../node_modules/sword-typescript-type-core"]
+    "typeRoots": ["./typings", "./node_modules/@types", "./../../../node_modules/@sword-code-practice/types"]
   },
   "include": ["./src/**/*.ts"]
 }

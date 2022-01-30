@@ -1,6 +1,6 @@
 const db = uniCloud.database();
 const collection = db.collection('sword-question-tag');
-import * as IQuestionTag from '../../proto/questionTag';
+import * as IQuestionTag from '../../typings/proto/request/questionTag';
 export default class QuestionTag {
   public userID: string;
   public nowDate: string;

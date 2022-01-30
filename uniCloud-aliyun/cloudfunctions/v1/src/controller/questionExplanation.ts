@@ -1,6 +1,6 @@
 import * as explain from 'explain';
 import questionExplanationService from '../service/questionExplanation';
-import * as IQuestionExplanation from '../../proto/questionExplanation';
+import * as IQuestionExplanation from '../../typings/proto/request/questionExplanation';
 
 export = class QuestionExplanationController extends explain.service {
   private service: questionExplanationService;
