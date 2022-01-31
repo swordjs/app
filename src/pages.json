@@ -22,7 +22,7 @@
       "path": "pages/user/index"
     },
     {
-      "path": "pages/question/questionDetail",
+      "path": "pages/question/detail",
       "style": {
         "navigationBarTitleText": "",
         "enablePullDownRefresh": false

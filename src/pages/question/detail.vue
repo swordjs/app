@@ -1,0 +1,387 @@
+<template>
+  <div class="questionDetail">
+    <div class="top">
+      <!-- 顶部的bar -->
+      <i-navigation-bar />
+      <div class="title">{{ detailData.title || '' }}</div>
+      <div class="info">
+        <div class="tags">
+          <div v-for="tag in detailData.tagID" :key="tag._id" class="tag">
+            {{ tag.name }}
+          </div>
+        </div>
+        <div class="browse">
+          <img src="../../static/question/eyes.png" />
+          <div class="content">{{ detailData.pageView || '0' }}人已浏览</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="tab">
+        <Tabs
+          v-model="tabCurrent"
+          :line-scale="0.3"
+          line-color="#526EE7"
+          line-radius="4rpx"
+          active-color="#526EE7"
+          :bold="false"
+          :scroll="false"
+          :tabs="tabs"
+        ></Tabs>
+      </div>
+      <swiper class="swiper" :current="tabCurrent" :style="{ height: swiperHeight + 'px' }" @change="handleSwiperChange">
+        <swiper-item @touchmove.stop>
+          <scroll-div v-if="explanations.length !== 0" :scroll-y="true" style="height: 100%" @scrolltolower="handleExplanationTolower">
+            <div v-for="explanation in explanations" :key="explanation._id" class="itemCard" @click="handleExplanationCard(explanation)">
+              <div class="itemCardTop" @click.stop="handleUser(explanation.userID[0]._id)">
+                <img class="headPicture" :src="explanation.userID[0].avatar" mode="scaleToFill" />
+                <div class="nickname">
+                  {{ explanation.userID[0].nickname }}
+                </div>
+              </div>
+              <div class="itemBody">
+                <!-- 可能有图片 -->
+                <!-- <div class="imgs">
+                <img
+                  src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+                  mode="scaleToFill"
+                ></img>
+                </div>-->
+                <div class="itemMain">{{ explanation.content }}</div>
+              </div>
+            </div>
+          </scroll-div>
+          <template v-else>
+            <div style="margin-top: 25%">
+              <commonFill title="还没有人解答oh，快来成为第一个吧!" />
+            </div>
+          </template>
+        </swiper-item>
+      </swiper>
+    </div>
+    <!-- 操作栏 -->
+    <div class="bottom">
+      <!-- 写题解 -->
+      <template v-if="!explanationIDBySelf">
+        <i-button custom-style="background-color: #5671E8;border-color: #5671E8;width: 100px; line-height:37px;" round @click="handleWrite">写题解</i-button>
+      </template>
+      <!-- 查看自己的题解 -->
+      <template v-else>
+        <i-button
+          custom-style="background-color: #5671E8;border-color: #5671E8;width: 170px; line-height:37px;"
+          round
+          @click="handleExplanationCard({ _id: explanationIDBySelf })"
+        >
+          查看自己的题解
+        </i-button>
+      </template>
+    </div>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import Tabs from '../../components/v-tabs/v-tabs.vue';
+import { onShow, onLoad, onShareAppMessage } from '@dcloudio/uni-app';
+import { ref } from 'vue';
+// api
+import { getQuestionDetailByID, postAddPageView, ResGetQuestionDetailByID } from '../../api/question';
+import { getExplanationsByQuestionID, checkExplanationByUser } from '../../api/questionExplanation';
+import { removeHtmlTag } from '../../util/common';
+import notLogin from '../../util/notLogin';
+import { isString } from '@vue/shared';
+
+type PageParams = {
+  id: string;
+};
+
+// 分页相关配置
+let pageConfig = ref<{
+  page: number;
+  limit: number;
+}>({
+  page: 1,
+  limit: 20
+});
+
+const detailData = ref<ResGetQuestionDetailByID>();
+
+const explanations = ref([]);
+const id = ref<string>('');
+const explanationIDBySelf = ref<string | boolean>('');
+
+onShow(() => {
+  // 每次进入页面需要查询这个题是否已做过
+  getExplanationIDBySelf();
+});
+
+onLoad((params: PageParams) => {
+  id.value = params.id;
+  handleGetDetailData();
+  handleGetQuestionExplanation();
+  // 调用增加浏览量的方法
+  handleAddPageView();
+});
+
+onShareAppMessage(() => {
+  return {
+    title: `剑指题解：${detailData.value.title}`
+  };
+});
+
+// 查询自身是否解答过这道题了
+const getExplanationIDBySelf = async () => {
+  // 判断是否登录
+  const userID = uni.getStorageSync('uni_id');
+  if (userID === '') return false;
+  const result = await checkExplanationByUser({
+    _id: id.value
+  });
+  if (result.success) {
+    explanationIDBySelf.value = result.data === null ? false : (result.data as string);
+  }
+};
+// 解答页面的滚动视图高度，需要初始化减掉49，这个49是底部操作的高度，之后会经过动态计算，算出距离顶部的高度，然后动态减去
+const swiperHeight = ref<number>(uni.getSystemInfoSync().screenHeight - 49);
+// 计算屏幕高度 - tab的高度 - 导航栏的高度 = swiper高度 - 底部操作栏高度
+let query = uni.createSelectorQuery();
+let dom = query.select('.swiper');
+dom
+  .boundingClientRect(function ({ top }) {
+    swiperHeight.value -= top;
+    console.log(swiperHeight.value);
+  })
+  .exec();
+const tabCurrent = ref(0);
+const tabs = ref(['解答']);
+const handleSwiperChange = (e) => {
+  tabCurrent.value = e.detail.current;
+};
+const handleGetDetailData = async () => {
+  uni.showLoading({ mask: true });
+  const result = await getQuestionDetailByID({
+    id: id.value
+  });
+  if (result.success) {
+    detailData.value = result.data[0];
+  }
+  uni.hideLoading();
+};
+// 获取题解列表
+const handleGetQuestionExplanation = async () => {
+  uni.showLoading({ title: '加载中...', mask: true });
+  const explanationData = await getExplanationsByQuestionID({
+    questionID: id.value,
+    limit: pageConfig.value.limit,
+    page: pageConfig.value.page
+  });
+  uni.hideLoading();
+  if (explanationData.success && explanationData.data) {
+    if (Array.isArray(explanationData.data)) {
+      explanations.value = explanations.value.concat(
+        explanationData.data.map((e) => {
+          return {
+            ...e,
+            content: removeHtmlTag(e.content)
+          };
+        })
+      );
+    }
+  }
+};
+// 题解列表触底加载
+const handleExplanationTolower = () => {
+  const { page, limit } = pageConfig.value;
+  if (page * limit > explanations.value.length) {
+    uni.showToast({
+      title: '再往下就没内容啦~',
+      icon: 'none'
+    });
+  } else {
+    pageConfig.value.page++;
+    // 分页加载
+    handleGetQuestionExplanation();
+  }
+};
+// 点击用户头像
+const handleUser = (_id: string) => {
+  uni.navigateTo({
+    url: `/pages/user/index?userID=${_id}`
+  });
+};
+// 跳转到题解详情页面
+const handleExplanationCard = (target: { _id: string | boolean }) => {
+  if (isString(target._id)) {
+    uni.navigateTo({
+      url: `/pages/question/questionExplanationDetail?id=${target._id}&questionID=${id.value}`
+    });
+  }
+};
+// 点击写题解按钮
+const handleWrite = () => {
+  // 判断是否登录
+  notLogin(async () => {
+    uni.navigateTo({
+      url: `/pages/question/writeQuestion?questionID=${id.value}&title=${detailData.value.title}`
+    });
+  });
+};
+
+const handleAddPageView = () => {
+  postAddPageView({
+    _id: id.value
+  });
+};
+</script>
+
+<style lang="scss">
+@import '../../util/common.scss';
+
+.questionDetail {
+  height: 100vh;
+  overflow-y: hidden;
+  .top {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-height: 306rpx;
+    padding-bottom: 90rpx;
+    background: linear-gradient(360deg, #809bf5 0%, #506be6 100%);
+
+    .title {
+      width: 666rpx;
+      margin: 0 auto;
+      font-size: 32rpx;
+      color: #fff;
+      margin-top: 42rpx;
+      @include text-ellipsis(2);
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 666rpx;
+      margin: 0 auto;
+      margin-top: 20rpx;
+
+      .tags {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .tag {
+          color: #fff;
+          font-size: 24rpx;
+          background: linear-gradient(270deg, #ffd398 0%, #ffa85f 100%);
+          border-radius: 2px;
+          padding: 2rpx 16rpx;
+        }
+
+        .tag:not(:last-child) {
+          margin-right: 16rpx;
+        }
+      }
+
+      .browse {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        img {
+          width: 34rpx;
+          height: 20rpx;
+          margin-right: 10rpx;
+        }
+
+        .content {
+          font-size: 24rpx;
+          color: #fff;
+        }
+      }
+    }
+  }
+  .bottom {
+    width: 690rpx;
+    height: 98rpx;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+  }
+  .main {
+    display: inline-block;
+    width: 750rpx;
+    background: #ffffff;
+    border-radius: 25px 25px 0px 0px;
+    transform: translateY(-64rpx);
+    .tab {
+      width: 200rpx;
+      margin-top: 50rpx;
+      transform: translateX(-24rpx);
+    }
+
+    .itemCard {
+      width: 630rpx;
+      padding: 30rpx;
+      box-shadow: 0px 3px 10px 0px rgba(97, 108, 150, 0.2);
+      border-radius: 8px;
+      margin: 0 auto;
+      margin-top: 20rpx;
+      &:not(:first-child) {
+        border-top: 2rpx solid #f1f3fc;
+      }
+      &:last-child {
+        margin-bottom: 20rpx;
+      }
+
+      .itemCardTop {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .headPicture {
+          width: 64rpx;
+          height: 64rpx;
+          border-radius: 50%;
+          border: 2px solid #fff;
+        }
+
+        .nickname {
+          font-size: 28rpx;
+          margin-left: 16rpx;
+        }
+      }
+
+      .itemBody {
+        .imgs {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          margin-top: 20rpx;
+
+          img {
+            width: 216rpx;
+            height: 162rpx;
+            border-radius: 15rpx;
+
+            &:not(:first-child) {
+              margin-left: 22rpx;
+            }
+          }
+        }
+
+        .itemMain {
+          color: #666666;
+          font-size: 28rpx;
+          margin-top: 20rpx;
+        }
+      }
+    }
+  }
+}
+</style>

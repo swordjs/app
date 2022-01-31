@@ -179,7 +179,7 @@ const handleTouchEnd = (e) => {
 // 点击文章详情
 const handleClickArticle = (id: string) => {
   uni.navigateTo({
-    url: `/pages/article/articleDetail?id=${id}`
+    url: `/pages/article/detail?id=${id}`
   });
 };
 </script>

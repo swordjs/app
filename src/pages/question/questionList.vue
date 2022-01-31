@@ -1,6 +1,6 @@
 <template>
   <view class="questionListBox">
-    <view class="item" v-for="question in dataList" :key="question._id" @click="handleQuestionDetail(question._id)">
+    <view v-for="question in dataList" :key="question._id" class="item" @click="handleQuestionDetail(question._id)">
       <!-- 背景卡片 -->
       <view class="topCard">
         <!-- 标题 -->
@@ -8,19 +8,10 @@
           {{ question.title }}
         </view>
         <!-- 个人信息 -->
-        <view
-          class="user"
-          @click.stop="handlePublishUser(question.publishUserID[0]._id)"
-        >
-          <image
-            :src="question.publishUserID[0].avatar"
-            class="headPicture"
-            mode=""
-          ></image>
+        <view class="user" @click.stop="handlePublishUser(question.publishUserID[0]._id)">
+          <image :src="question.publishUserID[0].avatar" class="headPicture" mode=""></image>
           <view class="uerContent">
-            <view class="nickName">{{
-              question.publishUserID[0].nickname
-            }}</view>
+            <view class="nickName">{{ question.publishUserID[0].nickname }}</view>
             <view class="authentication">官方认证出题人</view>
           </view>
         </view>
@@ -28,25 +19,21 @@
       <!-- 详情 -->
       <view class="detail">
         <view class="title">
-          问题描述<image
-            class="quote"
-            src="../../static/question/quote.png"
-            mode=""
-          ></image>
+          问题描述
+          <image class="quote" src="../../static/question/quote.png" mode=""></image>
         </view>
         <view class="content">
-          {{ question.content === "" && "暂无题目介绍" }}
+          {{ question.content === '' && '暂无题目介绍' }}
         </view>
       </view>
     </view>
   </view>
 </template>
 
-
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue';
 // api
-import { getQuestionListData } from "../../api/question";
+import { getQuestionListData } from '../../api/question';
 interface IPageParams {
   areaID: string;
   areaName: string;
@@ -63,21 +50,21 @@ export default defineComponent({
     // 动态设置标题
     this.areaName = decodeURIComponent(params.areaName);
     uni.setNavigationBarTitle({
-      title: this.areaName,
+      title: this.areaName
     });
     // 获取列表
     this.handleGetData();
   },
   onShareAppMessage() {
     return {
-      title: `今天我刷了剑指题解的${this.areaName}题，你呢？`,
+      title: `今天我刷了剑指题解的${this.areaName}题，你呢？`
     };
   },
   onReachBottom() {
     if (this.pageConfig.page * this.pageConfig.limit > this.dataList.length) {
       uni.showToast({
-        title: "再往下就没内容啦~",
-        icon: "none",
+        title: '再往下就没内容啦~',
+        icon: 'none'
       });
     } else {
       this.pageConfig.page++;
@@ -92,28 +79,28 @@ export default defineComponent({
       limit: number;
     } = {
       page: 1,
-      limit: 10,
+      limit: 10
     };
     // 定义一个列表
     const dataList = ref<IDataList[] | []>([]);
-    const areaID = ref<string>("");
-    const areaName = ref<string>("");
+    const areaID = ref<string>('');
+    const areaName = ref<string>('');
     // 根据规则获取题目列表
     const handleGetData = async () => {
       uni.showLoading({
-        title: "获取题目中...",
-        mask: true,
+        title: '获取题目中...',
+        mask: true
       });
       const result = await getQuestionListData({
         limit: pageConfig.limit,
         page: pageConfig.page,
-        areaID: areaID.value,
+        areaID: areaID.value
       });
       uni.hideLoading();
       if (result.success) {
         uni.showToast({
-          title: "加载成功",
-          icon: "none",
+          title: '加载成功',
+          icon: 'none'
         });
         dataList.value = dataList.value.concat(result.data as never[]);
       }
@@ -122,13 +109,13 @@ export default defineComponent({
     // 进入个人中心
     const handlePublishUser = (_id: string) => {
       uni.navigateTo({
-        url: `/pages/user/index?userID=${_id}`,
+        url: `/pages/user/index?userID=${_id}`
       });
     };
     // 进入题解详情
     const handleQuestionDetail = (_id: string) => {
       uni.navigateTo({
-        url: `/pages/question/questionDetail?id=${_id}`,
+        url: `/pages/question/detail?id=${_id}`
       });
     };
     const handleQuestionChange = (e) => {
@@ -150,7 +137,7 @@ export default defineComponent({
       handleQuestionChange,
       handlePublishUser
     };
-  },
+  }
 });
 </script>
 
@@ -162,7 +149,7 @@ page {
 </style>
 
 <style lang="scss" scoped>
-@import "../../util/common.scss";
+@import '../../util/common.scss';
 .questionListBox {
   .item {
     position: relative;
@@ -175,14 +162,12 @@ page {
     margin-top: 66rpx;
     &:nth-child(odd) {
       .topCard {
-        background: url(../../static/question/questionWriteBackrgound.png)
-          no-repeat center / 100%;
+        background: url(../../static/question/questionWriteBackrgound.png) no-repeat center / 100%;
       }
     }
     &:nth-child(even) {
       .topCard {
-        background: url(../../static/question/questionBookBackrgound.png)
-          no-repeat center / 100%;
+        background: url(../../static/question/questionBookBackrgound.png) no-repeat center / 100%;
       }
     }
     .topCard {
@@ -260,7 +245,6 @@ page {
         letter-spacing: 2rpx;
         @include text-ellipsis(3);
       }
-
     }
 
     &:first-child {

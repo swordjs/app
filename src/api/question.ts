@@ -1,5 +1,6 @@
 const db = uniCloud.database();
 import { ActionResult } from '../../typings';
+import { Question } from '../../typings/database/sword-question';
 import request from '../common/request';
 
 /**
@@ -8,7 +9,14 @@ import request from '../common/request';
  * @description 需要查询User以及专区和标签的内容
  * @docLink https://www.yuque.com/u509950/lmm8g4/wmvcz3
  */
-export async function getQuestionListData(params: { limit: number; page: number; areaID: string }): Promise<ActionResult> {
+export type ResGetQuestionListData = Pick<Question, 'title' | 'content' | 'createDate'> & {
+  publishUserID: {
+    avatar: string;
+    nickname: string;
+    _id: string;
+  }[];
+};
+export async function getQuestionListData(params: { limit: number; page: number; areaID: string }): Promise<ActionResult<ResGetQuestionListData[]>> {
   const { limit, page, areaID } = params;
   const res = await db
     .collection('sword-question,uni-id-users')
@@ -17,7 +25,7 @@ export async function getQuestionListData(params: { limit: number; page: number;
     .orderBy('createDate', 'desc')
     .skip(limit * (page - 1))
     .limit(limit)
-    .get();
+    .get<ResGetQuestionListData>();
   return {
     ...res,
     data: res.result.data
@@ -28,8 +36,18 @@ export async function getQuestionListData(params: { limit: number; page: number;
  * @name 获取题目详情根据ID
  * @param params
  */
-export async function getQuestionDetailByID(params: { id: string }): Promise<ActionResult> {
-  const res = await db.collection('sword-question,sword-question-tag').where(`_id == '${params.id}'`).field('tagID{name},title,content,pageView').get();
+export type ResGetQuestionDetailByID = Question & {
+  tagID: {
+    name: string;
+    _id: string;
+  }[];
+};
+export async function getQuestionDetailByID(params: { id: string }): Promise<ActionResult<ResGetQuestionDetailByID[]>> {
+  const res = await db
+    .collection('sword-question,sword-question-tag')
+    .where(`_id == '${params.id}'`)
+    .field('tagID{name},title,content,pageView')
+    .get<ResGetQuestionDetailByID>();
   return {
     ...res,
     data: res.result.data
